@@ -17,8 +17,8 @@ return new class extends Migration
             $table->decimal('linea_precio_total', 10, 2);
             // $table->unsignedBigInteger('id_pedido');
             // $table->unsignedBigInteger('id_producto');
-            $table->foreignId('id_pedido')->references('id_pedido')->on('pedidos')->onDelete('cascade');
-            $table->foreignId('id_producto')->references('id_producto')->on('productos')->onDelete('cascade');
+            $table->foreignId('id_pedido')->references('id_pedido')->on('pedidos')->onDelete('cascade');//Relacion 1-M con Pedido
+            $table->foreignId('id_producto')->references('id_producto')->on('productos')->onDelete('cascade');//Relacion 1-M con Producto
             $table->timestamps();
         });
 

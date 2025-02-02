@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('producto_stock');
             $table->text('producto_colores');
             // $table->unsignedBigInteger('id_almacen')->nullable();
-            $table->foreignId('id_almacen')->nullable()->references('id_almacen')->on('almacenes')->onDelete('set null');
+            $table->foreignId('id_almacen')->nullable()->references('id_almacen')->on('almacenes')->onDelete('set null');//Relacion  1-M con Almacen
             $table->timestamps();
         });
     }

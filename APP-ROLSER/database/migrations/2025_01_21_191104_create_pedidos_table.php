@@ -17,8 +17,8 @@ return new class extends Migration
             $table->date('fecha_creacion');
             // $table->unsignedBigInteger('id_cliente_vip')->nullable();
             // $table->unsignedBigInteger('id_cliente_no_vip')->nullable();
-            $table->foreignId('id_cliente_vip')->nullable()->references('id_cliente_vip')->on('clientes_vip')->onDelete('cascade');
-            $table->foreignId('id_cliente_no_vip')->nullable()->references('id_cliente_no_vip')->on('clientes_no_vip')->onDelete('cascade');
+            $table->foreignId('id_cliente_vip')->nullable()->references('id_cliente_vip')->on('clientes_vip')->onDelete('cascade');//Relacion 1-M con CLiente_VIP
+            $table->foreignId('id_cliente_no_vip')->nullable()->references('id_cliente_no_vip')->on('clientes_no_vip')->onDelete('cascade');//Relacion 1-M con CLiente_NO_VIP
             $table->timestamps();
         });
     }
