@@ -24,10 +24,18 @@ class Producto extends Model
         'producto_colores',
         'id_almacen'
     ];
-
-    // Relación con Almacen (1-M, opcional)
-    public function almacen()
+    public function catalogos()
     {
-        return $this->belongsTo(Almacen::class, 'id_almacen', 'id_almacen');
+        return $this->belongsToMany(Catalogo::class);
+    }
+
+    public function almacenes()
+    {
+        return $this->belongsTo(Almacen::class);
+    }
+
+    public function lineasDePedidos()
+    {
+        return $this->hasMany(LineaPedido::class);
     }
 }

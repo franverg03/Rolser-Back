@@ -20,4 +20,22 @@ class Catalogo extends Model
         'catalogo_estado',
         'catalogo_tipo'
     ];
+
+    public function comerciales() {
+        return $this->belongsToMany(Comercial::class);
+    }
+
+    public function administrativos() {
+        return $this->belongsToMany(Administrativo::class);
+    }
+
+    public function clientesVip() {
+        return $this->belongsToMany(ClienteVip::class);
+    }
+
+    public function productos() {
+        return $this->belongsToMany(Producto::class);
+    }
+
+
 }

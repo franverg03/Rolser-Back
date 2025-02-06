@@ -20,28 +20,19 @@ class Factura extends Model
         'id_cliente_vip',
         'id_comercial'
     ];
-
-    // Relación con Pedido (1-M)
-    public function pedido()
-    {
-        return $this->belongsTo(Pedido::class, 'id_pedido', 'id_pedido');
+    public function lineasDeFactura() {
+        return $this->hasMany(LineaFactura::class);
     }
 
-    // Relación con Cliente No VIP (1-M, opcional)
-    public function clienteNoVip()
-    {
-        return $this->belongsTo(ClienteNoVip::class, 'id_cliente_no_vip', 'id_cliente_no_vip');
+    public function pedidos() {
+        return $this->hasMany(Pedido::class);
     }
 
-    // Relación con Cliente VIP (1-M, opcional)
-    public function clienteVip()
-    {
-        return $this->belongsTo(ClienteVip::class, 'id_cliente_vip', 'id_cliente_vip');
+    public function comerciales() {
+        return $this->belongsTo(Comercial::class);
     }
 
-    // Relación con Comercial (1-M, opcional)
-    public function comercial()
-    {
-        return $this->belongsTo(Comercial::class, 'id_comercial', 'id_comercial');
+    public function clientesVip() {
+        return $this->belongsTo(ClienteVip::class);
     }
 }

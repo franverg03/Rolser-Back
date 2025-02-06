@@ -18,10 +18,21 @@ class Seguimiento extends Model
         'seguimiento_descripcion',
         'seguimiento_fecha'
     ];
-
-    // Relación con Pedido (1-M)
-    public function pedido()
+    public function clientesNoVip()
     {
-        return $this->belongsTo(Pedido::class, 'id_pedido', 'id_pedido');
+        return $this->belongsTo(ClienteNoVip::class);
     }
+
+    public function clientesVip()
+    {
+        return $this->belongsTo(ClienteVip::class);
+    }
+
+    public function administrativos()
+    {
+        return $this->belongsToMany(Administrativo::class);
+    }
+
+
+
 }

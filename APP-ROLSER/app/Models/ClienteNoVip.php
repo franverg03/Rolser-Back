@@ -25,15 +25,20 @@ class ClienteNoVip extends Model
         'id_comercial'
     ];
 
-    // Relación con User (1-1)
-    public function usuario()
-    {
-        return $this->belongsTo(User::class, 'id_usuario', 'id_usuario');
+    public function usuarios() {
+        return $this->belongsTo(User::class);
     }
 
-    // Relación con Comercial (1-M)
-    public function comercial()
-    {
-        return $this->belongsTo(Comercial::class, 'id_comercial', 'id_comercial');
+    public function comerciales() {
+        return $this->belongsTo(Comercial::class);
     }
+
+    public function descuentos() {
+        return $this->hasMany(Descuento::class);
+    }
+
+    public function tarifas() {
+        return $this->hasMany(Tarifa::class);
+    }
+
 }

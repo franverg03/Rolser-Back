@@ -29,4 +29,24 @@ class Comercial extends Model
     {
         return $this->belongsTo(User::class, 'id_usuario', 'id_usuario');
     }
+
+    public function pedidos() {
+        return $this->hasMany(Pedido::class);
+    }
+
+    public function facturas() {
+        return $this->hasMany(Factura::class);
+    }
+
+    public function clientesNoVip() {
+        return $this->hasMany(ClienteNoVip::class);
+    }
+
+    public function clientesVip() {
+        return $this->hasMany(ClienteVip::class);
+    }
+
+    public function catalogos() {
+        return $this->belongsToMany(Catalogo::class);
+    }
 }

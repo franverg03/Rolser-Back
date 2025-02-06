@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Models\ClienteNoVip;
 use Illuminate\Http\Request;
 
@@ -16,10 +17,7 @@ class ClienteNoVipController extends Controller
     // Obtener un cliente no VIP por ID
     public function show($id)
     {
-        $cliente = ClienteNoVip::with(['usuario', 'comercial'])->find($id);
-        if (!$cliente) {
-            return response()->json(['message' => 'Cliente No VIP no encontrado'], 404);
-        }
+        $cliente = ClienteNoVip::with(['usuario', 'comercial'])->whereId($id);
         return response()->json($cliente, 200);
     }
 
@@ -44,13 +42,8 @@ class ClienteNoVipController extends Controller
     }
 
     // Actualizar un cliente no VIP
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $cliente = ClienteNoVip::find($id);
-        if (!$cliente) {
-            return response()->json(['message' => 'Cliente No VIP no encontrado'], 404);
-        }
-
         $validatedData = $request->validate([
             'cliente_empresa' => 'sometimes|required|string|max:100',
             'cliente_nif' => 'sometimes|required|string|max:20',
@@ -63,7 +56,7 @@ class ClienteNoVipController extends Controller
             'id_comercial' => 'sometimes|nullable|exists:comerciales,id_comercial',
         ]);
 
-        $cliente->update($validatedData);
+        $cliente=ClienteNoVip::whereId($request->id)->update($validatedData);
 
         return response()->json($cliente, 200);
     }
@@ -71,10 +64,7 @@ class ClienteNoVipController extends Controller
     // Eliminar un cliente no VIP
     public function destroy($id)
     {
-        $cliente = ClienteNoVip::find($id);
-        if (!$cliente) {
-            return response()->json(['message' => 'Cliente No VIP no encontrado'], 404);
-        }
+        $cliente = ClienteNoVip::whereId($id);
 
         $cliente->delete();
 

@@ -20,4 +20,15 @@ class Almacen extends Model
         'almacen_localidad',
         'almacen_codigo_postal'
     ];
+
+
+    public function productos() {
+        return $this->hasMany(Producto::class);
+    }
+
+    public function administrativos() {
+        return $this->belongsToMany(Administrativo::class);
+    }
+
+
 }
