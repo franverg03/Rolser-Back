@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
 use App\Http\Controllers\Controller;
 use App\Models\LineaFactura;
 use App\Models\Producto;
@@ -18,10 +17,8 @@ class LineaFacturaController extends Controller
     // Obtener una línea de factura por ID
     public function show($id)
     {
-        $lineaFactura = LineaFactura::with(['factura', 'producto'])->find($id);
-        if (!$lineaFactura) {
-            return response()->json(['message' => 'Línea de factura no encontrada'], 404);
-        }
+        $lineaFactura = LineaFactura::with(['factura', 'producto'])->whereId($id);
+
         return response()->json($lineaFactura, 200);
     }
 
@@ -35,10 +32,7 @@ class LineaFacturaController extends Controller
         ]);
 
         // Obtener el producto para calcular el importe y total
-        $producto = Producto::find($validatedData['id_producto']);
-        if (!$producto) {
-            return response()->json(['message' => 'Producto no encontrado'], 404);
-        }
+        $producto = Producto::whereId($validatedData['id_producto']);
 
         // Calcular el importe unitario y el total
         $validatedData['importe'] = $producto->producto_precio;
@@ -53,10 +47,7 @@ class LineaFacturaController extends Controller
     // Actualizar una línea de factura
     public function update(Request $request, $id)
     {
-        $lineaFactura = LineaFactura::find($id);
-        if (!$lineaFactura) {
-            return response()->json(['message' => 'Línea de factura no encontrada'], 404);
-        }
+        $lineaFactura = LineaFactura::whereId($id);
 
         $validatedData = $request->validate([
             'unidades' => 'sometimes|required|integer|min:1',
@@ -66,10 +57,7 @@ class LineaFacturaController extends Controller
 
         // Si se cambia la cantidad o el producto, recalcular el importe y total
         if (isset($validatedData['unidades']) || isset($validatedData['id_producto'])) {
-            $producto = Producto::find($validatedData['id_producto'] ?? $lineaFactura->id_producto);
-            if (!$producto) {
-                return response()->json(['message' => 'Producto no encontrado'], 404);
-            }
+            $producto = Producto::whereId($validatedData['id_producto'] ?? $lineaFactura->id_producto);
 
             $unidades = $validatedData['unidades'] ?? $lineaFactura->unidades;
             $validatedData['importe'] = $producto->producto_precio;
@@ -84,10 +72,7 @@ class LineaFacturaController extends Controller
     // Eliminar una línea de factura
     public function destroy($id)
     {
-        $lineaFactura = LineaFactura::find($id);
-        if (!$lineaFactura) {
-            return response()->json(['message' => 'Línea de factura no encontrada'], 404);
-        }
+        $lineaFactura = LineaFactura::whereId($id);
 
         $lineaFactura->delete();
 

@@ -1,31 +1,20 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\AdministrativoController;
-use Illuminate\Support\Facades\Http;
-
-Route::get('/datatable/lang/Spanish', function () {
-    $response = Http::get('https://cdn.datatables.net/plug-ins/1.11.5/i18n/Spanish.json');
-    return response($response->body(), 200)->header('Content-Type', 'application/json');
-});
-
-// Route::get('/administrativo', function () {
-//     return view('administrativo.index');
-// })->name('administrativo.index');
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/hola', function () {
-    return view('hola');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-// Route::get('/tabla', function () {
-//     return view('tabla');
-// });
-
-Route::view('administrativoTabla', 'administrativo.index');
+require __DIR__.'/auth.php';

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Api;
-
+namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
+
 use App\Models\ClienteVip;
 use Illuminate\Http\Request;
 
@@ -17,10 +17,8 @@ class ClienteVipController extends Controller
     // Obtener un cliente VIP por ID
     public function show($id)
     {
-        $cliente = ClienteVip::with(['usuario', 'comercial'])->find($id);
-        if (!$cliente) {
-            return response()->json(['message' => 'Cliente VIP no encontrado'], 404);
-        }
+        $cliente = ClienteVip::with(['usuario', 'comercial'])->whereId($id);
+
         return response()->json($cliente, 200);
     }
 
@@ -47,10 +45,7 @@ class ClienteVipController extends Controller
     // Actualizar un cliente VIP
     public function update(Request $request, $id)
     {
-        $cliente = ClienteVip::find($id);
-        if (!$cliente) {
-            return response()->json(['message' => 'Cliente VIP no encontrado'], 404);
-        }
+        $cliente = ClienteVip::whereId($id);
 
         $validatedData = $request->validate([
             'cliente_empresa' => 'sometimes|required|string|max:100',
@@ -72,10 +67,7 @@ class ClienteVipController extends Controller
     // Eliminar un cliente VIP
     public function destroy($id)
     {
-        $cliente = ClienteVip::find($id);
-        if (!$cliente) {
-            return response()->json(['message' => 'Cliente VIP no encontrado'], 404);
-        }
+        $cliente = ClienteVip::whereId($id);
 
         $cliente->delete();
 

@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
 use App\Http\Controllers\Controller;
-
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
@@ -18,10 +16,8 @@ class ProductoController extends Controller
     // Obtener un producto por ID
     public function show($id)
     {
-        $producto = Producto::with('almacen')->find($id);
-        if (!$producto) {
-            return response()->json(['message' => 'Producto no encontrado'], 404);
-        }
+        $producto = Producto::with('almacen')->whereId($id);
+
         return response()->json($producto, 200);
     }
 
@@ -48,10 +44,7 @@ class ProductoController extends Controller
     // Actualizar un producto
     public function update(Request $request, $id)
     {
-        $producto = Producto::find($id);
-        if (!$producto) {
-            return response()->json(['message' => 'Producto no encontrado'], 404);
-        }
+        $producto = Producto::whereId($id);
 
         $validatedData = $request->validate([
             'producto_nombre' => 'sometimes|required|string|max:100',
@@ -73,10 +66,7 @@ class ProductoController extends Controller
     // Eliminar un producto
     public function destroy($id)
     {
-        $producto = Producto::find($id);
-        if (!$producto) {
-            return response()->json(['message' => 'Producto no encontrado'], 404);
-        }
+        $producto = Producto::whereId($id);
 
         $producto->delete();
 

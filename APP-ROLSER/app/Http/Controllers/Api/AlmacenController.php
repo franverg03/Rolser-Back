@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
 use App\Models\Almacen;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AlmacenController extends Controller
 {
@@ -17,10 +17,8 @@ class AlmacenController extends Controller
     // Obtener un almacén por ID
     public function show($id)
     {
-        $almacen = Almacen::find($id);
-        if (!$almacen) {
-            return response()->json(['message' => 'Almacén no encontrado'], 404);
-        }
+        $almacen = Almacen::whereId($id);
+
         return response()->json($almacen, 200);
     }
 
@@ -43,10 +41,8 @@ class AlmacenController extends Controller
     // Actualizar un almacén
     public function update(Request $request, $id)
     {
-        $almacen = Almacen::find($id);
-        if (!$almacen) {
-            return response()->json(['message' => 'Almacén no encontrado'], 404);
-        }
+        $almacen = Almacen::whereId($id);
+
 
         $validatedData = $request->validate([
             'almacen_nombre' => 'sometimes|required|string|max:100',
@@ -64,10 +60,7 @@ class AlmacenController extends Controller
     // Eliminar un almacén
     public function destroy($id)
     {
-        $almacen = Almacen::find($id);
-        if (!$almacen) {
-            return response()->json(['message' => 'Almacén no encontrado'], 404);
-        }
+        $almacen = Almacen::whereId($id);
 
         $almacen->delete();
 

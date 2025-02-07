@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
 use App\Http\Controllers\Controller;
+
 use App\Models\ClienteNoVip;
 use Illuminate\Http\Request;
 
@@ -18,6 +18,7 @@ class ClienteNoVipController extends Controller
     public function show($id)
     {
         $cliente = ClienteNoVip::with(['usuario', 'comercial'])->whereId($id);
+
         return response()->json($cliente, 200);
     }
 
@@ -42,8 +43,10 @@ class ClienteNoVipController extends Controller
     }
 
     // Actualizar un cliente no VIP
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+        $cliente = ClienteNoVip::whereId($id);
+
         $validatedData = $request->validate([
             'cliente_empresa' => 'sometimes|required|string|max:100',
             'cliente_nif' => 'sometimes|required|string|max:20',
@@ -56,7 +59,7 @@ class ClienteNoVipController extends Controller
             'id_comercial' => 'sometimes|nullable|exists:comerciales,id_comercial',
         ]);
 
-        $cliente=ClienteNoVip::whereId($request->id)->update($validatedData);
+        $cliente->update($validatedData);
 
         return response()->json($cliente, 200);
     }

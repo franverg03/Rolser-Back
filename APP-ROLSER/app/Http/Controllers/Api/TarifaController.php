@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
 use App\Http\Controllers\Controller;
-
 use App\Models\Tarifa;
 use Illuminate\Http\Request;
 
@@ -18,10 +16,8 @@ class TarifaController extends Controller
     // Obtener una tarifa por ID
     public function show($id)
     {
-        $tarifa = Tarifa::find($id);
-        if (!$tarifa) {
-            return response()->json(['message' => 'Tarifa no encontrada'], 404);
-        }
+        $tarifa = Tarifa::whereId($id);
+
         return response()->json($tarifa, 200);
     }
 
@@ -42,10 +38,8 @@ class TarifaController extends Controller
     // Actualizar una tarifa
     public function update(Request $request, $id)
     {
-        $tarifa = Tarifa::find($id);
-        if (!$tarifa) {
-            return response()->json(['message' => 'Tarifa no encontrada'], 404);
-        }
+        $tarifa = Tarifa::whereId($id);
+
 
         $validatedData = $request->validate([
             'descripcion_tarifa' => 'sometimes|required|string|max:255',
@@ -61,10 +55,7 @@ class TarifaController extends Controller
     // Eliminar una tarifa
     public function destroy($id)
     {
-        $tarifa = Tarifa::find($id);
-        if (!$tarifa) {
-            return response()->json(['message' => 'Tarifa no encontrada'], 404);
-        }
+        $tarifa = Tarifa::whereId($id);
 
         $tarifa->delete();
 

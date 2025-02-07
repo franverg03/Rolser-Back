@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
 use App\Http\Controllers\Controller;
 use App\Models\Catalogo;
 use Illuminate\Http\Request;
+
 
 class CatalogoController extends Controller
 {
@@ -17,10 +17,8 @@ class CatalogoController extends Controller
     // Obtener un catálogo por ID
     public function show($id)
     {
-        $catalogo = Catalogo::find($id);
-        if (!$catalogo) {
-            return response()->json(['message' => 'Catálogo no encontrado'], 404);
-        }
+        $catalogo = Catalogo::whereId($id);
+
         return response()->json($catalogo, 200);
     }
 
@@ -43,10 +41,8 @@ class CatalogoController extends Controller
     // Actualizar un catálogo
     public function update(Request $request, $id)
     {
-        $catalogo = Catalogo::find($id);
-        if (!$catalogo) {
-            return response()->json(['message' => 'Catálogo no encontrado'], 404);
-        }
+        $catalogo = Catalogo::whereId($id);
+
 
         $validatedData = $request->validate([
             'catalogo_nombre' => 'sometimes|required|string|max:255',
@@ -64,10 +60,7 @@ class CatalogoController extends Controller
     // Eliminar un catálogo
     public function destroy($id)
     {
-        $catalogo = Catalogo::find($id);
-        if (!$catalogo) {
-            return response()->json(['message' => 'Catálogo no encontrado'], 404);
-        }
+        $catalogo = Catalogo::whereId($id);
 
         $catalogo->delete();
 

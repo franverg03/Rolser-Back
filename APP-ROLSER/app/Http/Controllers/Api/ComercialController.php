@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
 use App\Http\Controllers\Controller;
+
 use App\Models\Comercial;
 use Illuminate\Http\Request;
 
@@ -17,10 +17,8 @@ class ComercialController extends Controller
     // Obtener un comercial por ID
     public function show($id)
     {
-        $comercial = Comercial::with('usuario')->find($id);
-        if (!$comercial) {
-            return response()->json(['message' => 'Comercial no encontrado'], 404);
-        }
+        $comercial = Comercial::with('usuario')->whereId($id);
+
         return response()->json($comercial, 200);
     }
 
@@ -46,10 +44,7 @@ class ComercialController extends Controller
     // Actualizar un comercial
     public function update(Request $request, $id)
     {
-        $comercial = Comercial::find($id);
-        if (!$comercial) {
-            return response()->json(['message' => 'Comercial no encontrado'], 404);
-        }
+        $comercial = Comercial::whereId($id);
 
         $validatedData = $request->validate([
             'comercial_nombre' => 'sometimes|required|string|max:100',
@@ -70,13 +65,11 @@ class ComercialController extends Controller
     // Eliminar un comercial
     public function destroy($id)
     {
-        $comercial = Comercial::find($id);
-        if (!$comercial) {
-            return response()->json(['message' => 'Comercial no encontrado'], 404);
-        }
+        $comercial = Comercial::whereId($id);
 
         $comercial->delete();
 
         return response()->json(['message' => 'Comercial eliminado'], 200);
     }
 }
+

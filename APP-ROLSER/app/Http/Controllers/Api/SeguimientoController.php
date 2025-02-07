@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
 use App\Http\Controllers\Controller;
-
 use App\Models\Seguimiento;
 use Illuminate\Http\Request;
 
@@ -18,10 +16,8 @@ class SeguimientoController extends Controller
     // Obtener un seguimiento por ID
     public function show($id)
     {
-        $seguimiento = Seguimiento::with('pedido')->find($id);
-        if (!$seguimiento) {
-            return response()->json(['message' => 'Seguimiento no encontrado'], 404);
-        }
+        $seguimiento = Seguimiento::with('pedido')->whereId($id);
+
         return response()->json($seguimiento, 200);
     }
 
@@ -42,10 +38,7 @@ class SeguimientoController extends Controller
     // Actualizar un seguimiento
     public function update(Request $request, $id)
     {
-        $seguimiento = Seguimiento::find($id);
-        if (!$seguimiento) {
-            return response()->json(['message' => 'Seguimiento no encontrado'], 404);
-        }
+        $seguimiento = Seguimiento::whereId($id);
 
         $validatedData = $request->validate([
             'id_pedido' => 'sometimes|required|exists:pedidos,id_pedido',
@@ -61,10 +54,7 @@ class SeguimientoController extends Controller
     // Eliminar un seguimiento
     public function destroy($id)
     {
-        $seguimiento = Seguimiento::find($id);
-        if (!$seguimiento) {
-            return response()->json(['message' => 'Seguimiento no encontrado'], 404);
-        }
+        $seguimiento = Seguimiento::whereId($id);
 
         $seguimiento->delete();
 

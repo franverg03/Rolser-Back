@@ -11,17 +11,14 @@ class AdministrativoController extends Controller
     // Obtener todos los administrativos
     public function index()
     {
-        return response()->json(Administrativo::all());
+        return response()->json(Administrativo::all(), 200);
     }
-
 
     // Obtener un administrativo por ID
     public function show($id)
     {
-        $administrativo = Administrativo::find($id);
-        if (!$administrativo) {
-            return response()->json(['message' => 'Administrativo no encontrado'], 404);
-        }
+        $administrativo = Administrativo::where($id);
+
         return response()->json($administrativo, 200);
     }
 
@@ -46,10 +43,7 @@ class AdministrativoController extends Controller
     // Actualizar un administrativo
     public function update(Request $request, $id)
     {
-        $administrativo = Administrativo::find($id);
-        if (!$administrativo) {
-            return response()->json(['message' => 'Administrativo no encontrado'], 404);
-        }
+        $administrativo = Administrativo::whereId($id);
 
         $validatedData = $request->validate([
             'administrativo_nombre' => 'sometimes|required|string|max:100',
@@ -69,10 +63,7 @@ class AdministrativoController extends Controller
     // Eliminar un administrativo
     public function destroy($id)
     {
-        $administrativo = Administrativo::find($id);
-        if (!$administrativo) {
-            return response()->json(['message' => 'Administrativo no encontrado'], 404);
-        }
+        $administrativo = Administrativo::whereId($id);
 
         $administrativo->delete();
 

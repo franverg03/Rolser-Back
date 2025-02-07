@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
 use App\Http\Controllers\Controller;
 use App\Models\LineaPedido;
 use App\Models\Producto;
@@ -18,10 +17,8 @@ class LineaPedidoController extends Controller
     // Obtener una línea de pedido por ID
     public function show($id)
     {
-        $lineaPedido = LineaPedido::with(['pedido', 'producto'])->find($id);
-        if (!$lineaPedido) {
-            return response()->json(['message' => 'Línea de pedido no encontrada'], 404);
-        }
+        $lineaPedido = LineaPedido::with(['pedido', 'producto'])->whereId($id);
+
         return response()->json($lineaPedido, 200);
     }
 
@@ -35,10 +32,7 @@ class LineaPedidoController extends Controller
         ]);
 
         // Obtener el producto para calcular el precio total
-        $producto = Producto::find($validatedData['id_producto']);
-        if (!$producto) {
-            return response()->json(['message' => 'Producto no encontrado'], 404);
-        }
+        $producto = Producto::whereId($validatedData['id_producto']);
 
         // Calcular el precio total
         $validatedData['linea_precio_total'] = $producto->producto_precio * $validatedData['linea_cantidad'];
@@ -52,10 +46,8 @@ class LineaPedidoController extends Controller
     // Actualizar una línea de pedido
     public function update(Request $request, $id)
     {
-        $lineaPedido = LineaPedido::find($id);
-        if (!$lineaPedido) {
-            return response()->json(['message' => 'Línea de pedido no encontrada'], 404);
-        }
+        $lineaPedido = LineaPedido::whereId($id);
+
 
         $validatedData = $request->validate([
             'linea_cantidad' => 'sometimes|required|integer|min:1',
@@ -65,10 +57,8 @@ class LineaPedidoController extends Controller
 
         // Si se cambia la cantidad o el producto, recalcular el precio total
         if (isset($validatedData['linea_cantidad']) || isset($validatedData['id_producto'])) {
-            $producto = Producto::find($validatedData['id_producto'] ?? $lineaPedido->id_producto);
-            if (!$producto) {
-                return response()->json(['message' => 'Producto no encontrado'], 404);
-            }
+            $producto = Producto::whereId($validatedData['id_producto'] ?? $lineaPedido->id_producto);
+
 
             $cantidad = $validatedData['linea_cantidad'] ?? $lineaPedido->linea_cantidad;
             $validatedData['linea_precio_total'] = $producto->producto_precio * $cantidad;
@@ -82,10 +72,7 @@ class LineaPedidoController extends Controller
     // Eliminar una línea de pedido
     public function destroy($id)
     {
-        $lineaPedido = LineaPedido::find($id);
-        if (!$lineaPedido) {
-            return response()->json(['message' => 'Línea de pedido no encontrada'], 404);
-        }
+        $lineaPedido = LineaPedido::whereId($id);
 
         $lineaPedido->delete();
 

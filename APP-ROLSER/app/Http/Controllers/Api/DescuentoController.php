@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
 use App\Http\Controllers\Controller;
+
 use App\Models\Descuento;
 use Illuminate\Http\Request;
 
@@ -17,10 +17,8 @@ class DescuentoController extends Controller
     // Obtener un descuento por ID
     public function show($id)
     {
-        $descuento = Descuento::with(['clienteVip', 'clienteNoVip'])->find($id);
-        if (!$descuento) {
-            return response()->json(['message' => 'Descuento no encontrado'], 404);
-        }
+        $descuento = Descuento::with(['clienteVip', 'clienteNoVip'])->whereId($id);
+
         return response()->json($descuento, 200);
     }
 
@@ -49,10 +47,8 @@ class DescuentoController extends Controller
     // Actualizar un descuento
     public function update(Request $request, $id)
     {
-        $descuento = Descuento::find($id);
-        if (!$descuento) {
-            return response()->json(['message' => 'Descuento no encontrado'], 404);
-        }
+        $descuento = Descuento::whereId($id);
+
 
         $validatedData = $request->validate([
             'descripcion_descuento' => 'sometimes|required|string|max:255',
@@ -76,10 +72,7 @@ class DescuentoController extends Controller
     // Eliminar un descuento
     public function destroy($id)
     {
-        $descuento = Descuento::find($id);
-        if (!$descuento) {
-            return response()->json(['message' => 'Descuento no encontrado'], 404);
-        }
+        $descuento = Descuento::whereId($id);
 
         $descuento->delete();
 

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
 use App\Http\Controllers\Controller;
 use App\Models\Factura;
 use Illuminate\Http\Request;
@@ -17,10 +16,8 @@ class FacturaController extends Controller
     // Obtener una factura por ID
     public function show($id)
     {
-        $factura = Factura::with(['pedido', 'clienteNoVip', 'clienteVip', 'comercial'])->find($id);
-        if (!$factura) {
-            return response()->json(['message' => 'Factura no encontrada'], 404);
-        }
+        $factura = Factura::with(['pedido', 'clienteNoVip', 'clienteVip', 'comercial'])->whereId($id);
+
         return response()->json($factura, 200);
     }
 
@@ -35,11 +32,6 @@ class FacturaController extends Controller
             'id_comercial' => 'nullable|exists:comerciales,id_comercial',
         ]);
 
-        // Validar que al menos un cliente (VIP o No VIP) esté presente
-        if (!$request->id_cliente_vip && !$request->id_cliente_no_vip) {
-            return response()->json(['message' => 'Debe asignarse un cliente VIP o No VIP a la factura.'], 400);
-        }
-
         $factura = Factura::create($validatedData);
 
         return response()->json($factura, 201);
@@ -48,7 +40,7 @@ class FacturaController extends Controller
     // Actualizar una factura
     public function update(Request $request, $id)
     {
-        $factura = Factura::find($id);
+        $factura = Factura::whereId($id);
         if (!$factura) {
             return response()->json(['message' => 'Factura no encontrada'], 404);
         }
@@ -61,11 +53,6 @@ class FacturaController extends Controller
             'id_comercial' => 'sometimes|nullable|exists:comerciales,id_comercial',
         ]);
 
-        // Validar que al menos un cliente (VIP o No VIP) esté presente
-        if (!$request->id_cliente_vip && !$request->id_cliente_no_vip) {
-            return response()->json(['message' => 'Debe asignarse un cliente VIP o No VIP a la factura.'], 400);
-        }
-
         $factura->update($validatedData);
 
         return response()->json($factura, 200);
@@ -74,10 +61,7 @@ class FacturaController extends Controller
     // Eliminar una factura
     public function destroy($id)
     {
-        $factura = Factura::find($id);
-        if (!$factura) {
-            return response()->json(['message' => 'Factura no encontrada'], 404);
-        }
+        $factura = Factura::whereId($id);
 
         $factura->delete();
 
