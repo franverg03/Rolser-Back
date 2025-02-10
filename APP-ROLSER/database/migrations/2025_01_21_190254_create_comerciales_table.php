@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_comercial');
             $table->string('comercial_nombre', 100);
             $table->string('comercial_apellidos', 100);
+            $table->string('comercial_dni', '9')->unique();
             $table->string('comercial_direccion', 100);
             $table->string('comercial_cp', 5);
             $table->string('comercial_telefono', 9);

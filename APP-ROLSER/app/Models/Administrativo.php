@@ -16,6 +16,7 @@ class Administrativo extends Model
     protected $fillable = [
         'administrativo_nombre',
         'administrativo_apellidos',
+        'administrativo_dni',
         'administrativo_direccion',
         'administrativo_cp',
         'administrativo_telefono',
@@ -23,28 +24,35 @@ class Administrativo extends Model
         'administrativo_departamento'
     ];
 
-    public function catalogos() {
+
+
+    public function catalogos()
+    {
         return $this->belongsTo(Catalogo::class);
     }
 
-    public function usuarios() {
+    public function usuarios()
+    {
         return $this->hasMany(User::class);
     }
 
-    public function almacenes() {
+    public function almacenes()
+    {
         return $this->belongsToMany(Almacen::class);
     }
 
-    public function seguimientos() {
+    public function seguimientos()
+    {
         return $this->belongsToMany(Seguimiento::class);
     }
 
-    public function descuentos() {
+    public function descuentos()
+    {
         return $this->belongsToMany(Descuento::class);
     }
 
-    public function tarifas() {
+    public function tarifas()
+    {
         return $this->belongsToMany(Tarifa::class);
     }
-
 }

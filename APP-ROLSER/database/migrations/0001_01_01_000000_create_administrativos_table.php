@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_administrativo');
             $table->string('administrativo_nombre', 100);
             $table->string('administrativo_apellidos', 100);
+            $table->string('administrativo_dni', '9')->unique();
             $table->string('administrativo_direccion', 100);
             $table->string('administrativo_cp', 5);
             $table->string('administrativo_telefono', 9);
@@ -31,4 +32,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('administrativos');
     }
+
+
 };
