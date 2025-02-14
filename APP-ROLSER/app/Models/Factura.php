@@ -24,15 +24,19 @@ class Factura extends Model
         return $this->hasMany(LineaFactura::class);
     }
 
-    public function pedidos() {
-        return $this->hasMany(Pedido::class);
+    public function pedido() {
+        return $this->hasMany(Pedido::class, 'id_pedido');
     }
 
-    public function comerciales() {
-        return $this->belongsTo(Comercial::class);
+    public function comercial() {
+        return $this->belongsTo(Comercial::class, 'id_comercial');
     }
 
-    public function clientesVip() {
-        return $this->belongsTo(ClienteVip::class);
+    public function clienteVip() {
+        return $this->belongsTo(ClienteVip::class, 'id_cliente_vip');
+    }
+
+    public function clienteNoVip() {
+        return $this->belongsTo(ClienteNoVip::class, 'id_cliente_no_vip');
     }
 }

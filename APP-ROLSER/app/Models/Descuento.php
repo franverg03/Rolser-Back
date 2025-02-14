@@ -22,12 +22,12 @@ class Descuento extends Model
         'id_cliente_no_vip'
     ];
 
-    public function clientesNoVip()  {
-        return $this->belongsTo(ClienteNoVip::class);
+    public function clienteNoVip()  {
+        return $this->belongsTo(ClienteNoVip::class, 'id_cliente_no_vip');
     }
 
-    public function clientesVip() {
-        return $this->belongsTo(ClienteVip::class);
+    public function clienteVip() {
+        return $this->belongsTo(ClienteVip::class, 'id_cliente_vip');
     }
 
     public function administrativo() {

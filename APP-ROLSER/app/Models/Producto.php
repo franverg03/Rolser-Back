@@ -29,7 +29,7 @@ class Producto extends Model
         return $this->belongsToMany(Catalogo::class);
     }
 
-    public function almacenes()
+    public function almacen()
     {
         return $this->belongsTo(Almacen::class);
     }

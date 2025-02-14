@@ -20,8 +20,12 @@ class Pedido extends Model
         'id_cliente_no_vip'
     ];
 
-    public function clientesVip() {
+    public function clienteVip() {
         return $this->belongsTo(ClienteVip::class);
+    }
+
+    public function clienteNoVip() {
+        return $this->belongsTo(ClienteNoVip::class);
     }
 
     public function comerciales() {
