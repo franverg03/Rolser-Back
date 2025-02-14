@@ -1,0 +1,242 @@
+/*Contenedor del body*/
+.contenedor {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Div del menú retraido */
+.menu-pequenyo-comercial {
+    /*Color*/
+    background: #90242A;
+
+    width: 6vh;
+    height: 100vh;
+    position: relative;
+    z-index: 2;
+}
+
+.menu-grande-comercial {
+    background: #AF272F;
+
+    width: 18vh;
+    height: 100vh;
+
+    transition: transform 0.9s ease, opacity 0.9s ease;
+    opacity: 1;
+    transform: translateX(0);
+    /* El contenido inicia visible */
+    position: relative;
+    z-index: 1;
+    /* Inicialmente debajo del menú */
+}
+
+/* Estilo para ocultar el contenido detrás del menú */
+.menu-grande-comercial.hidden {
+    opacity: 0;
+    transform: translateX(-200px);
+    /* Mueve el contenido hacia la izquierda */
+    z-index: -1;
+    /* Mueve el contenido detrás del menú */
+}
+
+.iconosM {
+    margin-bottom: 4.5vh;
+
+    cursor: pointer;
+}
+
+.logo-pequenyo-comercial {
+    margin-bottom: 5vh;
+}
+/*Comercial logeado como cliente*/
+.icono-cliente-comercial{
+    margin-bottom: 8vh;
+    margin-left: 0.4vh;
+}
+
+.logo-grande-comercial {
+    margin-bottom: 5.2vh;
+}
+
+/*Maquetacion imagen de perfil*/
+.imagen-usuario-comercial {
+    margin-left: 0.9vh;
+    margin-top: 18vh;
+}
+
+.icono-logout-comercial {
+    margin-top: 7vh;
+    margin-left: 1.2vh;
+
+    cursor: pointer;
+}
+
+.boton-comercial-cliente{
+    text-decoration: none;
+
+    padding-right: 8.4vh;
+    padding-left: 1vh;
+    padding-top: 1.4vh;
+    padding-bottom: 1.4vh;
+
+    margin-bottom: 6.6vh;
+    border-radius: 0px 5px 5px 0px;
+
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    color: #FFFFFF;
+    background: #90242A;
+    box-shadow: 9px 9px 9px 0px rgba(0, 0, 0, 0.25);
+
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    cursor: pointer;
+}
+
+/*Botones menu grande*/
+.boton-menu-sel-comercial {
+    text-decoration: none;
+
+    padding-right: 8.4vh;
+    padding-left: 2vh;
+    padding-top: 1.4vh;
+    padding-bottom: 1.4vh;
+
+    margin-bottom: 2vh;
+
+    color: #FFFFFF;
+    background: #90242A;
+    border-radius: 0px 5px 5px 0px;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    box-shadow: 5px 5px 4px 0px rgba(144, 36, 42, 0.25);
+
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+    cursor: pointer;
+
+}
+
+.boton-menu-noSel-comercial {
+    text-decoration: none;
+
+    padding-right: 8.4vh;
+    padding-left: 2vh;
+    padding-top: 1.4vh;
+    padding-bottom: 1.4vh;
+
+    margin-bottom: 2vh;
+
+    color: #FFFFFF;
+    border: 1px solid #AF272F;
+    background: #AF272F;
+
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.boton-menu-noSel-comercial:hover {
+    transition: 0.3s ease;
+
+    background-color: #90242a;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+
+    cursor: pointer;
+}
+
+.div-menu-grande-comercial {
+    display: flex;
+    flex-direction: column;
+}
+
+.usuario-nombre-comercial {
+    color: #ffffff;
+
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.info-usuario-comercial {
+    color: #ffffff;
+
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.caja-info-usuario-comercial-logout {
+    margin-top: 17vh;
+}
+
+/*Estilos contenedor principal*/
+/* .contenedor-principal-administrativo {
+
+} */
+.contenedor-breadcrump-comercial {
+    border-bottom: 2px solid rgba(175, 39, 47, 0.50);
+
+    box-shadow: 3px 4px 4px 0px rgba(175, 39, 47, 0.25);
+
+    width: 1900px;
+    height: 150px;
+}
+
+.estilo-breadcrump-comercial {
+    color: #90242A;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.maquetacion-breadcrump-comercial {
+    padding-top: 8vh;
+    padding-left: 3vh;
+}
+
+.boton-logout-comercial {
+    text-decoration: none;
+
+    padding-right: 1vh;
+    padding-left: 2vh;
+    padding-top: 1.4vh;
+    padding-bottom: 1.4vh;
+
+    color: #FFFFFF;
+    border: 1px solid #AF272F;
+    background: #AF272F;
+
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.boton-logout-comercial:hover {
+    transition: 0.3s ease;
+
+    background-color: #90242a;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+
+    cursor: pointer;
+}
+.caja-info-usuario-comercial{
+    margin-bottom: 6.4vh;
+}
+

@@ -1,0 +1,130 @@
+html, body {
+    overflow: hidden;
+}
+/*Estilos del body*/
+.containerP {
+    /*Tamaño*/
+    width: 1280px;
+    height: 800px;
+    /*Maquetación*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Logo rolser*/
+.logoRolserP {
+    margin-top: -12px;
+    /*Para subir el contenido del formulario un poco*/
+}
+
+/*Estilos del formulario*/
+.form {
+    /*Tamaño*/
+    width: 375px;
+    height: 515px;
+    border-radius: 5px;
+    /*Colores*/
+    background-color: #90242A;
+    border: 1px solid #AF272F;
+    box-shadow: 158px 174px 66px 0px rgba(0, 0, 0, 0.00), 101px 111px 60px 0px rgba(0, 0, 0, 0.01), 57px 63px 51px 0px rgba(0, 0, 0, 0.05), 25px 28px 38px 0px rgba(0, 0, 0, 0.09), 6px 7px 21px 0px rgba(0, 0, 0, 0.10);
+    /*Maquetación*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+}
+
+/*Maquetamos a al div que contiene ambos input*/
+.contenedorInputs {
+    /*Maquetación*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    gap: 25px;
+}
+
+/*Estilos de las cajas del svg y input*/
+.rectoInput {
+    /*Maquetación*/
+    margin-left: -32px;
+    /*Para el que no entienda porque he puesto esto, al añadirles padding al botón y otras cosas, he tenido que restarle margin para compensar y que quede bien*/
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Estilos de los input*/
+.inputU {
+    /*Tamaño*/
+    width: 232px;
+    height: 43px;
+    border-radius: 5px;
+    /*Colores*/
+    background: #FFF;
+    border-color: #FFFFFF;
+    /*Maquetación*/
+    padding-left: 12px;
+    margin-left: 15px;
+    /* text-align: center; */
+    /*Tipografía*/
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+/*Estilos de contraseña olvidada*/
+.mpOlvidada {
+    /*Limpiar estilos*/
+    text-decoration: none;
+    /*Maquetación*/
+    margin: 13px;
+    /*Color*/
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    /*Tipografía*/
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 10px;
+    /* 76.923% */
+}
+
+/*Estilos del botón de submit*/
+.inputIS {
+    /*Quitar estilos por defecto*/
+    all: unset;
+    /*Tamaño*/
+    width: 248px;
+    height: 50px;
+    border-radius: 5px;
+    margin-left: 11px;
+    /*Para centrar el botón*/
+    /*Color*/
+    background: #CF333C;
+    color: #FFFFFF;
+    /*Tipografía*/
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    /*Efecto*/
+    cursor: pointer;
+}
+
+/*Efecto de hover del botón de submit*/
+.inputIS:hover {
+    transition: 0.3s ease;
+    background-color: #af272f;
+}
+/*Efecto del focus para los placeholder*/

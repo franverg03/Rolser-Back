@@ -1,0 +1,286 @@
+html, body {
+    overflow: hidden;
+}
+/*Contenedor del body*/
+.contenedor {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Div del menú retraido */
+.menu-pequenyo-administrativo {
+    /*Color*/
+    background: #90242A;
+
+    width: 6vh;
+    height: 100vh;
+    position: relative;
+    z-index: 2;
+}
+
+.menu-grande-administrativo {
+    background: #AF272F;
+
+    width: 18vh;
+    height: 100vh;
+
+    transition: transform 0.9s ease, opacity 0.9s ease;
+    opacity: 1;
+    transform: translateX(0);
+    /* El contenido inicia visible */
+    position: relative;
+    z-index: 1;
+    /* Inicialmente debajo del menú */
+}
+
+/* Estilo para ocultar el contenido detrás del menú */
+.menu-grande-administrativo.hidden {
+    opacity: 0;
+    transform: translateX(-200px);
+    /* Mueve el contenido hacia la izquierda */
+    z-index: -1;
+    /* Mueve el contenido detrás del menú */
+}
+
+.iconosM {
+    margin-bottom: 4.5vh;
+
+    cursor: pointer;
+}
+
+.logo-pequenyo-administrativo {
+    margin-bottom: 10vh;
+}
+
+.logo-grande-administrativo {
+    margin-bottom: 9.1vh;
+}
+
+.imagen-usuario-administrativo {
+    margin-left: 0.6vh;
+    margin-top: 4vh;
+}
+
+.icono-logout-administrativo {
+    margin-top: 7vh;
+    margin-left: 1.2vh;
+
+    cursor: pointer;
+}
+
+/*Botones menu grande*/
+.boton-menu-sel-administrativo {
+    text-decoration: none;
+
+    padding-right: 8.4vh;
+    padding-left: 2vh;
+    padding-top: 1.4vh;
+    padding-bottom: 1.4vh;
+
+    margin-bottom: 1.2vh;
+
+    color: #FFFFFF;
+    background: #90242A;
+    border-radius: 0px 5px 5px 0px;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    box-shadow: 5px 5px 4px 0px rgba(144, 36, 42, 0.25);
+
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+    cursor: pointer;
+
+}
+
+.boton-menu-noSel-administrativo {
+    text-decoration: none;
+
+    padding-right: 8.4vh;
+    padding-left: 2vh;
+    padding-top: 1.4vh;
+    padding-bottom: 1.4vh;
+
+    margin-bottom: 1.2vh;
+
+    color: #FFFFFF;
+    border: 1px solid #AF272F;
+    background: #AF272F;
+
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.boton-menu-noSel-administrativo:hover {
+    transition: 0.3s ease;
+
+    background-color: #90242a;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+
+    cursor: pointer;
+}
+
+.div-menu-grande-administrativo {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.usuario-nombre-administrativo {
+    color: #ffffff;
+
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.info-usuario-administrativo {
+    color: #ffffff;
+
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.caja-info-usuario-admin-logout {
+    margin-top: 4.4vh;
+}
+
+.boton-logout-administrativo {
+    margin-top: 4.6vh;
+}
+
+/*Estilos contenedor principal*/
+/* .contenedor-principal-administrativo {
+
+} */
+.contenedor-breadcrump-administrativo {
+    border-bottom: 2px solid rgba(175, 39, 47, 0.50);
+
+    box-shadow: 3px 4px 4px 0px rgba(175, 39, 47, 0.25);
+
+    width: 1900px;
+    height: 150px;
+}
+
+.estilo-breadcrump-administrativo {
+    color: #90242A;
+
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.maquetacion-breadcrump-administrativo {
+    padding-top: 8vh;
+    padding-left: 3vh;
+}
+
+/*Navegación unica entre los 3 tipos de usuario*/
+.navegacion-diferentes-usuarios {
+    height: 10vh;
+    width: 100vh;
+    padding-top: 6vh;
+    padding-left: 10vh;
+}
+
+.botones-navegacion-usuarios {
+    color: #90242A;
+
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+
+    padding-left: 7vh;
+
+    cursor: pointer;
+}
+
+
+.linea-roja-cVIP{
+     display: block;
+
+     width: 120px;
+     height: 2px;
+
+     background: #90242A;
+     box-shadow: 0px 4px 3px 0px rgba(144, 36, 42, 0.25);
+}
+.linea-roja-comerciales{
+    display: none;
+
+    width: 120px;
+    height: 2px;
+
+    background: #90242A;
+    box-shadow: 0px 4px 3px 0px rgba(144, 36, 42, 0.25);
+}
+.linea-roja-administrativos{
+    display: none;
+
+    width: 145px;
+    height: 2px;
+
+    background: #90242A;
+    box-shadow: 0px 4px 3px 0px rgba(144, 36, 42, 0.25);
+}
+.linea-blanca{
+    display: inline-block;
+
+     width: 120px;
+     height: 2px;
+
+     background: #ffffff;
+}
+.linea-blanca-grande{
+    display: inline-block;
+
+     width: 145px;
+     height: 2px;
+
+     background: #ffffff;
+}
+
+.boton-logout-administrativo {
+    text-decoration: none;
+
+    padding-right: 1.2vh;
+    padding-left: 2vh;
+    padding-top: 1.4vh;
+    padding-bottom: 1.4vh;
+
+    color: #FFFFFF;
+    border: 1px solid #AF272F;
+    background: #AF272F;
+
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.boton-logout-administrativo:hover {
+    transition: 0.3s ease;
+
+    background-color: #90242a;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+
+    cursor: pointer;
+}
+
+.caja-info-usuario-administrativo{
+    margin-bottom: 6vh;
+}
