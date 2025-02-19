@@ -26,16 +26,16 @@ class Producto extends Model
     ];
     public function catalogos()
     {
-        return $this->belongsToMany(Catalogo::class);
+        return $this->belongsToMany(Catalogo::class, 'id_catalogo');
     }
 
     public function almacenes()
     {
-        return $this->belongsTo(Almacen::class);
+        return $this->belongsTo(Almacen::class, 'id_almacen');
     }
 
     public function lineasDePedidos()
     {
-        return $this->hasMany(LineaPedido::class);
+        return $this->hasMany(LineaPedido::class, 'id_linea_pedido');
     }
 }

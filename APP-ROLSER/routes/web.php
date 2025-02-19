@@ -8,6 +8,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -20,8 +22,19 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::view('/administrativo/usuarios/mostrarAdministrativos', 'administrativo.administrativo-tabla-administrativos');
+Route::view('/administrativo/usuarios/', 'administrativo.administrativo-usuarios');
 
+
+
+Route::view('/administrativo/clientes', 'administrativo.administrativo-clientes');
+
+Route::view('/comercial/home', 'comercial.comercial-home');
+
+Route::view('/comercial/pedidos', 'comercial.comercial-pedidos');
+
+Route::view('/comercial/facturas', 'comercial.comercial-facturas');
+
+Route::view('/comercial/clientes', 'comercial.comercial-clientes');
 
 require __DIR__.'/auth.php';
 

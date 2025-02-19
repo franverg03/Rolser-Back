@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="/styles/administrativo.css">
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
-    <title>UsuariosAdministrativoRolser</title>
+    <title>AlmacenesAdministrativoRolser</title>
 </head>
 
 <body class="contenedor">
     <div class="menu-administrativo flex">
         <div class="menu-pequenyo-administrativo flex flex-col" id="menu-pequenyo-administrativo">
-            <img class="mt-3 mb-1 ml-1 logo-pequenyo-administrativo" width="60vh" src="/images/logoPequenyoRolser.png"
-                alt="">
+            <img class="mt-3 mb-1 ml-1 logo-pequenyo-administrativo" width="60vh"
+                src="/images/logoPequenyoRolser.png" alt="">
             <div class="iconos-menu-administrativo flex flex-col ml-4">
                 <!--Home icono-->
                 <svg class="iconosM" width="26" height="26" viewBox="0 0 26 26" fill="none"
@@ -154,7 +154,7 @@
                     routerLink="homeAdministrativo">Home</a>
                 <a href="/clientesAdministrativo" class="boton-menu-noSel-administrativo"
                     routerLink="clientesAdministrativo">Clientes</a>
-                <a href="/usuariosAdministrativo" class="boton-menu-sel-administrativo"
+                <a href="/usuariosAdministrativo" class="boton-menu-noSel-administrativo"
                     routerLink="catalogosAdministrativo">Usuarios</a>
                 <a href="/pedidosAdministrativo" class="boton-menu-noSel-administrativo"
                     routerLink="pedidosAdministrativo">Pedidos</a>
@@ -164,7 +164,7 @@
                     routerLink="catalogosAdministrativo">Catálogos</a>
                 <a href="/almacenesAdministrativo" class="boton-menu-noSel-administrativo"
                     routerLink="almacenesAdministrativo">Almacenes</a>
-                <a href="/descuentosAdministrativo" class="boton-menu-noSel-administrativo"
+                <a href="/descuentosAdministrativo" class="boton-menu-sel-administrativo"
                     routerLink="descuentosAdministrativo">Descuentos</a>
                 <a href="/tarifasAdministrativo" class="boton-menu-noSel-administrativo"
                     routerLink="tarifasAdministrativo">Tarifas</a>
@@ -183,9 +183,9 @@
     {{-- Contenedor principal --}}
     <div class="contenedor-principal-administrativo">
         {{-- Breadcrumb contenedor --}}
-        <div class="contenedor-breadcrump-administrativo flex flex-row">
+        <div class="contenedor-breadcrump-administrativo">
             <div class="maquetacion-breadcrump-administrativo flex flex-row">
-                <a class="estilo-breadcrump-administrativo" href="">Home</a>
+                <a class="estilo-breadcrump-administrativo" href="/homeAdministrativo">Home</a>
                 <svg class="mt-0.5 ml-1 mr-1" width="20" height="20" viewBox="0 0 15 15" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -193,46 +193,15 @@
                         stroke="#90242A" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
                         stroke-linejoin="round" />
                 </svg>
-                <a class="estilo-breadcrump-administrativo" href="/usuariosAdministrativo">Usuarios</a>
+                <a class="estilo-breadcrump-administrativo" href="/descuentosAdministrativo">Descuentos</a>
             </div>
         </div>
         {{-- Contenedor crud datatable paginacion --}}
-        <div class="flex flex-col">
-            {{-- Navegación entre datatables Clientes VIP, Comerciales, Administrativo --}}
-            <div class="navegacion-diferentes-usuarios">
-                <div class="contenedor-navegacion-usuarios flex flex-row">
-                    <button id="boton-efecto-active-cVIP"
-                        class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Clientes
-                        VIP<span class="linea-blanca"></span><span id="linea-roja-vip"
-                            class="linea-roja-cVIP"></span></button>
-                    <button id="boton-efecto-active-comercial"
-                        class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Comerciales<span
-                            class="linea-blanca"></span><span id="linea-roja-comer"
-                            class="linea-roja-comerciales"></span></button>
-                    <button id="boton-efecto-active-administrativo"
-                        class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Administrativos<span
-                            class="linea-blanca-grande"></span><span id="linea-roja-admin"
-                            class="linea-roja-administrativos"></span></button>
-                </div>
-            </div>
-            {{-- Reservado a el datatable --}}
-            <div id="datatable">
-                <div id="tabla-clientes-vip">
-                    @livewire('tabla-clientes-vip')
-                </div>
+        <div>
 
-                <div id="tabla-comerciales" class="hidden">
-                    @livewire('tabla-comerciales')
-                </div>
-
-                <div id="tabla-administrativos" class="hidden">
-                    @livewire('tabla-administrativos')
-                </div>
-            </div>
         </div>
     </div>
-    <script src= "/js/logicaMenu.js"></script>
-    <script src="/js/logicaCambioTablas.js"></script>
+    <script src="/js/logicaMenu.js"></script>
 </body>
 
 </html>

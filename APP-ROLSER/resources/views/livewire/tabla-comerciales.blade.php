@@ -31,23 +31,23 @@
             </div>
 
             <!-- Tabla -->
-            <div class="{{ 'contenedorTablas' }}">
+            <div class="contenedor-tablas">
                 <table class="w-full text-sm text-left bg-white border-collapse bordeRolser">
                     <thead class="text-xs uppercase bg-red-600 text-white font-bold">
                         <tr>
                             <th scope="col" class="px-4 py-3 border-b bordeRolser">Nombre</th>
                             <th scope="col" class="px-4 py-3 border-b bordeRolser">Apellidos</th>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Email</th>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Departamento</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Zona</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Contacto</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($administrativos as $administrativo)
+                        @forelse ($comerciales as $comercial)
                             <tr class="border-b bordeRolser">
-                                <td class="px-4 py-3">{{ $administrativo->administrativo_nombre }}</td>
-                                <td class="px-4 py-3">{{ $administrativo->administrativo_apellidos }}</td>
-                                <td class="px-4 py-3">{{ $administrativo->administrativo_email }}</td>
-                                <td class="px-4 py-3">{{ $administrativo->administrativo_departamento }}</td>
+                                <td class="px-4 py-3">{{ $comercial->comercial_nombre }}</td>
+                                <td class="px-4 py-3">{{ $comercial->comercial_apellidos }}</td>
+                                <td class="px4 py-3">{{ $comercial->comercial_zona}}</td>
+                                <td class="px-4 py-3">{{ $comercial->comercial_email }}</td>
                             </tr>
                         @empty
                             <tr>
@@ -61,7 +61,7 @@
             <!-- Paginación -->
             <div class="py-4 px-3 flex justify-center paginacion-custom">
                 <div class="inline-flex rounded-md shadow-sm">
-                    {{ $administrativos->links() }}
+                    {{ $comerciales->links()}}
                 </div>
             </div>
     </section>

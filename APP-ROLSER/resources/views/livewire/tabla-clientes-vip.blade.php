@@ -1,5 +1,5 @@
 <div>
-    <section class="mt-10">
+    <section class="mt-10 ">
             <!-- Barra de búsqueda -->
             <div class="flex items-center justify-between p-4">
                 <div class="relative">
@@ -31,23 +31,23 @@
             </div>
 
             <!-- Tabla -->
-            <div class="{{ 'contenedorTablas' }}">
-                <table class="w-full text-sm text-left bg-white border-collapse bordeRolser">
+            <div class="contenedorTablas">
+                <table class="w-full text-sm text-left bg-white border-collapse bordeRolser ">
                     <thead class="text-xs uppercase bg-red-600 text-white font-bold">
                         <tr>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Nombre</th>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Apellidos</th>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Email</th>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Departamento</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Representante</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Empresa</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser">NIF</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Contacto</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($administrativos as $administrativo)
+                        @forelse ($clientesVip as $clienteVip)
                             <tr class="border-b bordeRolser">
-                                <td class="px-4 py-3">{{ $administrativo->administrativo_nombre }}</td>
-                                <td class="px-4 py-3">{{ $administrativo->administrativo_apellidos }}</td>
-                                <td class="px-4 py-3">{{ $administrativo->administrativo_email }}</td>
-                                <td class="px-4 py-3">{{ $administrativo->administrativo_departamento }}</td>
+                                <td class="px-4 py-3">{{ $clienteVip->cliente_nombre_representante }}{{ $clienteVip->cliente_apellidos_representante }}</td>
+                                <td class="px-4 py-3">{{ $clienteVip->cliente_empresa }}</td>
+                                <td class="px4 py-3">{{ $clienteVip->cliente_nif}}</td>
+                                <td class="px-4 py-3">{{ $clienteVip->cliente_telefono_representante }}</td>
                             </tr>
                         @empty
                             <tr>
@@ -61,7 +61,7 @@
             <!-- Paginación -->
             <div class="py-4 px-3 flex justify-center paginacion-custom">
                 <div class="inline-flex rounded-md shadow-sm">
-                    {{ $administrativos->links() }}
+                    {{ $clientesVip->links() }}
                 </div>
             </div>
     </section>

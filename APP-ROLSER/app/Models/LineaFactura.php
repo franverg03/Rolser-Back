@@ -22,6 +22,6 @@ class LineaFactura extends Model
     ];
 
     public function facturas() {
-        return $this->belongsTo(Factura::class);
+        return $this->belongsTo(Factura::class, 'id_factura');
     }
 }
