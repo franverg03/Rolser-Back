@@ -22,7 +22,8 @@ class Producto extends Model
         'producto_precio',
         'producto_stock',
         'producto_colores',
-        'id_almacen'
+        'id_almacen',
+        'producto_ruta_imagen',
     ];
     public function catalogos()
     {
@@ -31,7 +32,7 @@ class Producto extends Model
 
     public function almacen()
     {
-        return $this->belongsTo(Almacen::class);
+        return $this->belongsTo(Almacen::class, 'id_almacen');
     }
 
     public function lineasDePedidos()

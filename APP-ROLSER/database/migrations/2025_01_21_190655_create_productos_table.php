@@ -24,6 +24,7 @@ return new class extends Migration
             // $table->unsignedBigInteger('id_almacen')->nullable();
             $table->foreignId('id_almacen')->nullable()->references('id_almacen')->on('almacenes')->onDelete('set null');//Relacion  1-M con Almacen
             $table->timestamps();
+            $table->string('producto_ruta_imagen', 255);
         });
     }
 

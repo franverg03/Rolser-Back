@@ -29,8 +29,7 @@ class ClienteVip extends Model
     //     return $this->belongsTo(User::class);
     // }
 
-    public function usuario()
-    {
+    public function usuario() {
         return $this->belongsTo(User::class, 'id_usuario');
     }
 
