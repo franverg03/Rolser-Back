@@ -1,6 +1,8 @@
-html, body {
+html,
+body {
     overflow: hidden;
 }
+
 /*Contenedor del body*/
 .contenedor {
     display: flex;
@@ -209,16 +211,27 @@ html, body {
 }
 
 
-.linea-roja-cVIP{
-     display: block;
+.linea-roja-cVIP {
+    display: block;
 
-     width: 120px;
-     height: 2px;
+    width: 120px;
+    height: 2px;
 
-     background: #90242A;
-     box-shadow: 0px 4px 3px 0px rgba(144, 36, 42, 0.25);
+    background: #90242A;
+    box-shadow: 0px 4px 3px 0px rgba(144, 36, 42, 0.25);
 }
-.linea-roja-comerciales{
+
+.linea-roja-comerciales {
+    display: block;
+
+    width: 120px;
+    height: 2px;
+
+    background: #90242A;
+    box-shadow: 0px 4px 3px 0px rgba(144, 36, 42, 0.25);
+}
+
+.linea-roja-cli {
     display: none;
 
     width: 120px;
@@ -227,7 +240,8 @@ html, body {
     background: #90242A;
     box-shadow: 0px 4px 3px 0px rgba(144, 36, 42, 0.25);
 }
-.linea-roja-administrativos{
+
+.linea-roja-administrativos {
     display: none;
 
     width: 145px;
@@ -236,21 +250,23 @@ html, body {
     background: #90242A;
     box-shadow: 0px 4px 3px 0px rgba(144, 36, 42, 0.25);
 }
-.linea-blanca{
+
+.linea-blanca {
     display: inline-block;
 
-     width: 120px;
-     height: 2px;
+    width: 120px;
+    height: 2px;
 
-     background: #ffffff;
+    background: #ffffff;
 }
-.linea-blanca-grande{
+
+.linea-blanca-grande {
     display: inline-block;
 
-     width: 145px;
-     height: 2px;
+    width: 145px;
+    height: 2px;
 
-     background: #ffffff;
+    background: #ffffff;
 }
 
 .boton-logout-administrativo {
@@ -281,6 +297,324 @@ html, body {
     cursor: pointer;
 }
 
-.caja-info-usuario-administrativo{
+.caja-info-usuario-administrativo {
     margin-bottom: 6vh;
+}
+
+/* Modal */
+/*Efecto fondo opacidad gris*/
+
+/*Caja de la confirmación*/
+.cajaConfi {
+    border-radius: 12px;
+    height: 306px;
+    /*Color*/
+    border: 1px solid #AF272F;
+    background: #FFFFFF;
+    box-shadow: 8px 8px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.cajaTxt {
+    height: 218px;
+    border: 1px solid #4f7d4d00;
+}
+
+/*Pregunta de la confirmación*/
+.cabeceraConfi {
+    /*Color*/
+    color: #90242A;
+    /*Tipografía*/
+    font-family: Montserrat;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+/*Explicación de los efectos de la confirmación*/
+.infoConfi {
+    /*Color*/
+    color: rgba(0, 0, 0, 0.70);
+    /*Maquetación*/
+    padding: 16px;
+    text-align: center;
+    /*Tipografía*/
+    font-family: Montserrat;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.btnCaja {
+    border-color: 1px solid rgb(0, 4, 255);
+    margin-left: -1px;
+}
+
+/*Botón de cancelar (ruta alternativa)*/
+.cancelConfi {
+    border-radius: 0px 0px 0px 10px;
+    height: 70px;
+    /*Color*/
+    color: #000000;
+    border: 1px solid #AF272F;
+    background: #FFFFFF;
+    /*Tipografía*/
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    /*Cursor*/
+    cursor: pointer;
+}
+
+/*Botón de confirmar (ruta principal)*/
+.confirmConfi {
+    height: 70px;
+    border-radius: 0px 0px 10px 0px;
+    /*Color*/
+    color: #FFFFFF;
+    border: 1px solid #AF272F;
+    background: #AF272F;
+    /*Tipografía*/
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    /*Cursor*/
+    cursor: pointer;
+}
+
+/*Hovers de los botones*/
+
+.confirmConfi:hover {
+    /*Cursor*/
+    cursor: pointer;
+    /*Color*/
+    background-color: #CF333C;
+    transition: 0.4s ease;
+}
+
+/*Lógica de eliminar, mostramos input*/
+.inputElm.block {
+    display: block;
+}
+
+/* Botones Crud estilos */
+
+.botonEliminar {
+    /* Botón */
+    width: auto;
+    height: 50px;
+    margin: 30px;
+    padding: 20px;
+    border-radius: 16px;
+    border: 3px solid #AF272F;
+    background: #AF272F;
+    /* Texto del botón */
+    color: #ffffff;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: var(--sizes-xl, 16px);
+    display: flex;
+    justify-content: center;
+    /* Alinea el contenido horizontalmente */
+    align-items: center;
+    /* Alinea el contenido verticalmente */
+    gap: 10px;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.botonEliminar:hover {
+    /* Botón */
+    transition: 2s ease;
+    background-color: #782429;
+
+    border: 3px solid #782429;
+    cursor: pointer;
+}
+
+/* Estilos Modales Modificar */
+.cajaModalModificar {
+    border-radius: 12px;
+    height: 770px;
+    width: 800px;
+    /*Color*/
+    border: 1px solid #AF272F;
+    background: #FFFFFF;
+    box-shadow: 8px 8px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.cabeceraModalModificar {
+    margin-top: 7vh;
+    margin-left: 7vh;
+    margin-right: 7vh;
+}
+
+.estilosTituloModalModificar {
+    color: #90242A;
+    font-family: Montserrat;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.seccionesModalModificar {
+    color: #90242A;
+    font-family: Montserrat;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 600;
+
+    margin-bottom: 2vh;
+}
+
+.tamanyoInputPequenyoModales {
+    width: 120px;
+
+    border-radius: 12px;
+    border: 1px solid #AF272F;
+    background: var(--colors-background, #FFFFFF);
+
+    color: #000000;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+
+}
+
+.tamanyoInputMedioModales {
+    width: 185px;
+
+    border-radius: 12px;
+    border: 1px solid #AF272F;
+    background: var(--colors-background, #FFFFFF);
+
+    color: #000000;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+
+}
+
+.tamanyoInputMedioGrandeModales {
+    width: 220px;
+
+    border-radius: 12px;
+    border: 1px solid #AF272F;
+    background: var(--colors-background, #FFFFFF);
+
+    color: #000000;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+
+}
+
+.tamanyoInputGrandeModales {
+    width: 320px;
+
+    border-radius: 12px;
+    border: 1px solid #AF272F;
+    background: var(--colors-background, #FFFFFF);
+
+    color: #000000;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.cajaSeccionesModalMod {
+    margin-left: 7vh;
+    margin-top: 3vh;
+}
+
+.labelsModal {
+    padding-left: 8px;
+    color: #AF272F;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.checkboxEstilos:checked{
+    background-color: #90242A;
+}
+
+.margen-boton-guardar{
+    margin-left: 31vh;
+}
+
+.margen-boton-anyadir{
+    margin-left: 26vh;
+}
+.margen-boton-anyadir-cli-vip{
+    margin-left: 4vh;
+}
+
+.margen-boton-modificar{
+    margin-left: 10vh;
+}
+
+.margen-boton-guardar-comercial{
+    margin-left: 50vh;
+}
+.cajaModalModificarComercial{
+    border-radius: 12px;
+    height: 815px;
+    width: 800px;
+    /*Color*/
+    border: 1px solid #AF272F;
+    background: #FFFFFF;
+    box-shadow: 8px 8px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.botonAnyadirComercial{
+    /* Botón */
+    width: auto;
+    height: 50px;
+    margin: 30px;
+    padding: 20px;
+    border-radius: 16px;
+    border: 3px solid #AF272F;
+    background: #AF272F;
+    /* Texto del botón */
+    color: #ffffff;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: var(--sizes-xl, 16px);
+    display: flex;
+    justify-content: center;
+    /* Alinea el contenido horizontalmente */
+    align-items: center;
+    /* Alinea el contenido verticalmente */
+    gap: 10px;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+.botonAnyadirComercial:hover {
+    /* Botón */
+    transition: 2s ease;
+    background-color: #782429;
+
+    border: 3px solid #782429;
+    cursor: pointer;
+}
+.margen-boton-anyadir-comercial{
+    margin-left: 44vh;
+}
+.margen-boton-anyadir-administrativo{
+    margin-left: 38vh;
+}
+.hoverX{
+    cursor: pointer;
+}
+.blur-effect {
+    backdrop-filter: blur(10px);
 }

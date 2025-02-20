@@ -170,6 +170,6 @@
 
         </div>
       </div>
-      <script src="/js/logicaMenu.js"></script>
+      <script src="/js/homeAdministrativo.js"></script>
 </body>
 </html>

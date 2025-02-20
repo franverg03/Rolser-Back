@@ -174,6 +174,6 @@
 
         </div>
       </div>
-      <script src="/js/logicaMenu.js"></script>
+      <script src="/js/almacenesAdministrativo.js"></script>
 </body>
 </html>
