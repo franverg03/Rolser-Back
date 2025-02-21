@@ -467,63 +467,64 @@ body {
     margin-bottom: 2vh;
 }
 
+/* Inputs formularios */
 .tamanyoInputPequenyoModales {
-    width: 120px;
+    width: 120px !important;
 
-    border-radius: 12px;
-    border: 1px solid #AF272F;
-    background: var(--colors-background, #FFFFFF);
+    border-radius: 12px!important;
+    border: 1px solid #AF272F!important;
+    background: var(--colors-background, #FFFFFF)!important;
 
-    color: #000000;
-    font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 500;
+    color: #000000!important;
+    font-family: Montserrat!important;
+    font-size: 15px!important;
+    font-style: normal!important;
+    font-weight: 500!important;
 
 }
 
 .tamanyoInputMedioModales {
-    width: 185px;
+    width: 185px!important;
 
-    border-radius: 12px;
-    border: 1px solid #AF272F;
-    background: var(--colors-background, #FFFFFF);
+    border-radius: 12px!important;
+    border: 1px solid #AF272F!important;
+    background: var(--colors-background, #FFFFFF)!important;
 
-    color: #000000;
-    font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 500;
+    color: #000000!important;
+    font-family: Montserrat!important;
+    font-size: 15px!important;
+    font-style: normal!important;
+    font-weight: 500!important;
 
 }
 
 .tamanyoInputMedioGrandeModales {
-    width: 220px;
+    width: 220px!important;
 
-    border-radius: 12px;
-    border: 1px solid #AF272F;
-    background: var(--colors-background, #FFFFFF);
+    border-radius: 12px!important;
+    border: 1px solid #AF272F!important;
+    background: var(--colors-background, #FFFFFF)!important;
 
-    color: #000000;
-    font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 500;
+    color: #000000!important;
+    font-family: Montserrat!important;
+    font-size: 15px!important;
+    font-style: normal!important;
+    font-weight: 500!important;
 
 }
 
 .tamanyoInputGrandeModales {
-    width: 320px;
+    width: 320px!important;
 
-    border-radius: 12px;
-    border: 1px solid #AF272F;
-    background: var(--colors-background, #FFFFFF);
+    border-radius: 12px!important;
+    border: 1px solid #AF272F!important;
+    background: var(--colors-background, #FFFFFF)!important;
 
-    color: #000000;
-    font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 500;
+    color: #000000!important;
+    font-family: Montserrat!important;
+    font-size: 15px!important;
+    font-style: normal!important;
+    font-weight: 500!important;
 }
 
 .cajaSeccionesModalMod {

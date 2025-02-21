@@ -15,8 +15,8 @@
 <body class="contenedor">
     <div class="menu-administrativo flex">
         <div class="menu-pequenyo-administrativo flex flex-col" id="menu-pequenyo-administrativo">
-            <img class="mt-3 mb-1 ml-1 logo-pequenyo-administrativo" width="60vh"
-                src="/images/logoPequenyoRolser.png" alt="">
+            <img class="mt-3 mb-1 ml-1 logo-pequenyo-administrativo" width="60vh" src="/images/logoPequenyoRolser.png"
+                alt="">
             <div class="iconos-menu-administrativo flex flex-col ml-4">
                 <!--Home icono-->
                 <svg class="iconosM" width="26" height="26" viewBox="0 0 26 26" fill="none"
@@ -156,8 +156,10 @@
                 <a href="{{ route('administrativo.pedidos') }}" class="boton-menu-noSel-administrativo">Pedidos</a>
                 <a href="{{ route('administrativo.usuarios') }}" class="boton-menu-noSel-administrativo">Productos</a>
                 <a href="{{ route('administrativo.pedidos') }}" class="boton-menu-noSel-administrativo">Catálogos</a>
-                <a href="{{ route('administrativo.almacenes') }}" class="boton-menu-noSel-administrativo">Almacenes</a>
-                <a href="{{ route('administrativo.descuentos') }}" class="boton-menu-noSel-administrativo">Descuentos</a>
+                <a href="{{ route('administrativo.almacenes') }}"
+                    class="boton-menu-noSel-administrativo">Almacenes</a>
+                <a href="{{ route('administrativo.descuentos') }}"
+                    class="boton-menu-noSel-administrativo">Descuentos</a>
                 <a href="{{ route('administrativo.tarifas') }}" class="boton-menu-noSel-administrativo">Tarifas</a>
             </div>
             <div class="caja-info-usuario-admin-logout">
@@ -166,7 +168,8 @@
                     <p class="info-usuario-administrativo">Autenticado como: Administrativo</p>
                     <p class="info-usuario-administrativo">Fecha: 06/02/2025</p>
                 </div>
-                <a href="{{ route('administrativo.logIn') }}" class="boton-logout-administrativo d-flex">Cerrar&nbsp;sesión</a>
+                <a href="{{ route('administrativo.logIn') }}"
+                    class="boton-logout-administrativo d-flex">Cerrar&nbsp;sesión</a>
             </div>
         </div>
     </div>
@@ -176,10 +179,15 @@
         <div class="contenedor-breadcrump-administrativo">
             <div class="maquetacion-breadcrump-administrativo flex flex-row">
                 <a class="estilo-breadcrump-administrativo" href="{{ route('administrativo.home') }}">Home</a>
-                <svg class="mt-0.5 ml-1 mr-1" width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.56836 12.4508L9.64336 8.37578C10.1246 7.89453 10.1246 7.10703 9.64336 6.62578L5.56836 2.55078" stroke="#90242A" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                <a class="estilo-breadcrump-administrativo" href="{{ route('administrativo.clientes') }}">Clientes</a>
+                <svg class="mt-0.5 ml-1 mr-1" width="20" height="20" viewBox="0 0 15 15" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M5.56836 12.4508L9.64336 8.37578C10.1246 7.89453 10.1246 7.10703 9.64336 6.62578L5.56836 2.55078"
+                        stroke="#90242A" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <a class="estilo-breadcrump-administrativo"
+                    href="{{ route('administrativo.clientes') }}">Clientes</a>
             </div>
         </div>
         {{-- Contenedor crud datatable paginacion --}}
@@ -264,6 +272,10 @@
                                 stroke-linejoin="round" />
                         </svg></button>
                 </div>
+            </div>
+            <div class="contenedor-datatable-clientes-admin">
+                @livewire('tabla-clientes-vip')
+
             </div>
 
             <!-- Modal (inicialmente oculto) -->
