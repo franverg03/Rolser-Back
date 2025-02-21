@@ -43,15 +43,13 @@ body {
     z-index: -1;
     /* Mueve el contenido detrás del menú */
 }
-
+.iconos-menu-administrativo{
+    margin-top: 10vh;
+}
 .iconosM {
     margin-bottom: 4.5vh;
 
     cursor: pointer;
-}
-
-.logo-pequenyo-administrativo {
-    margin-bottom: 10vh;
 }
 
 .logo-grande-administrativo {
