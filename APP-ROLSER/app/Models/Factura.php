@@ -21,7 +21,7 @@ class Factura extends Model
         'id_comercial'
     ];
     public function lineasDeFactura() {
-        return $this->hasMany(LineaFactura::class);
+        return $this->hasMany(LineaFactura::class, 'id_linea_factura');
     }
 
     public function pedido() {

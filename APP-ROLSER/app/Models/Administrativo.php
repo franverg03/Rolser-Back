@@ -24,16 +24,14 @@ class Administrativo extends Model
         'administrativo_departamento'
     ];
 
-
-
     public function catalogos()
     {
-        return $this->belongsTo(Catalogo::class);
+        return $this->belongsTo(Catalogo::class, 'id_catalogo');
     }
 
     public function usuarios()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class, 'id_usuario');
     }
 
     public function almacenes()
@@ -41,10 +39,6 @@ class Administrativo extends Model
         return $this->belongsToMany(Almacen::class);
     }
 
-    public function seguimientos()
-    {
-        return $this->belongsToMany(Seguimiento::class);
-    }
 
     public function descuentos()
     {

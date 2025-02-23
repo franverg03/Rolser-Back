@@ -20,8 +20,8 @@ class Pedido extends Model
         'id_cliente_no_vip'
     ];
 
-    public function clienteVip() {
-        return $this->belongsTo(ClienteVip::class);
+    public function clientesVip() {
+        return $this->belongsTo(ClienteVip::class, 'id_cliente_vip');
     }
 
     public function clienteNoVip() {
@@ -29,18 +29,16 @@ class Pedido extends Model
     }
 
     public function comerciales() {
-        return $this->belongsTo(Comercial::class);
+        return $this->belongsTo(Comercial::class,'id_comercial');
     }
 
     public function facturas() {
-        return $this->belongsTo(Factura::class);
+        return $this->belongsTo(Factura::class, 'id_factura');
     }
 
-    public function seguimientos() {
-        return $this->hasOne(Seguimiento::class);
-    }
+
 
     public function lineasDePedidos() {
-        return $this->hasMany(LineaPedido::class);
+        return $this->hasMany(LineaPedido::class, 'id_linea_factura');
     }
 }

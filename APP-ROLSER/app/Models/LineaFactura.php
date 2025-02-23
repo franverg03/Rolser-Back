@@ -21,8 +21,8 @@ class LineaFactura extends Model
         'id_producto'
     ];
 
-    public function factura() {
-        return $this->belongsTo(Factura::class);
+    public function facturas() {
+        return $this->belongsTo(Factura::class, 'id_factura');
     }
 
     public function producto() {

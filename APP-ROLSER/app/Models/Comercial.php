@@ -27,23 +27,23 @@ class Comercial extends Model
     // Relación con el usuario
     public function usuario()
     {
-        return $this->belongsTo(User::class, 'id_usuario', 'id_usuario');
+        return $this->belongsTo(User::class, 'id_usuario');
     }
 
     public function pedidos() {
-        return $this->hasMany(Pedido::class);
+        return $this->hasMany(Pedido::class, 'id_pedido');
     }
 
     public function facturas() {
-        return $this->hasMany(Factura::class);
+        return $this->hasMany(Factura::class, 'id_factura');
     }
 
     public function clientesNoVip() {
-        return $this->hasMany(ClienteNoVip::class);
+        return $this->hasMany(ClienteNoVip::class, 'id_cliente');
     }
 
     public function clientesVip() {
-        return $this->hasMany(ClienteVip::class);
+        return $this->hasMany(ClienteVip::class, 'id_cliente_vip');
     }
 
     public function catalogos() {

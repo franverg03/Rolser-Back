@@ -10,7 +10,7 @@ class TablaAdministrativos extends Component
 {
     use WithPagination;
 
-    public $search = '';
+    public $search = ''; //Input de la tabla
     public $perPage = 10; // Siempre mostrar 10 registros por página
 
     public function clearSearch()

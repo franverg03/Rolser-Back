@@ -20,11 +20,11 @@ class LineaPedido extends Model
         'id_producto'
     ];
 
-    public function pedido() {
-        return $this->belongsTo(Pedido::class);
+    public function pedidos() {
+        return $this->belongsTo(Pedido::class, 'id_pedido');
     }
 
-    public function producto() {
-        return $this->belongsTo(Producto::class);
+    public function productos() {
+        return $this->belongsTo(Producto::class, 'id_producto');
     }
 }

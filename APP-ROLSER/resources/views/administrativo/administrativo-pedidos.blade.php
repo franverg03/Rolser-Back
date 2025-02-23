@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/styles/administrativo.css">
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
-    <title>HomeAdministrativoRolser</title>
+    <title>ClientesAdministrativoRolser</title>
 </head>
 <body class="contenedor">
     <div class="menu-administrativo flex">
@@ -137,10 +137,10 @@
         <div class="menu-grande-administrativo" id="menu-grande-administrativo">
           <img class="mt-5 ml-3 logo-grande-administrativo" width="180vh" src="/images/logoGrandeRolser.png" alt="">
           <div class="div-menu-grande-administrativo">
-            <a href="/homeAdministrativo" class="boton-menu-sel-administrativo" routerLink="homeAdministrativo">Home</a>
+            <a href="/homeAdministrativo" class="boton-menu-noSel-administrativo" routerLink="homeAdministrativo">Home</a>
             <a href="/clientesAdministrativo" class="boton-menu-noSel-administrativo" routerLink="clientesAdministrativo">Clientes</a>
             <a href="/usuariosAdministrativo" class="boton-menu-noSel-administrativo" routerLink="catalogosAdministrativo">Usuarios</a>
-            <a href="/pedidosAdministrativo" class="boton-menu-noSel-administrativo" routerLink="pedidosAdministrativo">Pedidos</a>
+            <a href="/pedidosAdministrativo" class="boton-menu-sel-administrativo" routerLink="pedidosAdministrativo">Pedidos</a>
             <a href="/productosAdministrativo" class="boton-menu-noSel-administrativo" routerLink="productosAdministrativo">Productos</a>
             <a href="/catalogosAdministrativo" class="boton-menu-noSel-administrativo" routerLink="catalogosAdministrativo">Catálogos</a>
             <a href="/almacenesAdministrativo" class="boton-menu-noSel-administrativo" routerLink="almacenesAdministrativo">Almacenes</a>
@@ -161,8 +161,12 @@
       <div class="contenedor-principal-administrativo">
         {{-- Breadcrumb contenedor --}}
         <div class="contenedor-breadcrump-administrativo">
-            <div class="maquetacion-breadcrump-administrativo">
+            <div class="maquetacion-breadcrump-administrativo flex flex-row">
                 <a class="estilo-breadcrump-administrativo" href="/homeAdministrativo">Home</a>
+                <svg class="mt-0.5 ml-1 mr-1" width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.56836 12.4508L9.64336 8.37578C10.1246 7.89453 10.1246 7.10703 9.64336 6.62578L5.56836 2.55078" stroke="#90242A" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                <a class="estilo-breadcrump-administrativo" href="/pedidosAdministrativo">Pedidos</a>
             </div>
         </div>
         {{-- Contenedor crud datatable paginacion --}}
