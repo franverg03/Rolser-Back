@@ -20,21 +20,25 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::view('/logIn', 'login');
+Route::view('/logInTablet', 'loginTablet');
 
 
-Route::view('/administrativo/usuarios/', 'administrativo.administrativo-usuarios');
+
+Route::view('/administrativo/home', 'administrativo.administrativo-home')->name('administrativo.home');
+Route::view('/administrativo/clientes', 'administrativo.administrativo-clientes')->name('administrativo.clientes');
+Route::view('/administrativo/usuarios', 'administrativo.administrativo-usuarios')->name('administrativo.usuarios');
+Route::view('/administrativo/pedidos', 'administrativo.administrativo-pedidos')->name('administrativo.pedidos');
+Route::view('/administrativo/almacenes', 'administrativo.administrativo-almacenes')->name('administrativo.almacenes');
+Route::view('/administrativo/descuentos', 'administrativo.administrativo-descuentos')->name('administrativo.descuentos');
+Route::view('/administrativo/tarifas', 'administrativo.administrativo-tarifas')->name('administrativo.tarifas');
 
 
-
-Route::view('/administrativo/clientes', 'administrativo.administrativo-clientes');
-
-Route::view('/comercial/home', 'comercial.comercial-home');
-
-Route::view('/comercial/pedidos', 'comercial.comercial-pedidos');
-
-Route::view('/comercial/facturas', 'comercial.comercial-facturas');
-
-Route::view('/comercial/clientes', 'comercial.comercial-clientes');
+Route::view('/comercial/home', 'comercial.comercial-home')->name('comercial.home');
+Route::view('/comercial/clientes', 'comercial.comercial-clientes')->name('comercial.clientes');
+Route::view('/comercial/catalogos', 'comercial.comercial-catalogos')->name('comercial.catalogos');
+Route::view('/comercial/facturas', 'comercial.comercial-facturas')->name('comercial.facturas');
+Route::view('/comercial/pedidos', 'comercial.comercial-pedidos')->name('comercial.pedidos');
 
 require __DIR__.'/auth.php';
 

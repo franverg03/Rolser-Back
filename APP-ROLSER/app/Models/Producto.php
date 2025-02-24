@@ -22,20 +22,21 @@ class Producto extends Model
         'producto_precio',
         'producto_stock',
         'producto_colores',
-        'id_almacen'
+        'id_almacen',
+        'producto_ruta_imagen',
     ];
     public function catalogos()
     {
-        return $this->belongsToMany(Catalogo::class, 'id_catalogo');
+        return $this->belongsToMany(Catalogo::class);
     }
 
-    public function almacenes()
+    public function almacen()
     {
         return $this->belongsTo(Almacen::class, 'id_almacen');
     }
 
     public function lineasDePedidos()
     {
-        return $this->hasMany(LineaPedido::class, 'id_linea_pedido');
+        return $this->hasMany(LineaPedido::class);
     }
 }

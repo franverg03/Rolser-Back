@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+        @vite('resources/css/app.css')
+        @vite('resources/js/app.js')
     <link rel="stylesheet" href="/styles/administrativo.css">
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
     <title>UsuariosAdministrativoRolser</title>
 </head>
 

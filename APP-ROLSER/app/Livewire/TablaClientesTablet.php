@@ -3,16 +3,13 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Livewire\WithPagination;
-use App\Models\ClienteVip;
+use App\Models\ClienteNoVip;
 
-
-class TablaClientesVip extends Component
+class TablaClientesTablet extends Component
 {
-    use WithPagination;
 
     public $search = '';
-    public $perPage = 10; // Siempre mostrar 10 registros por página
+
 
     public function clearSearch()
     {
@@ -26,13 +23,13 @@ class TablaClientesVip extends Component
 
     public function render()
     {
-        // Obtener todos los clientes (sin paginar aún)
-        $clientesVip = ClienteVip::where('cliente_nombre_representante', 'like', '%' . $this->search . '%')
+        // Obtener todos los clientes filtrados sin paginación
+        $clientesT = ClienteNoVip::where('cliente_nombre_representante', 'like', '%' . $this->search . '%')
             ->orWhere('cliente_apellidos_representante', 'like', '%' . $this->search . '%')
             ->orWhere('cliente_telefono_representante', 'like', '%' . $this->search . '%')
             ->orWhere('cliente_empresa', 'like', '%' . $this->search . '%')
-            ->paginate($this->perPage);
+            ->get(); // Recupera todos los registros sin paginar
 
-        return view('livewire.tabla-clientes-vip', compact('clientesVip'));
+        return view('livewire.tabla-clientes-tablet', compact('clientesT'));
     }
 }

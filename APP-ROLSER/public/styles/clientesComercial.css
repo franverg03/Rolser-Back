@@ -7,7 +7,7 @@
 /* Div del menú retraido */
 .menu-pequenyo-comercial {
     /*Color*/
-    background: #90242A;
+    background: #90242a;
 
     width: 6vh;
     height: 100vh;
@@ -16,7 +16,7 @@
 }
 
 .menu-grande-comercial {
-    background: #AF272F;
+    background: #af272f;
 
     width: 18vh;
     height: 100vh;
@@ -48,8 +48,9 @@
 .logo-pequenyo-comercial {
     margin-bottom: 5vh;
 }
+
 /*Comercial logeado como cliente*/
-.icono-cliente-comercial{
+.icono-cliente-comercial {
     margin-bottom: 8vh;
     margin-left: 0.4vh;
 }
@@ -71,7 +72,7 @@
     cursor: pointer;
 }
 
-.boton-comercial-cliente{
+.boton-comercial-cliente {
     text-decoration: none;
 
     padding-right: 8.4vh;
@@ -82,9 +83,9 @@
     margin-bottom: 6.6vh;
     border-radius: 0px 5px 5px 0px;
 
-    border: 1px solid rgba(0, 0, 0, 0.20);
-    color: #FFFFFF;
-    background: #90242A;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    background: #90242a;
     box-shadow: 9px 9px 9px 0px rgba(0, 0, 0, 0.25);
 
     font-family: Montserrat;
@@ -107,10 +108,10 @@
 
     margin-bottom: 2vh;
 
-    color: #FFFFFF;
-    background: #90242A;
+    color: #ffffff;
+    background: #90242a;
     border-radius: 0px 5px 5px 0px;
-    border: 1px solid rgba(0, 0, 0, 0.20);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     box-shadow: 5px 5px 4px 0px rgba(144, 36, 42, 0.25);
 
     font-family: Montserrat;
@@ -120,7 +121,6 @@
     line-height: normal;
 
     cursor: pointer;
-
 }
 
 .boton-menu-noSel-comercial {
@@ -133,9 +133,9 @@
 
     margin-bottom: 2vh;
 
-    color: #FFFFFF;
-    border: 1px solid #AF272F;
-    background: #AF272F;
+    color: #ffffff;
+    border: 1px solid #af272f;
+    background: #af272f;
 
     font-family: Montserrat;
     font-size: 18px;
@@ -148,7 +148,7 @@
     transition: 0.3s ease;
 
     background-color: #90242a;
-    border: 1px solid rgba(0, 0, 0, 0.20);
+    border: 1px solid rgba(0, 0, 0, 0.2);
 
     cursor: pointer;
 }
@@ -187,16 +187,16 @@
 
 } */
 .contenedor-breadcrump-comercial {
-    border-bottom: 2px solid rgba(175, 39, 47, 0.50);
+    border-bottom: 2px solid rgba(175, 39, 47, 0.5);
 
     box-shadow: 3px 4px 4px 0px rgba(175, 39, 47, 0.25);
 
-    width: 1900px;
-    height: 150px;
+    width: 1300px;
+    height: 80px;
 }
 
 .estilo-breadcrump-comercial {
-    color: #90242A;
+    color: #90242a;
     font-family: Montserrat;
     font-size: 20px;
     font-style: normal;
@@ -205,7 +205,7 @@
 }
 
 .maquetacion-breadcrump-comercial {
-    padding-top: 8vh;
+    padding-top: 4vh;
     padding-left: 3vh;
 }
 
@@ -213,13 +213,13 @@
     text-decoration: none;
 
     padding-right: 1vh;
-    padding-left: 2vh;
+    padding-left: 1.5vh;
     padding-top: 1.4vh;
     padding-bottom: 1.4vh;
 
-    color: #FFFFFF;
-    border: 1px solid #AF272F;
-    background: #AF272F;
+    color: #ffffff;
+    border: 1px solid #af272f;
+    background: #af272f;
 
     font-family: Montserrat;
     font-size: 18px;
@@ -232,56 +232,61 @@
     transition: 0.3s ease;
 
     background-color: #90242a;
-    border: 1px solid rgba(0, 0, 0, 0.20);
+    border: 1px solid rgba(0, 0, 0, 0.2);
 
     cursor: pointer;
 }
-.caja-info-usuario-comercial{
+
+.caja-info-usuario-comercial {
     margin-bottom: 6.4vh;
 }
 
-table{
+table {
     width: 20vh;
     height: 50px;
 }
 
-.linea-roja-cVIP{
+.linea-roja-cVIP {
     display: block;
 
     width: 120px;
     height: 2px;
 
-    background: #90242A;
+    background: #90242a;
     box-shadow: 0px 4px 3px 0px rgba(144, 36, 42, 0.25);
 }
-.linea-roja-comerciales{
-   display: none;
 
-   width: 120px;
-   height: 2px;
+.linea-roja-comerciales {
+    display: none;
 
-   background: #90242A;
-   box-shadow: 0px 4px 3px 0px rgba(144, 36, 42, 0.25);
+    width: 120px;
+    height: 2px;
+
+    background: #90242a;
+    box-shadow: 0px 4px 3px 0px rgba(144, 36, 42, 0.25);
 }
-.linea-roja-administrativos{
-   display: none;
 
-   width: 145px;
-   height: 2px;
+.linea-roja-administrativos {
+    display: none;
 
-   background: #90242A;
-   box-shadow: 0px 4px 3px 0px rgba(144, 36, 42, 0.25);
+    width: 145px;
+    height: 2px;
+
+    background: #90242a;
+    box-shadow: 0px 4px 3px 0px rgba(144, 36, 42, 0.25);
 }
-.linea-blanca{
-   display: inline-block;
+
+.linea-blanca {
+    display: inline-block;
 
     width: 120px;
     height: 2px;
 
     background: #ffffff;
 }
-.linea-blanca-grande{
-   display: inline-block;
+
+.linea-blanca-grande {
+    display: inline-block;
 
     width: 145px;
     height: 2px;
@@ -289,6 +294,142 @@ table{
     background: #ffffff;
 }
 
-.contenedorTablas{
-    margin-left: 100px !important;
+.headerTabla {
+    background-color: #cf333c;
+    color: white;
+    font-weight: 700;
+}
+
+.bordes {
+    border-bottom: 1px solid #af272f;
+    border-left: 1px solid #af272f;
+}
+
+.bordeRolser {
+    border: 1px solid #af272f;
+}
+
+.borde-focus:focus{
+    border: 1px solid #cf333c;
+}
+
+.paginacion-custom nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.paginacion-custom .pagination {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.paginacion-custom .pagination a,
+.paginacion-custom .pagination span {
+    background-color: white;
+    color: #af272f;
+    border: 1px solid #af272f;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.paginacion-custom .pagination a:hover {
+    background-color: #af272f;
+    color: white;
+}
+
+.paginacion-custom .pagination .active {
+    background-color: #af272f;
+    color: white;
+    border-color: #af272f;
+}
+
+.paginacion-custom .pagination .disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+
+.cambiarTamanyoModalTablet {
+    width: 1280px;
+    height: 800px;
+}
+
+.cajaModalModificarTablet {
+    border-radius: 12px;
+    height: 680px;
+    width: 700px;
+    /*Color*/
+    border: 1px solid #AF272F;
+    background: #FFFFFF;
+    box-shadow: 8px 8px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+.botonEliminar {
+    /* Botón */
+    width: auto;
+    height: 32px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 16px;
+    border: 3px solid #AF272F;
+    background: #AF272F;
+    /* Texto del botón */
+    color: #ffffff;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: var(--sizes-xl, 16px);
+    display: flex;
+    justify-content: center;
+    /* Alinea el contenido horizontalmente */
+    align-items: center;
+    /* Alinea el contenido verticalmente */
+    gap: 8px;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.botonEliminar:hover {
+    /* Botón */
+    transition: 2s ease;
+    background-color: #782429;
+
+    border: 3px solid #782429;
+    cursor: pointer;
+}
+
+/* Ocultar el scroll en navegadores que usan scrollbar visible */
+::-webkit-scrollbar {
+    width: 13px;
+    /* Ancho del scrollbar */
+
+}
+
+/* Cambiar el color de fondo del scrollbar*/
+::-webkit-scrollbar-track {
+    /*  background: #d6d1d1; Color del track (fondo) */
+    border-radius: 5px;
+    border: 1px solid #90242a;
+
+}
+
+/* Cambiar el color de la barra de desplazamiento) */
+::-webkit-scrollbar-thumb {
+    background: #AF272F;
+    /* Color de la barra */
+    border-radius: 5px;
+    /* Bordes redondeados */
+
+
+}
+
+/* Cambiar el color cuando se hace hover  */
+::-webkit-scrollbar-thumb:hover {
+    background: #AF272F;
 }

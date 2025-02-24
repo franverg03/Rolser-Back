@@ -16,8 +16,6 @@ return new class extends Migration
             $table->integer('unidades');
             $table->decimal('importe', 10, 2);
             $table->decimal('total', 10, 2);
-            // $table->unsignedBigInteger('idFactura');
-            // $table->unsignedBigInteger('idProducto');
             $table->foreignId('id_factura')->references('id_factura')->on('facturas')->onDelete('cascade');
             $table->foreignId('id_producto')->references('id_producto')->on('productos')->onDelete('cascade');
             $table->timestamps();
