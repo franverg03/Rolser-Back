@@ -17,8 +17,6 @@ return new class extends Migration
             $table->string('porcentaje_descuento', 5);
             $table->date('fechaInicio_descuento');
             $table->date('fechaFin_descuento');
-            // $table->unsignedBigInteger('id_cliente_vip')->nullable();
-            // $table->unsignedBigInteger('id_cliente_no_vip')->nullable();
             $table->foreignId('id_cliente_vip')->nullable()->references('id_cliente_vip')->on('clientes_vip')->onDelete('set null');
 
             $table->foreignId('id_cliente_no_vip')->nullable()->references('id_cliente_no_vip')->on('clientes_no_vip')->onDelete('set null');

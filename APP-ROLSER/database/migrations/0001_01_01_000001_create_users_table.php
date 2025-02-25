@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('usuario_password', 100);
             $table->boolean('usuario_activo');
             $table->string('usuario_rol', 50);
-            // $table->unsignedBigInteger('id_administrativo');
             $table->foreignId('id_administrativo')->references('id_administrativo')->on('administrativos')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();

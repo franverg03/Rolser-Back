@@ -27,7 +27,7 @@ class Producto extends Model
     ];
     public function catalogos()
     {
-        return $this->belongsToMany(Catalogo::class, 'id_catalogo');
+        return $this->belongsToMany(Catalogo::class);
     }
 
     public function almacen()
@@ -37,6 +37,6 @@ class Producto extends Model
 
     public function lineasDePedidos()
     {
-        return $this->hasMany(LineaPedido::class, 'id_linea_pedido');
+        return $this->hasMany(LineaPedido::class);
     }
 }

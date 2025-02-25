@@ -1,5 +1,5 @@
 <div>
-    <section class="mt-10 ">
+    <section class="mt-1">
             <!-- Barra de búsqueda -->
             <div class="flex items-center justify-between p-4">
                 <div class="relative">
@@ -14,7 +14,7 @@
                     {{-- Input de búsqueda --}}
                     <input wire:model.live.debounce.100ms="search" type="text"
                         class="bg-white bordeRolser text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full pl-10 pr-10 p-2"
-                        placeholder="Buscar administrativo..." id="searchInput">
+                        placeholder="Buscar" id="searchInput">
 
                     {{-- Icono de "X" para limpiar el input --}}
                     @if($search)
@@ -32,22 +32,22 @@
 
             <!-- Tabla -->
             <div class="contenedorTablas">
-                <table class="w-full text-sm text-left bg-white border-collapse bordeRolser ">
+                <table class="w-full text-sm text-left bg-white border-collapse bordeRolser tablaComercial">
                     <thead class="text-xs uppercase bg-red-600 text-white font-bold">
                         <tr>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Representante</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser ">Representante</th>
                             <th scope="col" class="px-4 py-3 border-b bordeRolser">Empresa</th>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser">NIF</th>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Contacto</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser ">NIF</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser ">Contacto</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($clientesVip as $clienteVip)
-                            <tr class="border-b bordeRolser">
-                                <td class="px-4 py-3">{{ $clienteVip->cliente_nombre_representante }}{{ $clienteVip->cliente_apellidos_representante }}</td>
-                                <td class="px-4 py-3">{{ $clienteVip->cliente_empresa }}</td>
-                                <td class="px4 py-3">{{ $clienteVip->cliente_nif}}</td>
-                                <td class="px-4 py-3">{{ $clienteVip->cliente_telefono_representante }}</td>
+                            <tr class="border-b bordeRolser tamanyoCelda">
+                                <td class="px-4 py-3 ">{{ $clienteVip->cliente_nombre_representante }}&nbsp;{{$clienteVip->cliente_apellidos_representante }}</td>
+                                <td class="px-4 py-3 ">{{ $clienteVip->cliente_empresa }}</td>
+                                <td class="px4 py-3 ">{{ $clienteVip->cliente_nif}}</td>
+                                <td class="px-4 py-3 ">{{ $clienteVip->cliente_telefono_representante }}</td>
                             </tr>
                         @empty
                             <tr>

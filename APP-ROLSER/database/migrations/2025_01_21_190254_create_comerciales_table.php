@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('comercial_telefono', 9);
             $table->string('comercial_email', 100);
             $table->string('comercial_zona', 100);
-            // $table->unsignedBigInteger('id_usuario');
             $table->foreignId('id_usuario')->references('id_usuario')->on('users')->onDelete('cascade');//Relacion 1-1 con Administrativo
             $table->timestamps();
         });

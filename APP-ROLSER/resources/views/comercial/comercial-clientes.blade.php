@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-        @vite('resources/css/app.css')
-        @vite('resources/js/app.js')
-    <link rel="stylesheet" href="/styles/homeComercial.css">
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
+    <link rel="stylesheet" href="/styles/administrativo.css">
     <link rel="stylesheet" href="/styles/clientesComercial.css">
 
     <title>ClientesComercialRolser</title>
@@ -17,8 +17,7 @@
 <body class="contenedor">
     <div class="menu-comercial flex">
         <div class="menu-pequenyo-comercial flex flex-col" id="menu-pequenyo-administrativo">
-            <img class="mt-3 ml-1 logo-pequenyo-comercial" width="40vh" src="/images/logoPequenyoRolser.png"
-                alt="">
+            <img class="mt-3 ml-1 logo-pequenyo-comercial" width="40vh" src="/images/logoPequenyoRolser.png" alt="">
             <svg class="icono-cliente-comercial" width="42" height="42" viewBox="0 0 42 42" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -93,11 +92,10 @@
                 </svg>
             </div>
             <div class="iconos-usuario-logout-comercial">
-                <img width="35px" class="imagen-usuario-comercial" src="/images/administrativoFran.png"
-                    alt="">
+                <img width="35px" class="imagen-usuario-comercial" src="/images/administrativoFran.png" alt="">
                 <!--LogOut icono-->
-                <svg class="icono-logout-comercial" width="27" height="27" viewBox="0 0 27 27"
-                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="icono-logout-comercial" width="27" height="27" viewBox="0 0 27 27" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M10.0127 8.50844C10.3614 4.45844 12.4427 2.80469 16.9989 2.80469H17.1452C22.1739 2.80469 24.1877 4.81844 24.1877 9.84719V17.1822C24.1877 22.2109 22.1739 24.2247 17.1452 24.2247H16.9989C12.4764 24.2247 10.3952 22.5934 10.0239 18.6109"
                         stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -109,28 +107,23 @@
             </div>
         </div>
         <div class="menu-grande-comercial d-flex flex-col" id="menu-grande-administrativo">
-            <img class="mt-4 ml-3 logo-grande-comercial" width="130vh" src="/images/logoGrandeRolser.png"
-                alt="">
+            <img class="mt-4 ml-3 logo-grande-comercial" width="130vh" src="/images/logoGrandeRolser.png" alt="">
             <button class="boton-comercial-cliente">Cliente</button>
             <div class="div-menu-grande-comercial">
-                <a href="/homeComercial" class="boton-menu-noSel-comercial" routerLink="homeComercial">Home</a>
-                <a href="/clientesComercial" class="boton-menu-sel-comercial"
-                    routerLink="clientesComercial">Clientes</a>
-                <a href="/catalogosComercial" class="boton-menu-noSel-comercial"
-                    routerLink="catalogosComercial">Catálogos</a>
-                <a href="/facturasComercial" class="boton-menu-noSel-comercial"
-                    routerLink="facturasComercial">Facturas</a>
-                <a href="/pedidosComercial" class="boton-menu-noSel-comercial"
-                    routerLink="pedidosComercial">Pedidos</a>
+                <a href="{{ route('comercial.home') }}" class="boton-menu-noSel-comercial">Home</a>
+                <a href="{{ route('comercial.clientes') }}" class="boton-menu-noSel-comercial">Clientes</a>
+                <a href="{{ route('comercial.catalogos') }}" class="boton-menu-noSel-comercial">Catálogos</a>
+                <a href="{{ route('comercial.facturas') }}" class="boton-menu-noSel-comercial">Facturas</a>
+                <a href="{{ route('comercial.pedidos') }}" class="boton-menu-noSel-comercial">Pedidos</a>
             </div>
+
             <div class="caja-info-usuario-comercial-logout">
                 <div class="pl-4 caja-info-usuario-comercial">
                     <h3 class="usuario-nombre-comercial">Francisco Verdeguer</h3>
                     <p class="info-usuario-comercial">Autenticado como: Comercial</p>
                     <p class="info-usuario-comercial">Fecha: 11/02/2025</p>
                 </div>
-                <a href="/logInTablet" class="boton-logout-comercial d-flex"
-                    routerLink="login">Cerrar&nbsp;sesión</a>
+                <a href="/logInTablet" class="boton-logout-comercial d-flex" routerLink="login">Cerrar&nbsp;sesión</a>
             </div>
         </div>
     </div>
@@ -154,42 +147,1219 @@
         <div>
             <div class="flex"></div>
             <div class="flex flex-col">
-                {{-- Navegación entre datatables Clientes VIP, Comerciales, Administrativo --}}
-                <div class="navegacion-diferentes-usuarios">
-                    <div class="contenedor-navegacion-usuarios flex flex-row">
-                        <button id="boton-efecto-active-cVIP"
-                            class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Clientes
-                            VIP<span class="linea-blanca"></span><span id="linea-roja-vip"
-                                class="linea-roja-cVIP"></span></button>
-                        <button id="boton-efecto-active-comercial"
-                            class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Comerciales<span
-                                class="linea-blanca"></span><span id="linea-roja-comer"
-                                class="linea-roja-comerciales"></span></button>
-                        <button id="boton-efecto-active-administrativo"
-                            class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Administrativos<span
-                                class="linea-blanca-grande"></span><span id="linea-roja-admin"
-                                class="linea-roja-administrativos"></span></button>
+                {{-- Reservado a el datatable --}}
+                <div class="flex flex-col justify-center">
+                    {{-- Navegación entre datatables Clientes VIP, Clientes No VIP --}}
+                    <div class="navegacion-diferentes-usuarios">
+                        <div class="contenedor-navegacion-usuarios flex flex-row">
+                            <button id="boton-efecto-active-cNoVip"
+                                class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Clientes
+                                <span class="linea-blanca"></span><span id="linea-roja-cNoVip"
+                                    class="linea-roja-cVIP"></span></button>
+                            <button id="boton-efecto-active-cVIP"
+                                class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Clientes
+                                VIP<span class="linea-blanca"></span><span id="linea-roja-cVip"
+                                    class="linea-roja-cli"></span></button>
+                        </div>
+                    </div>
+                    {{-- Probamos como triggerear el modal en laravel --}}
+                    <div id="crudCliente" class="">
+                        <div class="flex flex-row">
+                            {{-- Añadir --}}
+                            <button id="mostrarModalAnyadir" class="botonEliminar">Añadir cliente <svg width="18"
+                                    height="18" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4.5 9.69531H13.5" stroke="white" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M9 14.4697V4.92969" stroke="white" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg></button>
+                            {{-- Modificar --}}
+                            <button id="mostrarModalModificar" class="botonEliminar">Modificar cliente <svg width="18"
+                                    height="18" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M5.95801 1.08594H4.87467C2.16634 1.08594 1.08301 2.16927 1.08301 4.8776V8.1276C1.08301 10.8359 2.16634 11.9193 4.87467 11.9193H8.12467C10.833 11.9193 11.9163 10.8359 11.9163 8.1276V7.04427"
+                                        stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        d="M8.68851 1.6339L4.42018 5.90223C4.25768 6.06473 4.09518 6.38431 4.06268 6.61723L3.82976 8.24765C3.7431 8.83806 4.16018 9.24973 4.7506 9.16848L6.38101 8.93556C6.60851 8.90306 6.9281 8.74056 7.09601 8.57806L11.3643 4.30973C12.101 3.57306 12.4477 2.71723 11.3643 1.6339C10.281 0.550562 9.42518 0.897228 8.68851 1.6339Z"
+                                        stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M8.07617 2.25C8.43909 3.54458 9.45201 4.5575 10.752 4.92583" stroke="white"
+                                        stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg></button>
+                            {{-- Eliminar --}}
+                            <button id="mostrarConfirmacionEliminar" class="botonEliminar">Deshabilitar cliente<svg
+                                    width="18" height="18" viewBox="0 0 24 19" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 9.49219H18" stroke="white" stroke-width="3.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg></button>
+                        </div>
+                    </div>
+
+                    <div id="crudClienteVip" class="hidden">
+                        <div class="flex flex-row">
+                            {{-- Añadir --}}
+                            <button id="mostrarModalAnyadirCVip" class="botonEliminar">Añadir cliente VIP<svg width="18"
+                                    height="18" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4.5 9.69531H13.5" stroke="white" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M9 14.4697V4.92969" stroke="white" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg></button>
+                            {{-- Modificar --}}
+                            <button id="mostrarModalModificarCVip" class="botonEliminar">Modificar cliente VIP <svg
+                                    width="18" height="18" viewBox="0 0 13 13" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M5.95801 1.08594H4.87467C2.16634 1.08594 1.08301 2.16927 1.08301 4.8776V8.1276C1.08301 10.8359 2.16634 11.9193 4.87467 11.9193H8.12467C10.833 11.9193 11.9163 10.8359 11.9163 8.1276V7.04427"
+                                        stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        d="M8.68851 1.6339L4.42018 5.90223C4.25768 6.06473 4.09518 6.38431 4.06268 6.61723L3.82976 8.24765C3.7431 8.83806 4.16018 9.24973 4.7506 9.16848L6.38101 8.93556C6.60851 8.90306 6.9281 8.74056 7.09601 8.57806L11.3643 4.30973C12.101 3.57306 12.4477 2.71723 11.3643 1.6339C10.281 0.550562 9.42518 0.897228 8.68851 1.6339Z"
+                                        stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M8.07617 2.25C8.43909 3.54458 9.45201 4.5575 10.752 4.92583" stroke="white"
+                                        stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg></button>
+                            {{-- Eliminar --}}
+                            <button id="mostrarConfirmacionEliminarCVip" class="botonEliminar">Deshabilitar cliente
+                                VIP<svg width="18" height="18" viewBox="0 0 24 19" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 9.49219H18" stroke="white" stroke-width="3.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg></button>
+                        </div>
+                    </div>
+
+                    <!-- Modal (inicialmente oculto) -->
+                    <div id="modalConfirmacionEliminar" class="fixed inset-0 z-10 hidden" aria-labelledby="modal-title"
+                        role="dialog" aria-modal="true">
+                        <!-- Fondo oscuro -->
+                        <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+
+                        <!-- Contenedor del modal -->
+                        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                            <div
+                                class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                                <div
+                                    class="relative transform overflow-hidden cajaConfi text-center w-[25%] rounded-lg bg-white shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+
+                                    <div class="cajaTxt mt-4">
+                                        <h3 class="cabeceraConfi m-4">¿Estás seguro que quieres eliminarlo?</h3>
+                                        <h4 class="infoConfi">La siguiente acción eliminará al cliente seleccionado.
+                                        </h4>
+                                    </div>
+                                    <div class=" btnCaja flex flex-row">
+                                        <button id="ocultarConfirmacionCancelar"
+                                            class="cancelConfi w-[50%]">Cancelar</button>
+                                        <button id="ocultarConfirmacionConfirmar"
+                                            class="confirmConfi w-[50%]">Confirmar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                {{-- Modal modificar --}}
+                <div id="modalModificar" class="fixed inset-0 z-10  hidden" aria-labelledby="modal-title" role="dialog"
+                    aria-modal="true">
+                    <!-- Fondo oscuro -->
+                    <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+                    <!-- Contenedor del modal -->
+                    <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                            {{-- Este div de abajo hay que convertirlo en un form con method post --}}
+                            <div
+                                class="relative transform overflow-hidden cajaModalModificarTablet text-center  rounded-lg bg-white shadow-xl transition-all">
+                                <div class="cabeceraModalModificar flex flex-row justify-between">
+                                    <h3 class="estilosTituloModalModificar">Modificar cliente No VIP</h3>
+                                    <svg class="hoverX" id="ocultarModificarCancelarCNoVip" width="55" height="55"
+                                        viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001"
+                                            stroke="#90242A" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <div class="flex flex-col cajaSeccionesModalMod">
+                                    <div class="flex">
+                                        <h5 class="seccionesModalModificar">Datos representante:</h5>
+                                    </div>
+                                    <div class="flex flex-row">
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Nombre" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 hidden">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Apellidos" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 ">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                    </div>
+                                </div>
+                                <div class="flex flex-col cajaSeccionesModalMod">
+                                    <div class="flex">
+                                        <h5 class="seccionesModalModificar">Contacto:</h5>
+                                    </div>
+                                    <div class="flex flex-row">
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Ej: Tlf XXX-XXX-XXX" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 hidden">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="correo@ejemplo.com" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 ">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                    </div>
+                                </div>
+                                <div class="flex flex-col cajaSeccionesModalMod">
+                                    <div class="flex">
+                                        <h5 class="seccionesModalModificar">Datos facturación:</h5>
+                                    </div>
+                                    <div class="flex flex-row">
+                                        <div class="flex flex-col">
+                                            <div class="flex">
+                                                <label class="labelsModal" for="">Empresa:</label>
+                                            </div>
+                                            <input type="text" id="searchInput"
+                                                class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                                placeholder="Nombre de la empresa" />
+                                            {{-- <button id="clearButton" type="button"
+                                                class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 hidden">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                        stroke-linecap="round" />
+                                                    <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                        stroke-linecap="round" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                        stroke="#AF272F" />
+                                                </svg>
+                                            </button> --}}
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <div class="flex">
+                                                <label class="labelsModal" for="">Dirección:</label>
+                                            </div>
+                                            <input type="text" id="searchInput"
+                                                class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                                placeholder="Dirección de la empresa" />
+                                            {{-- <button id="clearButton" type="button"
+                                                class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 ">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                        stroke-linecap="round" />
+                                                    <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                        stroke-linecap="round" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                        stroke="#AF272F" />
+                                                </svg>
+                                            </button> --}}
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-row mt-4">
+                                        <div class="flex flex-col">
+                                            <div class="flex">
+                                                <label class="labelsModal" for="">CP:</label>
+                                            </div>
+                                            <input type="text" id="searchInput"
+                                                class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                                placeholder="CP" />
+                                            {{-- <button id="clearButton" type="button"
+                                                class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 hidden">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                        stroke-linecap="round" />
+                                                    <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                        stroke-linecap="round" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                        stroke="#AF272F" />
+                                                </svg>
+                                            </button> --}}
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <div class="flex">
+                                                <label class="labelsModal" for="">CIF:</label>
+                                            </div>
+                                            <input type="text" id="searchInput"
+                                                class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                                placeholder="CIF" />
+                                            {{-- <button id="clearButton" type="button"
+                                                class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 ">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                        stroke-linecap="round" />
+                                                    <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                        stroke-linecap="round" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                        stroke="#AF272F" />
+                                                </svg>
+                                            </button> --}}
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <div class="flex">
+                                                <label class="labelsModal" for="">IBAN:</label>
+                                            </div>
+                                            <input type="text" id="searchInput"
+                                                class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                                placeholder="Nº de Cuenta" />
+                                            {{-- <button id="clearButton" type="button"
+                                                class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 ">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                        stroke-linecap="round" />
+                                                    <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                        stroke-linecap="round" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                        stroke="#AF272F" />
+                                                </svg>
+                                            </button> --}}
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-row mt-4">
+                                        <div class="flex flex-col">
+                                            <div class="flex">
+                                                <label class="labelsModal" for="">Tarifa:</label>
+                                            </div>
+                                            <input type="text" id="searchInput"
+                                                class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                                placeholder="Tarifa(%)" />
+                                            {{-- <button id="clearButton" type="button"
+                                                class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 hidden">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                        stroke-linecap="round" />
+                                                    <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                        stroke-linecap="round" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                        stroke="#AF272F" />
+                                                </svg>
+                                            </button> --}}
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <div class="flex">
+                                                <label class="labelsModal" for="">Contraseña:</label>
+                                            </div>
+                                            <input type="text" id="searchInput"
+                                                class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                                placeholder="Contraseña" />
+                                            {{-- <button id="clearButton" type="button"
+                                                class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 hidden">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                        stroke-linecap="round" />
+                                                    <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                        stroke-linecap="round" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                        stroke="#AF272F" />
+                                                </svg>
+                                            </button> --}}
+                                        </div>
+                                        <button id="mostrarModalConfirmacionGuardarCNoVip"
+                                            class="botonEliminar margen-boton-modificar">Guardar<svg width="18"
+                                                height="18" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.30957 14.3947L10.8096 15.8174L14.8096 12.0234"
+                                                    stroke="white" stroke-width="2.1" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path
+                                                    d="M10 6.14557H14C16 6.14557 16 5.19707 16 4.24857C16 2.35156 15 2.35156 14 2.35156H10C9 2.35156 8 2.35156 8 4.24857C8 6.14557 9 6.14557 10 6.14557Z"
+                                                    stroke="white" stroke-width="2.1" stroke-miterlimit="10"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                <path
+                                                    d="M16 4.26562C19.33 4.43635 21 5.60301 21 9.93765V15.6286C21 19.4226 20 21.3196 15 21.3196H9C4 21.3196 3 19.4226 3 15.6286V9.93765C3 5.61249 4.67 4.43635 8 4.26562"
+                                                    stroke="white" stroke-width="2.1" stroke-miterlimit="10"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{--Modal Confirmar Modificar--}}
+                    <div id="modalConfirmacionGuardarCambiosCNoVip" class="fixed inset-0 z-10 hidden"
+                    aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                    <!-- Fondo oscuro -->
+                    <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+                    <!-- Contenedor del modal -->
+                    <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                            <div
+                                class="relative transform overflow-hidden cajaConfi text-center w-[25%] rounded-lg bg-white shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                                <div class="cajaTxt mt-4">
+                                    <h3 class="cabeceraConfi m-4">¿Estás seguro de guardar estos cambios?</h3>
+                                    <h4 class="infoConfi">La siguiente acción guardará las modificaciones realizadas.
+                                    </h4>
+                                </div>
+                                <div class=" btnCaja flex flex-row">
+                                    <button id="cancelarModalConfirmacionGuardarCNoVip"
+                                        class="cancelConfi w-[50%]">Cancelar</button>
+                                    <button id="confirmarModalConfirmacionGuardarCNoVip"
+                                        class="confirmConfi w-[50%]">Confirmar</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                {{-- Reservado a el datatable --}}
-                <div id="datatable">
-                    <div id="tabla-clientes-vip">
-                        @livewire('tabla-clientes-vip')
-                    </div>
+                </div>
 
-                    {{-- <div id="tabla-comerciales" class="hidden">
-                        @livewire('tabla-comerciales')
-                    </div>
+            </div>
 
-                    <div id="tabla-administrativos" class="hidden">
-                        @livewire('tabla-administrativos')
-                    </div> --}}
+            {{-- Modal añadir --}}
+            <div id="modalAnyadir" class="fixed inset-0 z-10 hidden" aria-labelledby="modal-title" role="dialog"
+                aria-modal="true">
+                <!-- Fondo oscuro -->
+                <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+                <!-- Contenedor del modal -->
+                <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                        {{-- Este div de abajo hay que convertirlo en un form con method post --}}
+                        <div
+                            class="relative transform overflow-hidden cajaModalModificarTablet text-center  rounded-lg bg-white shadow-xl transition-all">
+                            <div class="cabeceraModalModificar flex flex-row justify-between">
+                                <h3 class="estilosTituloModalModificar">Nuevo cliente</h3>
+                                <svg class="hoverX" id="ocultarAnyadirCancelar" width="55" height="55"
+                                    viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="flex flex-col cajaSeccionesModalMod">
+                                <div class="flex">
+                                    <h5 class="seccionesModalModificar">Datos representante:</h5>
+                                </div>
+                                <div class="flex flex-row">
+                                    <input type="text" id="searchInput"
+                                        class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Nombre" />
+                                    {{-- <button id="clearButton" type="button"
+                                        class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 hidden">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                stroke-linecap="round" />
+                                            <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                stroke-linecap="round" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                stroke="#AF272F" />
+                                        </svg>
+                                    </button> --}}
+                                    <input type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Apellidos" />
+                                    {{-- <button id="clearButton" type="button"
+                                        class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 ">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                stroke-linecap="round" />
+                                            <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                stroke-linecap="round" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                stroke="#AF272F" />
+                                        </svg>
+                                    </button> --}}
+                                </div>
+                            </div>
+                            <div class="flex flex-col cajaSeccionesModalMod">
+                                <div class="flex">
+                                    <h5 class="seccionesModalModificar">Contacto:</h5>
+                                </div>
+                                <div class="flex flex-row">
+                                    <input type="text" id="searchInput"
+                                        class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Ej: Tlf XXX-XXX-XXX" />
+                                    {{-- <button id="clearButton" type="button"
+                                        class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 hidden">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                stroke-linecap="round" />
+                                            <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                stroke-linecap="round" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                stroke="#AF272F" />
+                                        </svg>
+                                    </button> --}}
+                                    <input type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="correo@ejemplo.com" />
+                                    {{-- <button id="clearButton" type="button"
+                                        class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 ">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                stroke-linecap="round" />
+                                            <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                stroke-linecap="round" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                stroke="#AF272F" />
+                                        </svg>
+                                    </button> --}}
+                                </div>
+                            </div>
+                            <div class="flex flex-col cajaSeccionesModalMod">
+                                <div class="flex">
+                                    <h5 class="seccionesModalModificar">Datos facturación:</h5>
+                                </div>
+                                <div class="flex flex-row">
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">Empresa:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Nombre de la empresa" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 hidden">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">Dirección:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Dirección de la empresa" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 ">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                    </div>
+                                </div>
+                                <div class="flex flex-row mt-4">
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">CP:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="CP" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 hidden">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">CIF:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="CIF" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 ">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">IBAN:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Nº de Cuenta" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 ">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                    </div>
+                                </div>
+                                <div class="flex flex-row mt-4">
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">Tarifa:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Tarifa(%)" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 hidden">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                    </div>
+                                    <button id="mostrarModalConfirmacionAnyadir"
+                                        class="botonEliminar margen-boton-anyadir">Añadir cliente<svg width="18"
+                                            height="18" viewBox="0 0 18 20" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4.5 9.69531H13.5" stroke="white" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M9 14.4697V4.92969" stroke="white" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- Modal confirmacion añadir --}}
+            <div id="modalConfirmacionAnyadir" class="fixed inset-0 z-10 hidden" aria-labelledby="modal-title"
+                role="dialog" aria-modal="true">
+                <!-- Fondo oscuro -->
+                <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+                <!-- Contenedor del modal -->
+                <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                        <div
+                            class="relative transform overflow-hidden cajaConfi text-center w-[25%] rounded-lg bg-white shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                            <div class="cajaTxt mt-4">
+                                <h3 class="cabeceraConfi m-4">¿Estás seguro que quieres añadirlo?</h3>
+                                <h4 class="infoConfi">La siguiente acción creará un nuevo cliente.</h4>
+                            </div>
+                            <div class=" btnCaja flex flex-row">
+                                <button id="cancelarModalConfirmacionAnyadirCNoVip"
+                                    class="cancelConfi w-[50%]">Cancelar</button>
+                                <button id="confirmarModalConfirmacionAnyadirCNoVip"
+                                    class="confirmConfi w-[50%]">Confirmar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- CRUD Modales Clientes VIP --}}
+            <div class="flex flex-center justify-center mt-6">
+                <!-- Modal (inicialmente oculto) -->
+                <div id="modalConfirmacionEliminarCVip" class="fixed inset-0 z-10 hidden" aria-labelledby="modal-title"
+                    role="dialog" aria-modal="true">
+                    <!-- Fondo oscuro -->
+                    <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+
+                    <!-- Contenedor del modal -->
+                    <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                            <div
+                                class="relative transform overflow-hidden cajaConfi text-center w-[25%] rounded-lg bg-white shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+
+                                <div class="cajaTxt mt-4">
+                                    <h3 class="cabeceraConfi m-4">¿Estás seguro que quieres deshabilitarlo?</h3>
+                                    <h4 class="infoConfi">La siguiente acción deshabilitará los usuarios, pero no
+                                        borrará
+                                        sus datos.</h4>
+                                </div>
+                                <div class=" btnCaja flex flex-row">
+                                    <button id="ocultarConfirmacionCancelarCVip"
+                                        class="cancelConfi w-[50%]">Cancelar</button>
+                                    <button id="ocultarConfirmacionConfirmarCVip"
+                                        class="confirmConfi w-[50%]">Confirmar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- Modal modificar --}}
+            <div id="modalModificarCVip" class="fixed inset-0 z-10 hidden" aria-labelledby="modal-title" role="dialog"
+                aria-modal="true">
+                <!-- Fondo oscuro -->
+                <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+                <!-- Contenedor del modal -->
+                <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                        {{-- Este div de abajo hay que convertirlo en un form con method post --}}
+                        <div
+                            class="relative transform overflow-hidden cajaModalModificarTablet text-center  rounded-lg bg-white shadow-xl transition-all">
+                            <div class="cabeceraModalModificar flex flex-row justify-between">
+                                <h3 class="estilosTituloModalModificar">Modificar cliente VIP</h3>
+                                <svg class="hoverX" id="ocultarModificarCancelarCVip" width="55" height="55"
+                                    viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="flex flex-col cajaSeccionesModalMod">
+                                <div class="flex">
+                                    <h5 class="seccionesModalModificar">Datos representante:</h5>
+                                </div>
+                                <div class="flex flex-row">
+                                    <input type="text" id="searchInput"
+                                        class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Nombre" />
+                                    {{-- <button id="clearButton" type="button"
+                                        class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 hidden">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                stroke-linecap="round" />
+                                            <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                stroke-linecap="round" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                stroke="#AF272F" />
+                                        </svg>
+                                    </button> --}}
+                                    <input type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Apellidos" />
+                                    {{-- <button id="clearButton" type="button"
+                                        class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 ">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                stroke-linecap="round" />
+                                            <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                stroke-linecap="round" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                stroke="#AF272F" />
+                                        </svg>
+                                    </button> --}}
+                                </div>
+                            </div>
+                            <div class="flex flex-col cajaSeccionesModalMod">
+                                <div class="flex">
+                                    <h5 class="seccionesModalModificar">Contacto:</h5>
+                                </div>
+                                <div class="flex flex-row">
+                                    <input type="text" id="searchInput"
+                                        class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Ej: Tlf XXX-XXX-XXX" />
+                                    {{-- <button id="clearButton" type="button"
+                                        class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 hidden">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                stroke-linecap="round" />
+                                            <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                stroke-linecap="round" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                stroke="#AF272F" />
+                                        </svg>
+                                    </button> --}}
+                                    <input type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="correo@ejemplo.com" />
+                                    {{-- <button id="clearButton" type="button"
+                                        class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 ">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                stroke-linecap="round" />
+                                            <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                stroke-linecap="round" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                stroke="#AF272F" />
+                                        </svg>
+                                    </button> --}}
+                                </div>
+                            </div>
+                            <div class="flex flex-col cajaSeccionesModalMod">
+                                <div class="flex">
+                                    <h5 class="seccionesModalModificar">Datos facturación:</h5>
+                                </div>
+                                <div class="flex flex-row">
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">Empresa:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Nombre de la empresa" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 hidden">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">Dirección:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Dirección de la empresa" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 ">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                    </div>
+                                </div>
+                                <div class="flex flex-row mt-4">
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">CP:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="CP" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 hidden">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">CIF:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="CIF" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 ">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">IBAN:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Nº de Cuenta" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 ">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                    </div>
+                                </div>
+                                <div class="flex flex-row mt-4">
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">Tarifa:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Tarifa(%)" />
+
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">Contraseña:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Contraseña" />
+
+                                    </div>
+                                    <button id="mostrarModalConfirmacionGuardarCVip"
+                                        class="botonEliminar margen-boton-modificar">Guardar<svg width="18" height="18"
+                                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.30957 14.3947L10.8096 15.8174L14.8096 12.0234" stroke="white"
+                                                stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path
+                                                d="M10 6.14557H14C16 6.14557 16 5.19707 16 4.24857C16 2.35156 15 2.35156 14 2.35156H10C9 2.35156 8 2.35156 8 4.24857C8 6.14557 9 6.14557 10 6.14557Z"
+                                                stroke="white" stroke-width="2.1" stroke-miterlimit="10"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path
+                                                d="M16 4.26562C19.33 4.43635 21 5.60301 21 9.93765V15.6286C21 19.4226 20 21.3196 15 21.3196H9C4 21.3196 3 19.4226 3 15.6286V9.93765C3 5.61249 4.67 4.43635 8 4.26562"
+                                                stroke="white" stroke-width="2.1" stroke-miterlimit="10"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- Modal confirmacion guardar --}}
+                <div id="modalConfirmacionGuardarCambiosCVip" class="fixed inset-0 z-10 hidden"
+                    aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                    <!-- Fondo oscuro -->
+                    <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+                    <!-- Contenedor del modal -->
+                    <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                            <div
+                                class="relative transform overflow-hidden cajaConfi text-center w-[25%] rounded-lg bg-white shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                                <div class="cajaTxt mt-4">
+                                    <h3 class="cabeceraConfi m-4">¿Estás seguro de guardar estos cambios?</h3>
+                                    <h4 class="infoConfi">La siguiente acción guardará las modificaciones realizadas.
+                                    </h4>
+                                </div>
+                                <div class=" btnCaja flex flex-row">
+                                    <button id="cancelarModalConfirmacionGuardarCVip"
+                                        class="cancelConfi w-[50%]">Cancelar</button>
+                                    <button id="confirmarModalConfirmacionGuardarCVip"
+                                        class="confirmConfi w-[50%]">Confirmar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            {{-- Modal añadir --}}
+            <div id="modalAnyadirCVip" class="fixed inset-0 z-10 hidden" aria-labelledby="modal-title" role="dialog"
+                aria-modal="true">
+                <!-- Fondo oscuro -->
+                <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+                <!-- Contenedor del modal -->
+                <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                        {{-- Este div de abajo hay que convertirlo en un form con method post --}}
+                        <div
+                            class="relative transform overflow-hidden cajaModalModificar text-center  rounded-lg bg-white shadow-xl transition-all">
+                            <div class="cabeceraModalModificar flex flex-row justify-between">
+                                <h3 class="estilosTituloModalModificar">Nuevo cliente VIP</h3>
+                                <svg class="hoverX" id="ocultarAnyadirCancelarCVip" width="55" height="55"
+                                    viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="flex flex-col cajaSeccionesModalMod">
+                                <div class="flex">
+                                    <h5 class="seccionesModalModificar">Datos representante:</h5>
+                                </div>
+                                <div class="flex flex-row">
+                                    <input type="text" id="searchInput"
+                                        class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Nombre" />
+
+                                    <input type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Apellidos" />
+
+                                </div>
+                            </div>
+                            <div class="flex flex-col cajaSeccionesModalMod">
+                                <div class="flex">
+                                    <h5 class="seccionesModalModificar">Contacto:</h5>
+                                </div>
+                                <div class="flex flex-row">
+                                    <input type="text" id="searchInput"
+                                        class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Ej: Tlf XXX-XXX-XXX" />
+
+                                    <input type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="correo@ejemplo.com" />
+
+                                </div>
+                            </div>
+                            <div class="flex flex-col cajaSeccionesModalMod">
+                                <div class="flex">
+                                    <h5 class="seccionesModalModificar">Datos facturación:</h5>
+                                </div>
+                                <div class="flex flex-row">
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">Empresa:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Nombre de la empresa" />
+
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">Dirección:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Dirección de la empresa" />
+
+                                    </div>
+                                </div>
+                                <div class="flex flex-row mt-4">
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">CP:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="CP" />
+
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">CIF:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="CIF" />
+
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">IBAN:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Nº de Cuenta" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 ">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                    </div>
+                                </div>
+                                <div class="flex flex-row mt-4">
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">Tarifa:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Tarifa(%)" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 hidden">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">Contraseña:</label>
+                                        </div>
+                                        <input type="text" id="searchInput"
+                                            class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Contraseña" />
+                                        {{-- <button id="clearButton" type="button"
+                                            class="absolute inset-y-0 right-0 items-center px-3 text-gray-500 hover:text-red-500 hidden">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F"
+                                                    stroke-linecap="round" />
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M7.28595 16.7124C9.88945 19.3159 14.1105 19.3159 16.714 16.7124C19.3175 14.109 19.3175 9.88785 16.714 7.28436C14.1105 4.68086 9.88945 4.68086 7.28595 7.28436C4.68246 9.88785 4.68246 14.109 7.28595 16.7124Z"
+                                                    stroke="#AF272F" />
+                                            </svg>
+                                        </button> --}}
+                                    </div>
+                                    <button id="mostrarModalConfirmacionAnyadirCVip"
+                                        class="botonEliminar margen-boton-anyadir-cli-vip">Añadir cliente<svg width="18"
+                                            height="18" viewBox="0 0 18 20" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4.5 9.69531H13.5" stroke="white" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M9 14.4697V4.92969" stroke="white" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- Modal confirmacion guardar --}}
+                <div id="modalConfirmacionAnyadirCambiosCVip" class="fixed inset-0 z-10 hidden"
+                    aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                    <!-- Fondo oscuro -->
+                    <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+                    <!-- Contenedor del modal -->
+                    <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                            <div
+                                class="relative transform overflow-hidden cajaConfi text-center w-[25%] rounded-lg bg-white shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                                <div class="cajaTxt mt-4">
+                                    <h3 class="cabeceraConfi m-4">¿Estás seguro que quieres registrarlo?</h3>
+                                    <h4 class="infoConfi">La siguiente acción creará un nuevo cliente VIP y un usuario
+                                        para
+                                        iniciar sesión.</h4>
+                                </div>
+                                <div class=" btnCaja flex flex-row">
+                                    <button id="cancelarModalConfirmacionAnyadirCVip"
+                                        class="cancelConfi w-[50%]">Cancelar</button>
+                                    <button id="confirmarModalConfirmacionAnyadirCVip"
+                                        class="confirmConfi w-[50%]">Confirmar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="datatable" class="flex  justify-center items-center" >
+                <div id="tabla-clientes-noVip" class="w-[800px]">
+                    @livewire('tabla-clientes-tablet')
+                </div>
+
+                <div id="tabla-clientes-vip" class="w-[800px] hidden">
+                    @livewire('tabla-clientes-vip-tablet')
                 </div>
             </div>
         </div>
     </div>
-    <script src= "/js/logicaMenu.js"></script>
-    <script src="/js/logicaCambioTablas.js"></script>
+    <script src="/js/clientesComercial.js"></script>
 </body>
-
 </html>

@@ -14,7 +14,6 @@ use App\Http\Controllers\API\LineaFacturaController;
 use App\Http\Controllers\API\LineaPedidoController;
 use App\Http\Controllers\API\PedidoController;
 use App\Http\Controllers\API\ProductoController;
-use App\Http\Controllers\API\SeguimientoController;
 use App\Http\Controllers\API\TarifaController;
 use App\Http\Controllers\API\UserController;
 
@@ -37,6 +36,5 @@ Route::resource('lineas-facturas', LineaFacturaController::class);
 Route::resource('lineas-pedidos', LineaPedidoController::class);
 Route::resource('pedidos', PedidoController::class);
 Route::resource('productos', ProductoController::class);
-Route::resource('seguimientos', SeguimientoController::class);
 Route::resource('tarifas', TarifaController::class);
 Route::resource('users', UserController::class);
