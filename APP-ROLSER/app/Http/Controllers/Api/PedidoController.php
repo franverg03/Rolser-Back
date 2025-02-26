@@ -27,6 +27,8 @@ class PedidoController extends Controller
         $validatedData = $request->validate([
             'pedido_estado' => 'required|string|max:50',
             'fecha_creacion' => 'required|date',
+            'codigo_Pedido' => 'required|max:255',
+            'total_Pedido' => 'required',
             'id_cliente_vip' => 'nullable|exists:clientes_vip,id_cliente_vip',
             'id_cliente_no_vip' => 'nullable|exists:clientes_no_vip,id_cliente_no_vip',
         ]);
@@ -44,6 +46,8 @@ class PedidoController extends Controller
         $validatedData = $request->validate([
             'pedido_estado' => 'sometimes|required|string|max:50',
             'fecha_creacion' => 'sometimes|required|date',
+            'codigo_Pedido' => 'sometimes|required|max:255',
+            'total_Pedido' => 'sometimes|required',
             'id_cliente_vip' => 'sometimes|nullable|exists:clientes_vip,id_cliente_vip',
             'id_cliente_no_vip' => 'sometimes|nullable|exists:clientes_no_vip,id_cliente_no_vip',
         ]);

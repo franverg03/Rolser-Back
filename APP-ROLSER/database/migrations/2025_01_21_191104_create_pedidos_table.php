@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id('id_pedido');
             $table->string('pedido_estado', 50);
             $table->date('fecha_creacion');
+            $table->string('codigo_Pedido');
+            $table->decimal('total_Pedido');
             $table->foreignId('id_cliente_vip')->nullable()->references('id_cliente_vip')->on('clientes_vip')->onDelete('cascade');//Relacion 1-M con CLiente_VIP
             $table->foreignId('id_cliente_no_vip')->nullable()->references('id_cliente_no_vip')->on('clientes_no_vip')->onDelete('cascade');//Relacion 1-M con CLiente_NO_VIP
             $table->foreignId('id_comercial')->nullable()->references('id_comercial')->on('comerciales')->onDelete('cascade');//Relacion 1-M con Comercial
