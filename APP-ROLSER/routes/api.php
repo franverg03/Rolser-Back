@@ -38,3 +38,10 @@ Route::resource('pedidos', PedidoController::class);
 Route::resource('productos', ProductoController::class);
 Route::resource('tarifas', TarifaController::class);
 Route::resource('users', UserController::class);
+
+Route::post('login', [UserController::class,'login']);
+Route::post('register', [UserController::class,'register']);
+Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('details', [UserController::class,'details']);
+        Route::get('logout', [UserController::class,'logout']);
+});

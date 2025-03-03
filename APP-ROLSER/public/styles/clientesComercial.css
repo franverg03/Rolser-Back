@@ -2,13 +2,13 @@
 .contenedor {
     display: flex;
     flex-direction: row;
+    overflow: hidden;
 }
+
 
 /* Div del menú retraido */
 .menu-pequenyo-comercial {
-    /*Color*/
     background: #90242a;
-
     width: 6vh;
     height: 100vh;
     position: relative;
@@ -79,21 +79,17 @@
     padding-left: 1vh;
     padding-top: 1.4vh;
     padding-bottom: 1.4vh;
-
     margin-bottom: 6.6vh;
     border-radius: 0px 5px 5px 0px;
-
     border: 1px solid rgba(0, 0, 0, 0.2);
     color: #ffffff;
     background: #90242a;
     box-shadow: 9px 9px 9px 0px rgba(0, 0, 0, 0.25);
-
     font-family: Montserrat;
     font-size: 15px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-
     cursor: pointer;
 }
 
@@ -105,38 +101,30 @@
     padding-left: 2vh;
     padding-top: 1.4vh;
     padding-bottom: 1.4vh;
-
     margin-bottom: 2vh;
-
     color: #ffffff;
     background: #90242a;
     border-radius: 0px 5px 5px 0px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     box-shadow: 5px 5px 4px 0px rgba(144, 36, 42, 0.25);
-
     font-family: Montserrat;
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-
     cursor: pointer;
 }
 
 .boton-menu-noSel-comercial {
     text-decoration: none;
-
     padding-right: 8.4vh;
     padding-left: 2vh;
     padding-top: 1.4vh;
     padding-bottom: 1.4vh;
-
     margin-bottom: 2vh;
-
     color: #ffffff;
     border: 1px solid #af272f;
     background: #af272f;
-
     font-family: Montserrat;
     font-size: 18px;
     font-style: normal;

@@ -18,11 +18,8 @@ class AdministrativoController extends Controller
     public function show($id)
     {
         $administrativo = Administrativo::where($id);
-
         return response()->json($administrativo, 200);
     }
-
-
 
     // Crear un nuevo administrativo
     public function store(Request $request)
@@ -66,9 +63,7 @@ class AdministrativoController extends Controller
     public function destroy($id)
     {
         $administrativo = Administrativo::whereId($id);
-
         $administrativo->delete();
-
         return response()->json(['message' => 'Administrativo eliminado'], 200);
     }
 }

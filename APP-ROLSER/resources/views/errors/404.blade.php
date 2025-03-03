@@ -10,6 +10,6 @@
     <title>404 Ups</title>
 </head>
 <body class="contenedor">
-
+<h1>Página no disponible</h1>
 </body>
 </html>
