@@ -77,7 +77,6 @@ window.onload = function () {
         if (accionConfirmacion == 'ocultarConfirmacionConfirmar') {
             modalConfirmacion.classList.add("hidden");
         }
-
     }
 
     var modalConfirmacionEliminarCVip = document.getElementById("modalConfirmacionEliminarCVip");
@@ -168,129 +167,81 @@ window.onload = function () {
         }
     }
 
-    // Logica modal Añadir
-
-    // Modal principal
-    var modalAnyadirCVip = document.getElementById("modalAnyadirCVip");
-    var modalConfirmacionAnyadirCambiosCVip = document.getElementById("modalConfirmacionAnyadirCambiosCVip");
-
-    var mostrarModalAnyadirCVip = document.getElementById("mostrarModalAnyadirCVip");
-    var ocultarAnyadirCancelarCVip = document.getElementById("ocultarAnyadirCancelarCVip");
-    var mostrarModalConfirmacionAnyadirCVip = document.getElementById("mostrarModalConfirmacionAnyadirCVip");
-
-    // Modal Confirmación
-    var confirmarModalConfirmacionAnyadirCVip = document.getElementById("confirmarModalConfirmacionAnyadirCVip");
-    var cancelarModalConfirmacionAnyadirCVip = document.getElementById("cancelarModalConfirmacionAnyadirCVip");
-
-    // EventListeners Modificar
-    mostrarModalAnyadirCVip.addEventListener('click', manejarModalAnyadirCVip);
-    ocultarAnyadirCancelarCVip.addEventListener('click', manejarModalAnyadirCVip);
-    mostrarModalConfirmacionAnyadirCVip.addEventListener('click', manejarModalAnyadirCVip);
 
 
-    //EventListeners de Confirmacion
-    confirmarModalConfirmacionAnyadirCVip.addEventListener('click', manejarModalAnyadirCVip);
-    cancelarModalConfirmacionAnyadirCVip.addEventListener('click', manejarModalAnyadirCVip);
+  //Promocionar a VIP
+   //DE MOMENTO COMENTADO HASTA QUE HAGAMOS EL BOTON DE PROMOCIONAR A VIP
+    // var mostrarModalConvertirVip = document.getElementById("mostrarModalConvertirVip");
 
-    function manejarModalAnyadirCVip() {
+    // // Modal Promocionar a vip
+    // var ocultarModificarContrasenyaCancelar = document.getElementById("ocultarModificarContrasenyaCancelar");
+    // var ocultarGuardandoEstatusVip = document.getElementById("ocultarGuardandoEstatusVip");
+        // ocultarModificarContrasenyaCancelar.addEventListener('click', manejarModalModificar);
+    // ocultarGuardandoEstatusVip.addEventListener('click', manejarModalModificar);
+    // mostrarModalConvertirVip.addEventListener('click', manejarModalModificar);
 
-        var accionAnyadirCVip = this.id;
 
-        //Modal modificar
-        // Trigger del modal de modificar
-        if (accionAnyadirCVip == 'mostrarModalAnyadirCVip') {
-            modalAnyadirCVip.classList.remove("hidden");
-        }
+    // Modal modificar
 
-        // Trigger para ocultar el modal de modificar con la X
-        if (accionAnyadirCVip == 'ocultarAnyadirCancelarCVip') {
-            modalAnyadirCVip.classList.add("hidden");
-        }
-
-        //Modal Confirmacion
-        // Al darle a Guardar aparece este modal de Confirmación
-        if (accionAnyadirCVip == 'mostrarModalConfirmacionAnyadirCVip') {
-            modalConfirmacionAnyadirCambiosCVip.classList.remove("hidden");
-        }
-
-        // Al darle a Confirmar los dos modales se ocultan
-        if (accionAnyadirCVip == 'confirmarModalConfirmacionAnyadirCVip') {
-            modalConfirmacionAnyadirCambiosCVip.classList.add("hidden");
-            modalAnyadirCVip.classList.add("hidden");
-        }
-
-        // Al darle a Cancelar volvemos al modal de modificar
-        if (accionAnyadirCVip == 'cancelarModalConfirmacionAnyadirCVip') {
-            modalConfirmacionAnyadirCambiosCVip.classList.add("hidden");
-        }
-    }
-
-    //Crud Clientes
-    // Logica modal Modificar
-
-    // Modal principal
-    var modalModificar = document.getElementById("modalModificar");
-    var modalConfirmacionGuardarCambiosCNoVip = document.getElementById("modalConfirmacionGuardarCambiosCNoVip");
-    var mostrarModalModificar = document.getElementById("mostrarModalModificar");
+    //cliente no vip
+    var modalModificarCNoVip = document.getElementById("modalModificar");
+    var modalConfirmacionGuardarCNoVip = document.getElementById("modalConfirmacionGuardarCambiosCNoVip");
+    var mostrarModalModificarCNoVip = document.getElementById("mostrarModalModificar");
     var ocultarModificarCancelarCNoVip = document.getElementById("ocultarModificarCancelarCNoVip");
     var mostrarModalConfirmacionGuardarCNoVip = document.getElementById("mostrarModalConfirmacionGuardarCNoVip");
-    var mostrarModalConvertirVip = document.getElementById("mostrarModalConvertirVip");
-
-    // Modal Promocionar a vip
-    var ocultarModificarContrasenyaCancelar = document.getElementById("ocultarModificarContrasenyaCancelar");
-    var ocultarGuardandoEstatusVip = document.getElementById("ocultarGuardandoEstatusVip");
-
-    // Modal Confirmación
     var confirmarModalConfirmacionGuardarCNoVip = document.getElementById("confirmarModalConfirmacionGuardarCNoVip");
     var cancelarModalConfirmacionGuardarCNoVip = document.getElementById("cancelarModalConfirmacionGuardarCNoVip");
 
+
+//cliente vip
+    var modalModificarCVip = document.getElementById("modalModificarCVip");
+    var modalConfirmacionGuardarCVip = document.getElementById("modalConfirmacionGuardarCambiosCVip");
+    var mostrarModalModificarCVip = document.getElementById("mostrarModalModificarCVip");
+    var ocultarModificarCancelarCVip = document.getElementById("ocultarModificarCancelarCVip");
+    var mostrarModalConfirmacionGuardarCVip = document.getElementById("mostrarModalConfirmacionGuardarCVip");
+    var confirmarModalGuardarCVip = document.getElementById("confirmarModalConfirmacionGuardarCVip");
+    var cancelarModalGuardarCVip = document.getElementById("cancelarModalConfirmacionGuardarCVip");
+
+
     // EventListeners Modificar
-    mostrarModalModificar.addEventListener('click', manejarModalModificar);
-    ocultarModificarCancelarCNoVip.addEventListener('click', manejarModalModificar);
-    mostrarModalConfirmacionGuardarCNoVip.addEventListener('click', manejarModalModificar);
-    // mostrarModalConvertirVip.addEventListener('click', manejarModalModificar);
-
-    //EventListeners de Promocionar a vip
-    // ocultarModificarContrasenyaCancelar.addEventListener('click', manejarModalModificar);
-    // ocultarGuardandoEstatusVip.addEventListener('click', manejarModalModificar);
-
-    //EventListeners de Confirmacion
+    mostrarModalModificarCNoVip.addEventListener('click', () => manejarModalModificar('clientes-no-vip', modalModificarCNoVip, "formularioActualizarClienteNoVip"));
+    ocultarModificarCancelarCNoVip.addEventListener('click', () => modalModificarCNoVip.classList.add("hidden"));
+    mostrarModalConfirmacionGuardarCNoVip.addEventListener('click', () => modalConfirmacionGuardarCNoVip.classList.remove("hidden"));
+    confirmarModalGuardarCNoVip.addEventListener('click', () => document.getElementById("formularioActualizarClienteNoVip").submit());
+    cancelarModalGuardarCNoVip.addEventListener('click', () => modalConfirmacionGuardarCNoVip.classList.add("hidden"));
     confirmarModalConfirmacionGuardarCNoVip.addEventListener('click', manejarModalModificar);
     cancelarModalConfirmacionGuardarCNoVip.addEventListener('click', manejarModalModificar);
 
-    function manejarModalModificar() {
 
-        var accionModificar = this.id;
+    function manejarModalModificar(tipoCliente, modalModificar, formId) {
+        let checkboxes = document.querySelectorAll(`.checkbox-${tipoCliente}:checked`);
 
-        //Modal modificar
-        // Trigger del modal de modificar
-        if (accionModificar == 'mostrarModalModificar') {
-            modalModificar.classList.remove("hidden");
+        if (checkboxes.length !== 1) {
+            alert("Selecciona un solo cliente para modificar.");
+            return;
         }
 
-        // Trigger para ocultar el modal de modificar con la X
-        if (accionModificar == 'ocultarModificarCancelarCNoVip') {
-            modalModificar.classList.add("hidden");
-        }
+        let clienteId = checkboxes[0].value;
 
-        //Modal Confirmacion
-        // Al darle a Guardar aparece este modal de Confirmación
-        if (accionModificar == 'mostrarModalConfirmacionGuardarCNoVip') {
-            modalConfirmacionGuardarCambiosCNoVip.classList.remove("hidden");
-        }
+        fetch(`/api/${tipoCliente}/${clienteId}`)
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector(`#${modalModificar.id} input[name='nombre']`).value = data.cliente_nombre_representante;
+                document.querySelector(`#${modalModificar.id} input[name='apellidos']`).value = data.cliente_apellidos_representante;
+                document.querySelector(`#${modalModificar.id} input[name='empresa']`).value = data.cliente_empresa;
+                document.querySelector(`#${modalModificar.id} input[name='nif']`).value = data.cliente_nif;
+                document.querySelector(`#${modalModificar.id} input[name='telefono']`).value = data.cliente_telefono_representante;
+                document.querySelector(`#${modalModificar.id} input[name='email']`).value = data.cliente_email_representante;
 
-        // Al darle a Confirmar los dos modales se ocultan
-        if (accionModificar == 'confirmarModalConfirmacionGuardarCNoVip') {
-            modalConfirmacionGuardarCambiosCNoVip.classList.add("hidden");
-            modalModificar.classList.add("hidden");
-        }
+                document.getElementById(formId).action = `/api/${tipoCliente}/${clienteId}`;
 
-        // Al darle a Cancelar volvemos al modal de modificar
-        if (accionModificar == 'cancelarModalConfirmacionGuardarCNoVip') {
-            modalConfirmacionGuardarCambiosCNoVip.classList.add("hidden");
-        }
+                modalModificar.classList.remove("hidden");
+            })
+            .catch(error => {
+                console.error("Error al obtener el cliente:", error);
+                alert("No se pudo obtener los datos del cliente.");
+            });
     }
-
     //Logica modal Añadir
 
     // Modal principal
@@ -345,4 +296,13 @@ window.onload = function () {
             modalConfirmacionAnyadir.classList.add("hidden");
         }
     }
+
+    //Logica de coger el id del cliente con el checkbox de la tabla
+    var check= document.getElementById('check-cliente');
+    var idCliente;
+
+    if(check.checked){
+        idCliente=check.value;
+    }
+
 }

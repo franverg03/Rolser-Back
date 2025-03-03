@@ -1,127 +1,148 @@
-/*Estilos del body*/
-.containerP {
-    /*Tamaño*/
-    width: 1920px;
-    height: 1080px;
-    /*Maquetación*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo del body */
+body {
+    font-family: 'Montserrat', sans-serif;
+
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-/*Logo rolser*/
+/* Contenedor principal */
+.containerP {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* Logo */
 .logoRolserP {
-    margin-top: -12px;
-    /*Para subir el contenido del formulario un poco*/
+    margin-top: -10px;
 }
 
-/*Estilos del formulario*/
+/* Estilos del formulario */
 .form {
-    /*Tamaño*/
-    width: 375px;
-    height: 515px;
+    width: 90%;
+    max-width: 375px;
+    height: auto;
+    padding: 20px;
     border-radius: 5px;
-    /*Colores*/
     background-color: #90242A;
     border: 1px solid #AF272F;
-    box-shadow: 158px 174px 66px 0px rgba(0, 0, 0, 0.00), 101px 111px 60px 0px rgba(0, 0, 0, 0.01), 57px 63px 51px 0px rgba(0, 0, 0, 0.05), 25px 28px 38px 0px rgba(0, 0, 0, 0.09), 6px 7px 21px 0px rgba(0, 0, 0, 0.10);
-    /*Maquetación*/
+    box-shadow: 6px 7px 21px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 10px;
-
+    gap: 15px;
 }
 
-/*Maquetamos a al div que contiene ambos input*/
+/* Inputs y su contenedor */
 .contenedorInputs {
-    /*Maquetación*/
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin-top: 15px;
-    gap: 25px;
+    margin-top: 10px;
+    gap: 20px;
 }
 
-/*Estilos de las cajas del svg y input*/
 .rectoInput {
-    /*Maquetación*/
-    margin-left: -32px;
-    /*Para el que no entienda porque he puesto esto, al añadirles padding al botón y otras cosas, he tenido que restarle margin para compensar y que quede bien*/
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
 }
 
-/*Estilos de los input*/
+/* Inputs */
 .inputU {
-    /*Tamaño*/
-    width: 232px;
+    width: 80%;
     height: 43px;
     border-radius: 5px;
-    /*Colores*/
     background: #FFF;
-    border-color: #FFFFFF;
-    /*Maquetación*/
-    padding-left: 12px;
-    margin-left: 15px;
-    /* text-align: center; */
-    /*Tipografía*/
-    font-family: Montserrat;
+    border: none;
+    padding-left: 20px;
     font-size: 18px;
-    font-style: normal;
     font-weight: 600;
-    line-height: normal;
+    margin-left: 5px;
+    outline: none;
 }
 
-/*Estilos de contraseña olvidada*/
+/* Olvidaste tu contraseña */
 .mpOlvidada {
-    /*Limpiar estilos*/
     text-decoration: none;
-    /*Maquetación*/
-    margin: 13px;
-    /*Color*/
+    margin: 10px;
     color: #FFFFFF;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    /*Tipografía*/
-    font-family: Montserrat;
     font-size: 14px;
-    font-style: normal;
     font-weight: 600;
-    line-height: 10px;
-    /* 76.923% */
 }
 
-/*Estilos del botón de submit*/
+/* Botón de inicio de sesión */
 .inputIS {
-    /*Quitar estilos por defecto*/
     all: unset;
-    /*Tamaño*/
-    width: 248px;
+    width: 70%;
     height: 50px;
     border-radius: 5px;
-    margin-left: 11px;
-    /*Para centrar el botón*/
-    /*Color*/
     background: #CF333C;
     color: #FFFFFF;
-    /*Tipografía*/
     text-align: center;
-    font-family: Montserrat;
-    font-size: 20px;
-    font-style: normal;
+    font-size: 18px;
     font-weight: 600;
-    line-height: normal;
-    /*Efecto*/
     cursor: pointer;
+    margin-left: 20px;
 }
 
-/*Efecto de hover del botón de submit*/
 .inputIS:hover {
     transition: 0.3s ease;
     background-color: #af272f;
 }
 /*Efecto del focus para los placeholder*/
+
+@media screen and (max-width: 1199px) {
+    .containerP {
+        height: auto;
+        padding: 40px 20px;
+    }
+
+    .form {
+        width: 80%;
+
+        padding: 5px;
+    }
+
+    .inputU {
+        width: 80%;
+        margin-left: 5px;
+    }
+
+    .inputIS {
+        width: 80%;
+    }
+}
+
+li{
+    list-style: none;
+    color: white;
+    font-size: 18px;
+    font-family: Montserrat;
+    text-align: center;
+}
+
+.recordar{
+    color: white;
+    font-size: 18px;
+    font-family: Montserrat;
+    text-align: center;
+}
+
+
+
+
+

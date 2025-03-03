@@ -147,17 +147,17 @@
             </div>
         </div>
         <div class="menu-grande-administrativo" id="menu-grande-administrativo">
-            <img class="mt-5 ml-3 logo-grande-administrativo" width="180vh" src="/images/logoGrandeRolser.png" alt="">
+            <img class="mt-5 ml-3 logo-grande-administrativo" width="180vh" src="/images/logoGrandeRolser.png"
+                alt="">
             <div class="div-menu-grande-administrativo">
                 <a href="{{ route('administrativo.home') }}" class="boton-menu-noSel-administrativo">Home</a>
                 <a href="{{ route('administrativo.clientes') }}" class="boton-menu-sel-administrativo">Clientes</a>
                 <a href="{{ route('administrativo.usuarios') }}" class="boton-menu-noSel-administrativo">Usuarios</a>
                 <a href="{{ route('administrativo.pedidos') }}" class="boton-menu-noSel-administrativo">Pedidos</a>
-                <a href="{{ route('administrativo.usuarios') }}" class="boton-menu-noSel-administrativo">Productos</a>
-                <a href="{{ route('administrativo.pedidos') }}" class="boton-menu-noSel-administrativo">Catálogos</a>
+                <a href="{{ route('errors.404') }}" class="boton-menu-noSel-administrativo">Productos</a>
+                <a href="{{ route('errors.404') }}" class="boton-menu-noSel-administrativo">Catálogos</a>
                 <a href="{{ route('administrativo.almacenes') }}" class="boton-menu-noSel-administrativo">Almacenes</a>
-                <a href="{{ route('administrativo.descuentos') }}"
-                    class="boton-menu-noSel-administrativo">Descuentos</a>
+                <a href="{{ route('administrativo.descuentos') }}" class="boton-menu-noSel-administrativo">Descuentos</a>
                 <a href="{{ route('administrativo.tarifas') }}" class="boton-menu-noSel-administrativo">Tarifas</a>
             </div>
             <div class="caja-info-usuario-admin-logout">
@@ -166,8 +166,10 @@
                     <p class="info-usuario-administrativo">Autenticado como: Administrativo</p>
                     <p class="info-usuario-administrativo">Fecha: 06/02/2025</p>
                 </div>
-                <a href="{{ route('administrativo.logIn') }}"
-                    class="boton-logout-administrativo d-flex">Cerrar&nbsp;sesión</a>
+                <form action="{{ route('logout') }}" method="POST">
+                    {{ csrf_field()}}
+                    <button type="submit" class="boton-logout-administrativo d-flex">Cerrar&nbsp;sesión</button>
+                </form>
             </div>
         </div>
     </div>

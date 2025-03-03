@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id('id_usuario');
             $table->string('usuario_nombre', 100);
-            $table->string('usuario_password', 100);
+            $table->string('password', 100);
             $table->boolean('usuario_activo');
-            $table->string('usuario_rol', 50);
+            $table->enum('usuario_rol', ['administrativo', 'comercial', 'clienteVip', 'clienteNoVip'])->default('administrativo');
             $table->foreignId('id_administrativo')->references('id_administrativo')->on('administrativos')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
