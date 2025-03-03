@@ -154,8 +154,8 @@
                 <a href="{{ route('administrativo.clientes') }}" class="boton-menu-noSel-administrativo">Clientes</a>
                 <a href="{{ route('administrativo.usuarios') }}" class="boton-menu-sel-administrativo">Usuarios</a>
                 <a href="{{ route('administrativo.pedidos') }}" class="boton-menu-noSel-administrativo">Pedidos</a>
-                <a href="{{ route('administrativo.usuarios') }}" class="boton-menu-noSel-administrativo">Productos</a>
-                <a href="{{ route('administrativo.pedidos') }}" class="boton-menu-noSel-administrativo">Catálogos</a>
+                <a href="{{ route('errors.404') }}" class="boton-menu-noSel-administrativo">Productos</a>
+                <a href="{{ route('errors.404') }}" class="boton-menu-noSel-administrativo">Catálogos</a>
                 <a href="{{ route('administrativo.almacenes') }}" class="boton-menu-noSel-administrativo">Almacenes</a>
                 <a href="{{ route('administrativo.descuentos') }}" class="boton-menu-noSel-administrativo">Descuentos</a>
                 <a href="{{ route('administrativo.tarifas') }}" class="boton-menu-noSel-administrativo">Tarifas</a>
@@ -200,7 +200,7 @@
             {{-- CRUD Laravel --}}
             {{-- CRUD Comerciales --}}
             <div id="crudComerciales">
-                <div class="flex flex-row">
+                <div class="flex flex-row justify-center">
                     {{-- Añadir --}}
                     <button id="mostrarModalAnyadirComercial" class="botonEliminar">Crear comercial<svg
                             width="26" height="28" viewBox="0 0 18 20" fill="none"
@@ -233,10 +233,13 @@
                                 stroke-linejoin="round" />
                         </svg></button>
                 </div>
+                <div class="contenedor-datatable-clientes-admin">
+                    @livewire('tabla-comerciales')
+                </div>
             </div>
             {{-- CRUD Administrativos --}}
             <div id="crudAdministrativos" class="hidden">
-                <div class="flex flex-row">
+                <div class="flex flex-row justify-center">
                     {{-- Añadir --}}
                     <button id="mostrarModalAnyadirAdministrativo" class="botonEliminar">Crear administrativo<svg width="26"
                             height="28" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -267,6 +270,9 @@
                             <path d="M6 9.49219H18" stroke="white" stroke-width="3.5" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg></button>
+                </div>
+                <div class="contenedor-datatable-clientes-admin">
+                    @livewire('tabla-administrativos')
                 </div>
             </div>
             {{-- Reservado a el datatable --}}

@@ -33,4 +33,9 @@ class Descuento extends Model
     public function administrativo() {
         return $this->belongsToMany(Administrativo::class);
     }
+
+    public function getClienteAttribute()
+    {
+        return $this->clienteVip ?: $this->clienteNoVip;
+    }
 }

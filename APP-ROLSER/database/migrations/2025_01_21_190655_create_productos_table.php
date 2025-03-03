@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('producto_precio', 10, 2);
             $table->integer('producto_stock');
             $table->text('producto_colores');
+            $table->string('producto_ruta_imagen', 255);
             // $table->unsignedBigInteger('id_almacen')->nullable();
             $table->foreignId('id_almacen')->nullable()->references('id_almacen')->on('almacenes')->onDelete('set null');//Relacion  1-M con Almacen
             $table->timestamps();

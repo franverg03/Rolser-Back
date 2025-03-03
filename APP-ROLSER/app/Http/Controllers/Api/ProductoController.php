@@ -34,6 +34,7 @@ class ProductoController extends Controller
             'producto_stock' => 'required|integer|min:0',
             'producto_colores' => 'required|string',
             'id_almacen' => 'nullable|exists:almacenes,id_almacen',
+            'producto_ruta_imagen' => 'required|string|max:255',
         ]);
 
         $producto = Producto::create($validatedData);
@@ -56,6 +57,7 @@ class ProductoController extends Controller
             'producto_stock' => 'sometimes|required|integer|min:0',
             'producto_colores' => 'sometimes|required|string',
             'id_almacen' => 'sometimes|nullable|exists:almacenes,id_almacen',
+            'producto_ruta_imagen' => 'required|string|max:255',
         ]);
 
         $producto->update($validatedData);

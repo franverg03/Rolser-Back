@@ -22,7 +22,8 @@ class Producto extends Model
         'producto_precio',
         'producto_stock',
         'producto_colores',
-        'id_almacen'
+        'id_almacen',
+        'producto_ruta_imagen'
     ];
     public function catalogos()
     {

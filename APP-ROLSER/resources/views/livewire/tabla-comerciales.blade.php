@@ -2,7 +2,7 @@
     <section class="mt-10">
             <!-- Barra de búsqueda -->
             <div class="flex items-center justify-between p-4">
-                <div class="relative">
+                <div class="contenedorTablas overflow-hidden relative">
                     {{-- Icono de lupa --}}
                     <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -12,9 +12,9 @@
                     </div>
 
                     {{-- Input de búsqueda --}}
-                    <input wire:model.live.debounce.100ms="search" type="text"
-                        class="bg-white bordeRolser text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full pl-10 pr-10 p-2"
-                        placeholder="Buscar administrativo..." id="searchInput">
+                    <input wire:model.live.debounce.100ms="search" type="search"
+                        class="bg-white bordeRolser text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full pl-10 pr-10 p-2 tipografia-placeholder-buscar-administrativo"
+                        placeholder="Buscar comercial..." id="searchInput">
 
                     {{-- Icono de "X" para limpiar el input --}}
                     @if($search)
@@ -31,23 +31,23 @@
             </div>
 
             <!-- Tabla -->
-            <div class="contenedor-tablas">
+            <div class="contenedorTablas overflow-hidden rounded-t-lg rounded-b-lg">
                 <table class="w-full text-sm text-left bg-white border-collapse bordeRolser">
-                    <thead class="text-xs uppercase bg-red-600 text-white font-bold">
+                    <thead class="text-xs uppercase color-cabecera-tabla-admin text-white font-bold">
                         <tr>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Nombre</th>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Apellidos</th>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Zona</th>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Contacto</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser tipografia-cabecera-tabla-administrativo">Nombre</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser tipografia-cabecera-tabla-administrativo">Apellidos</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser tipografia-cabecera-tabla-administrativo">Zona</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser tipografia-cabecera-tabla-administrativo">Contacto</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($comerciales as $comercial)
                             <tr class="border-b bordeRolser">
-                                <td class="px-4 py-3">{{ $comercial->comercial_nombre }}</td>
-                                <td class="px-4 py-3">{{ $comercial->comercial_apellidos }}</td>
-                                <td class="px4 py-3">{{ $comercial->comercial_zona}}</td>
-                                <td class="px-4 py-3">{{ $comercial->comercial_email }}</td>
+                                <td class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $comercial->comercial_nombre }}</td>
+                                <td class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $comercial->comercial_apellidos }}</td>
+                                <td class="px4 py-3 tipografia-contenido-tabla-administrativo">{{ $comercial->comercial_zona}}</td>
+                                <td class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $comercial->comercial_email }}</td>
                             </tr>
                         @empty
                             <tr>

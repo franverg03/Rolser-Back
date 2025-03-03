@@ -154,8 +154,8 @@
                 <a href="{{ route('administrativo.clientes') }}" class="boton-menu-sel-administrativo">Clientes</a>
                 <a href="{{ route('administrativo.usuarios') }}" class="boton-menu-noSel-administrativo">Usuarios</a>
                 <a href="{{ route('administrativo.pedidos') }}" class="boton-menu-noSel-administrativo">Pedidos</a>
-                <a href="{{ route('administrativo.usuarios') }}" class="boton-menu-noSel-administrativo">Productos</a>
-                <a href="{{ route('administrativo.pedidos') }}" class="boton-menu-noSel-administrativo">Catálogos</a>
+                <a href="{{ route('errors.404') }}" class="boton-menu-noSel-administrativo">Productos</a>
+                <a href="{{ route('errors.404') }}" class="boton-menu-noSel-administrativo">Catálogos</a>
                 <a href="{{ route('administrativo.almacenes') }}"
                     class="boton-menu-noSel-administrativo">Almacenes</a>
                 <a href="{{ route('administrativo.descuentos') }}"
@@ -207,7 +207,7 @@
             </div>
             {{-- Probamos como triggerear el modal en laravel --}}
             <div id="crudCliente" class="">
-                <div class="flex flex-row">
+                <div class="flex flex-row  justify-center">
                     {{-- Añadir --}}
                     <button id="mostrarModalAnyadir" class="botonEliminar">Añadir cliente <svg width="26"
                             height="28" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -238,9 +238,12 @@
                                 stroke-linejoin="round" />
                         </svg></button>
                 </div>
+                <div class="contenedor-datatable-clientes-admin">
+                    @livewire('tabla-clientes')
+                </div>
             </div>
             <div id="crudClienteVip" class="hidden">
-                <div class="flex flex-row">
+                <div class="flex flex-row  justify-center">
                     {{-- Añadir --}}
                     <button id="mostrarModalAnyadirCVip" class="botonEliminar">Añadir cliente VIP<svg width="26"
                             height="28" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -272,11 +275,11 @@
                                 stroke-linejoin="round" />
                         </svg></button>
                 </div>
+                <div class="contenedor-datatable-clientes-admin">
+                    @livewire('tabla-clientes-vip')
+                </div>
             </div>
-            <div class="contenedor-datatable-clientes-admin">
-                @livewire('tabla-clientes-vip')
 
-            </div>
 
             <!-- Modal (inicialmente oculto) -->
             <div id="modalConfirmacionEliminar" class="fixed inset-0 z-10 hidden" aria-labelledby="modal-title"

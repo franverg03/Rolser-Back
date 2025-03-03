@@ -31,5 +31,10 @@ class Tarifa extends Model
         return $this->belongsToMany(Administrativo::class);
     }
 
+    public function getClienteAttribute()
+    {
+        return $this->clienteVip ?: $this->clienteNoVip;
+    }
+
 
 }

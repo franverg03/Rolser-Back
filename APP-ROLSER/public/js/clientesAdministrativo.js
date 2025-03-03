@@ -387,6 +387,17 @@ window.onload = function () {
 
     }
 
+    // Funcion para limpiar input
+
+    var limpiarInputBuscar = document.getElementById('limpiarInputBuscar');
+    var inputBuscarLimpio = document.getElementById('inputBuscarLimpio');
+
+    limpiarInputBuscar.addEventListener('click', limpiarInput);
+
+    function limpiarInput(){
+        inputBuscarLimpio.value = " ";
+    }
+
 
 }
 
