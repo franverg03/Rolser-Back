@@ -16,9 +16,12 @@ class ProductoController extends Controller
     // Obtener un producto por ID
     public function show($id)
     {
-        $producto = Producto::with('almacen')->whereId($id);
+        // $producto = Producto::with('almacen')->whereId($id);
 
-        return response()->json($producto, 200);
+        // return response()->json($producto, 200);
+
+        $producto = Producto::findOrFail($id);
+        return $producto;
     }
 
     // Crear un nuevo producto
