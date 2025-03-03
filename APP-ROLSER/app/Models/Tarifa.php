@@ -16,20 +16,17 @@ class Tarifa extends Model
     protected $fillable = [
         'descripcion_tarifa',
         'porcentaje_tarifa',
-        'beneficiario_tarifa'
     ];
 
     public function clientesNoVip()  {
-        return $this->belongsTo(ClienteNoVip::class, 'id_cliente_no_vip');
+        return $this->hasOne(ClienteNoVip::class, 'id_cliente_no_vip');
     }
 
     public function clientesVip() {
-        return $this->belongsTo(ClienteVip::class, 'id_cliente_vip');
+        return $this->hasOne(ClienteVip::class, 'id_cliente_vip');
     }
 
     public function administrativo() {
         return $this->belongsToMany(Administrativo::class);
     }
-
-
 }

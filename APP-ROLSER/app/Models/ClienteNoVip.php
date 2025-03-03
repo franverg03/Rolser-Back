@@ -34,11 +34,11 @@ class ClienteNoVip extends Model
     }
 
     public function descuentos() {
-        return $this->hasMany(Descuento::class, 'id_descuento');
+        return $this->belongsTo(Descuento::class, 'id_descuento');
     }
 
     public function tarifas() {
-        return $this->hasMany(Tarifa::class, 'id_tarifa');
+        return $this->belongsTo(Tarifa::class, 'id_tarifa');
     }
 
 }

@@ -331,6 +331,53 @@
                                         </div>
                                     </div>
 
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">Dirección:</label>
+                                        </div>
+                                        <input type="text" id="direccion" name="direccion"
+                                            class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Dirección de la empresa" />
+                                    </div>
+                                </div>
+                                <div class="flex flex-row mt-4">
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">CP:</label>
+                                        </div>
+                                        <input type="text" id="codigoPostal" name="codigoPostal"
+                                            class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="CP" />
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">NIF:</label>
+                                        </div>
+                                        <input type="text" id="nif" name="nif"
+                                            class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="NIF" />
+
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">IBAN:</label>
+                                        </div>
+                                        <input type="text" id="iban" name="iban"
+                                            class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Nº de Cuenta" />
+
+                                    </div>
+                                </div>
+                                <div class="flex flex-row mt-4">
+                                    <div class="flex flex-col">
+                                        <div class="flex">
+                                            <label class="labelsModal" for="">Tarifa:</label>
+                                        </div>
+                                        <input type="text" id="tarifa" name="tarifa"
+                                            class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Tarifa(%)" />
+                                    </div>
+
                                     <div class="flex flex-row mt-4">
                                         <button id="mostrarModalConfirmacionGuardarCNoVip" type="button"
                                             class="botonEliminar margen-boton-modificar">
