@@ -22,6 +22,8 @@ class AdministrativoController extends Controller
         return response()->json($administrativo, 200);
     }
 
+
+
     // Crear un nuevo administrativo
     public function store(Request $request)
     {

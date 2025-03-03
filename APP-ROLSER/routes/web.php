@@ -42,3 +42,4 @@ Route::view('/comercial/facturas', 'comercial.comercial-facturas')->name('comerc
 Route::view('/comercial/pedidos', 'comercial.comercial-pedidos')->name('comercial.pedidos');
 
 require __DIR__.'/auth.php';
+

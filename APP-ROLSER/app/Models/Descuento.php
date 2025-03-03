@@ -23,11 +23,11 @@ class Descuento extends Model
     ];
 
     public function clientesNoVip()  {
-        return $this->belongsTo(ClienteNoVip::class);
+        return $this->belongsTo(ClienteNoVip::class, 'id_cliente_no_vip');
     }
 
     public function clientesVip() {
-        return $this->belongsTo(ClienteVip::class);
+        return $this->belongsTo(ClienteVip::class, 'id_cliente_vip');
     }
 
     public function administrativo() {
