@@ -55,7 +55,7 @@ class ClienteNoVipController extends Controller
             'cliente_telefono_representante' => 'sometimes|required|string|max:9',
             'cliente_direccion_empresa' => 'sometimes|required|string|max:200',
             'cliente_cuenta_bancaria' => 'sometimes|required|string|max:50',
-            'id_usuario' => 'sometimes|required|exists:users,id_usuario',
+            // 'id_usuario' => 'sometimes|required|exists:users,id_usuario',
             'id_comercial' => 'sometimes|nullable|exists:comerciales,id_comercial',
         ]);
 
@@ -73,4 +73,5 @@ class ClienteNoVipController extends Controller
 
         return response()->json(['message' => 'Cliente No VIP eliminado'], 200);
     }
+
 }

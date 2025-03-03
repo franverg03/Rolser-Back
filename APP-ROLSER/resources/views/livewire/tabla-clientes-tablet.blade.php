@@ -33,35 +33,41 @@
         <!-- Contenedor Scrolleable -->
         <div>
             <div class="max-h-[400px] overflow-y-auto rounded-t-lg rounded-b-lg pr-2">
-                <table class="w-full text-sm text-left bg-white border-collapse bordeRolser tablaComercial">
-                    <thead class="text-xs uppercase bg-red-600 text-white font-bold sticky top-0">
-                        <tr>
-                            <th scope="col" class="px-4 py-3"></th>
-                            <th scope="col" class="px-4 py-3">Representante</th>
-                            <th scope="col" class="px-4 py-3">Empresa</th>
-                            <th scope="col" class="px-4 py-3">NIF</th>
-                            <th scope="col" class="px-4 py-3">Contacto</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($clientesT as $clienteT)
-                        <tr class="border-b bordeRolser tamanyoCelda">
-                            <td class="px-4 py-3">
-                                <input type="checkbox" value="{{ $clienteT->id }}" class="rounded-sm" id="check-cliente" name="clientes-no-vip">
-                            </td>
-                            <td class="px-4 py-3">{{ $clienteT->cliente_nombre_representante }} {{ $clienteT->cliente_apellidos_representante }}</td>
-                            <td class="px-4 py-3">{{ $clienteT->cliente_empresa }}</td>
-                            <td class="px-4 py-3">{{ $clienteT->cliente_nif }}</td>
-                            <td class="px-4 py-3">{{ $clienteT->cliente_telefono_representante }}</td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="6" class="px-4 py-3 text-center text-gray-500">No se encontraron resultados</td>
-                        </tr>
-                    @endforelse
+                <form action="{{ route('actualizarClientesNovip') }}" method="POST">
+                    @csrf
+                    <table class="w-full text-sm text-left bg-white border-collapse bordeRolser tablaComercial">
+                        <thead class="text-xs uppercase bg-red-600 text-white font-bold sticky top-0">
+                            <tr>
+                                <th scope="col" class="px-4 py-3"></th>
+                                <th scope="col" class="px-4 py-3">Representante</th>
+                                <th scope="col" class="px-4 py-3">Empresa</th>
+                                <th scope="col" class="px-4 py-3">NIF</th>
+                                <th scope="col" class="px-4 py-3">Contacto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($clientesT as $clienteT)
+                                <tr class="border-b bordeRolser tamanyoCelda">
+                                    <td class="px-4 py-3">
+                                        <input type="checkbox" value="{{ $clienteT->id }}" class="rounded-sm" name="clientes_no_vip[]">
+                                    </td>
+                                    <td class="px-4 py-3">{{ $clienteT->cliente_nombre_representante }} {{ $clienteT->cliente_apellidos_representante }}</td>
+                                    <td class="px-4 py-3">{{ $clienteT->cliente_empresa }}</td>
+                                    <td class="px-4 py-3">{{ $clienteT->cliente_nif }}</td>
+                                    <td class="px-4 py-3">{{ $clienteT->cliente_telefono_representante }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="px-4 py-3 text-center text-gray-500">No se encontraron resultados</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
 
-                    </tbody>
-                </table>
+                    <!-- Botón para enviar el formulario -->
+                    <button type="submit" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">Enviar</button>
+                </form>
+
             </div>
         </div>
     </div>

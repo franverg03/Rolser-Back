@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\clienteVipController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -19,6 +20,8 @@ Route::group(['middleware' => 'admin'], function() {
         Route::view('/tarifas', 'administrativo.administrativo-tarifas')->name('administrativo.tarifas');
     });
 });
+
+Route::get('actualizarClientesNovip', [clienteVipController::class,'actualizar'])->name('actualizarClientesNovip');
 
 Route::view('/404', 'errors.404')->name('errors.404');
 
