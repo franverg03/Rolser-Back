@@ -2,7 +2,7 @@
 .contenedor {
     display: flex;
     flex-direction: row;
-
+    overflow: hidden;
 }
 
 /* Div del menú retraido */

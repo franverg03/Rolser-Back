@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id('id_tarifa');
             $table->string('descripcion_tarifa', 255);
             $table->decimal('porcentaje_tarifa', 5, 2);
-            $table->string('beneficiario_tarifa', 100);
+            $table->foreignId('id_cliente_vip')->nullable()->references('id_cliente_vip')->on('clientes_vip')->onDelete('set null');
+
+            $table->foreignId('id_cliente_no_vip')->nullable()->references('id_cliente_no_vip')->on('clientes_no_vip')->onDelete('set null');
             $table->timestamps();
         });
-
     }
 
     /**

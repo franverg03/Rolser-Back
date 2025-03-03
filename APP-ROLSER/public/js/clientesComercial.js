@@ -204,8 +204,56 @@ window.onload = function () {
 
 
     // EventListeners Modificar
-    mostrarModalModificarCNoVip.addEventListener('click', () => manejarModalModificar('clientes-no-vip', modalModificarCNoVip, "formularioActualizarClienteNoVip"));
-    ocultarModificarCancelarCNoVip.addEventListener('click', () => modalModificarCNoVip.classList.add("hidden"));
+    modalModificarCNoVip.addEventListener("click", function () {
+        // Obtener todos los checkboxes marcados
+        const checkboxes = document.querySelectorAll('input[name="clientes-no-vip"]:checked');
+
+        // Validar que solo un cliente esté seleccionado
+        if (checkboxes.length !== 1) {
+            alert("Selecciona un único cliente para modificar.");
+            return;
+        }
+
+        const clienteId = checkboxes[0].value; // Obtener el ID del cliente seleccionado
+
+        // Hacer una petición AJAX a Laravel para obtener los datos del cliente
+        fetch(`/clientes/${clienteId}/edit`, {
+            method: "GET",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "Content-Type": "application/json",
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Rellenar los campos del modal con los datos del cliente
+            document.getElementById("cliente_id").value = data.id_cliente_no_vip || "";
+            document.getElementById("nombre").value = data.cliente_nombre_representante || "";
+            document.getElementById("apellidos").value = data.cliente_apellidos_representante || "";
+            document.getElementById("telefono").value = data.cliente_telefono_representante || "";
+            document.getElementById("email").value = data.cliente_email_representante || "";
+            document.getElementById("direccion").value = data.cliente_direccion_empresa || "";
+            document.getElementById("codigo_postal").value = data.cliente_codigo_postal || "";
+            document.getElementById("nif").value = data.cliente_nif|| "";
+            document.getElementById("iban").value = data.cliente_cuenta_bancaria || "";
+
+
+
+
+
+            // Mostrar el modal
+            modalModificar.classList.remove("hidden");
+        })
+        .catch(error => console.error("Error al obtener datos del cliente:", error));
+    });
+
+
+    ocultarModificarCancelarCNoVip.addEventListener('click', () =>
+        modalModificarCNoVip.classList.add("hidden")
+    );
+
+
+
     mostrarModalConfirmacionGuardarCNoVip.addEventListener('click', () => modalConfirmacionGuardarCNoVip.classList.remove("hidden"));
     confirmarModalGuardarCNoVip.addEventListener('click', () => document.getElementById("formularioActualizarClienteNoVip").submit());
     cancelarModalGuardarCNoVip.addEventListener('click', () => modalConfirmacionGuardarCNoVip.classList.add("hidden"));
@@ -213,35 +261,9 @@ window.onload = function () {
     cancelarModalConfirmacionGuardarCNoVip.addEventListener('click', manejarModalModificar);
 
 
-    function manejarModalModificar(tipoCliente, modalModificar, formId) {
-        let checkboxes = document.querySelectorAll(`.checkbox-${tipoCliente}:checked`);
 
-        if (checkboxes.length !== 1) {
-            alert("Selecciona un solo cliente para modificar.");
-            return;
-        }
 
-        let clienteId = checkboxes[0].value;
 
-        fetch(`/api/${tipoCliente}/${clienteId}`)
-            .then(response => response.json())
-            .then(data => {
-                document.querySelector(`#${modalModificar.id} input[name='nombre']`).value = data.cliente_nombre_representante;
-                document.querySelector(`#${modalModificar.id} input[name='apellidos']`).value = data.cliente_apellidos_representante;
-                document.querySelector(`#${modalModificar.id} input[name='empresa']`).value = data.cliente_empresa;
-                document.querySelector(`#${modalModificar.id} input[name='nif']`).value = data.cliente_nif;
-                document.querySelector(`#${modalModificar.id} input[name='telefono']`).value = data.cliente_telefono_representante;
-                document.querySelector(`#${modalModificar.id} input[name='email']`).value = data.cliente_email_representante;
-
-                document.getElementById(formId).action = `/api/${tipoCliente}/${clienteId}`;
-
-                modalModificar.classList.remove("hidden");
-            })
-            .catch(error => {
-                console.error("Error al obtener el cliente:", error);
-                alert("No se pudo obtener los datos del cliente.");
-            });
-    }
     //Logica modal Añadir
 
     // Modal principal

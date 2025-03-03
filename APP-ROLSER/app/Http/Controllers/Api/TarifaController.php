@@ -27,7 +27,6 @@ class TarifaController extends Controller
         $validatedData = $request->validate([
             'descripcion_tarifa' => 'required|string|max:255',
             'porcentaje_tarifa' => 'required|numeric|min:0|max:100',
-            'beneficiario_tarifa' => 'required|string|max:100',
         ]);
 
         $tarifa = Tarifa::create($validatedData);
@@ -44,7 +43,6 @@ class TarifaController extends Controller
         $validatedData = $request->validate([
             'descripcion_tarifa' => 'sometimes|required|string|max:255',
             'porcentaje_tarifa' => 'sometimes|required|numeric|min:0|max:100',
-            'beneficiario_tarifa' => 'sometimes|required|string|max:100',
         ]);
 
         $tarifa->update($validatedData);
