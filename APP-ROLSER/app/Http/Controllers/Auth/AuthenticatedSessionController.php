@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use function Pest\Laravel\withCookie;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -35,13 +36,15 @@ class AuthenticatedSessionController extends Controller
 
             // Si la solicitud viene de Angular (espera JSON)
             if ($request->expectsJson()) {
-                return response()->json([
+                return
+                response()->json([
                     'message' => 'Login exitoso',
                     'data' => [
                         'userId' => $user->id,
                         'role' => $user->usuario_rol,
                         'token' => $user->createToken('auth_token')->plainTextToken,
                     ]
+                    ->withCookie()
                 ], 200);
             }
 
