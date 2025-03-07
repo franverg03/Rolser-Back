@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\API;
+
 use App\Http\Controllers\Controller;
 use App\Models\Factura;
 use Illuminate\Http\Request;
@@ -66,5 +67,12 @@ class FacturaController extends Controller
         $factura->delete();
 
         return response()->json(['message' => 'Factura eliminada'], 200);
+    }
+
+
+    public function getFacturasPorIdPedido($idPedido)
+    {
+        $facturas = Factura::where('id_pedido', $idPedido)->get();
+        return response()->json($facturas);
     }
 }

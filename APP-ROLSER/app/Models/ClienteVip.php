@@ -19,15 +19,11 @@ class ClienteVip extends Model
         'cliente_nombre_representante',
         'cliente_apellidos_representante',
         'cliente_telefono_representante',
+        'cliente_email_representante' => 'required|string|max:100',
         'cliente_direccion_empresa',
         'cliente_cuenta_bancaria',
-        'id_usuario',
-        'id_comercial'
     ];
 
-    // public function usuarios() {
-    //     return $this->belongsTo(User::class);
-    // }
 
     public function usuario() {
         return $this->belongsTo(User::class, 'id_usuario');
@@ -39,10 +35,6 @@ class ClienteVip extends Model
         return $this->belongsToMany(Catalogo::class);
     }
 
-    // public function comerciales()
-    // {
-    //     return $this->belongsTo(Comercial::class);
-    // }
 
     public function comercial() {
         return $this->belongsTo(Comercial::class, 'id_comercial');
@@ -51,21 +43,21 @@ class ClienteVip extends Model
 
     public function facturas()
     {
-        return $this->hasMany(Factura::class);
+        return $this->hasMany(Factura::class, 'id_cliente_vip');
     }
 
     public function pedidos()
     {
-        return $this->hasMany(Pedido::class);
+        return $this->hasMany(Pedido::class, 'id_cliente_vip');
     }
 
-    public function tarifas()
+    public function tarifa()
     {
-        return $this->hasMany(Tarifa::class);
+        return $this->hasOne(Tarifa::class, 'id_cliente_vip');
     }
 
     public function descuentos()
     {
-        return $this->hasMany(Descuento::class);
+        return $this->hasMany(Descuento::class, 'id_cliente_vip');
     }
 }

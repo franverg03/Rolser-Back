@@ -1,6 +1,12 @@
 <?php
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\clienteVipController;
+use App\Livewire\TablaClientesTablet;
+
+Route::get('/', function () {
+    return redirect('/login');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -20,7 +26,13 @@ Route::group(['middleware' => 'admin'], function() {
     });
 });
 
+Route::get('/actualizarClienteNovip', [clienteVipController::class,'actualizar'])->name('actualizarClienteNovip');
+
 Route::view('/404', 'errors.404')->name('errors.404');
+
+Route::get('/pasarDatosModalModificar', [TablaClientesTablet::class, 'modificarCliente'])->name('modal.modificaNoVip');
+
+
 
 Route::group(['middleware' => 'comercial'], function() {
     // Rutas que comparten el prefijo "comercial"
@@ -32,6 +44,7 @@ Route::group(['middleware' => 'comercial'], function() {
         Route::view('/pedidos', 'comercial.comercial-pedidos')->name('comercial.pedidos');
     });
 });
+
 
 require __DIR__.'/auth.php';
 

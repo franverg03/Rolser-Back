@@ -19,25 +19,25 @@ class ClienteNoVip extends Model
         'cliente_nombre_representante',
         'cliente_apellidos_representante',
         'cliente_telefono_representante',
+        'cliente_email_representante',
         'cliente_direccion_empresa',
         'cliente_cuenta_bancaria',
-        'id_usuario',
-        'id_comercial'
+
     ];
 
-    public function usuarios() {
+    public function usuario() {
         return $this->belongsTo(User::class, 'id_usuario');
     }
 
-    public function comerciales() {
+    public function comercial() {
         return $this->belongsTo(Comercial::class, 'id_comercial');
     }
 
-    public function descuentos() {
+    public function descuento() {
         return $this->belongsTo(Descuento::class, 'id_descuento');
     }
 
-    public function tarifas() {
+    public function tarifa() {
         return $this->belongsTo(Tarifa::class, 'id_tarifa');
     }
 

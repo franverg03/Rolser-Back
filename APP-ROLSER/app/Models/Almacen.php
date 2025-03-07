@@ -23,7 +23,7 @@ class Almacen extends Model
 
 
     public function productos() {
-        return $this->hasMany(Producto::class, 'id_producto');
+        return $this->hasMany(Producto::class, 'id_almacen');
     }
 
     public function administrativos() {

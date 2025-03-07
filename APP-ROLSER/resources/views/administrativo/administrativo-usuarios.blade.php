@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-        @vite('resources/css/app.css')
-        @vite('resources/js/app.js')
     <link rel="stylesheet" href="/styles/administrativo.css">
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
     <title>UsuariosAdministrativoRolser</title>
 </head>
 
@@ -149,26 +149,29 @@
         <div class="menu-grande-administrativo" id="menu-grande-administrativo">
             <img class="mt-5 ml-3 logo-grande-administrativo" width="180vh" src="/images/logoGrandeRolser.png"
                 alt="">
-                <div class="div-menu-grande-administrativo">
-                    <a href="{{ route('administrativo.home') }}" class="boton-menu-noSel-administrativo">Home</a>
-                    <a href="{{ route('administrativo.clientes') }}" class="boton-menu-noSel-administrativo">Clientes</a>
-                    <a href="{{ route('administrativo.usuarios') }}" class="boton-menu-sel-administrativo">Usuarios</a>
-                    <a href="{{ route('administrativo.pedidos') }}" class="boton-menu-noSel-administrativo">Pedidos</a>
-                    <a href="{{ route('errors.404') }}" class="boton-menu-noSel-administrativo">Productos</a>
-                    <a href="{{ route('errors.404') }}" class="boton-menu-noSel-administrativo">Catálogos</a>
-                    <a href="{{ route('administrativo.almacenes') }}" class="boton-menu-noSel-administrativo">Almacenes</a>
-                    <a href="{{ route('administrativo.descuentos') }}" class="boton-menu-noSel-administrativo">Descuentos</a>
-                    <a href="{{ route('administrativo.tarifas') }}" class="boton-menu-noSel-administrativo">Tarifas</a>
-                </div>
+            <div class="div-menu-grande-administrativo">
+                <a href="{{ route('administrativo.home') }}" class="boton-menu-noSel-administrativo">Home</a>
+                <a href="{{ route('administrativo.clientes') }}" class="boton-menu-noSel-administrativo">Clientes</a>
+                <a href="{{ route('administrativo.usuarios') }}" class="boton-menu-sel-administrativo">Usuarios</a>
+                <a href="{{ route('administrativo.pedidos') }}" class="boton-menu-noSel-administrativo">Pedidos</a>
+                <a href="{{ route('errors.404') }}" class="boton-menu-noSel-administrativo">Productos</a>
+                <a href="{{ route('errors.404') }}" class="boton-menu-noSel-administrativo">Catálogos</a>
+                <a href="{{ route('administrativo.almacenes') }}"
+                    class="boton-menu-noSel-administrativo">Almacenes</a>
+                <a href="{{ route('administrativo.descuentos') }}"
+                    class="boton-menu-noSel-administrativo">Descuentos</a>
+                <a href="{{ route('administrativo.tarifas') }}" class="boton-menu-noSel-administrativo">Tarifas</a>
+            </div>
             <div class="caja-info-usuario-admin-logout">
-                <div class="pl-4 caja-info-usuario-administrativo">
-                    <h3 class="usuario-nombre-administrativo">Daniel Endrino</h3>
-                    <p class="info-usuario-administrativo">Autenticado como: Administrativo</p>
-                    <p class="info-usuario-administrativo">Fecha: 06/02/2025</p>
+                <div class="pl-4 caja-info-usuario-admin">
+                    <h3 class="usuario-nombre-admin">{{ Auth::user()->administrativo->administrativo_nombre }}
+                        {{ Auth::user()->administrativo->administrativo_apellidos }}</h3>
+                    <p class="info-usuario-admin">Autenticado como: {{ Auth::user()->usuario_rol }}</p>
+                    <p class="info-usuario-admin">Fecha: {{ now()->format('d/m/Y') }}</p>
                 </div>
                 <form action="{{ route('logout') }}" method="POST">
-                    {{ csrf_field()}}
-                    <button type="submit" class="boton-logout-administrativo d-flex">Cerrar&nbsp;sesión</button>
+                    {{ csrf_field() }}
+                    <button type="submit" class="boton-logout-comercial d-flex">Cerrar&nbsp;sesión</button>
                 </form>
             </div>
         </div>
@@ -178,7 +181,7 @@
         {{-- Breadcrumb contenedor --}}
         <div class="contenedor-breadcrump-administrativo flex flex-row">
             <div class="maquetacion-breadcrump-administrativo flex flex-row">
-                <a class="estilo-breadcrump-administrativo" href="">Home</a>
+                <a class="estilo-breadcrump-administrativo" href="{{ route('administrativo.home') }}">Home</a>
                 <svg class="mt-0.5 ml-1 mr-1" width="20" height="20" viewBox="0 0 15 15" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -186,7 +189,8 @@
                         stroke="#90242A" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
                         stroke-linejoin="round" />
                 </svg>
-                <a class="estilo-breadcrump-administrativo" href="/usuariosAdministrativo">Usuarios</a>
+                <a class="estilo-breadcrump-administrativo"
+                    href="{{ route('administrativo.usuarios') }}">Usuarios</a>
             </div>
         </div>
         {{-- Contenedor crud datatable paginacion --}}
@@ -194,38 +198,31 @@
             {{-- Navegación entre datatables Clientes VIP, Comerciales, Administrativo --}}
             <div class="navegacion-diferentes-usuarios">
                 <div class="contenedor-navegacion-usuarios flex flex-row">
-                    <button id="boton-efecto-active-cVIP"
-                        class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Clientes
-                        VIP<span class="linea-blanca"></span><span id="linea-roja-vip"
-                            class="linea-roja-cVIP"></span></button>
-                    <button id="boton-efecto-active-comercial"
-                        class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Comerciales<span
-                            class="linea-blanca"></span><span id="linea-roja-comer"
-                            class="linea-roja-comerciales"></span></button>
                     <button id="boton-efecto-active-administrativo"
                         class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Administrativos<span
                             class="linea-blanca-grande"></span><span id="linea-roja-admin"
                             class="linea-roja-administrativos"></span></button>
-                </div>
-            </div>
-            {{-- Reservado a el datatable --}}
-            <div id="datatable">
-                <div id="tabla-clientes-vip">
-                    @livewire('tabla-clientes-vip')
-                </div>
 
-                <div id="tabla-comerciales" class="hidden">
-                    @livewire('tabla-comerciales')
-                </div>
-
-                <div id="tabla-administrativos" class="hidden">
-                    @livewire('tabla-administrativos')
+                            <button id="boton-efecto-active-comercial"
+                        class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Comerciales<span
+                            class="linea-blanca"></span><span id="linea-roja-comer"
+                            class="linea-roja-comerciales"></span></button>
                 </div>
             </div>
         </div>
+
+        <div id="datatable" class="flex  justify-start ml-32">
+            <div id="tabla-administrativos" class="w-[1000px]">
+                @livewire('tabla-administrativos')
+            </div>
+
+            <div id="tabla-comerciales" class="w-[1000px] hidden">
+                @livewire('tabla-comerciales')
+            </div>
+        </div>
     </div>
-    <script src= "/js/logicaMenu.js"></script>
-    <script src="/js/logicaCambioTablas.js"></script>
+
+    <script src="/js/usuariosAdministrativo.js"></script>
 </body>
 
 </html>

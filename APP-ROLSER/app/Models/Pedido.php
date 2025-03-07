@@ -27,7 +27,7 @@ class Pedido extends Model
     }
 
     public function clienteNoVip() {
-        return $this->belongsTo(ClienteNoVip::class);
+        return $this->belongsTo(ClienteNoVip::class,'id_cliente_no_vip');
     }
 
     public function comerciales() {
@@ -39,6 +39,6 @@ class Pedido extends Model
     }
 
     public function lineasDePedidos() {
-        return $this->hasMany(LineaPedido::class, 'id_linea_factura');
+        return $this->hasMany(LineaPedido::class, 'id_pedido');
     }
 }

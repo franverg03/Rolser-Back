@@ -37,6 +37,8 @@ class Producto extends Model
 
     public function lineasDePedidos()
     {
-        return $this->hasMany(LineaPedido::class);
+        return $this->hasMany(LineaPedido::class, 'id_producto');
     }
+
+
 }

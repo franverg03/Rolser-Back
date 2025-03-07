@@ -1,4 +1,6 @@
 /*Contenedor del body*/
+
+
 .contenedor {
     display: flex;
     flex-direction: row;
@@ -201,13 +203,13 @@
     text-decoration: none;
 
     padding-right: 1vh;
-    padding-left: 1.5vh;
-    padding-top: 1.4vh;
+    padding-left: 2vh;
+
     padding-bottom: 1.4vh;
 
-    color: #ffffff;
-    border: 1px solid #af272f;
-    background: #af272f;
+    color: #FFFFFF;
+    border: 1px solid #AF272F;
+    background: #AF272F;
 
     font-family: Montserrat;
     font-size: 18px;
@@ -220,11 +222,10 @@
     transition: 0.3s ease;
 
     background-color: #90242a;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.20);
 
     cursor: pointer;
 }
-
 .caja-info-usuario-comercial {
     margin-bottom: 6.4vh;
 }
@@ -357,6 +358,29 @@ table {
     box-shadow: 8px 8px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
+.botonCrud{
+    /* Botón */
+    width: auto;
+    padding: 12px;
+    margin-top: 13px;
+    height: 15px;
+    border-radius: 16px;
+    border: 3px solid #AF272F;
+    background: #AF272F;
+    /* Texto del botón */
+    color: #ffffff;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: var(--sizes-xl, 16px);
+    display: flex;
+    justify-content: center;
+    /* Alinea el contenido horizontalmente */
+    align-items: center;
+    /* Alinea el contenido verticalmente */
+    gap: 5px;
+}
 
 .botonEliminar {
     /* Botón */
@@ -383,6 +407,30 @@ table {
     transition: background-color 0.5s ease, border-color 0.5s ease;
 }
 
+.botonSecundario{
+    width: auto;
+    height: 32px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid #AF272F;
+    background: #ffffff;
+    /* Texto del botón */
+    color: #af272f;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: var(--sizes-xl, 16px);
+    display: flex;
+    justify-content: center;
+    /* Alinea el contenido horizontalmente */
+    align-items: center;
+    /* Alinea el contenido verticalmente */
+    gap: 8px;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
 .botonEliminar:hover {
     /* Botón */
     transition: 2s ease;
@@ -391,6 +439,12 @@ table {
     border: 3px solid #782429;
     cursor: pointer;
 }
+
+.colorFondoTablas{
+    background-color: #cf333c;
+}
+
+
 
 /* Ocultar el scroll en navegadores que usan scrollbar visible */
 ::-webkit-scrollbar {

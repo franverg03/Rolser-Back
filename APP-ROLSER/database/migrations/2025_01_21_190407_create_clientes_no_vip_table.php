@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('cliente_nombre_representante', 100);
             $table->string('cliente_apellidos_representante', 100);
             $table->string('cliente_telefono_representante', 9);
+            $table->string('cliente_email_representante',100);
             $table->string('cliente_direccion_empresa', 200);
             $table->string('cliente_cuenta_bancaria', 50);
             $table->foreignId('id_usuario')->references('id_usuario')->on('users')->onDelete('cascade');//Relacion 1-1 con User

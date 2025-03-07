@@ -40,18 +40,19 @@ class User extends Authenticatable
      */
     public function administrativo()
     {
-        return $this->belongsTo(Administrativo::class, 'id_administrativo');
+        return $this->belongsTo(Administrativo::class, 'id_usuario');
     }
 
     public function clienteVip(){
-        return $this->hasOne(ClienteVip::class, 'id_cliente_vip');
+        return $this->hasOne(ClienteVip::class, 'id_usuario');
     }
 
     public function clienteNoVip(){
-        return $this->hasOne(ClienteNoVip::class, 'id_cliente_no_vip');
+        return $this->hasOne(ClienteNoVip::class, 'id_usuario');
     }
 
     public function comercial(){
-        return $this->belongsTo(Comercial::class, 'id_comercial');
+        return $this->hasOne(Comercial::class, 'id_usuario');
     }
+
 }
