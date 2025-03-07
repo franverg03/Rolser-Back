@@ -1,4 +1,11 @@
 html,
+*{
+    font-family: Montserrat;
+    font-style: normal;
+
+}
+
+
 body {
     overflow: hidden;
 }
@@ -43,9 +50,11 @@ body {
     z-index: -1;
     /* Mueve el contenido detrás del menú */
 }
-.iconos-menu-administrativo{
+
+.iconos-menu-administrativo {
     margin-top: 10vh;
 }
+
 .iconosM {
     margin-bottom: 4.5vh;
 
@@ -156,7 +165,7 @@ body {
 }
 
 .boton-logout-administrativo {
-    margin-top: -1vh;
+    margin-top: 4.6vh;
 }
 
 /*Estilos contenedor principal*/
@@ -220,7 +229,7 @@ body {
 }
 
 .linea-roja-comerciales {
-    display: block;
+    display: none;
 
     width: 120px;
     height: 2px;
@@ -240,7 +249,7 @@ body {
 }
 
 .linea-roja-administrativos {
-    display: none;
+    display: block;
 
     width: 145px;
     height: 2px;
@@ -471,60 +480,60 @@ body {
 .tamanyoInputPequenyoModales {
     width: 120px !important;
 
-    border-radius: 12px!important;
-    border: 1px solid #AF272F!important;
-    background: var(--colors-background, #FFFFFF)!important;
+    border-radius: 12px !important;
+    border: 1px solid #AF272F !important;
+    background: var(--colors-background, #FFFFFF) !important;
 
-    color: #000000!important;
-    font-family: Montserrat!important;
-    font-size: 15px!important;
-    font-style: normal!important;
-    font-weight: 500!important;
+    color: #000000 !important;
+    font-family: Montserrat !important;
+    font-size: 15px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
 
 }
 
 .tamanyoInputMedioModales {
-    width: 185px!important;
+    width: 185px !important;
 
-    border-radius: 12px!important;
-    border: 1px solid #AF272F!important;
-    background: var(--colors-background, #FFFFFF)!important;
+    border-radius: 12px !important;
+    border: 1px solid #AF272F !important;
+    background: var(--colors-background, #FFFFFF) !important;
 
-    color: #000000!important;
-    font-family: Montserrat!important;
-    font-size: 15px!important;
-    font-style: normal!important;
-    font-weight: 500!important;
+    color: #000000 !important;
+    font-family: Montserrat !important;
+    font-size: 15px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
 
 }
 
 .tamanyoInputMedioGrandeModales {
-    width: 220px!important;
+    width: 220px !important;
 
-    border-radius: 12px!important;
-    border: 1px solid #AF272F!important;
-    background: var(--colors-background, #FFFFFF)!important;
+    border-radius: 12px !important;
+    border: 1px solid #AF272F !important;
+    background: var(--colors-background, #FFFFFF) !important;
 
-    color: #000000!important;
-    font-family: Montserrat!important;
-    font-size: 15px!important;
-    font-style: normal!important;
-    font-weight: 500!important;
+    color: #000000 !important;
+    font-family: Montserrat !important;
+    font-size: 15px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
 
 }
 
 .tamanyoInputGrandeModales {
-    width: 320px!important;
+    width: 320px !important;
 
-    border-radius: 12px!important;
-    border: 1px solid #AF272F!important;
-    background: var(--colors-background, #FFFFFF)!important;
+    border-radius: 12px !important;
+    border: 1px solid #AF272F !important;
+    background: var(--colors-background, #FFFFFF) !important;
 
-    color: #000000!important;
-    font-family: Montserrat!important;
-    font-size: 15px!important;
-    font-style: normal!important;
-    font-weight: 500!important;
+    color: #000000 !important;
+    font-family: Montserrat !important;
+    font-size: 15px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
 }
 
 .cajaSeccionesModalMod {
@@ -541,29 +550,31 @@ body {
     font-weight: 500;
 }
 
-.checkboxEstilos:checked{
+.checkboxEstilos:checked {
     background-color: #90242A;
 }
 
-.margen-boton-guardar{
+.margen-boton-guardar {
     margin-left: 31vh;
 }
 
-.margen-boton-anyadir{
+.margen-boton-anyadir {
     margin-left: 26vh;
 }
-.margen-boton-anyadir-cli-vip{
+
+.margen-boton-anyadir-cli-vip {
     margin-left: 4vh;
 }
 
-.margen-boton-modificar{
+.margen-boton-modificar {
     margin-left: 10vh;
 }
 
-.margen-boton-guardar-comercial{
+.margen-boton-guardar-comercial {
     margin-left: 50vh;
 }
-.cajaModalModificarComercial{
+
+.cajaModalModificarComercial {
     border-radius: 12px;
     height: 815px;
     width: 800px;
@@ -573,7 +584,7 @@ body {
     box-shadow: 8px 8px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.botonAnyadirComercial{
+.botonAnyadirComercial {
     /* Botón */
     width: auto;
     height: 50px;
@@ -597,6 +608,7 @@ body {
     gap: 10px;
     transition: background-color 0.5s ease, border-color 0.5s ease;
 }
+
 .botonAnyadirComercial:hover {
     /* Botón */
     transition: 2s ease;
@@ -605,15 +617,118 @@ body {
     border: 3px solid #782429;
     cursor: pointer;
 }
-.margen-boton-anyadir-comercial{
+
+.margen-boton-anyadir-comercial {
     margin-left: 44vh;
 }
-.margen-boton-anyadir-administrativo{
+
+.margen-boton-anyadir-administrativo {
     margin-left: 38vh;
 }
-.hoverX{
+
+.hoverX {
     cursor: pointer;
 }
+
 .blur-effect {
     backdrop-filter: blur(10px);
+}
+
+.contenedor-datatable-clientes-admin {
+    width: 1300px;
+    margin-left: 100px;
+    margin-top: -25px;
+}
+
+.tabla-bordes-superior {
+    border-radius: 12px 12px 0px 0px;
+}
+
+.tipografia-cabecera-tabla-administrativo {
+
+    color: #FFFFFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+
+}
+
+.tipografia-contenido-tabla-administrativo {
+
+    color: #000000;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 450;
+}
+
+.tipografia-placeholder-buscar-administrativo{
+
+    font-family: Montserrat;
+
+}
+/* Estilos tabla default ROSCHACH */
+
+.headerTabla {
+    background-color: #CF333C;
+    color: white;
+    font-weight: 700;
+}
+
+.bordes{
+    border-bottom: 1px solid #AF272F;
+    border-left:  1px solid #AF272F;
+}
+
+.bordeRolser{
+    border: 1px solid #AF272F;
+}
+
+.paginacion-custom nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.paginacion-custom .pagination {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.paginacion-custom .pagination a,
+.paginacion-custom .pagination span {
+    background-color: white;
+    color: #AF272F;
+    border: 1px solid #AF272F;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.paginacion-custom .pagination a:hover {
+    background-color: #AF272F;
+    color: white;
+}
+
+.paginacion-custom .pagination .active {
+    background-color: #AF272F;
+    color: white;
+    border-color: #AF272F;
+}
+
+.paginacion-custom .pagination .disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.contenedorTablas{
+    margin-left: 100px;
+}
+
+.color-cabecera-tabla-admin{
+    background-color: #CF333C;
+    border: 1px solid #AF272F;
 }

@@ -37,7 +37,11 @@ class clienteVipController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $clienteVip = ClienteVip::find($id);
+        if (!$clienteVip) {
+            return redirect()->back()->with('error', 'Cliente no encontrado.');
+        }
+        return view('clientes_vip.show', ['clienteVip' => $clienteVip]);
     }
 
     /**
@@ -45,12 +49,6 @@ class clienteVipController extends Controller
      */
     public function actualizar(Request $request)
     {
-        // Obtiene los IDs de los checkboxes seleccionados
-        $clienteNoVip = $request->input('clientes_no_vip');
-
-        if (!$clienteNoVip) {
-            return redirect()->back()->with('error', 'No seleccionaste ningún cliente.');
-        }
 
         $validatedData = $request->validate([
             'cliente_empresa' => 'sometimes|required|string|max:100',

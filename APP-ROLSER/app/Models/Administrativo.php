@@ -31,7 +31,7 @@ class Administrativo extends Model
 
     public function usuarios()
     {
-        return $this->hasMany(User::class, 'id_usuario');
+        return $this->hasMany(User::class, 'id_administrativo');
     }
 
     public function almacenes()

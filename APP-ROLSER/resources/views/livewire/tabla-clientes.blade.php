@@ -24,11 +24,10 @@
                     <tbody>
                         @forelse ($clientesPaginados as $cliente)
                             <tr class="border-b bordeRolser">
-                                <td class="px-4 py-3">{{ $cliente->cliente_nombre_representante }} {{ $cliente->cliente_apellidos_representante }}</td>
-                                <td class="px-4 py-3">{{ $cliente->cliente_empresa }}</td>
-                                <td class="px-4 py-3">{{ $cliente->cliente_nif }}</td>
-                                <td class="px-4 py-3">{{ $cliente->cliente_telefono_representante }}</td>
-                                <td class="px-4 py-3 font-bold">{{ $cliente->tipo }}</td>
+                                <td class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $cliente->cliente_nombre_representante }} {{ $cliente->cliente_apellidos_representante }}</td>
+                                <td class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $cliente->cliente_empresa }}</td>
+                                <td class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $cliente->cliente_nif }}</td>
+                                <td class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $cliente->cliente_telefono_representante }}</td>
                             </tr>
                         @empty
                             <tr>

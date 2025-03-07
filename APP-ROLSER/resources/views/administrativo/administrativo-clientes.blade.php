@@ -205,7 +205,7 @@
                 </div>
             </div>
             {{-- Probamos como triggerear el modal en laravel --}}
-            <div id="crudCliente" class="">
+            <div id="crudCliente" class="flex justify-center" >
                 <div class="flex flex-row">
                     {{-- Añadir --}}
                     <button id="mostrarModalAnyadir" class="botonEliminar">Añadir cliente <svg width="26" height="28"

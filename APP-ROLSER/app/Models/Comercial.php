@@ -31,22 +31,23 @@ class Comercial extends Model
     }
 
     public function pedidos() {
-        return $this->hasMany(Pedido::class, 'id_pedido');
+        return $this->hasMany(Pedido::class, 'id_comercial');
     }
 
     public function facturas() {
-        return $this->hasMany(Factura::class, 'id_factura');
+        return $this->hasMany(Factura::class, 'id_comercial');
     }
 
     public function clientesNoVip() {
-        return $this->hasMany(ClienteNoVip::class, 'id_cliente');
+        return $this->hasMany(ClienteNoVip::class, 'id_comercial');
     }
 
     public function clientesVip() {
-        return $this->hasMany(ClienteVip::class, 'id_cliente_vip');
+        return $this->hasMany(ClienteVip::class, 'id_comercial');
     }
 
     public function catalogos() {
         return $this->belongsToMany(Catalogo::class);
     }
+
 }

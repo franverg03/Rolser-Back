@@ -245,51 +245,68 @@ window.onload = function () {
     var cancelarModalConfirmacionGuardarCNoVip = document.getElementById("cancelarModalConfirmacionGuardarCNoVip");
 
     // EventListeners Modificar
-    mostrarModalModificar.addEventListener('click', manejarModalModificar);
-    ocultarModificarCancelarCNoVip.addEventListener('click', manejarModalModificar);
-    mostrarModalConfirmacionGuardarCNoVip.addEventListener('click', manejarModalModificar);
-    // mostrarModalConvertirVip.addEventListener('click', manejarModalModificar);
+    // mostrarModalModificar.addEventListener('click', manejarModalModificar);
+    // ocultarModificarCancelarCNoVip.addEventListener('click', manejarModalModificar);
+    // mostrarModalConfirmacionGuardarCNoVip.addEventListener('click', manejarModalModificar);
+    // // mostrarModalConvertirVip.addEventListener('click', manejarModalModificar);
 
-    //EventListeners de Promocionar a vip
-    // ocultarModificarContrasenyaCancelar.addEventListener('click', manejarModalModificar);
-    // ocultarGuardandoEstatusVip.addEventListener('click', manejarModalModificar);
+    // //EventListeners de Promocionar a vip
+    // // ocultarModificarContrasenyaCancelar.addEventListener('click', manejarModalModificar);
+    // // ocultarGuardandoEstatusVip.addEventListener('click', manejarModalModificar);
 
-    //EventListeners de Confirmacion
-    confirmarModalConfirmacionGuardarCNoVip.addEventListener('click', manejarModalModificar);
-    cancelarModalConfirmacionGuardarCNoVip.addEventListener('click', manejarModalModificar);
+    // //EventListeners de Confirmacion
+    // confirmarModalConfirmacionGuardarCNoVip.addEventListener('click', manejarModalModificar);
+    // cancelarModalConfirmacionGuardarCNoVip.addEventListener('click', manejarModalModificar);
 
-    function manejarModalModificar() {
+    // function manejarModalModificar() {
 
-        var accionModificar = this.id;
+    //     var accionModificar = this.id;
 
-        //Modal modificar
-        // Trigger del modal de modificar
-        if (accionModificar == 'mostrarModalModificar') {
-            modalModificar.classList.remove("hidden");
-        }
+    //     //Modal modificar
+    //     // Trigger del modal de modificar
+    //     if (accionModificar == 'mostrarModalModificar') {
+    //         modalModificar.classList.remove("hidden");
 
-        // Trigger para ocultar el modal de modificar con la X
-        if (accionModificar == 'ocultarModificarCancelarCNoVip') {
-            modalModificar.classList.add("hidden");
-        }
+    //     }
 
-        //Modal Confirmacion
-        // Al darle a Guardar aparece este modal de Confirmación
-        if (accionModificar == 'mostrarModalConfirmacionGuardarCNoVip') {
-            modalConfirmacionGuardarCambiosCNoVip.classList.remove("hidden");
-        }
+    //     // Trigger para ocultar el modal de modificar con la X
+    //     if (accionModificar == 'ocultarModificarCancelarCNoVip') {
+    //         modalModificar.classList.add("hidden");
+    //     }
 
-        // Al darle a Confirmar los dos modales se ocultan
-        if (accionModificar == 'confirmarModalConfirmacionGuardarCNoVip') {
-            modalConfirmacionGuardarCambiosCNoVip.classList.add("hidden");
-            modalModificar.classList.add("hidden");
-        }
+    //     //Modal Confirmacion
+    //     // Al darle a Guardar aparece este modal de Confirmación
+    //     if (accionModificar == 'mostrarModalConfirmacionGuardarCNoVip') {
+    //         modalConfirmacionGuardarCambiosCNoVip.classList.remove("hidden");
+    //     }
 
-        // Al darle a Cancelar volvemos al modal de modificar
-        if (accionModificar == 'cancelarModalConfirmacionGuardarCNoVip') {
-            modalConfirmacionGuardarCambiosCNoVip.classList.add("hidden");
-        }
-    }
+    //     // Al darle a Confirmar los dos modales se ocultan
+    //     if (accionModificar == 'confirmarModalConfirmacionGuardarCNoVip') {
+    //         modalConfirmacionGuardarCambiosCNoVip.classList.add("hidden");
+    //         modalModificar.classList.add("hidden");
+    //     }
+
+    //     // Al darle a Cancelar volvemos al modal de modificar
+    //     if (accionModificar == 'cancelarModalConfirmacionGuardarCNoVip') {
+    //         modalConfirmacionGuardarCambiosCNoVip.classList.add("hidden");
+    //     }
+    // }
+
+    // function pasarClienteNoVipAlModal() {
+    //     Livewire.on('cargarClienteEnModal', cliente => {
+    //         // Llenar los campos del modal con los datos recibidos
+    //         document.getElementById('cliente_id').value = cliente.id;
+    //         document.getElementById('empresa').value = cliente.empresa;
+    //         document.getElementById('nombre').value = cliente.nombre;
+    //         document.getElementById('apellidos').value = cliente.apellidos;
+    //         document.getElementById('telefono').value = cliente.telefono;
+    //         document.getElementById('email').value = cliente.email;
+    //         document.getElementById('direccion').value = cliente.direccion;
+    //         document.getElementById('nif').value = cliente.nif;
+    //         document.getElementById('iban').value = cliente.iban;
+    //         document.getElementById('comercial').value = cliente.comercial;
+    //     });
+    // }
 
     //Logica modal Añadir
 
@@ -305,44 +322,44 @@ window.onload = function () {
     var cancelarModalConfirmacionAnyadirCNoVip = document.getElementById("cancelarModalConfirmacionAnyadirCNoVip");
 
     // EventListeners Anyadir
-    mostrarModalAnyadir.addEventListener('click', manejarModalAnyadir);
-    ocultarAnyadirCancelar.addEventListener('click', manejarModalAnyadir);
-    mostrarModalConfirmacionAnyadir.addEventListener('click', manejarModalAnyadir);
+    // mostrarModalAnyadir.addEventListener('click', manejarModalAnyadir);
+    // ocultarAnyadirCancelar.addEventListener('click', manejarModalAnyadir);
+    // mostrarModalConfirmacionAnyadir.addEventListener('click', manejarModalAnyadir);
 
-    //EventListeners de Confirmacion
-    confirmarModalConfirmacionAnyadirCNoVip.addEventListener('click', manejarModalAnyadir);
-    cancelarModalConfirmacionAnyadirCNoVip.addEventListener('click', manejarModalAnyadir);
+    // //EventListeners de Confirmacion
+    // confirmarModalConfirmacionAnyadirCNoVip.addEventListener('click', manejarModalAnyadir);
+    // cancelarModalConfirmacionAnyadirCNoVip.addEventListener('click', manejarModalAnyadir);
 
-    function manejarModalAnyadir() {
+    // function manejarModalAnyadir() {
 
-        var accionAnyadir = this.id;
+    //     var accionAnyadir = this.id;
 
-        //Modal Anyadir
-        // Trigger del modal de añadir
-        if (accionAnyadir == 'mostrarModalAnyadir') {
-            modalAnyadir.classList.remove("hidden");
-        }
+    //     //Modal Anyadir
+    //     // Trigger del modal de añadir
+    //     if (accionAnyadir == 'mostrarModalAnyadir') {
+    //         modalAnyadir.classList.remove("hidden");
+    //     }
 
-        // Trigger para ocultar el modal de añadir con la X
-        if (accionAnyadir == 'ocultarAnyadirCancelar') {
-            modalAnyadir.classList.add("hidden");
-        }
+    //     // Trigger para ocultar el modal de añadir con la X
+    //     if (accionAnyadir == 'ocultarAnyadirCancelar') {
+    //         modalAnyadir.classList.add("hidden");
+    //     }
 
-        //Modal Confirmacion Anyadir
-        // Al darle a Anyadir aparece este modal de Confirmación
-        if (accionAnyadir == 'mostrarModalConfirmacionAnyadir') {
-            modalConfirmacionAnyadir.classList.remove("hidden");
-        }
+    //     //Modal Confirmacion Anyadir
+    //     // Al darle a Anyadir aparece este modal de Confirmación
+    //     if (accionAnyadir == 'mostrarModalConfirmacionAnyadir') {
+    //         modalConfirmacionAnyadir.classList.remove("hidden");
+    //     }
 
-        // Al darle a Confirmar los dos modales se ocultan
-        if (accionAnyadir == 'confirmarModalConfirmacionAnyadirCNoVip') {
-            modalConfirmacionAnyadir.classList.add("hidden");
-            modalAnyadir.classList.add("hidden");
-        }
+    //     // Al darle a Confirmar los dos modales se ocultan
+    //     if (accionAnyadir == 'confirmarModalConfirmacionAnyadirCNoVip') {
+    //         modalConfirmacionAnyadir.classList.add("hidden");
+    //         modalAnyadir.classList.add("hidden");
+    //     }
 
-        // Al darle a Cancelar volvemos al modal de Anyadir
-        if (accionAnyadir == 'cancelarModalConfirmacionAnyadirCNoVip') {
-            modalConfirmacionAnyadir.classList.add("hidden");
-        }
-    }
+    //     // Al darle a Cancelar volvemos al modal de Anyadir
+    //     if (accionAnyadir == 'cancelarModalConfirmacionAnyadirCNoVip') {
+    //         modalConfirmacionAnyadir.classList.add("hidden");
+    //     }
+    // }
 }

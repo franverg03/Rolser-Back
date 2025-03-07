@@ -31,10 +31,9 @@ class ClienteVipController extends Controller
             'cliente_nombre_representante' => 'required|string|max:100',
             'cliente_apellidos_representante' => 'required|string|max:100',
             'cliente_telefono_representante' => 'required|string|max:9',
+            'cliente_email_representante' => 'required|string|max:100',
             'cliente_direccion_empresa' => 'required|string|max:200',
             'cliente_cuenta_bancaria' => 'required|string|max:50',
-            'id_usuario' => 'required|exists:users,id_usuario',
-            'id_comercial' => 'nullable|exists:comerciales,id_comercial',
         ]);
 
         $cliente = ClienteVip::create($validatedData);
@@ -53,10 +52,9 @@ class ClienteVipController extends Controller
             'cliente_nombre_representante' => 'sometimes|required|string|max:100',
             'cliente_apellidos_representante' => 'sometimes|required|string|max:100',
             'cliente_telefono_representante' => 'sometimes|required|string|max:9',
+            'cliente_email_representante' => 'required|string|max:100',
             'cliente_direccion_empresa' => 'sometimes|required|string|max:200',
             'cliente_cuenta_bancaria' => 'sometimes|required|string|max:50',
-            'id_usuario' => 'sometimes|required|exists:users,id_usuario',
-            'id_comercial' => 'sometimes|nullable|exists:comerciales,id_comercial',
         ]);
 
         $cliente->update($validatedData);

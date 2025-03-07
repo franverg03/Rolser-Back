@@ -19,10 +19,10 @@ class ClienteNoVip extends Model
         'cliente_nombre_representante',
         'cliente_apellidos_representante',
         'cliente_telefono_representante',
+        'cliente_email_representante',
         'cliente_direccion_empresa',
         'cliente_cuenta_bancaria',
-        'id_usuario',
-        'id_comercial'
+
     ];
 
     public function usuario() {

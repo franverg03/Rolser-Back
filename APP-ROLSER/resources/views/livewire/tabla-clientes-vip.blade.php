@@ -44,10 +44,10 @@
                     <tbody>
                         @forelse ($clientesVip as $clienteVip)
                             <tr class="border-b bordeRolser tamanyoCelda">
-                                <td class="px-4 py-3 ">{{ $clienteVip->cliente_nombre_representante }}&nbsp;{{$clienteVip->cliente_apellidos_representante }}</td>
-                                <td class="px-4 py-3 ">{{ $clienteVip->cliente_empresa }}</td>
-                                <td class="px4 py-3 ">{{ $clienteVip->cliente_nif}}</td>
-                                <td class="px-4 py-3 ">{{ $clienteVip->cliente_telefono_representante }}</td>
+                                <td class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $clienteVip->cliente_nombre_representante }}&nbsp;{{$clienteVip->cliente_apellidos_representante }}</td>
+                                <td class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $clienteVip->cliente_empresa }}</td>
+                                <td class="px4 py-3 tipografia-contenido-tabla-administrativo">{{ $clienteVip->cliente_nif}}</td>
+                                <td class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $clienteVip->cliente_telefono_representante }}</td>
                             </tr>
                         @empty
                             <tr>

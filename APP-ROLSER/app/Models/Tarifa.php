@@ -19,14 +19,14 @@ class Tarifa extends Model
     ];
 
     public function clientesNoVip()  {
-        return $this->hasOne(ClienteNoVip::class, 'id_cliente_no_vip');
+        return $this->belongsTo(ClienteNoVip::class, 'id_cliente_no_vip');
     }
 
     public function clientesVip() {
-        return $this->hasOne(ClienteVip::class, 'id_cliente_vip');
+        return $this->belongsTo(ClienteVip::class, 'id_cliente_vip');
     }
 
     public function administrativo() {
-        return $this->belongsToMany(Administrativo::class);
+        return $this->belongsToMany(Administrativo::class, 'id_administrativo');
     }
 }
