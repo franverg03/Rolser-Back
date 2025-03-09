@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+        @vite('resources/css/app.css')
+        @vite('resources/js/app.js')
     <link rel="stylesheet" href="/styles/administrativo.css">
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
+
     <title>AlmacenesAdministrativoRolser</title>
 </head>
 
@@ -160,17 +161,18 @@
                     <a href="{{ route('administrativo.descuentos') }}" class="boton-menu-noSel-administrativo">Descuentos</a>
                     <a href="{{ route('administrativo.tarifas') }}" class="boton-menu-sel-administrativo">Tarifas</a>
                 </div>
-            <div class="caja-info-usuario-admin-logout">
-                <div class="pl-4 caja-info-usuario-administrativo">
-                    <h3 class="usuario-nombre-administrativo">Daniel Endrino</h3>
-                    <p class="info-usuario-administrativo">Autenticado como: Administrativo</p>
-                    <p class="info-usuario-administrativo">Fecha: 06/02/2025</p>
+                <div class="caja-info-usuario-admin-logout">
+                    <div class="pl-4 caja-info-usuario-administrativo">
+                        <h3 class="usuario-nombre-administrativo">{{ Auth::user()->administrativo->administrativo_nombre }}
+                            {{ Auth::user()->administrativo->administrativo_apellidos }}</h3>
+                        <p class="info-usuario-administrativo">Autenticado como: {{ Auth::user()->usuario_rol }}</p>
+                        <p class="info-usuario-administrativo">Fecha: {{ now()->format('d/m/Y') }}</p>
+                    </div>
+                    <form action="{{ route('logout') }}" method="POST">
+                        {{ csrf_field() }}
+                        <button type="submit" class="boton-logout-administrativo d-flex">Cerrar&nbsp;sesión</button>
+                    </form>
                 </div>
-                <form action="{{ route('logout') }}" method="POST">
-                    {{ csrf_field()}}
-                    <button type="submit" class="boton-logout-administrativo d-flex">Cerrar&nbsp;sesión</button>
-                </form>
-            </div>
         </div>
         </div>
     </div>
@@ -191,11 +193,13 @@
             </div>
         </div>
         {{-- Contenedor crud datatable paginacion --}}
-        <div>
-
+        <div id="datatable" class="flex  justify-start ml-32">
+            <div class="w-[1200px]">
+                @livewire('tabla-tarifas')
+            </div>
         </div>
     </div>
-    <script src="/js/logicaMenu.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 
 </html>

@@ -2,7 +2,7 @@
     <div>
         <!-- Barra de búsqueda -->
         <div class="flex items-center justify-between">
-            <div class="relative">
+            <div class="relative ml-28">
                 {{-- Icono de lupa --}}
                 <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -15,7 +15,7 @@
 
                 {{-- Input de búsqueda --}}
                 <input wire:model.live.debounce.100ms="search" type="text"
-                    class="bg-white bordeRolser text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2 pl-10 pr-10 borde-focus"
+                    class="bg-white  text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2 pl-10 pr-10 borde-focus bordeRolser"
                     placeholder="Buscar administrativo..." id="searchInput">
 
                 {{-- Icono de "X" para limpiar el input --}}
@@ -34,7 +34,7 @@
                 @endif
             </div>
             {{-- Añadir --}}
-            <button type="button" class="botonSecundario" wire:click.prevent="abrirModalAnyadir">Añadir Cliente<svg
+            <button type="button" class="botonSecundario" wire:click.prevent="abrirModalAnyadir">Añadir Administrativo<svg
                     width="26" height="28" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4.5 9.69531H13.5" stroke="#af272f" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" />
@@ -47,25 +47,25 @@
 
         <!-- Contenedor Scrolleable -->
         <div>
-            <div class="contenedorTablas overflow-hidden rounded-t-lg rounded-b-lg">
-                <table class="w-full text-sm text-left bg-white border-collapse bordeRolser">
+            <div class="contenedorTablas overflow-hidden">
+                <table class="w-full text-center text-sm bg-white border-collapse bordeRolser">
                     <thead class="text-xs uppercase color-cabecera-tabla-admin text-white font-bold">
                         {{-- Aquí deberíamos aplicar el border radius top left y right --}}
                         <tr>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser tipografia-cabecera-tabla-administrativo">Nombre</th>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser tipografia-cabecera-tabla-administrativo">Apellidos</th>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser tipografia-cabecera-tabla-administrativo">Email</th>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser tipografia-cabecera-tabla-administrativo">Departamento</th>
-                            <th scope="col" class="px-4 py-3 border-b bordeRolser tipografia-cabecera-tabla-administrativo">Accion</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser ">Nombre</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser ">Apellidos</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Email</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Departamento</th>
+                            <th scope="col" class="px-4 py-3 border-b bordeRolser">Accion</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($administrativos as $administrativo)
                             <tr class="border-b bordeRolser">
-                                <td class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $administrativo->administrativo_nombre }}</td>
-                                <td class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $administrativo->administrativo_apellidos }}</td>
-                                <td class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $administrativo->administrativo_email }}</td>
-                                <td class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $administrativo->administrativo_departamento }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $administrativo->id_administrativo }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $administrativo->administrativo_nombre }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $administrativo->id_administrativo }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $administrativo->administrativo_apellidos }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $administrativo->id_administrativo }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $administrativo->administrativo_email }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $administrativo->id_administrativo }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $administrativo->administrativo_departamento }}</td>
                                 <td>
                                     <div class="flex flex-row">
                                         <button type="button" id="mostrarModalModificar" class="botonCrud mr-3 mb-2"
@@ -86,7 +86,7 @@
                                             </svg>
                                         </button>
 
-                                        <button class="botonCrud"
+                                        <button class="botonCrud mr-1"
                                             wire:click.prevent="abrirModalEliminar({{ $administrativo->id_administrativo }})">Eliminar<svg
                                                 width="20" height="14" viewBox="0 0 24 19" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -108,6 +108,99 @@
         </div>
     </div>
 
+    <div class="py-4 px-3 flex justify-center paginacion-custom">
+        <div class="inline-flex rounded-md shadow-sm">
+            {{ $administrativos->links() }}
+        </div>
+    </div>
+
+    @if ($modalMostrar)
+    <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!-- Fondo oscuro -->
+        <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+        <!-- Contenedor del modal -->
+        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div class="relative transform overflow-hidden cajaModalModificar text-center rounded-lg bg-white shadow-xl transition-all">
+                    <div class="cabeceraModalModificar flex flex-row justify-between">
+                        <h3 class="estilosTituloModalModificar">Mostrar Administrativo</h3>
+                        <svg wire:click.prevent="cerrarModalMostrar" class="hoverX" width="55" height="55" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col cajaSeccionesModalMod">
+                        <div class="flex">
+                            <h5 class="seccionesModalModificar">Datos del Administrativo:</h5>
+                        </div>
+                        <div class="flex flex-row">
+                            <input wire:model="administrativo_nombre" type="text" id="searchInput"
+                                class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                placeholder="Nombre" readonly />
+                            <input wire:model="administrativo_apellidos" type="text" id="searchInput"
+                                class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                placeholder="Apellidos" readonly />
+                        </div>
+                    </div>
+                    <div class="flex flex-col cajaSeccionesModalMod">
+                        <div class="flex">
+                            <h5 class="seccionesModalModificar">Contacto:</h5>
+                        </div>
+                        <div class="flex flex-row">
+                            <input wire:model="administrativo_telefono" type="text" id="searchInput"
+                                class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                placeholder="Ej: Tlf XXX-XXX-XXX" readonly />
+                            <input wire:model="administrativo_email" type="text" id="searchInput"
+                                class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                placeholder="correo@ejemplo.com" readonly />
+                        </div>
+                    </div>
+                    <div class="flex flex-col cajaSeccionesModalMod">
+                        <div class="flex">
+                            <h5 class="seccionesModalModificar">Datos adicionales:</h5>
+                        </div>
+                        <div class="flex flex-row">
+                            <div class="flex flex-col">
+                                <div class="flex">
+                                    <label class="labelsModal" for="">DNI:</label>
+                                </div>
+                                <input wire:model="administrativo_dni" type="text" id="searchInput"
+                                    class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="DNI" readonly />
+                            </div>
+                            <div class="flex flex-col">
+                                <div class="flex">
+                                    <label class="labelsModal" for="">Dirección:</label>
+                                </div>
+                                <input wire:model="administrativo_direccion" type="text" id="searchInput"
+                                    class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Dirección" readonly/>
+                            </div>
+                        </div>
+                        <div class="flex flex-row mt-4">
+                            <div class="flex flex-col">
+                                <div class="flex">
+                                    <label class="labelsModal" for="">Código Postal:</label>
+                                </div>
+                                <input wire:model="administrativo_cp" type="text" id="searchInput"
+                                    class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="CP" readonly />
+                            </div>
+                            <div class="flex flex-col">
+                                <div class="flex">
+                                    <label class="labelsModal" for="">Departamento:</label>
+                                </div>
+                                <input wire:model="administrativo_departamento" type="text" id="searchInput"
+                                    class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Departamento" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
     @if ($modalAnyadir)
     <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <!-- Fondo oscuro -->
@@ -115,7 +208,7 @@
         <!-- Contenedor del modal -->
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
             <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                <div class="relative transform overflow-hidden cajaModalModificarTablet text-center rounded-lg bg-white shadow-xl transition-all">
+                <div class="relative transform overflow-hidden cajaModalModificar text-center rounded-lg bg-white shadow-xl transition-all">
                     <div class="cabeceraModalModificar flex flex-row justify-between">
                         <h3 class="estilosTituloModalModificar">Nuevo Administrativo</h3>
                         <svg wire:click.prevent="cerrarModalAnyadir" class="hoverX" width="55" height="55" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -238,7 +331,7 @@
         <!-- Contenedor del modal -->
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
             <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                <div class="relative transform overflow-hidden cajaModalModificarTablet text-center rounded-lg bg-white shadow-xl transition-all">
+                <div class="relative transform overflow-hidden cajaModalModificar text-center rounded-lg bg-white shadow-xl transition-all">
                     <div class="cabeceraModalModificar flex flex-row justify-between">
                         <h3 class="estilosTituloModalModificar">Modificar Administrativo</h3>
                         <svg wire:click.prevent="cerrarModalModificar" class="hoverX"

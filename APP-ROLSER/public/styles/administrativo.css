@@ -2,6 +2,8 @@ html,
 *{
     font-family: Montserrat;
     font-style: normal;
+    color: #000000;
+    font-weight: 450;
 
 }
 
@@ -161,11 +163,11 @@ body {
 }
 
 .caja-info-usuario-admin-logout {
-    margin-top: 4.4vh;
+    margin-top: 4.6vh;
 }
 
 .boton-logout-administrativo {
-    margin-top: 4.6vh;
+    margin-top: -3vh;
 }
 
 /*Estilos contenedor principal*/
@@ -211,9 +213,7 @@ body {
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
-
     padding-left: 7vh;
-
     cursor: pointer;
 }
 
@@ -407,11 +407,35 @@ body {
 
 /* Botones Crud estilos */
 
+.botonCrud{
+    /* Botón */
+    width: auto;
+    padding: 12px;
+    margin-top: 13px;
+    height: 15px;
+    border-radius: 16px;
+    border: 3px solid #AF272F;
+    background: #AF272F;
+    /* Texto del botón */
+    color: #ffffff;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: var(--sizes-xl, 16px);
+    display: flex;
+    justify-content: center;
+    /* Alinea el contenido horizontalmente */
+    align-items: center;
+    /* Alinea el contenido verticalmente */
+    gap: 5px;
+}
+
 .botonEliminar {
     /* Botón */
     width: auto;
-    height: 50px;
-    margin: 30px;
+    height: 32px;
+    margin: 20px;
     padding: 20px;
     border-radius: 16px;
     border: 3px solid #AF272F;
@@ -419,7 +443,7 @@ body {
     /* Texto del botón */
     color: #ffffff;
     font-family: Montserrat;
-    font-size: 18px;
+    font-size: 15px;
     font-style: normal;
     font-weight: 700;
     line-height: var(--sizes-xl, 16px);
@@ -428,7 +452,31 @@ body {
     /* Alinea el contenido horizontalmente */
     align-items: center;
     /* Alinea el contenido verticalmente */
-    gap: 10px;
+    gap: 8px;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.botonSecundario{
+    width: auto;
+    height: 32px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid #AF272F;
+    background: #ffffff;
+    /* Texto del botón */
+    color: #af272f;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: var(--sizes-xl, 16px);
+    display: flex;
+    justify-content: center;
+    /* Alinea el contenido horizontalmente */
+    align-items: center;
+    /* Alinea el contenido verticalmente */
+    gap: 8px;
     transition: background-color 0.5s ease, border-color 0.5s ease;
 }
 
@@ -440,7 +488,6 @@ body {
     border: 3px solid #782429;
     cursor: pointer;
 }
-
 /* Estilos Modales Modificar */
 .cajaModalModificar {
     border-radius: 12px;
@@ -661,6 +708,16 @@ body {
     font-size: 15px;
     font-style: normal;
     font-weight: 450;
+    text-align: center;
+}
+
+.tipografia-contenido-tabla-administrativo:hover {
+
+    color: #AF272F;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 450;
 }
 
 .tipografia-placeholder-buscar-administrativo{
@@ -668,7 +725,6 @@ body {
     font-family: Montserrat;
 
 }
-/* Estilos tabla default ROSCHACH */
 
 .headerTabla {
     background-color: #CF333C;
@@ -683,6 +739,10 @@ body {
 
 .bordeRolser{
     border: 1px solid #AF272F;
+}
+
+.borde-focus:focus{
+    border: 1px solid #cf333c;
 }
 
 .paginacion-custom nav {
@@ -732,3 +792,15 @@ body {
     background-color: #CF333C;
     border: 1px solid #AF272F;
 }
+
+th{
+    color:#ffffff;
+    font-size: 15px ;
+    font-weight: 600;
+}
+
+
+
+
+
+

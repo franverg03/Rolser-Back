@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Administrativo;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class TablaAdministrativos extends Component
 {
@@ -24,6 +25,7 @@ class TablaAdministrativos extends Component
     public $administrativo_email;
     public $administrativo_departamento;
 
+    public $modalMostrar=false;
     public $modalAnyadir = false;
     public $modalModificar = false;
     public $modalEliminar = false;
@@ -68,10 +70,32 @@ class TablaAdministrativos extends Component
         $this->modalModificar = true;
     }
 
+    public function abrirModalMostrar($administrativo_id){
+
+            $administrativo = Administrativo::find($administrativo_id);
+
+            if ($administrativo) {
+                $this->id_administrativo = $administrativo->id_administrativo;
+                $this->administrativo_nombre = $administrativo->administrativo_nombre;
+                $this->administrativo_apellidos = $administrativo->administrativo_apellidos;
+                $this->administrativo_dni = $administrativo->administrativo_dni;
+                $this->administrativo_direccion = $administrativo->administrativo_direccion;
+                $this->administrativo_cp = $administrativo->administrativo_cp;
+                $this->administrativo_telefono = $administrativo->administrativo_telefono;
+                $this->administrativo_email = $administrativo->administrativo_email;
+                $this->administrativo_departamento = $administrativo->administrativo_departamento;
+            }
+            $this->modalMostrar = true;
+    }
+
     public function abrirModalEliminar($administrativo_id)
     {
         $this->id_administrativo = $administrativo_id;
         $this->modalEliminar = true;
+    }
+
+    public function cerrarModalMostrar(){
+        $this->modalMostrar=false;
     }
 
     public function cerrarModalAnyadir()
@@ -111,6 +135,7 @@ class TablaAdministrativos extends Component
 
     public function anyadirAdministrativo()
     {
+
         $administrativo = new Administrativo();
         $administrativo->administrativo_nombre = $this->administrativo_nombre;
         $administrativo->administrativo_apellidos = $this->administrativo_apellidos;
@@ -121,6 +146,15 @@ class TablaAdministrativos extends Component
         $administrativo->administrativo_email = $this->administrativo_email;
         $administrativo->administrativo_departamento = $this->administrativo_departamento;
         $administrativo->save();
+
+
+        $user = new User();
+        $user->usuario_nombre = $this->administrativo_dni;
+        $user->password = bcrypt('123456789');
+        $user->usuario_activo= 1;
+        $user->usuario_rol='administrativo';
+        $user->id_administrativo=Auth::user()->id_administrativo;
+        $user->save();
         $this->cerrarModalAnyadir();
     }
 

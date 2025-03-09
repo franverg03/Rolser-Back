@@ -4,10 +4,9 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\ClienteVip;
 use App\Models\ClienteNoVip;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class TablaClientes extends Component
 {
@@ -16,70 +15,206 @@ class TablaClientes extends Component
     public $search = ''; //Input de la tabla
     public $perPage = 10; // Siempre mostrar 10 registros por página
 
+    public $id_cte_no_vip;
+    public $nombre_cte;
+    public $apellidos_cte;
+    public $telefono_cte;
+    public $email_cte;
+    public $empresa_cte;
+    public $nif_cte;
+    public $direccion_cte;
+    public $cuenta_bancaria;
+    public $id_usuario;
+    public $id_comercial;
+
+    public $modalMostrar=false;
+    public $modalAnyadir = false;
+    public $modalModificar = false;
+    public $modalEliminar = false;
+    public $modalConfirmacionAnyadir = false;
+    public $modalConfirmacionModificar = false;
+
+
+
+
+    /**
+     * Método para limpiar el campo de búsqueda
+     */
     public function clearSearch()
     {
-        $this->search = ''; // Borra la búsqueda
+        $this->search = '';
     }
 
-    public function updatingSearch()
+    private function borrarValoresCampos()
     {
-        $this->resetPage(); // Resetear la paginación cuando se escribe en el input
+        $this->id_cte_no_vip = '';
+        $this->nombre_cte = '';
+        $this->apellidos_cte = '';
+        $this->telefono_cte = '';
+        $this->email_cte = '';
+        $this->nif_cte = '';
+        $this->empresa_cte = '';
+        $this->direccion_cte = '';
+        $this->cuenta_bancaria = '';
+        $this->id_usuario = '';
+        $this->id_comercial = '';
     }
 
-    //La funcion addSelect(DB::raw) Lo que va a hacer es añadir una columna más a la select. Con el DB:raw() añadimos la columna Tipo con el valor VIP  o No VIP segun el usuario y así añadimos un dato a la tabla si necesidad de almacenarlo en la BD.
+    public function abrirModalMostrar($cliente_id){
+
+        $cliente = ClienteNoVip::find($cliente_id);
+
+        if ($cliente) {
+            $this->id_cte_no_vip = $cliente->id_cliente_no_vip;
+            $this->empresa_cte = $cliente->cliente_empresa;
+            $this->nif_cte = $cliente->cliente_nif;
+            $this->nombre_cte = $cliente->cliente_nombre_representante;
+            $this->apellidos_cte = $cliente->cliente_apellidos_representante;
+            $this->telefono_cte = $cliente->cliente_telefono_representante;
+            $this->email_cte = $cliente->cliente_email_representante;
+            $this->direccion_cte = $cliente->cliente_direccion_empresa;
+            $this->cuenta_bancaria = $cliente->cliente_cuenta_bancaria;
+            $this->id_usuario = $cliente->id_usuario;
+            $this->id_comercial = $cliente->id_comercial;
+        }
+
+
+        $this->modalMostrar=true;
+}
+
+    public function cerrarModalMostrar(){
+        $this->modalMostrar=false;
+    }
+
+
+    public function abrirModalAnyadir()
+    {
+        $this->borrarValoresCampos();
+        $this->modalAnyadir = true;
+    }
+
+    public function abrirModalModificar($cliente_id)
+    {
+        $cliente = ClienteNoVip::find($cliente_id);
+
+        if ($cliente) {
+            $this->id_cte_no_vip = $cliente->id_cliente_no_vip;
+            $this->empresa_cte = $cliente->cliente_empresa;
+            $this->nif_cte = $cliente->cliente_nif;
+            $this->nombre_cte = $cliente->cliente_nombre_representante;
+            $this->apellidos_cte = $cliente->cliente_apellidos_representante;
+            $this->telefono_cte = $cliente->cliente_telefono_representante;
+            $this->email_cte = $cliente->cliente_email_representante;
+            $this->direccion_cte = $cliente->cliente_direccion_empresa;
+            $this->cuenta_bancaria = $cliente->cliente_cuenta_bancaria;
+            $this->id_usuario = $cliente->id_usuario;
+            $this->id_comercial = $cliente->id_comercial;
+        }
+
+        $this->modalModificar = true;
+    }
+
+
+    public function abrirModalEliminar($cliente_id)
+    {
+        $this->id_cte_no_vip=$cliente_id;
+        $this->modalEliminar = true;
+    }
+
+    public function cerrarModalAnyadir()
+    {
+        $this->modalAnyadir = false;
+    }
+
+    public function cerrarModalModificar()
+    {
+        $this->modalModificar = false;
+    }
+
+    public function cerrarModalEliminar()
+    {
+        $this->modalEliminar = false;
+    }
+
+    public function abrirModalConfirmacionAnyadir()
+    {
+        $this->modalConfirmacionAnyadir = true;
+    }
+
+    public function abrirModalConfirmacionModificar()
+    {
+        $this->modalConfirmacionModificar = true;
+    }
+
+    public function cerrarModalConfirmacionAnyadir()
+    {
+        $this->modalConfirmacionAnyadir = false;
+    }
+
+    public function cerrarModalConfirmacionModificar()
+    {
+        $this->modalConfirmacionModificar = false;
+    }
+
+
+    public function anyadirCliente()
+    {
+        $user = new User();
+        $user->usuario_nombre = $this->nombre_cte;
+        $user->password = bcrypt('123456789');
+        $user->usuario_activo= 1;
+        $user->usuario_rol='clienteNoVip';
+        $user->id_administrativo=Auth::user()->id_administrativo;
+        $user->save();
+
+
+        $cliente = new ClienteNoVip();
+        $cliente->cliente_empresa = $this->empresa_cte;
+        $cliente->cliente_nif = $this->nif_cte;
+        $cliente->cliente_nombre_representante = $this->nombre_cte;
+        $cliente->cliente_apellidos_representante = $this->apellidos_cte;
+        $cliente->cliente_telefono_representante = $this->telefono_cte;
+        $cliente->cliente_email_representante = $this->email_cte;
+        $cliente->cliente_direccion_empresa = $this->direccion_cte;
+        $cliente->cliente_cuenta_bancaria = $this->cuenta_bancaria;
+        $cliente->id_usuario = $user->id_usuario;
+        $cliente->id_comercial =Auth::user()->comercial->id_comercial;
+        $cliente->save();
+        $this->cerrarModalAnyadir();
+    }
+
+    public function modificarCliente()
+    {
+        $cliente = ClienteNoVip::find($this->id_cte_no_vip);
+        $cliente->cliente_empresa = $this->empresa_cte;
+        $cliente->cliente_nif = $this->nif_cte;
+        $cliente->cliente_nombre_representante = $this->nombre_cte;
+        $cliente->cliente_apellidos_representante = $this->apellidos_cte;
+        $cliente->cliente_telefono_representante = $this->telefono_cte;
+        $cliente->cliente_email_representante = $this->email_cte;
+        $cliente->cliente_direccion_empresa = $this->direccion_cte;
+        $cliente->cliente_cuenta_bancaria = $this->cuenta_bancaria;
+        $cliente->save();
+        $this->cerrarModalModificar();
+    }
+
+    public function eliminarCliente()
+    {
+        $cliente = ClienteNoVip::findOrFail($this->id_cte_no_vip);
+        $cliente->delete();
+        $this->cerrarModalEliminar();
+    }
 
     public function render()
-{
-    // Obtener clientes VIP sin paginar
-    $clientesVip = ClienteVip::where(function ($query) {
-            $query->where('cliente_nombre_representante', 'like', '%' . $this->search . '%')
-                ->orWhere('cliente_apellidos_representante', 'like', '%' . $this->search . '%')
-                ->orWhere('cliente_telefono_representante', 'like', '%' . $this->search . '%')
-                ->orWhere('cliente_empresa', 'like', '%' . $this->search . '%');
-        })
-        ->select('*', DB::raw("'VIP' as tipo")) // Agregar columna "tipo"
-        ->get(); // ⚠️ Obtener todos los registros, SIN paginar aún
+    {
+        // Obtener todos los clientes (sin paginar aún)
+        $clientesPaginados = ClienteNoVip::where('cliente_nombre_representante', 'like', '%' . $this->search . '%')
+            ->orWhere('cliente_apellidos_representante', 'like', '%' . $this->search . '%')
+            ->orWhere('cliente_telefono_representante', 'like', '%' . $this->search . '%')
+            ->orWhere('cliente_empresa', 'like', '%' . $this->search . '%')
+            ->paginate($this->perPage);
 
-    // Obtener clientes NO VIP sin paginar
-    $clientesNoVip = ClienteNoVip::where(function ($query) {
-            $query->where('cliente_nombre_representante', 'like', '%' . $this->search . '%')
-                ->orWhere('cliente_apellidos_representante', 'like', '%' . $this->search . '%')
-                ->orWhere('cliente_telefono_representante', 'like', '%' . $this->search . '%')
-                ->orWhere('cliente_empresa', 'like', '%' . $this->search . '%');
-        })
-        ->select('*', DB::raw("'No VIP' as tipo")) // Agregar columna "tipo"
-        ->get(); // ⚠️ Obtener todos los registros, SIN paginar aún
-
-    // Verificar que ambas consultas están devolviendo datos correctamente
-    if ($clientesVip->isEmpty() && $clientesNoVip->isEmpty()) {
-        return view('livewire.tabla-clientes', ['clientesPaginados' => []]); // Evita errores si no hay datos
+        return view('livewire.tabla-clientes', compact('clientesPaginados'));
     }
-
-    // Unir ambas colecciones
-    $clientes = $clientesVip->merge($clientesNoVip);
-
-    // ✅ Verificar cuántos registros hay en la colección
-    logger("Total clientes antes de paginar: " . $clientes->count());
-
-    // ✅ Ordenar por nombre del representante para una mejor organización
-    $clientes = $clientes->sortBy('cliente_nombre_representante')->values();
-
-    // ✅ Obtener la página actual
-    $currentPage = \Illuminate\Pagination\Paginator::resolveCurrentPage();
-    $perPage = $this->perPage;
-
-    // ✅ Aplicar paginación manualmente
-    $clientesPaginados = new \Illuminate\Pagination\LengthAwarePaginator(
-        $clientes->forPage($currentPage, $perPage)->values(), // Resetear índices con values()
-        $clientes->count(), // Total de clientes
-        $perPage,
-        $currentPage,
-        ['path' => request()->url()] // Mantener los links de paginación
-    );
-
-    // ✅ Verificar si la paginación está devolviendo los datos correctos
-    logger("Clientes en esta página: " . $clientesPaginados->count());
-
-    return view('livewire.tabla-clientes', compact('clientesPaginados'));
 }
-}
+

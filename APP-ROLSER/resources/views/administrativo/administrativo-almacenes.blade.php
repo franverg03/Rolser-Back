@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/styles/administrativo.css">
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
+    <link rel="stylesheet" href="/styles/administrativo.css">
     <title>AlmacenesAdministrativoRolser</title>
 </head>
 
 <body class="contenedor">
     <div class="menu-administrativo flex">
         <div class="menu-pequenyo-administrativo flex flex-col" id="menu-pequenyo-administrativo">
-            <img class="mt-3 mb-1 ml-1 logo-pequenyo-administrativo" width="60vh"
-                src="/images/logoPequenyoRolser.png" alt="">
+            <img class="mt-3 mb-1 ml-1 logo-pequenyo-administrativo" width="60vh" src="/images/logoPequenyoRolser.png"
+                alt="">
             <div class="iconos-menu-administrativo flex flex-col ml-4">
                 <!--Home icono-->
                 <svg class="iconosM" width="26" height="26" viewBox="0 0 26 26" fill="none"
@@ -157,17 +157,19 @@
                 <a href="{{ route('errors.404') }}" class="boton-menu-noSel-administrativo">Productos</a>
                 <a href="{{ route('errors.404') }}" class="boton-menu-noSel-administrativo">Catálogos</a>
                 <a href="{{ route('administrativo.almacenes') }}" class="boton-menu-sel-administrativo">Almacenes</a>
-                <a href="{{ route('administrativo.descuentos') }}" class="boton-menu-noSel-administrativo">Descuentos</a>
+                <a href="{{ route('administrativo.descuentos') }}"
+                    class="boton-menu-noSel-administrativo">Descuentos</a>
                 <a href="{{ route('administrativo.tarifas') }}" class="boton-menu-noSel-administrativo">Tarifas</a>
             </div>
             <div class="caja-info-usuario-admin-logout">
                 <div class="pl-4 caja-info-usuario-administrativo">
-                    <h3 class="usuario-nombre-administrativo">Daniel Endrino</h3>
-                    <p class="info-usuario-administrativo">Autenticado como: Administrativo</p>
-                    <p class="info-usuario-administrativo">Fecha: 06/02/2025</p>
+                    <h3 class="usuario-nombre-administrativo">{{ Auth::user()->administrativo->administrativo_nombre }}
+                        {{ Auth::user()->administrativo->administrativo_apellidos }}</h3>
+                    <p class="info-usuario-administrativo">Autenticado como: {{ Auth::user()->usuario_rol }}</p>
+                    <p class="info-usuario-administrativo">Fecha: {{ now()->format('d/m/Y') }}</p>
                 </div>
                 <form action="{{ route('logout') }}" method="POST">
-                    {{ csrf_field()}}
+                    {{ csrf_field() }}
                     <button type="submit" class="boton-logout-administrativo d-flex">Cerrar&nbsp;sesión</button>
                 </form>
             </div>
@@ -190,11 +192,14 @@
                 <a class="estilo-breadcrump-administrativo" href="/almacenesAdministrativo">Almacenes</a>
             </div>
         </div>
-        {{-- Contenedor crud datatable paginacion --}}
-        <div>
+        <div id="datatable" class="flex  justify-start ml-32">
+            <div class="w[1200px]">
 
+                @livewire('tabla-almacenes')
+            </div>
         </div>
     </div>
-    <script src="/js/logicaMenu.js"></script>
+    <script src="/js/script.js"></script>
 </body>
+
 </html>

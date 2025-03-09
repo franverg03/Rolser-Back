@@ -32,7 +32,15 @@ class Factura extends Model
         return $this->belongsTo(Comercial::class, 'id_comercial');
     }
 
-    public function clientesVip() {
+    public function clienteVip() {
         return $this->belongsTo(ClienteVip::class,'id_cliente_vip');
     }
+
+    public function clienteNoVip(){
+        return $this->belongsTo(ClienteNoVip::class, 'id_cliente_no_vip');
+    }
+
+
+
+
 }

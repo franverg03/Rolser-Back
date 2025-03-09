@@ -111,20 +111,21 @@
                 alt="">
             <button class="boton-comercial-cliente">Cliente</button>
             <div class="div-menu-grande-comercial">
-                <a href="{{ route('comercial.home')}}" class="boton-menu-sel-comercial">Home</a>
-                <a href="{{ route('comercial.clientes')}}" class="boton-menu-noSel-comercial">Clientes</a>
-                <a href="{{ route('comercial.catalogos')}}" class="boton-menu-noSel-comercial">Catálogos</a>
-                <a href="{{ route('comercial.facturas')}}" class="boton-menu-noSel-comercial">Facturas</a>
-                <a href="{{ route('comercial.pedidos')}}" class="boton-menu-noSel-comercial">Pedidos</a>
+                <a href="{{ route('comercial.home') }}" class="boton-menu-sel-comercial">Home</a>
+                <a href="{{ route('comercial.clientes') }}" class="boton-menu-noSel-comercial">Clientes</a>
+                <a href="{{ route('404') }}" class="boton-menu-noSel-comercial">Catálogos</a>
+                <a href="{{ route('comercial.facturas') }}" class="boton-menu-noSel-comercial">Facturas</a>
+                <a href="{{ route('comercial.pedidos') }}" class="boton-menu-noSel-comercial">Pedidos</a>
             </div>
             <div class="caja-info-usuario-comercial-logout">
                 <div class="pl-4 caja-info-usuario-comercial">
-                    <h3 class="usuario-nombre-comercial"></h3>
-                    <p class="info-usuario-comercial">Autenticado como: Comercial</p>
-                    <p class="info-usuario-comercial">Fecha: 11/02/2025</p>
+                    <h3 class="usuario-nombre-comercial">{{ Auth::user()->comercial->comercial_nombre }}
+                        {{ Auth::user()->comercial->comercial_apellidos }}</h3>
+                    <p class="info-usuario-comercial">Autenticado como: {{ Auth::user()->usuario_rol }}</p>
+                    <p class="info-usuario-comercial">Fecha: {{ now()->format('d/m/Y') }}</p>
                 </div>
                 <form action="{{ route('logout') }}" method="POST">
-                    {{ csrf_field()}}
+                    {{ csrf_field() }}
                     <button type="submit" class="boton-logout-comercial d-flex">Cerrar&nbsp;sesión</button>
                 </form>
             </div>
@@ -143,7 +144,7 @@
 
         </div>
     </div>
-    <script src="/js/logicaMenu.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 
 </html>
