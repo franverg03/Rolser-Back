@@ -16,8 +16,27 @@ use App\Http\Controllers\API\PedidoController;
 use App\Http\Controllers\API\ProductoController;
 use App\Http\Controllers\API\TarifaController;
 use App\Http\Controllers\API\UserController;
+use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 
+Route::middleware('auth:sanctum')->post('/logout', function (Request $request) {
+    // Eliminar el token de la sesión
+    $request->user()->currentAccessToken()->delete();
+
+    // Eliminar la cookie con el token
+    return response()->json(['message' => 'Logged out successfully'])
+                     ->cookie('token', '', -1);  // Vaciar la cookie 'token'
+});
+
+Route::middleware('auth:sanctum')->get('/details', function (Request $request) {
+    return response()->json($request->user());
+});
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::post('/login', [UserController::class, 'login']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();

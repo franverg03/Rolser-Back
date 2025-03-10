@@ -103,17 +103,35 @@ class UserController extends Controller
         }
     }
 
-    public function login()
+    public function login(Request $request)
     {
-        if (Auth::attempt(['usuario_nombre' => request('usuario_nombre'), 'password' => request('password')])) {
-            $user = Auth::user();
-            $success['token'] = $user->createToken('MyApp')->plainTextToken;
+        // Validación de los campos del formulario
+        $request->validate([
+            'usuario_nombre' => 'required|string',
+            'password' => 'required|string',
+        ]);
 
-            return response()->json(['success' => $success], 200);
+        if (Auth::attempt(['usuario_nombre' => $request->usuario_nombre, 'password' => $request->password])) {
+            $user = Auth::user();
+
+            $token = $user->createToken('MyApp')->plainTextToken;
+
+            // Se devuelven los datos del usuario y el token
+            return response()->json([
+                'success' => true,
+                'message' => 'Login exitoso',
+                'user' => [
+                    'id' => $user->id,
+                    'usuario_nombre' => $user->usuario_nombre,
+                    'usuario_rol' => $user->usuario_rol, // Asegura que se está enviando
+                ],
+                'token' => $token
+            ])->cookie('token', $token, 60, '/', null, true, true); // Se guarda el token en una cookie httpOnly
         } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
     }
+
 
     public function details()
     {
