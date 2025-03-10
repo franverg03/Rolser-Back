@@ -116,7 +116,7 @@
             <div class="div-menu-grande-comercial">
                 <a href="{{ route('comercial.home') }}" class="boton-menu-noSel-comercial">Home</a>
                 <a href="{{ route('comercial.clientes') }}" class="boton-menu-sel-comercial">Clientes</a>
-                <a href="{{ route('404') }}" class="boton-menu-noSel-comercial">Catálogos</a>
+                <a href="{{ route('errors.404') }}" class="boton-menu-noSel-comercial">Catálogos</a>
                 <a href="{{ route('comercial.facturas') }}" class="boton-menu-noSel-comercial">Facturas</a>
                 <a href="{{ route('comercial.pedidos') }}" class="boton-menu-noSel-comercial">Pedidos</a>
             </div>
@@ -141,7 +141,7 @@
         {{-- Breadcrumb contenedor --}}
         <div class="contenedor-breadcrump-comercial">
             <div class="maquetacion-breadcrump-comercial flex flex-row">
-                <a class="estilo-breadcrump-comercial" href="/homeComercial">Home</a>
+                <a class="estilo-breadcrump-comercial" href="{{route('comercial.home')}}">Home</a>
                 <svg class="mt-0.5 ml-1 mr-1" width="20" height="20" viewBox="0 0 15 15" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -149,7 +149,7 @@
                         stroke="#90242A" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
                         stroke-linejoin="round" />
                 </svg>
-                <a class="estilo-breadcrump-comercial" href="/clientesComercial">Clientes</a>
+                <a class="estilo-breadcrump-comercial" href="{{route('comercial.clientes')}}">Clientes</a>
             </div>
         </div>
         {{-- Contenedor crud datatable paginacion --}}
@@ -174,11 +174,11 @@
             </div>
 
             <div id="datatable" class="flex  justify-start ml-32">
-                <div id="tabla-clientes-noVip" class="w-[800px]">
+                <div id="tabla-clientes-noVip" class="w-[900px]">
                     @livewire('tabla-clientes-tablet')
                 </div>
 
-                <div id="tabla-clientes-vip" class="w-[800px] hidden">
+                <div id="tabla-clientes-vip" class="w-[900px] hidden">
                     @livewire('tabla-clientes-vip-tablet')
                 </div>
             </div>

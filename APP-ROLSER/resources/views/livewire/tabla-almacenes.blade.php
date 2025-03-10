@@ -2,7 +2,7 @@
     <div>
         <!-- Barra de búsqueda -->
         <div class="flex items-center justify-between">
-            <div class="relative">
+            <div class="relative ml-28">
                 {{-- Icono de lupa --}}
                 <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -15,13 +15,12 @@
 
                 {{-- Input de búsqueda --}}
                 <input wire:model.live.debounce.100ms="search" type="text"
-                    class="bg-white bordeRolser text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2 pl-10 pr-10 borde-focus"
-                    placeholder="Buscar almacen..." id="searchInput">
+                    class="bg-white bordeRolser text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full pl-10 pr-10 p-2"
+                    placeholder="Buscar Almacen..." id="searchInput">
 
                 {{-- Icono de "X" para limpiar el input --}}
                 @if ($search)
-                    <div class="absolute inset-y-0 right-3 flex items-center cursor-pointer"
-                        wire:click.prevent="clearSearch">
+                    <div class="absolute inset-y-0 right-3 flex items-center cursor-pointer" wire:click="clearSearch">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none">
                             <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F" stroke-linecap="round" />
@@ -47,8 +46,8 @@
 
         <!-- Contenedor Scrolleable -->
         <div>
-            <div class="contenedorTablas overflow-hidden rounded-t-lg rounded-b-lg">
-                <table class="w-full text-sm text-left bg-white border-collapse bordeRolser">
+            <div class="contenedorTablas overflow-hidden">
+                <table class="w-full text-sm ttext-center bg-white border-collapse bordeRolser">
                     <thead class="text-xs uppercase color-cabecera-tabla-admin text-white font-bold">
                         <tr>
                             <th class="px-4 py-3 border-b bordeRolser">Nombre</th>

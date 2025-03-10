@@ -1,0 +1,52 @@
+.estilo4 {
+    color: #AF272F;
+    text-align: center;
+    font-family: "Montserrat";
+    font-size: 300px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.textoArriba{
+    color: #AF272F;
+    text-align: center;
+    font-family: "Montserrat";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.textoAbajo{
+    color: #AF272F;
+    text-align: center;
+    font-family: "Montserrat";
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.volverHome{
+    /*Tamaño*/
+    width: 180px;
+    height: 50px;
+    border-radius: 12px;
+    margin-top: 40px;
+    /*Para centrar el botón*/
+    /*Color*/
+    background: #CF333C;
+    color: #FFFFFF;
+    /*Tipografía*/
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    /*Efecto*/
+    cursor: pointer;
+}
+
+.volverHome:hover {
+    transition: 0.3s ease;
+    background-color: #af272f;
+}

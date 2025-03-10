@@ -12,6 +12,8 @@ class TablaClientes extends Component
 {
     use WithPagination;
 
+
+    protected $paginationTheme='tailwind';
     public $search = ''; //Input de la tabla
     public $perPage = 10; // Siempre mostrar 10 registros por página
 
@@ -36,6 +38,11 @@ class TablaClientes extends Component
 
 
 
+
+    public function updatingSearch()
+    {
+        $this->resetPage(); // Resetear la paginación cuando se escribe en el input
+    }
 
     /**
      * Método para limpiar el campo de búsqueda
@@ -178,7 +185,7 @@ class TablaClientes extends Component
         $cliente->cliente_direccion_empresa = $this->direccion_cte;
         $cliente->cliente_cuenta_bancaria = $this->cuenta_bancaria;
         $cliente->id_usuario = $user->id_usuario;
-        $cliente->id_comercial =Auth::user()->comercial->id_comercial;
+        $cliente->id_comercial =$this->id_comercial;
         $cliente->save();
         $this->cerrarModalAnyadir();
     }

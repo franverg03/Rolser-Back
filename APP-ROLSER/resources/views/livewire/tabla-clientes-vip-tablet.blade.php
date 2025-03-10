@@ -16,7 +16,7 @@
                 {{-- Input de búsqueda --}}
                 <input wire:model.live.debounce.100ms="search" type="text"
                     class="bg-white bordeRolser text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2 pl-10 pr-10 borde-focus"
-                    placeholder="Buscar administrativo..." id="searchInput">
+                    placeholder="Buscar Cliente Vip..." id="searchInput">
 
                 {{-- Icono de "X" para limpiar el input --}}
                 @if ($search)
@@ -201,16 +201,6 @@
                                         placeholder="Nº de Cuenta" readonly />
                                 </div>
                             </div>
-                            <div class="flex flex-row mt-4">
-                                <div class="flex flex-col">
-                                    <div class="flex">
-                                        <label class="labelsModal" for="">Comercial:</label>
-                                    </div>
-                                    <input wire:model="id_comercial" type="text" id="searchInput"
-                                        class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                        placeholder="Dni Comercial" readonly />
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -303,14 +293,6 @@
                                 </div>
                             </div>
                             <div class="flex flex-row mt-4">
-                                <div class="flex flex-col">
-                                    <div class="flex">
-                                        <label class="labelsModal" for="">Comercial:</label>
-                                    </div>
-                                    <input wire:model="id_comercial" type="text" id="searchInput"
-                                        class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                        placeholder="Dni Comercial" />
-                                </div>
                                 <button wire:click.prevent="abrirModalConfirmacionAnyadir" type="button"
                                     class="botonEliminar margen-boton-anyadir">Añadir cliente Vip<svg width="18"
                                         height="18" viewBox="0 0 18 20" fill="none"

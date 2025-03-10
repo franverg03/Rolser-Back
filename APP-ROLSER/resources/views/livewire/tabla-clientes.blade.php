@@ -13,19 +13,18 @@
 
             {{-- Input de búsqueda --}}
             <input wire:model.live.debounce.100ms="search" type="text"
-                class="bg-white bordeRolser text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2 pl-10 pr-10 borde-focus"
+                class="bg-white bordeRolser text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full pl-10 pr-10 p-2"
                 placeholder="Buscar Cliente..." id="searchInput">
 
             {{-- Icono de "X" para limpiar el input --}}
             @if ($search)
-                <div class="absolute inset-y-0 right-3 flex items-center cursor-pointer"
-                    wire:click.prevent="clearSearch">
+                <div class="absolute inset-y-0 right-3 flex items-center cursor-pointer" wire:click="clearSearch">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none">
                         <path d="M14.3569 14.3573L9.64285 9.64328" stroke="#AF272F" stroke-linecap="round" />
                         <path d="M9.6431 14.3573L14.3571 9.64328" stroke="#AF272F" stroke-linecap="round" />
                         <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M7.28595 16.7164C9.88945 19.3198 14.1105 19.3198 16.714 16.7164C19.3175 14.1129 19.3175 9.89176 16.714 7.28826C4.68246 9.89176 4.68246 14.1129 7.28595 16.7164Z"
+                            d="M7.28595 16.7164C9.88945 19.3198 14.1105 19.3198 16.714 16.7164C19.3175 14.1129 19.3175 9.89176 16.714 7.28826C14.1105 4.68477 9.88945 4.68477 7.28595 7.28826C4.68246 9.89176 4.68246 14.1129 7.28595 16.7164Z"
                             stroke="#AF272F" />
                     </svg>
                 </div>
@@ -64,7 +63,7 @@
                         <td class="px-4">
                             <div class="flex flex-row justify-center">
                                 <button type="button" id="mostrarModalModificar" class="botonCrud mr-3 mb-2"
-                                    wire:click.prevent.prevent="abrirModalModificar({{ $cliente->id_cliente_no_vip }})">Modificar
+                                    wire:click.prevent="abrirModalModificar({{ $cliente->id_cliente_no_vip }})">Modificar
                                     <svg width="15" height="15" viewBox="0 0 13 13" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path

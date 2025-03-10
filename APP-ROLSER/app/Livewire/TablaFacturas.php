@@ -28,7 +28,7 @@ class TablaFacturas extends Component
 
     private function borrarValoresCampos()
     {
-        $this->id_comercial = '';
+        $this->id_factura = '';
         $this->factura_importe_total = '';
         $this->id_pedido = '';
         $this->id_cliente_no_vip = '';
