@@ -26,6 +26,7 @@ class TablaComerciales extends Component
     public $comercial_zona;
     public $id_usuario;
 
+    public $modalMostrar=false;
     public $modalAnyadir = false;
     public $modalModificar = false;
     public $modalEliminar = false;
@@ -45,6 +46,28 @@ class TablaComerciales extends Component
         $this->comercial_zona = '';
         $this->id_usuario = '';
 
+    }
+
+    public function abrirModalMostrar($comercial_id){
+        $comercial = Comercial::find($comercial_id);
+
+        if ($comercial) {
+            $this->id_comercial = $comercial->id_comercial;
+            $this->comercial_nombre = $comercial->comercial_nombre;
+            $this->comercial_apellidos = $comercial->comercial_apellidos;
+            $this->comercial_dni = $comercial->comercial_dni;
+            $this->comercial_direccion = $comercial->comercial_direccion;
+            $this->comercial_cp = $comercial->comercial_cp;
+            $this->comercial_telefono = $comercial->comercial_telefono;
+            $this->comercial_email = $comercial->comercial_email;
+            $this->comercial_zona = $comercial->comercial_zona;
+            $this->id_usuario = $comercial->id_usuario;
+        }
+        $this->modalMostrar=true;
+    }
+
+    public function cerrarModalMostrar(){
+        $this->modalMostrar=false;
     }
 
     public function abrirModalAnyadir()

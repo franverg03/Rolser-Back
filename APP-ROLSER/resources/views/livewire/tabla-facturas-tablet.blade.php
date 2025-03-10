@@ -33,47 +33,43 @@
                     </div>
                 @endif
             </div>
-            {{-- Añadir --}}
-            <button type="button" class="botonSecundario" wire:click.prevent="abrirModalAnyadir">Añadir Almacén<svg
-                    width="26" height="28" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4.5 9.69531H13.5" stroke="#af272f" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M9 14.4697V4.92969" stroke="#af272f" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg></button>
         </div>
 
 
 
         <!-- Contenedor Scrolleable -->
         <div>
-            <div class="contenedorTablas overflow-hidden rounded-t-lg rounded-b-lg">
+            <div class="max-h-[400px] overflow-y-auto pr-2  w-[900px]">
                 <table class="w-full text-sm text-left bg-white border-collapse bordeRolser">
                     <thead class="text-xs uppercase color-cabecera-tabla-admin text-white font-bold">
                         <tr>
-                            <th class="px-4 py-3 border-b bordeRolser">Nombre</th>
-                            <th class="px-4 py-3 border-b bordeRolser">Capacidad</th>
-                            <th class="px-4 py-3 border-b bordeRolser">Direccion</th>
-                            <th class="px-4 py-3 border-b bordeRolser">Localidad</th>
-                            <th class="px-4 py-3 border-b bordeRolser">Acción</th>
+                            <th class="px-4 py-3 border-b bordeRolser">Pedido</th>
+                            <th class="px-4 py-3 border-b bordeRolser">Importe</th>
+                            <th class="px-4 py-3 border-b bordeRolser">Cliente</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($almacenes as $almacen)
+                        @forelse ($facturasT as $factura)
                             <tr class="border-b bordeRolser">
-                                <td wire:click.prevent="abrirModalMostrar({{ $almacen->id_almacen }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">
-                                    {{ $almacen->almacen_nombre }}</td>
-                                <td wire:click.prevent="abrirModalMostrar({{ $almacen->id_almacen }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">
-                                    {{ $almacen->almacen_capacidad }}</td>
-                                <td wire:click.prevent="abrirModalMostrar({{ $almacen->id_almacen }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">
-                                    {{ $almacen->almacen_ubicacion }}</td>
-                                <td wire:click.prevent="abrirModalMostrar({{ $almacen->id_almacen }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">
-                                    {{ $almacen->almacen_localidad }}
-                                    {{ $almacen->almacen_codigo_postal }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $factura->id_factura }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $factura->id_pedido}}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $factura->id_factura }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $factura->factura_importe_total }}</td>
+                                @if ($factura->id_cliente_no_vip)
+                                    <td wire:click.prevent="abrirModalMostrar({{ $factura->id_factura }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                        {{ $factura->clienteNoVip->cliente_empresa }}
+                                    </td>
+                                @else
+                                    <td wire:click.prevent="abrirModalMostrar({{ $factura->id_factura }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                        {{ $factura->clienteVip->cliente_empresa }}
+                                    </td>
+                                @endif
                                 <td>
                                     <div class="flex flex-row">
                                         <button type="button" id="mostrarModalModificar" class="botonCrud mr-3 mb-2"
-                                            wire:click.prevent="abrirModalModificar({{ $almacen->id_almacen }})">Modificar
+                                            wire:click.prevent="abrirModalModificar({{  $factura->id_factura  }})">Descargar
                                             <svg width="15" height="15" viewBox="0 0 13 13" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -91,7 +87,7 @@
                                         </button>
 
                                         <button class="botonCrud"
-                                            wire:click.prevent="abrirModalEliminar({{ $almacen->id_almacen }})">Eliminar<svg
+                                            wire:click.prevent="abrirModalEliminar({{  $factura->id_factura  }})">Enviar<svg
                                                 width="20" height="14" viewBox="0 0 24 19" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M6 9.49219H18" stroke="white" stroke-width="3.5"
@@ -113,68 +109,44 @@
         </div>
     </div>
 
-    <div class="py-4 px-3 flex justify-center paginacion-custom">
-        <div class="inline-flex rounded-md shadow-sm">
-            {{ $almacenes->links('vendor.pagination.tailwind') }}
-        </div>
-    </div>
-
     @if ($modalMostrar)
-        <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-            <!-- Fondo oscuro -->
-            <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
-            <!-- Contenedor del modal -->
-            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-                <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                    <div
-                        class="relative transform overflow-hidden cajaModalModificar text-center rounded-lg bg-white shadow-xl transition-all">
-                        <div class="cabeceraModalModificar flex flex-row justify-between">
-                            <h3 class="estilosTituloModalModificar">Mostrar Almacén</h3>
-                            <svg wire:click.prevent="cerrarModalMostrar" class="hoverX" width="55"
-                                height="55" viewBox="0 0 35 35" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
+    <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!-- Fondo oscuro -->
+        <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+        <!-- Contenedor del modal -->
+        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div
+                    class="relative transform overflow-hidden cajaModalModificarTablet text-center rounded-lg bg-white shadow-xl transition-all">
+                    <div class="cabeceraModalModificar flex flex-row justify-between">
+                        <h3 class="estilosTituloModalModificar">Mostrar Factura</h3>
+                        <svg wire:click.prevent="cerrarModalMostrar" class="hoverX" width="55" height="55" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col cajaSeccionesModalMod">
+                        <div class="flex">
+                            <h5 class="seccionesModalModificar">Datos de la Factura:</h5>
                         </div>
-                        <div class="flex flex-col cajaSeccionesModalMod">
-                            <div class="flex">
-                                <h5 class="seccionesModalModificar">Datos del Almacén:</h5>
-                            </div>
-                            <div class="flex flex-row">
-                                <input wire:model="almacen_nombre" type="text" id="searchInput"
-                                    class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Nombre" readonly />
-                                <input wire:model="almacen_ubicacion" type="text" id="searchInput"
-                                    class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Direccion" readonly />
-                            </div>
+                        <div class="flex flex-row">
+                            <input wire:model="id_pedido" type="text" class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="ID Pedido" readonly />
+                            <input wire:model="factura_importe_total" type="text" class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Importe Total" readonly />
                         </div>
-                        <div class="flex flex-col cajaSeccionesModalMod">
-                            <div class="flex flex-row">
-                                <input wire:model="almacen_localidad" type="text" id="searchInput"
-                                    class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Localidad" readonly />
-                                <input wire:model="almacen_codigo_postal" type="text" id="searchInput"
-                                    class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="CP" readonly />
-                            </div>
+                    </div>
+                    <div class="flex flex-col cajaSeccionesModalMod">
+                        <div class="flex flex-row">
+                            <input wire:model="id_cliente_no_vip" type="text" class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="ID Cliente No VIP" readonly />
+                            <input wire:model="id_cliente_vip" type="text" class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="ID Cliente VIP" readonly />
                         </div>
-                        <div class="flex flex-col cajaSeccionesModalMod">
-                            <div class="flex flex-row">
-                                <div class="flex flex-col">
-                                    <input wire:model="almacen_capacidad" type="text" id="searchInput"
-                                        class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                        placeholder="Capacidad" readonly />
-                                </div>
-
-                            </div>
+                    </div>
+                    <div class="flex flex-col cajaSeccionesModalMod">
+                        <div class="flex flex-row">
+                            <input wire:model="id_comercial" type="text" class="tamanyoInputMedioGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="ID Comercial" readonly />
                         </div>
                     </div>
                 </div>
             </div>
-    @endif
-
+        </div>
     @if ($modalAnyadir)
         <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <!-- Fondo oscuro -->
@@ -183,7 +155,7 @@
             <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
                 <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                     <div
-                        class="relative transform overflow-hidden cajaModalModificar text-center rounded-lg bg-white shadow-xl transition-all">
+                        class="relative transform overflow-hidden cajaModalModificarTablet text-center rounded-lg bg-white shadow-xl transition-all">
                         <div class="cabeceraModalModificar flex flex-row justify-between">
                             <h3 class="estilosTituloModalModificar">Nuevo Almacén</h3>
                             <svg wire:click.prevent="cerrarModalAnyadir" class="hoverX" width="55"
@@ -278,7 +250,7 @@
             <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
                 <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                     <div
-                        class="relative transform overflow-hidden cajaModalModificar text-center rounded-lg bg-white shadow-xl transition-all">
+                        class="relative transform overflow-hidden cajaModalModificarTablet text-center rounded-lg bg-white shadow-xl transition-all">
                         <div class="cabeceraModalModificar flex flex-row justify-between">
                             <h3 class="estilosTituloModalModificar">Modificar Almacén</h3>
                             <svg wire:click.prevent="cerrarModalModificar" class="hoverX" width="55"

@@ -12,7 +12,7 @@ class TablaClientesTablet extends Component
 {
     public $search = '';
     // public $clientes = [];
-    public $id_cte_vip;
+    public $id_cte_no_vip;
     public $nombre_cte;
     public $apellidos_cte;
     public $telefono_cte;
@@ -23,6 +23,8 @@ class TablaClientesTablet extends Component
     public $cuenta_bancaria;
     public $id_usuario;
     public $id_comercial;
+
+    public $modalMostrar=false;
     public $modalAnyadir = false;
     public $modalModificar = false;
     public $modalEliminar = false;
@@ -39,47 +41,9 @@ class TablaClientesTablet extends Component
         $this->search = '';
     }
 
-    // public function modificarCliente()
-    // {
-    //     if ($this->clientesSeleccionados) {
-
-    //         $id = $this->clientesSeleccionados[0];
-    //         $cte=ClienteNoVip::findOrFail($id);
-    //         $this->clientesSeleccionados=[];
-    //         dd($cte);
-    //         return view('livewire.modal-modificar', compact('cte'));
-    //     } else {
-    //         return back()->withErrors('Debes seleccionar solo un cliente');
-    //     }
-    // }
-
-    // public function mount(){
-    //     $this->clientes=ClienteNoVip::where('id_usuario', Auth::user()->id_usuario)->get();
-    // }
-
-
-
-    /**
-     * Método para renderizar la vista con la lista de clientes
-     */
-
-    public function render()
-    {
-
-        // Obtener todos los clientes filtrados sin paginación
-        $clientesT = ClienteNoVip::where('id_comercial', 'like', '' . $this->search . '%')
-            ->orWhere('cliente_apellidos_representante', 'like', '%' . $this->search . '%')
-            ->orWhere('cliente_telefono_representante', 'like', '%' . $this->search . '%')
-            ->orWhere('cliente_empresa', 'like', '%' . $this->search . '%')
-            ->orWhere('cliente_nombre_representante', 'like', '%' . $this->search . '%')
-            ->get(); // Recupera todos los registros sin paginar
-
-        return view('livewire.tabla-clientes-tablet', compact('clientesT'));
-    }
-
     private function borrarValoresCampos()
     {
-        $this->id_cte_vip = '';
+        $this->id_cte_no_vip = '';
         $this->nombre_cte = '';
         $this->apellidos_cte = '';
         $this->telefono_cte = '';
@@ -92,6 +56,33 @@ class TablaClientesTablet extends Component
         $this->id_comercial = '';
     }
 
+    public function abrirModalMostrar($cliente_id){
+
+        $cliente = ClienteNoVip::find($cliente_id);
+
+        if ($cliente) {
+            $this->id_cte_no_vip = $cliente->id_cliente_no_vip;
+            $this->empresa_cte = $cliente->cliente_empresa;
+            $this->nif_cte = $cliente->cliente_nif;
+            $this->nombre_cte = $cliente->cliente_nombre_representante;
+            $this->apellidos_cte = $cliente->cliente_apellidos_representante;
+            $this->telefono_cte = $cliente->cliente_telefono_representante;
+            $this->email_cte = $cliente->cliente_email_representante;
+            $this->direccion_cte = $cliente->cliente_direccion_empresa;
+            $this->cuenta_bancaria = $cliente->cliente_cuenta_bancaria;
+            $this->id_usuario = $cliente->id_usuario;
+            $this->id_comercial = $cliente->id_comercial;
+        }
+
+
+        $this->modalMostrar=true;
+}
+
+    public function cerrarModalMostrar(){
+        $this->modalMostrar=false;
+    }
+
+
     public function abrirModalAnyadir()
     {
         $this->borrarValoresCampos();
@@ -103,7 +94,7 @@ class TablaClientesTablet extends Component
         $cliente = ClienteNoVip::find($cliente_id);
 
         if ($cliente) {
-            $this->id_cte_vip = $cliente->id_cliente_vip;
+            $this->id_cte_no_vip = $cliente->id_cliente_no_vip;
             $this->empresa_cte = $cliente->cliente_empresa;
             $this->nif_cte = $cliente->cliente_nif;
             $this->nombre_cte = $cliente->cliente_nombre_representante;
@@ -122,7 +113,7 @@ class TablaClientesTablet extends Component
 
     public function abrirModalEliminar($cliente_id)
     {
-        $this->id_cte_vip=$cliente_id;
+        $this->id_cte_no_vip=$cliente_id;
         $this->modalEliminar = true;
     }
 
@@ -168,7 +159,7 @@ class TablaClientesTablet extends Component
         $user->usuario_nombre = $this->nombre_cte;
         $user->password = bcrypt('123456789');
         $user->usuario_activo= 1;
-        $user->usuario_rol='clienteVip';
+        $user->usuario_rol='clienteNoVip';
         $user->id_administrativo=Auth::user()->id_administrativo;
         $user->save();
 
@@ -190,7 +181,7 @@ class TablaClientesTablet extends Component
 
     public function modificarCliente()
     {
-        $cliente = ClienteNoVip::find($this->id_cte_vip);
+        $cliente = ClienteNoVip::find($this->id_cte_no_vip);
         $cliente->cliente_empresa = $this->empresa_cte;
         $cliente->cliente_nif = $this->nif_cte;
         $cliente->cliente_nombre_representante = $this->nombre_cte;
@@ -205,8 +196,23 @@ class TablaClientesTablet extends Component
 
     public function eliminarCliente()
     {
-        $cliente = ClienteNoVip::findOrFail($this->id_cte_vip);
+        $cliente = ClienteNoVip::findOrFail($this->id_cte_no_vip);
         $cliente->delete();
         $this->cerrarModalEliminar();
     }
+
+    public function render()
+    {
+        $clientesT = ClienteNoVip::where('id_comercial', Auth::user()->comercial->id_comercial)
+            ->where(function ($query) {
+                $query->where('cliente_nombre_representante', 'like', '%' . $this->search . '%')
+                    ->orWhere('cliente_apellidos_representante', 'like', '%' . $this->search . '%')
+                    ->orWhere('cliente_telefono_representante', 'like', '%' . $this->search . '%')
+                    ->orWhere('cliente_empresa', 'like', '%' . $this->search . '%');
+            })
+            ->get();
+
+        return view('livewire.tabla-clientes-tablet', compact('clientesT'));
+    }
+
 }

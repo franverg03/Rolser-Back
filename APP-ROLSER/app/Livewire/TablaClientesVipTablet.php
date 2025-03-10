@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class TablaClientesVipTablet extends Component
 {
     public $search = '';
-    public $id_cte_no_vip;
+    public $id_cte_vip;
     public $nombre_cte;
     public $apellidos_cte;
     public $telefono_cte;
@@ -21,15 +21,54 @@ class TablaClientesVipTablet extends Component
     public $cuenta_bancaria;
     public $id_usuario;
     public $id_comercial;
+    public $modalMostrar = false;
     public $modalAnyadir = false;
     public $modalModificar = false;
     public $modalEliminar = false;
     public $modalConfirmacionAnyadir = false;
     public $modalConfirmacionModificar = false;
 
+
+
+    /**
+     * Método para limpiar el campo de búsqueda
+     */
+    public function clearSearch()
+    {
+        $this->search = '';
+    }
+
+    public function abrirModalMostrar($cliente_id)
+    {
+
+        $cliente = ClienteVip::find($cliente_id);
+
+        if ($cliente) {
+            $this->id_cte_vip = $cliente->id_cliente_vip;
+            $this->empresa_cte = $cliente->cliente_empresa;
+            $this->nif_cte = $cliente->cliente_nif;
+            $this->nombre_cte = $cliente->cliente_nombre_representante;
+            $this->apellidos_cte = $cliente->cliente_apellidos_representante;
+            $this->telefono_cte = $cliente->cliente_telefono_representante;
+            $this->email_cte = $cliente->cliente_email_representante;
+            $this->direccion_cte = $cliente->cliente_direccion_empresa;
+            $this->cuenta_bancaria = $cliente->cliente_cuenta_bancaria;
+            $this->id_usuario = $cliente->id_usuario;
+            $this->id_comercial = $cliente->id_comercial;
+        }
+
+
+        $this->modalMostrar = true;
+    }
+
+    public function cerrarModalMostrar()
+    {
+        $this->modalMostrar = false;
+    }
+
     private function borrarValoresCampos()
     {
-        $this->id_cte_no_vip = '';
+        $this->id_cte_vip = '';
         $this->nombre_cte = '';
         $this->apellidos_cte = '';
         $this->telefono_cte = '';
@@ -53,7 +92,7 @@ class TablaClientesVipTablet extends Component
         $cliente = ClienteVip::find($cliente_id);
 
         if ($cliente) {
-            $this->id_cte_no_vip = $cliente->id_cliente_no_vip;
+            $this->id_cte_vip = $cliente->id_cliente_vip;
             $this->empresa_cte = $cliente->cliente_empresa;
             $this->nif_cte = $cliente->cliente_nif;
             $this->nombre_cte = $cliente->cliente_nombre_representante;
@@ -72,7 +111,7 @@ class TablaClientesVipTablet extends Component
 
     public function abrirModalEliminar($cliente_id)
     {
-        $this->id_cte_no_vip=$cliente_id;
+        $this->id_cte_vip = $cliente_id;
         $this->modalEliminar = true;
     }
 
@@ -117,9 +156,9 @@ class TablaClientesVipTablet extends Component
         $user = new User();
         $user->usuario_nombre = $this->nombre_cte;
         $user->password = bcrypt('123456789');
-        $user->usuario_activo= 1;
-        $user->usuario_rol='clienteVip';
-        $user->id_administrativo=Auth::user()->id_administrativo;
+        $user->usuario_activo = 1;
+        $user->usuario_rol = 'clienteVip';
+        $user->id_administrativo = Auth::user()->id_administrativo;
         $user->save();
 
 
@@ -133,14 +172,14 @@ class TablaClientesVipTablet extends Component
         $cliente->cliente_direccion_empresa = $this->direccion_cte;
         $cliente->cliente_cuenta_bancaria = $this->cuenta_bancaria;
         $cliente->id_usuario = $user->id_usuario;
-        $cliente->id_comercial =Auth::user()->comercial->id_comercial;
+        $cliente->id_comercial = Auth::user()->comercial->id_comercial;
         $cliente->save();
         $this->cerrarModalAnyadir();
     }
 
     public function modificarCliente()
     {
-        $cliente = ClienteVip::find($this->id_cte_no_vip);
+        $cliente = ClienteVip::find($this->id_cte_vip);
         $cliente->cliente_empresa = $this->empresa_cte;
         $cliente->cliente_nif = $this->nif_cte;
         $cliente->cliente_nombre_representante = $this->nombre_cte;
@@ -155,31 +194,21 @@ class TablaClientesVipTablet extends Component
 
     public function eliminarCliente()
     {
-        $cliente = ClienteVip::findOrFail($this->id_cte_no_vip);
+        $cliente = ClienteVip::findOrFail($this->id_cte_vip);
         $cliente->delete();
         $this->cerrarModalEliminar();
     }
 
-
-    public function clearSearch()
-    {
-        $this->search = ''; // Borra la búsqueda
-    }
-
-    // public function updatingSearch()
-    // {
-    //     $this->resetPage(); // Resetear la paginación cuando se escribe en el input
-    // }
-
-
     public function render()
     {
-        // Obtener todos los clientes filtrados sin paginación
-        $clientesVipT = ClienteVip::where('cliente_nombre_representante', 'like', '%' . $this->search . '%')
-            ->orWhere('cliente_apellidos_representante', 'like', '%' . $this->search . '%')
-            ->orWhere('cliente_telefono_representante', 'like', '%' . $this->search . '%')
-            ->orWhere('cliente_empresa', 'like', '%' . $this->search . '%')
-            ->get(); // Recupera todos los registros sin paginar
+        $clientesVipT = ClienteVip::where('id_comercial', Auth::user()->comercial->id_comercial)
+            ->where(function ($query) {
+                $query->where('cliente_nombre_representante', 'like', '%' . $this->search . '%')
+                    ->orWhere('cliente_apellidos_representante', 'like', '%' . $this->search . '%')
+                    ->orWhere('cliente_telefono_representante', 'like', '%' . $this->search . '%')
+                    ->orWhere('cliente_empresa', 'like', '%' . $this->search . '%');
+            })
+            ->get();
 
         return view('livewire.tabla-clientes-vip-tablet', compact('clientesVipT'));
     }

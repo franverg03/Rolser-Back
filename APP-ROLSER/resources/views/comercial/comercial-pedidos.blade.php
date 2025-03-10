@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/styles/administrativo.css">
     <link rel="stylesheet" href="/styles/clientesComercial.css">
 
-    <title>ClientesComercialRolser</title>
+    <title>PedidosComercialRolser</title>
 </head>
 
 <body class="contenedor">
@@ -115,9 +115,9 @@
             <button class="boton-comercial-cliente">Cliente</button>
             <div class="div-menu-grande-comercial">
                 <a href="{{ route('comercial.home') }}" class="boton-menu-noSel-comercial">Home</a>
-                <a href="{{ route('comercial.clientes') }}" class="boton-menu-sel-comercial">Clientes</a>
+                <a href="{{ route('comercial.clientes') }}" class="boton-menu-noSel-comercial">Clientes</a>
                 <a href="{{ route('404') }}" class="boton-menu-noSel-comercial">Catálogos</a>
-                <a href="{{ route('comercial.facturas') }}" class="boton-menu-noSel-comercial">Facturas</a>
+                <a href="{{ route('comercial.facturas') }}" class="boton-menu-sel-comercial">Facturas</a>
                 <a href="{{ route('comercial.pedidos') }}" class="boton-menu-noSel-comercial">Pedidos</a>
             </div>
 
@@ -155,31 +155,9 @@
         {{-- Contenedor crud datatable paginacion --}}
         <div>
             <div class="flex"></div>
-            <div class="flex flex-col">
-                <div class="flex flex-col justify-center">
-                    {{-- Navegación entre datatables Clientes VIP, Clientes No VIP --}}
-                    <div class="navegacion-diferentes-usuarios">
-                        <div class="contenedor-navegacion-usuarios flex flex-row">
-                            <button id="boton-efecto-active-cNoVip"
-                                class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Clientes
-                                <span class="linea-blanca"></span><span id="linea-roja-cNoVip"
-                                    class="linea-roja-cVIP"></span></button>
-                            <button id="boton-efecto-active-cVIP"
-                                class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Clientes
-                                VIP<span class="linea-blanca"></span><span id="linea-roja-cVip"
-                                    class="linea-roja-cli"></span></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div id="datatable" class="flex  justify-start ml-32">
                 <div id="tabla-clientes-noVip" class="w-[800px]">
-                    @livewire('tabla-clientes-tablet')
-                </div>
-
-                <div id="tabla-clientes-vip" class="w-[800px] hidden">
-                    @livewire('tabla-clientes-vip-tablet')
+                    @livewire('tabla-pedidos-tablet')
                 </div>
             </div>
         </div>

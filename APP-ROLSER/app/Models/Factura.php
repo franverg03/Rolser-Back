@@ -33,10 +33,14 @@ class Factura extends Model
     }
 
     public function clienteVip() {
-        return $this->belongsTo(ClienteVip::class, 'id_cliente_vip');
+        return $this->belongsTo(ClienteVip::class,'id_cliente_vip');
     }
 
-    public function clienteNoVip() {
+    public function clienteNoVip(){
         return $this->belongsTo(ClienteNoVip::class, 'id_cliente_no_vip');
     }
+
+
+
+
 }

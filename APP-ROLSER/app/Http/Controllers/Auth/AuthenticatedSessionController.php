@@ -8,7 +8,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use function Pest\Laravel\withCookie;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -24,54 +23,48 @@ class AuthenticatedSessionController extends Controller
      * Handle an incoming authentication request.
      */
     public function store(LoginRequest $request)
-    {
-        $request->validate([
-            'usuario_nombre' => ['required', 'string'],
-            'password' => ['required'],
-        ]);
-
-        if (Auth::attempt(['usuario_nombre' => $request->usuario_nombre, 'password' => $request->password])) {
-            $request->session()->regenerate();
-            $user = Auth::user();
-
-            // Si la solicitud viene de Angular (espera JSON)
-            if ($request->expectsJson()) {
-                return
-                response()->json([
-                    'message' => 'Login exitoso',
-                    'data' => [
-                        'userId' => $user->id,
-                        'role' => $user->usuario_rol,
-                        'token' => $user->createToken('auth_token')->plainTextToken,
-                    ]
-                    ->withCookie()
-                ], 200);
-            }
-
-            // Si la solicitud es desde Laravel Blade (redirecciones)
-            if ($user->usuario_rol === 'administrativo') {
-                return redirect()->route('administrativo.home');
-            } elseif ($user->usuario_rol === 'comercial') {
-                return redirect()->route('comercial.home');
-            } elseif ($user->usuario_rol === 'clienteVip') {
-                return redirect()->route('clienteVip.facturas');
-            }
-
-            return redirect()->route('dashboard'); // Redirección por defecto
-        }
-
-        // Si la solicitud es AJAX (Angular), devolver error JSON
+{
+    if (!Auth::attempt(['usuario_nombre' => $request->usuario_nombre, 'password' => $request->password])) {
+        // Manejo de error para JSON (Angular)
         if ($request->expectsJson()) {
             return response()->json([
                 'error' => 'Credenciales incorrectas'
             ], 422);
         }
 
-        // Si la solicitud es desde Laravel Blade, redirigir con error
+        // Manejo de error para Blade
         return back()->withErrors([
             'usuario_nombre' => __('Las credenciales proporcionadas no coinciden con nuestros registros.'),
         ]);
     }
+
+    // Usuario autenticado correctamente
+    $request->session()->regenerate();
+    $user = Auth::user();
+    $token = $user->createToken('auth_token')->plainTextToken;
+
+    // Respuesta JSON para Angular (almacenando el token en una cookie HttpOnly)
+    if ($request->expectsJson()) {
+        return response()->json([
+            'message' => 'Login exitoso',
+            'data' => [
+                'userId' => $user->id,
+                'role' => $user->usuario_rol,
+            ]
+        ], 200)->cookie('auth_token', $token, 60 * 24 * 7, '/', null, true, true);
+    }
+
+    // Redirecciones en Blade según el rol del usuario
+    if ($user->usuario_rol === 'administrativo') {
+        return redirect()->route('administrativo.home');
+    } elseif ($user->usuario_rol === 'comercial') {
+        return redirect()->route('comercial.home');
+    } elseif ($user->usuario_rol === 'clienteVip') {
+        return redirect()->route('clienteVip.facturas');
+    }
+
+    return redirect()->route('/ n'); // Redirección por defecto
+}
 
 
     /**

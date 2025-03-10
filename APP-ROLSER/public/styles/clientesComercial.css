@@ -417,9 +417,6 @@ table {
     background: #ffffff;
     /* Texto del botón */
     color: #af272f;
-    font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
     font-weight: 700;
     line-height: var(--sizes-xl, 16px);
     display: flex;

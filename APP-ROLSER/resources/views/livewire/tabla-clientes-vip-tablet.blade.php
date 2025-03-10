@@ -48,7 +48,7 @@
         <!-- Contenedor Scrolleable -->
         <div>
             <div class="max-h-[400px] overflow-y-auto pr-2  w-[900px]">
-                <table class="w-full text-sm text-left bg-white border-collapse bordeRolser tablaComercial">
+                <table class="w-full text-sm text-left bg-white border-collapse bordeRolser">
                     <thead class="text-xs uppercase text-white font-bold sticky top-0 colorFondoTablas">
                         <tr>
                             <th scope="col" class="px-4 py-3 text-center">Representante</th>
@@ -62,11 +62,19 @@
                     <tbody>
                         @forelse ($clientesVipT as $clienteVipT)
                             <tr class="border-b bordeRolser tamanyoCelda">
-                                <td class="px-4 py-3 text-center tipografia-contenido-tabla-administrativo">{{ $clienteVipT->cliente_nombre_representante }}
+                                <td wire:click.prevent="abrirModalMostrar({{ $clienteVipT->id_cliente_vip }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $clienteVipT->cliente_nombre_representante }}
                                     {{ $clienteVipT->cliente_apellidos_representante }}</td>
-                                <td class="px-4 py-3 text-center tipografia-contenido-tabla-administrativo">{{ $clienteVipT->cliente_empresa }}</td>
-                                <td class="px-4 py-3 text-center tipografia-contenido-tabla-administrativo">{{ $clienteVipT->cliente_nif }}</td>
-                                <td class="px-4 py-3 text-center tipografia-contenido-tabla-administrativo">{{ $clienteVipT->cliente_telefono_representante }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $clienteVipT->id_cliente_vip }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $clienteVipT->cliente_empresa }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $clienteVipT->id_cliente_vip }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $clienteVipT->cliente_nif }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $clienteVipT->id_cliente_vip }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $clienteVipT->cliente_telefono_representante }}</td>
                                 <td>
                                     <div class="flex flex-row">
                                         <button type="button" id="mostrarModalModificar" class="botonCrud mr-3 mb-2"
@@ -87,7 +95,8 @@
                                             </svg>
                                         </button>
 
-                                        <button class="botonCrud" wire:click.prevent="abrirModalEliminar({{$clienteVipT->id_cliente_vip}})">Eliminar<svg
+                                        <button class="botonCrud"
+                                            wire:click.prevent="abrirModalEliminar({{ $clienteVipT->id_cliente_vip }})">Eliminar<svg
                                                 width="20" height="14" viewBox="0 0 24 19" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M6 9.49219H18" stroke="white" stroke-width="3.5"
@@ -108,6 +117,107 @@
         </div>
     </div>
 
+    @if ($modalMostrar)
+        <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <!-- Fondo oscuro -->
+            <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+            <!-- Contenedor del modal -->
+            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                    <div
+                        class="relative transform overflow-hidden cajaModalModificarTablet text-center rounded-lg bg-white shadow-xl transition-all">
+                        <div class="cabeceraModalModificar flex flex-row justify-between">
+                            <h3 class="estilosTituloModalModificar">Mostrar cliente Vip</h3>
+                            <svg wire:click.prevent="cerrarModalMostrar" class="hoverX" width="55"
+                                height="55" viewBox="0 0 35 35" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Datos representante:</h5>
+                            </div>
+                            <div class="flex flex-row">
+                                <input wire:model="nombre_cte" type="text" id="searchInput"
+                                    class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Nombre" readonly />
+                                <input wire:model="apellidos_cte" type="text" id="searchInput"
+                                    class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Apellidos" readonly />
+                            </div>
+                        </div>
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Contacto:</h5>
+                            </div>
+                            <div class="flex flex-row">
+                                <input wire:model="telefono_cte" type="text" id="searchInput"
+                                    class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Ej: Tlf XXX-XXX-XXX" readonly />
+                                <input wire:model="email_cte" type="text" id="searchInput"
+                                    class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="correo@ejemplo.com" readonly />
+                            </div>
+                        </div>
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Datos facturación:</h5>
+                            </div>
+                            <div class="flex flex-row">
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">Empresa:</label>
+                                    </div>
+                                    <input wire:model="empresa_cte" type="text" id="searchInput"
+                                        class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Nombre de la empresa" readonly />
+                                </div>
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">Dirección:</label>
+                                    </div>
+                                    <input wire:model="direccion_cte" type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Dirección de la empresa" readonly />
+                                </div>
+                            </div>
+                            <div class="flex flex-row mt-4">
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">CIF:</label>
+                                    </div>
+                                    <input wire:model="nif_cte" type="text" id="searchInput"
+                                        class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="CIF" readonly />
+                                </div>
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">IBAN:</label>
+                                    </div>
+                                    <input wire:model="cuenta_bancaria" type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Nº de Cuenta" readonly />
+                                </div>
+                            </div>
+                            <div class="flex flex-row mt-4">
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">Comercial:</label>
+                                    </div>
+                                    <input wire:model="id_comercial" type="text" id="searchInput"
+                                        class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Dni Comercial" readonly />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
     @if ($modalAnyadir)
         <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <!-- Fondo oscuro -->
@@ -118,7 +228,7 @@
                     <div
                         class="relative transform overflow-hidden cajaModalModificarTablet text-center rounded-lg bg-white shadow-xl transition-all">
                         <div class="cabeceraModalModificar flex flex-row justify-between">
-                            <h3 class="estilosTituloModalModificar">Nuevo cliente</h3>
+                            <h3 class="estilosTituloModalModificar">Nuevo cliente Vip</h3>
                             <svg wire:click.prevent="cerrarModalAnyadir" class="hoverX" width="55"
                                 height="55" viewBox="0 0 35 35" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -202,7 +312,7 @@
                                         placeholder="Dni Comercial" />
                                 </div>
                                 <button wire:click.prevent="abrirModalConfirmacionAnyadir" type="button"
-                                    class="botonEliminar margen-boton-anyadir">Añadir cliente<svg width="18"
+                                    class="botonEliminar margen-boton-anyadir">Añadir cliente Vip<svg width="18"
                                         height="18" viewBox="0 0 18 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M4.5 9.69531H13.5" stroke="white" stroke-width="2"
@@ -229,12 +339,13 @@
                             class="relative transform overflow-hidden cajaConfi text-center w-[25%] rounded-lg bg-white shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                             <div class="cajaTxt mt-4">
                                 <h3 class="cabeceraConfi m-4">¿Estás seguro que quieres añadirlo?</h3>
-                                <h4 class="infoConfi">La siguiente acción creará un nuevo cliente.</h4>
+                                <h4 class="infoConfi">La siguiente acción creará un nuevo cliente vip.</h4>
                             </div>
                             <div class=" btnCaja flex flex-row">
-                                <button wire:click.prevent="cerrarModalConfirmacionAnyadir" id="cancelarModalConfirmacionAnyadirCNoVip"
+                                <button wire:click.prevent="cerrarModalConfirmacionAnyadir"
+                                    id="cancelarModalConfirmacionAnyadirVip"
                                     class="cancelConfi w-[50%]">Cancelar</button>
-                                <button wire:click.prevent="anyadirCliente" id="confirmarModalConfirmacionAnyadirCNoVip"
+                                <button wire:click.prevent="anyadirCliente" id="confirmarModalConfirmacionAnyadirVip"
                                     class="confirmConfi w-[50%]">Confirmar</button>
                             </div>
                         </div>
@@ -256,9 +367,9 @@
                         <div
                             class="relative transform overflow-hidden cajaModalModificarTablet text-center rounded-lg bg-white shadow-xl transition-all">
                             <div class="cabeceraModalModificar flex flex-row justify-between">
-                                <h3 class="estilosTituloModalModificar">Modificar cliente No VIP</h3>
+                                <h3 class="estilosTituloModalModificar">Modificar cliente VIP</h3>
                                 <svg wire:click.prevent="cerrarModalModificar" class="hoverX"
-                                    id="ocultarModificarCancelarCNoVip" width="55" height="55"
+                                    id="ocultarModificarCancelarVip" width="55" height="55"
                                     viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
                                         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -342,7 +453,7 @@
 
                                 <div class="flex flex-col cajaSeccionesModalMod ">
                                     <button wire:click.prevent="abrirModalConfirmacionModificar"
-                                        id="mostrarModalConfirmacionGuardarCNoVip" type="button"
+                                        id="mostrarModalConfirmacionGuardarVip" type="button"
                                         class="botonEliminar margen-boton-modificar ">
                                         Guardar
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -369,7 +480,7 @@
 
         @if ($modalConfirmacionModificar)
             <!-- Modal de Confirmación -->
-            <div id="modalConfirmacionGuardarCambiosCNoVip" class="fixed inset-0 z-10" aria-labelledby="modal-title"
+            <div id="modalConfirmacionGuardarCambiosVip" class="fixed inset-0 z-10" aria-labelledby="modal-title"
                 role="dialog" aria-modal="true">
                 <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
                 <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -383,12 +494,12 @@
                             </div>
                             <div class="btnCaja flex flex-row">
                                 <button wire:click.prevent="cerrarModalConfirmacionModificar"
-                                    id="cancelarModalConfirmacionGuardarCNoVip" type="button"
+                                    id="cancelarModalConfirmacionGuardarVip" type="button"
                                     class="cancelConfi w-[50%]">
                                     Cancelar
                                 </button>
                                 <button wire:click.prevent="modificarCliente"
-                                    id="confirmarModalConfirmacionGuardarCNoVip" type="submit"
+                                    id="confirmarModalConfirmacionGuardarVip" type="submit"
                                     class="confirmConfi w-[50%]">
                                     Confirmar
                                 </button>
@@ -414,13 +525,14 @@
 
                         <div class="cajaTxt mt-4">
                             <h3 class="cabeceraConfi m-4">¿Estás seguro que quieres eliminarlo?</h3>
-                            <h4 class="infoConfi">La siguiente acción eliminará al cliente seleccionado.
+                            <h4 class="infoConfi">La siguiente acción eliminará al cliente vip seleccionado.
                             </h4>
                         </div>
                         <div class=" btnCaja flex flex-row">
                             <button wire:click.prevent="cerrarModalEliminar"
                                 class="cancelConfi w-[50%]">Cancelar</button>
-                            <button wire:click.prevent="eliminarCliente" class="confirmConfi w-[50%]">Confirmar</button>
+                            <button wire:click.prevent="eliminarCliente"
+                                class="confirmConfi w-[50%]">Confirmar</button>
                         </div>
                     </div>
                 </div>

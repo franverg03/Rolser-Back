@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+        @vite('resources/css/app.css')
+        @vite('resources/js/app.js')
     <link rel="stylesheet" href="/styles/administrativo.css">
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
+
     <title>UsuariosAdministrativoRolser</title>
 </head>
 
@@ -163,15 +164,15 @@
                 <a href="{{ route('administrativo.tarifas') }}" class="boton-menu-noSel-administrativo">Tarifas</a>
             </div>
             <div class="caja-info-usuario-admin-logout">
-                <div class="pl-4 caja-info-usuario-admin">
-                    <h3 class="usuario-nombre-admin">{{ Auth::user()->administrativo->administrativo_nombre }}
+                <div class="pl-4 caja-info-usuario-administrativo">
+                    <h3 class="usuario-nombre-administrativo">{{ Auth::user()->administrativo->administrativo_nombre }}
                         {{ Auth::user()->administrativo->administrativo_apellidos }}</h3>
-                    <p class="info-usuario-admin">Autenticado como: {{ Auth::user()->usuario_rol }}</p>
-                    <p class="info-usuario-admin">Fecha: {{ now()->format('d/m/Y') }}</p>
+                    <p class="info-usuario-administrativo">Autenticado como: {{ Auth::user()->usuario_rol }}</p>
+                    <p class="info-usuario-administrativo">Fecha: {{ now()->format('d/m/Y') }}</p>
                 </div>
                 <form action="{{ route('logout') }}" method="POST">
                     {{ csrf_field() }}
-                    <button type="submit" class="boton-logout-comercial d-flex">Cerrar&nbsp;sesión</button>
+                    <button type="submit" class="boton-logout-administrativo d-flex">Cerrar&nbsp;sesión</button>
                 </form>
             </div>
         </div>
@@ -202,8 +203,7 @@
                         class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Administrativos<span
                             class="linea-blanca-grande"></span><span id="linea-roja-admin"
                             class="linea-roja-administrativos"></span></button>
-
-                            <button id="boton-efecto-active-comercial"
+                    <button id="boton-efecto-active-comercial"
                         class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Comerciales<span
                             class="linea-blanca"></span><span id="linea-roja-comer"
                             class="linea-roja-comerciales"></span></button>
@@ -212,17 +212,17 @@
         </div>
 
         <div id="datatable" class="flex  justify-start ml-32">
-            <div id="tabla-administrativos" class="w-[1000px]">
+            <div id="tabla-administrativos" class="w-[1200px]">
                 @livewire('tabla-administrativos')
             </div>
 
-            <div id="tabla-comerciales" class="w-[1000px] hidden">
+            <div id="tabla-comerciales" class="w-[1200px] hidden">
                 @livewire('tabla-comerciales')
             </div>
         </div>
     </div>
 
-    <script src="/js/usuariosAdministrativo.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 
 </html>
