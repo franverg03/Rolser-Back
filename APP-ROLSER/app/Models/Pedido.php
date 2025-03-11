@@ -23,14 +23,14 @@ class Pedido extends Model
     ];
 
     public function clienteVip() {
-        return $this->belongsTo(ClienteVip::class, 'id_cliente_vip');
+        return $this->belongsTo(ClienteVip::class);
     }
 
     public function clienteNoVip() {
-        return $this->belongsTo(ClienteNoVip::class,'id_cliente_no_vip');
+        return $this->belongsTo(ClienteNoVip::class);
     }
 
-    public function comerciales() {
+    public function comercial() {
         return $this->belongsTo(Comercial::class,'id_comercial');
     }
 

@@ -192,16 +192,6 @@
                                     placeholder="Nº de Cuenta" readonly/>
                             </div>
                         </div>
-                        <div class="flex flex-row mt-4">
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">Comercial:</label>
-                                </div>
-                                <input wire:model="id_comercial" type="text" id="searchInput"
-                                    class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Dni Comercial" readonly />
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -294,14 +284,6 @@
                                 </div>
                             </div>
                             <div class="flex flex-row mt-4">
-                                <div class="flex flex-col">
-                                    <div class="flex">
-                                        <label class="labelsModal" for="">Comercial:</label>
-                                    </div>
-                                    <input wire:model="id_comercial" type="text" id="searchInput"
-                                        class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                        placeholder="Dni Comercial" />
-                                </div>
                                 <button wire:click.prevent="abrirModalConfirmacionAnyadir" type="button"
                                     class="botonEliminar margen-boton-anyadir">Añadir cliente<svg width="18"
                                         height="18" viewBox="0 0 18 20" fill="none"

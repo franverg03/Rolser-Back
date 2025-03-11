@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
-    <link rel="stylesheet" href="/styles/administrativo.css">
-    <link rel="stylesheet" href="/styles/clientesComercial.css">
-
-    <title>PedidosComercialRolser</title>
+        @vite('resources/css/app.css')
+        @vite('resources/js/app.js')
+        <link rel="stylesheet" href="/styles/administrativo.css">
+        <link rel="stylesheet" href="/styles/clientesComercial.css">
+    <title>HomeComercialRolser</title>
 </head>
 
 <body class="contenedor">
@@ -92,7 +91,6 @@
                         stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </div>
-
             <div class="iconos-usuario-logout-comercial">
                 <img width="35px" class="imagen-usuario-comercial" src="/images/administrativoFran.png"
                     alt="">
@@ -117,10 +115,9 @@
                 <a href="{{ route('comercial.home') }}" class="boton-menu-noSel-comercial">Home</a>
                 <a href="{{ route('comercial.clientes') }}" class="boton-menu-noSel-comercial">Clientes</a>
                 <a href="{{ route('errors.404') }}" class="boton-menu-noSel-comercial">Catálogos</a>
-                <a href="{{ route('comercial.facturas') }}" class="boton-menu-noSel-comercial">Facturas</a>
-                <a href="{{ route('comercial.pedidos') }}" class="boton-menu-sel-comercial">Pedidos</a>
+                <a href="{{ route('comercial.facturas') }}" class="boton-menu-sel-comercial">Facturas</a>
+                <a href="{{ route('comercial.pedidos') }}" class="boton-menu-noSel-comercial">Pedidos</a>
             </div>
-
             <div class="caja-info-usuario-comercial-logout">
                 <div class="pl-4 caja-info-usuario-comercial">
                     <h3 class="usuario-nombre-comercial">{{ Auth::user()->comercial->comercial_nombre }}
@@ -135,13 +132,11 @@
             </div>
         </div>
     </div>
-
-    {{-- Contenedor principal --}}
     <div class="contenedor-principal-comercial">
         {{-- Breadcrumb contenedor --}}
         <div class="contenedor-breadcrump-comercial">
             <div class="maquetacion-breadcrump-comercial flex flex-row">
-                <a class="estilo-breadcrump-comercial" href="/homeComercial">Home</a>
+                <a class="estilo-breadcrump-comercial" href="{{route('comercial.home')}}">Home</a>
                 <svg class="mt-0.5 ml-1 mr-1" width="20" height="20" viewBox="0 0 15 15" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -149,18 +144,14 @@
                         stroke="#90242A" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
                         stroke-linejoin="round" />
                 </svg>
-                <a class="estilo-breadcrump-comercial" href="/clientesComercial">Clientes</a>
+                <a class="estilo-breadcrump-comercial" href="{{route('comercial.facturas')}}">Facturas</a>
             </div>
         </div>
-        {{-- Contenedor crud datatable paginacion --}}
-        <div>
-            <div class="flex"></div>
-            <div id="datatable" class="flex  justify-start ml-32">
-                <div id="tabla-clientes-noVip" class="w-[900px]">
-                    @livewire('tabla-pedidos-tablet')
-                </div>
-            </div>
+
+        <div class="w-[900px]">
+            @livewire('tabla-facturas-tablet')
         </div>
+
     </div>
 
     <script src="/js/script.js"></script>

@@ -154,8 +154,8 @@
                 <a href="{{ route('administrativo.home') }}" class="boton-menu-noSel-administrativo">Home</a>
                 <a href="{{ route('administrativo.clientes') }}" class="boton-menu-noSel-administrativo">Clientes</a>
                 <a href="{{ route('administrativo.usuarios') }}" class="boton-menu-noSel-administrativo">Usuarios</a>
-                <a href="{{ route('administrativo.pedidos') }}" class="boton-menu-noSel-administrativo">Pedidos</a>
-                <a href="{{ route('errors.404') }}" class="boton-menu-sel-administrativo">Productos</a>
+                <a href="{{ route('administrativo.pedidos') }}" class="boton-menu-sel-administrativo">Pedidos</a>
+                <a href="{{ route('errors.404') }}" class="boton-menu-noSel-administrativo">Productos</a>
                 <a href="{{ route('errors.404') }}" class="boton-menu-noSel-administrativo">Catálogos</a>
                 <a href="{{ route('administrativo.almacenes') }}"
                     class="boton-menu-noSel-administrativo">Almacenes</a>

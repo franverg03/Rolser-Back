@@ -3,19 +3,20 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
+use Livewire\WithPagination;
 use App\Models\Pedido;
-class TablaPedidosTablet extends Component
-{
-    public $search;
 
+class TablaPedidos extends Component
+{
+    use WithPagination;
+
+    public $perPage = 10;
+    public $search;
     public $id_pedido;
     public $pedido_estado;
-
     public $fecha_creacion;
-
-    public $codigoPedido;
-    public $total_pedido;
+    public $codigo_Pedido;
+    public $total_Pedido;
     public $id_cliente_no_vip;
     public $id_cliente_vip;
     public $id_comercial;
@@ -29,14 +30,14 @@ class TablaPedidosTablet extends Component
 
     private function borrarValoresCampos()
     {
-        $this->id_comercial = '';
-        $this->total_pedido = '';
         $this->id_pedido = '';
+        $this->pedido_estado = '';
+        $this->fecha_creacion = '';
+        $this->codigo_Pedido = '';
+        $this->total_Pedido = '';
         $this->id_cliente_no_vip = '';
         $this->id_cliente_vip = '';
-        $this->codigoPedido='';
-        $this->pedido_estado='';
-        $this->fecha_creacion='';
+        $this->id_comercial = '';
     }
 
     public function abrirModalMostrar($pedido_id)
@@ -45,13 +46,13 @@ class TablaPedidosTablet extends Component
 
         if ($pedido) {
             $this->id_comercial = $pedido->id_comercial;
-            $this->total_pedido = $pedido->total_Pedido;
+            $this->pedido_estado = $pedido->pedido_estado;
             $this->id_pedido = $pedido->id_pedido;
+            $this->fecha_creacion = $pedido->fecha_creacion;
+            $this->total_Pedido = $pedido->total_Pedido;
+            $this->codigo_Pedido = $pedido->codigo_Pedido;
             $this->id_cliente_no_vip = $pedido->id_cliente_no_vip;
             $this->id_cliente_vip = $pedido->id_cliente_vip;
-            $this->codigoPedido=$pedido->codigo_Pedido;
-            $this->pedido_estado=$pedido->pedido_estado;
-            $this->fecha_creacion=$pedido->fecha_creacion;
         }
         $this->modalMostrar = true;
     }
@@ -69,17 +70,17 @@ class TablaPedidosTablet extends Component
 
     public function abrirModalModificar($pedido_id)
     {
-        $pedido = pedido::find($pedido_id);
+        $pedido = Pedido::find($pedido_id);
 
         if ($pedido) {
             $this->id_comercial = $pedido->id_comercial;
-            $this->total_pedido = $pedido->pedido_importe_total;
+            $this->pedido_estado = $pedido->pedido_estado;
             $this->id_pedido = $pedido->id_pedido;
+            $this->fecha_creacion = $pedido->fecha_creacion;
+            $this->total_Pedido = $pedido->total_Pedido;
+            $this->codigo_Pedido = $pedido->codigo_Pedido;
             $this->id_cliente_no_vip = $pedido->id_cliente_no_vip;
             $this->id_cliente_vip = $pedido->id_cliente_vip;
-            $this->codigoPedido=$pedido->codigo_Pedido;
-            $this->pedido_estado=$pedido->pedido_estado;
-            $this->fecha_creacion=$pedido->fecha_creacion;
         }
 
         $this->modalModificar = true;
@@ -129,34 +130,33 @@ class TablaPedidosTablet extends Component
     public function anyadirPedido()
     {
 
-        $pedido = new pedido();
+        $pedido = new Pedido();
 
         $pedido->id_comercial = $this->id_comercial;
         $pedido->total_pedido = $this->total_pedido;
         $pedido->id_cliente_no_vip = $this->id_cliente_no_vip;
         $pedido->id_cliente_vip = $this->id_cliente_vip;
-        $pedido->codigo_Pedido=$this->codigoPedido;
-        $pedido->pedido_estado=$this->pedido_estado;
-        $pedido->fecha_creacion=$this->fecha_creacion;
+        $pedido->codigo_Pedido = $this->codigoPedido;
+        $pedido->pedido_estado = $this->pedido_estado;
+        $pedido->fecha_creacion = $this->fecha_creacion;
 
         $pedido->save();
 
         $this->cerrarModalAnyadir();
     }
 
-    public function modificaPedido()
+    public function modificarPedido()
     {
         $pedido = Pedido::find(id: $this->id_pedido);
 
         if ($pedido) {
             $pedido->id_comercial = $this->id_comercial;
-            $pedido->pedido_importe_total = $this->total_pedido;
-            $pedido->id_pedido = $this->id_pedido;
+            $pedido->total_pedido = $this->total_pedido;
             $pedido->id_cliente_no_vip = $this->id_cliente_no_vip;
             $pedido->id_cliente_vip = $this->id_cliente_vip;
-            $pedido->codigo_Pedido=$this->codigoPedido;
-            $pedido->pedido_estado=$this->pedido_estado;
-            $pedido->fecha_creacion=$this->fecha_creacion;
+            $pedido->codigo_Pedido = $this->codigoPedido;
+            $pedido->pedido_estado = $this->pedido_estado;
+            $pedido->fecha_creacion = $this->fecha_creacion;
 
             $pedido->save();
         }
@@ -177,18 +177,14 @@ class TablaPedidosTablet extends Component
 
     public function render()
     {
-        $pedidosT = Pedido::where('id_comercial', Auth::user()->comercial->id_comercial)
-        ->where(function ($query) {
-            $query->where('total_pedido', 'like', '%' . $this->search . '%')
+        $pedidosP = Pedido::where('total_pedido', 'like', '%' . $this->search . '%')
             ->orWhere('id_pedido', 'like', '%' . $this->search . '%')
             ->orWhere('id_cliente_no_vip', 'like', '%' . $this->search . '%')
             ->orWhere('id_cliente_vip', 'like', '%' . $this->search . '%')
             ->orWhere('fecha_creacion', 'like', '%' . $this->search . '%')
-            ->orWhere('pedido_estado', 'like', '%' . $this->search . '%');
-        })
+            ->orWhere('pedido_estado', 'like', '%' . $this->search . '%')
             ->get();
 
-            return view('livewire.tabla-pedidos-tablet');
+            return view('livewire.tabla-pedidos', compact('pedidosP'));
     }
 }
-

@@ -3,6 +3,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\clienteVipController;
 use App\Livewire\TablaClientesTablet;
+use Livewire\Livewire;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -43,6 +44,10 @@ Route::group(['middleware' => 'comercial'], function() {
         Route::view('/facturas', 'comercial.comercial-facturas')->name('comercial.facturas');
         Route::view('/pedidos', 'comercial.comercial-pedidos')->name('comercial.pedidos');
     });
+});
+
+Livewire::setUpdateRoute(function ($handle) {
+    return Route::post('/livewire/update', $handle);
 });
 
 

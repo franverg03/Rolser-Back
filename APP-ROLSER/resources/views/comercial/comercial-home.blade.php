@@ -113,7 +113,7 @@
             <div class="div-menu-grande-comercial">
                 <a href="{{ route('comercial.home') }}" class="boton-menu-sel-comercial">Home</a>
                 <a href="{{ route('comercial.clientes') }}" class="boton-menu-noSel-comercial">Clientes</a>
-                <a href="{{ route('404') }}" class="boton-menu-noSel-comercial">Catálogos</a>
+                <a href="{{ route('errors.404') }}" class="boton-menu-noSel-comercial">Catálogos</a>
                 <a href="{{ route('comercial.facturas') }}" class="boton-menu-noSel-comercial">Facturas</a>
                 <a href="{{ route('comercial.pedidos') }}" class="boton-menu-noSel-comercial">Pedidos</a>
             </div>
@@ -136,7 +136,7 @@
         {{-- Breadcrumb contenedor --}}
         <div class="contenedor-breadcrump-comercial">
             <div class="maquetacion-breadcrump-comercial flex flex-row">
-                <a class="estilo-breadcrump-comercial" href="">Home</a>
+                <a class="estilo-breadcrump-comercial" href="{{route('comercial.home')}}">Home</a>
             </div>
         </div>
         {{-- Contenedor crud datatable paginacion --}}
