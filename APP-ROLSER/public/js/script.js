@@ -4,17 +4,18 @@ window.onload = function () {
     var menu = document.getElementById('menu-pequenyo-administrativo');
     var content = document.getElementById('menu-grande-administrativo');
 
-    let menuVisible = true; // Estado inicial del contenido (visible)
+    if(menu && content) {
+        let menuVisible = true; // Estado inicial del contenido (visible)
 
-    function toggleContent() {
-        menuVisible = !menuVisible; // Cambia el estado
+        function toggleContent() {
+            menuVisible = !menuVisible; // Cambia el estado
 
-        // Agrega o elimina la clase "hidden" para activar la transición
-        content.classList.toggle('hidden', !menuVisible);
+            // Agrega o elimina la clase "collapsed" para activar la transición
+            content.classList.toggle('collapsed', !menuVisible);
+        }
+
+        menu.addEventListener('click', toggleContent);
     }
-
-    // Escucha el clic en el menú para alternar el contenido
-    menu.addEventListener('click', toggleContent);
 
 
     if (document.getElementById('boton-efecto-active-cVIP')) {

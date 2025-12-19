@@ -35,22 +35,25 @@ body {
     width: 18vh;
     height: 100vh;
 
-    transition: transform 0.9s ease, opacity 0.9s ease;
+    transition: transform 0.9s ease, opacity 0.9s ease, width 0.9s ease;
     opacity: 1;
     transform: translateX(0);
     /* El contenido inicia visible */
     position: relative;
     z-index: 1;
     /* Inicialmente debajo del menú */
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 /* Estilo para ocultar el contenido detrás del menú */
-.menu-grande-administrativo.hidden {
+.menu-grande-administrativo.collapsed {
     opacity: 0;
     transform: translateX(-200px);
     /* Mueve el contenido hacia la izquierda */
     z-index: -1;
     /* Mueve el contenido detrás del menú */
+    width: 0;
 }
 
 .iconos-menu-administrativo {

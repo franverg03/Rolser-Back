@@ -23,19 +23,22 @@
     width: 18vh;
     height: 100vh;
 
-    transition: transform 0.9s ease, opacity 0.9s ease;
+    transition: transform 0.9s ease, opacity 0.9s ease, width 0.9s ease;
     opacity: 1;
     transform: translateX(0);
     /* El contenido inicia visible */
     position: relative;
     z-index: 1;
     /* Inicialmente debajo del menú */
+    overflow: hidden;
+    /* white-space: nowrap;  <-- ELIMINAR O COMENTAR ESTO PARA PERMITIR SALTO DE LÍNEA */
 }
 
 /* Estilo para ocultar el contenido detrás del menú */
-.menu-grande-comercial.hidden {
+.menu-grande-comercial.collapsed {
     opacity: 0;
-    transform: translateX(-200px);
+    width: 0;
+    transform: translateX(-20px);
     /* Mueve el contenido hacia la izquierda */
     z-index: -1;
     /* Mueve el contenido detrás del menú */
@@ -156,6 +159,8 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    white-space: normal; /* Permitir salto de línea */
+    word-wrap: break-word; /* Romper palabras largas si es necesario */
 }
 
 .info-usuario-comercial {
@@ -166,6 +171,9 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    white-space: normal; /* Permitir salto de línea */
+    word-wrap: break-word; /* Romper palabras largas si es necesario */
+    margin-top: 1vh;
 }
 
 .caja-info-usuario-comercial-logout {
@@ -204,7 +212,7 @@
 
     padding-right: 1vh;
     padding-left: 2vh;
-
+    padding-top: 1.4vh;
     padding-bottom: 1.4vh;
 
     color: #FFFFFF;
@@ -216,6 +224,10 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+
+    /* Asegurar alineación vertical si es flex */
+    display: flex;
+    align-items: center;
 }
 
 .boton-logout-comercial:hover {
@@ -227,7 +239,7 @@
     cursor: pointer;
 }
 .caja-info-usuario-comercial {
-    margin-bottom: 6.4vh;
+    margin-bottom: 3vh;
 }
 
 table {

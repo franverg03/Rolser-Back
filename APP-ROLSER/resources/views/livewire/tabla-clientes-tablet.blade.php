@@ -16,7 +16,7 @@
                 {{-- Input de búsqueda --}}
                 <input wire:model.live.debounce.100ms="search" type="text"
                     class="bg-white bordeRolser text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2 pl-10 pr-10 borde-focus "
-                    placeholder="Buscar administrativo..." id="searchInput">
+                    placeholder="Buscar Cliente..." id="searchInput">
 
                 {{-- Icono de "X" para limpiar el input --}}
                 @if ($search)
@@ -47,21 +47,20 @@
 
         <!-- Contenedor Scrolleable -->
         <div>
-            <div class="max-h-[400px] overflow-y-auto pr-2  w-[900px]">
+            <div class="max-h-[400px] overflow-y-auto pr-2">
                 <table class="w-full text-sm text-left bg-white border-collapse bordeRolser tablaComercial">
-                    <thead class="text-xs uppercase text-white font-bold sticky top-0 colorFondoTablas">
+                    <thead class="text-xs uppercase color-cabecera-tabla-admin text-white font-bold sticky top-0 colorFondoTablas">
                         <tr>
                             <th scope="col" class="px-4 py-3 text-center">Representante</th>
                             <th scope="col" class="px-4 py-3 text-center">Empresa</th>
                             <th scope="col" class="px-4 py-3 text-center">NIF</th>
                             <th scope="col" class="px-4 py-3 text-center">Contacto</th>
                             <th scope="col" class="px-4 py-3 text-center">Acción</th>
-
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($clientesT as $clienteT)
-                            <tr class="border-b bordeRolser tamanyoCelda">
+                            <tr class="border-b bordeRolser">
                                 <td wire:click.prevent="abrirModalMostrar({{ $clienteT->id_cliente_no_vip }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $clienteT->cliente_nombre_representante }}
                                     {{ $clienteT->cliente_apellidos_representante }}</td>
                                     <td wire:click.prevent="abrirModalMostrar({{ $clienteT->id_cliente_no_vip }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $clienteT->cliente_empresa }}</td>

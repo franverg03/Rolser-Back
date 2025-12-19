@@ -41,26 +41,40 @@
     </div>
 
     <!-- Tabla -->
-    <div class="contenedorTablas overflow-hidden">
-        <table class="w-full text-center text-sm bg-white border-collapse bordeRolser">
-            <thead class="text-xs uppercase color-cabecera-tabla-admin text-white font-bold">
+    <div class="contenedorTablas overflow-hidden rounded-xl border border-[#AF272F]">
+        <div class="overflow-auto max-h-[65vh]">
+            <table class="w-full text-center text-sm bg-white border-collapse">
+                <thead class="sticky top-0 z-10 text-xs uppercase bg-[#AF272F] text-white font-bold">
                 <tr>
-                    <th scope="col" class="px-4 py-3 border-b bordeRolser">Representante</th>
-                    <th scope="col" class="px-4 py-3 border-b bordeRolser">Empresa</th>
-                    <th scope="col" class="px-4 py-3 border-b bordeRolser">NIF</th>
-                    <th scope="col" class="px-4 py-3 border-b bordeRolser">Contacto</th>
-                    <th scope="col" class="px-4 py-3 border-b bordeRolser">Accion</th>
+                    <th scope="col" class="px-4 py-3 border border-[#AF272F]">
+                        <input type="checkbox" class="form-checkbox h-4 w-4 text-red-600 bg-white border-gray-300 rounded focus:ring-red-500">
+                    </th>
+                    <th scope="col" class="px-4 py-3 border border-[#AF272F]">Cliente</th>
+                    <th scope="col" class="px-4 py-3 border border-[#AF272F]">Empresa</th>
+                    <th scope="col" class="px-4 py-3 border border-[#AF272F]">CIF</th>
+                    <th scope="col" class="px-4 py-3 border border-[#AF272F]">VIP</th>
+                    <th scope="col" class="px-4 py-3 border border-[#AF272F]">Accion</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($clientesPaginados as $cliente)
-                    <tr class="border-b bordeRolser">
-                        <td wire:click.prevent="abrirModalMostrar({{ $cliente->id_cliente_no_vip }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $cliente->cliente_nombre_representante }}
-                            {{ $cliente->cliente_apellidos_representante }}</td>
-                            <td wire:click.prevent="abrirModalMostrar({{ $cliente->id_cliente_no_vip }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $cliente->cliente_empresa }}</td>
-                        <td wire:click.prevent="abrirModalMostrar({{ $cliente->id_cliente_no_vip }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $cliente->cliente_nif }}</td>
-                        <td wire:click.prevent="abrirModalMostrar({{ $cliente->id_cliente_no_vip }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $cliente->cliente_telefono_representante }}</td>
-                        <td class="px-4">
+                    <tr class="border-b border-[#AF272F]">
+                        <td class="px-4 py-3 border border-[#AF272F]">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 text-red-600 bg-white border-gray-300 rounded focus:ring-red-500">
+                        </td>
+                        <td wire:click.prevent="abrirModalMostrar({{ $cliente->id_cliente_no_vip }})" class="px-4 py-3 border border-[#AF272F] tipografia-contenido-tabla-administrativo cursor-pointer">
+                            {{ $cliente->cliente_nombre_representante }} {{ $cliente->cliente_apellidos_representante }}
+                        </td>
+                        <td wire:click.prevent="abrirModalMostrar({{ $cliente->id_cliente_no_vip }})" class="px-4 py-3 border border-[#AF272F] tipografia-contenido-tabla-administrativo cursor-pointer">
+                            {{ $cliente->cliente_empresa }}
+                        </td>
+                        <td wire:click.prevent="abrirModalMostrar({{ $cliente->id_cliente_no_vip }})" class="px-4 py-3 border border-[#AF272F] tipografia-contenido-tabla-administrativo cursor-pointer">
+                            {{ $cliente->cliente_nif }}
+                        </td>
+                        <td wire:click.prevent="abrirModalMostrar({{ $cliente->id_cliente_no_vip }})" class="px-4 py-3 border border-[#AF272F] tipografia-contenido-tabla-administrativo cursor-pointer">
+                            <span class="bg-gray-200 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">No</span>
+                        </td>
+                        <td class="px-4 border border-[#AF272F]">
                             <div class="flex flex-row justify-center">
                                 <button type="button" id="mostrarModalModificar" class="botonCrud mr-3 mb-2"
                                     wire:click.prevent="abrirModalModificar({{ $cliente->id_cliente_no_vip }})">Modificar
@@ -92,11 +106,12 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="px-4 py-1 text-center text-gray-500">No se encontraron resultados</td>
+                        <td colspan="6" class="px-4 py-1 text-center text-gray-500">No se encontraron resultados</td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
+        </div>
     </div>
 
     <!-- Paginación -->
