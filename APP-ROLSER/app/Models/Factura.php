@@ -24,8 +24,8 @@ class Factura extends Model
         return $this->hasMany(LineaFactura::class, 'id_factura');
     }
 
-    public function pedidos() {
-        return $this->hasMany(Pedido::class, 'id_factura');
+    public function pedido() {
+        return $this->belongsTo(Pedido::class, 'id_pedido');
     }
 
     public function comerciales() {

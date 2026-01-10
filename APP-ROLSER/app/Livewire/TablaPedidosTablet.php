@@ -166,7 +166,8 @@ class TablaPedidosTablet extends Component
     public function eliminarPedido()
     {
         $pedido = pedido::findOrFail($this->id_pedido);
-        $pedido->delete();
+        $pedido->pedido_estado='Cancelado';
+        $pedido->save();
         $this->cerrarModalEliminar();
     }
 
@@ -188,7 +189,7 @@ class TablaPedidosTablet extends Component
         })
             ->get();
 
-            return view('livewire.tabla-pedidos-tablet');
+            return view('livewire.tabla-pedidos-tablet', compact('pedidosT'));
     }
 }
 

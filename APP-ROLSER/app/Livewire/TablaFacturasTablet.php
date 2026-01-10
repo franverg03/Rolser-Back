@@ -5,6 +5,10 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Factura;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\FacturaMail;
+
 class TablaFacturasTablet extends Component
 {
 
@@ -22,7 +26,40 @@ class TablaFacturasTablet extends Component
     public $modalEliminar = false;
     public $modalConfirmacionAnyadir = false;
     public $modalConfirmacionModificar = false;
+    public $id_factura_seleccionada;
+    public $modalEnviarCorreo = false;
+    public $email_destino;
 
+    public function mostrarFactura($id)
+{
+    // Buscamos la factura con todas sus relaciones para evitar errores en el PDF
+    $factura = Factura::with(['lineasDeFactura', 'clienteVip', 'clienteNoVip'])->findOrFail($id);
+
+    // Cargamos la vista de la plantilla que creamos antes
+    $pdf = Pdf::loadView('pdf.factura_template', compact('factura'));
+
+    // Devolvemos el stream.
+    // Al ser llamado desde un iframe, el navegador lo renderizará automáticamente.
+    return response()->stream(
+        function () use ($pdf) {
+            echo $pdf->stream();
+        },
+        200,
+        [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="factura.pdf"',
+        ]
+    );
+}
+
+    public function descargarPDF($id)
+{
+    $factura = Factura::findOrFail($id);
+    $pdf = Pdf::loadView('pdf.factura_template', compact('factura'));
+    return response()->streamDownload(function () use ($pdf) {
+        echo $pdf->stream();
+    }, "factura_{$id}.pdf");
+}
 
     private function borrarValoresCampos()
     {
@@ -36,15 +73,11 @@ class TablaFacturasTablet extends Component
 
     public function abrirModalMostrar($factura_id)
     {
-        $factura = Factura::find($factura_id);
+        $factura = Factura::findOrFail($factura_id);
 
-        if ($factura) {
-            $this->id_comercial = $factura->id_comercial;
-            $this->factura_importe_total = $factura->factura_importe_total;
-            $this->id_pedido = $factura->id_pedido;
-            $this->id_cliente_no_vip = $factura->id_cliente_no_vip;
-            $this->id_cliente_vip = $factura->id_cliente_vip;
-        }
+        $this->id_factura_seleccionada = $factura_id; // Guardamos el ID
+        $this->id_pedido = $factura->id_pedido;
+        $this->factura_importe_total = $factura->factura_importe_total;
         $this->modalMostrar = true;
     }
 
@@ -78,6 +111,38 @@ class TablaFacturasTablet extends Component
     {
         $this->id_comercial = $factura_id;
         $this->modalEliminar = true;
+    }
+
+    public function abrirModalEnviarCorreo($id_factura)
+    {
+        $this->id_factura_seleccionada = $id_factura;
+        $this->email_destino = ''; // Reset email
+        $this->modalEnviarCorreo = true;
+    }
+
+    public function cerrarModalEnviarCorreo()
+    {
+        $this->modalEnviarCorreo = false;
+    }
+
+    public function enviarCorreo()
+    {
+        $this->validate([
+            'email_destino' => 'required|email',
+        ]);
+
+        $factura = Factura::findOrFail($this->id_factura_seleccionada);
+        $pdf = Pdf::loadView('pdf.factura_template', compact('factura'));
+
+        try {
+            Mail::to($this->email_destino)->send(new FacturaMail($factura, $pdf->output()));
+            $this->cerrarModalEnviarCorreo();
+            // Optionally flash a success message
+            // session()->flash('message', 'Correo enviado correctamente.');
+        } catch (\Exception $e) {
+            // Handle error
+            // session()->flash('error', 'Error al enviar el correo: ' . $e->getMessage());
+        }
     }
 
     public function cerrarModalAnyadir()

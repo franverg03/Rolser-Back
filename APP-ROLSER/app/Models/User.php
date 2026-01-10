@@ -40,7 +40,7 @@ class User extends Authenticatable
      */
     public function administrativo()
     {
-        return $this->belongsTo(Administrativo::class, 'id_usuario');
+        return $this->belongsTo(Administrativo::class, 'id_administrativo');
     }
 
     public function clienteVip(){

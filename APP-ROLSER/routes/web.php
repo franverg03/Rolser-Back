@@ -3,7 +3,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\clienteVipController;
 use App\Livewire\TablaClientesTablet;
+use App\Livewire\TablaFacturasTablet;
 use Livewire\Livewire;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Factura;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -49,6 +52,8 @@ Route::group(['middleware' => 'comercial'], function() {
 Livewire::setUpdateRoute(function ($handle) {
     return Route::post('/livewire/update', $handle);
 });
+
+Route::get('/factura/preview/{id}', [TablaFacturasTablet::class, 'mostrarFactura'])->name('factura.preview');
 
 
 require __DIR__.'/auth.php';

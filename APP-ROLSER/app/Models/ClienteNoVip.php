@@ -34,11 +34,11 @@ class ClienteNoVip extends Model
     }
 
     public function descuento() {
-        return $this->belongsTo(Descuento::class, 'id_descuento');
+        return $this->hasOne(Descuento::class, 'id_cliente_no_vip');
     }
 
     public function tarifa() {
-        return $this->belongsTo(Tarifa::class, 'id_tarifa');
+        return $this->hasOne(Tarifa::class, 'id_cliente_no_vip');
     }
 
 }
