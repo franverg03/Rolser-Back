@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('facturas', function (Blueprint $table) {
             $table->id('id_factura');
             $table->decimal('factura_importe_total', 10, 2);
-            $table->foreignId('id_pedido')->references('id_pedido')->on('pedidos')->onDelete('cascade');
+            $table->foreignId('id_pedido')->references('id_pedido')->on('pedidos');
             $table->foreignId('id_cliente_no_vip')->nullable()->references('id_cliente_no_vip')->on('clientes_no_vip')->onDelete('set null');
             $table->foreignId('id_cliente_vip')->nullable()->references('id_cliente_vip')->on('clientes_vip')->onDelete('set null');
             $table->foreignId('id_comercial')->nullable()->references('id_comercial')->on('comerciales')->onDelete('set null');

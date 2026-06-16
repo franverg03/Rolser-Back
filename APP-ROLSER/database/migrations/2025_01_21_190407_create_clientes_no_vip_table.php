@@ -21,9 +21,8 @@ return new class extends Migration
             $table->string('cliente_email_representante',100);
             $table->string('cliente_direccion_empresa', 200);
             $table->string('cliente_cuenta_bancaria', 50);
-            $table->foreignId('id_usuario')->references('id_usuario')->on('users')->onDelete('cascade');//Relacion 1-1 con User
-            $table->foreignId('id_comercial')->nullable()->references('id_comercial')->on('comerciales')->onDelete('set null');//Relacion 1-M con Comercial
-
+            $table->foreignId('id_usuario')->references('id_usuario')->on('users')->onDelete('cascade');
+            $table->foreignId('id_comercial')->nullable()->references('id_comercial')->on('comerciales')->onDelete('set null');
             $table->timestamps();
         });
     }
