@@ -29,7 +29,7 @@
                         stroke="#90242A" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
                         stroke-linejoin="round" />
                 </svg>
-                <a class="estilo-breadcrump-comercial" href="{{route('comercial.clientes')}}">Clientes</a>
+                <a class="estilo-breadcrump-comercial" href="{{route('comercial.clientes')}}">Ventas</a>
             </div>
         </div>
         {{-- Contenedor crud datatable paginacion --}}
@@ -37,16 +37,15 @@
             <div class="flex"></div>
             <div class="flex flex-col">
                 <div class="flex flex-col justify-center">
-                    {{-- Navegación entre datatables Clientes VIP, Clientes No VIP --}}
+                    {{-- Navegación entre datatables Interacciones y Oportunidades venta--}}
                     <div class="navegacion-diferentes-usuarios">
                         <div class="contenedor-navegacion-usuarios flex flex-row">
                             <button id="boton-efecto-active-cNoVip"
-                                class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Clientes
+                                class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Interacciones
                                 <span class="linea-blanca"></span><span id="linea-roja-cNoVip"
                                     class="linea-roja-cVIP"></span></button>
                             <button id="boton-efecto-active-cVIP"
-                                class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Clientes
-                                VIP<span class="linea-blanca"></span><span id="linea-roja-cVip"
+                                class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Oportunidades<span class="linea-blanca"></span><span id="linea-roja-cVip"
                                     class="linea-roja-cli"></span></button>
                         </div>
                     </div>
@@ -55,11 +54,11 @@
 
             <div id="datatable" class="flex  justify-start ml-32">
                 <div id="tabla-clientes-noVip" class="w-[900px]">
-                    @livewire('tabla-clientes-tablet')
+                    @livewire('tabla-interacciones-tablet')
                 </div>
 
                 <div id="tabla-clientes-vip" class="w-[900px] hidden">
-                    @livewire('tabla-clientes-vip-tablet')
+                    @livewire('tabla-oportunidades-tablet')
                 </div>
             </div>
         </div>

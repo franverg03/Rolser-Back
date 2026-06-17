@@ -17,8 +17,6 @@ return new class extends Migration
             $table->integer('descuento_aplicable');
             $table->string('beneficios_extra');
             $table->decimal('requisito_minimo');
-            $table->foreignId('id_descuento')->references('id_descuento')->on('descuentos');
-            $table->foreignId('id_cliente_vip')->references('id_cliente_vip')->on('clientes_vip');
             $table->timestamps();
         });
     }

@@ -42,6 +42,7 @@ Route::group(['middleware' => 'comercial'], function() {
     // Rutas que comparten el prefijo "comercial"
     Route::prefix('comercial')->group(function() {
         Route::view('/home', 'comercial.comercial-home')->name('comercial.home');
+        Route::view('/ventas', 'comercial.comercial-ventas')->name('comercial.ventas');
         Route::view('/clientes', 'comercial.comercial-clientes')->name('comercial.clientes');
         Route::view('/catalogos', 'comercial.comercial-catalogos')->name('comercial.catalogos');
         Route::view('/facturas', 'comercial.comercial-facturas')->name('comercial.facturas');

@@ -2,12 +2,7 @@
     <div class="menu-pequenyo-comercial flex flex-col cursor-pointer" id="menu-pequenyo-administrativo">
         <img class="mt-3 ml-1 logo-pequenyo-comercial" width="40vh" src="/images/logoPequenyoRolser.png"
             alt="">
-        <svg class="icono-cliente-comercial" width="42" height="42" viewBox="0 0 42 42" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M7 35C7 29.75 14 29.75 17.5 26.25C19.25 24.5 14 24.5 14 15.75C14 9.91725 16.3328 7 21 7C25.6673 7 28 9.91725 28 15.75C28 24.5 22.75 24.5 24.5 26.25C28 29.75 35 29.75 35 35"
-                stroke="white" stroke-width="1.5" stroke-linecap="round" />
-        </svg>
+        <div class="icono-cliente-comercial"></div>
         <div class="iconos-menu-comercial flex flex-col ml-3">
             <!--Home icono-->
             <svg class="iconosM" width="26" height="26" viewBox="0 0 26 26" fill="none"
@@ -17,6 +12,14 @@
                     stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 <path d="M13 19.4922V16.2422" stroke="white" stroke-width="1.5" stroke-linecap="round"
                     stroke-linejoin="round" />
+            </svg>
+            <!-- Ventas icono -->
+            <svg class="iconosM" width="26" height="26" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 19H20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M7 16V10" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M12 16V5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M17 16V8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
             <!--Clientes icono-->
             <svg class="iconosM" width="26" height="26" viewBox="0 0 26 26" fill="none"
@@ -95,9 +98,11 @@
     <div class="menu-grande-comercial d-flex flex-col" id="menu-grande-administrativo">
         <img class="mt-4 ml-3 logo-grande-comercial" width="130vh" src="/images/logoGrandeRolser.png"
             alt="">
-        <button class="boton-comercial-cliente">Cliente</button>
-        <div class="div-menu-grande-comercial">
+        {{-- <div class="boton-comercial-cliente">
+        </div> --}}
+        <div class="div-menu-grande-comercial pt-14" >
             <a href="{{ route('comercial.home') }}" class="{{ request()->routeIs('comercial.home') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Home</a>
+            <a href="{{ route('comercial.ventas') }}"class="{{ request()->routeIs('comercial.ventas') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Ventas</a>
             <a href="{{ route('comercial.clientes') }}" class="{{ request()->routeIs('comercial.clientes') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Clientes</a>
             <a href="{{ route('errors.404') }}" class="{{ request()->routeIs('errors.404') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Catálogos</a>
             <a href="{{ route('comercial.facturas') }}" class="{{ request()->routeIs('comercial.facturas') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Facturas</a>

@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/styles/homeComercial.css">
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
+    <link rel="stylesheet" href="/styles/administrativo.css">
+    <link rel="stylesheet" href="/styles/clientesComercial.css">
     <title>HomeComercialRolser</title>
 </head>
 
@@ -22,7 +23,6 @@
                 <a class="estilo-breadcrump-comercial" href="{{route('comercial.home')}}">Home</a>
             </div>
         </div>
-        {{-- Contenedor crud datatable paginacion --}}
         <div>
 
         </div>

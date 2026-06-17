@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('id_categoria_vip')->references('id_categoria_vip')->on('categoria_vips');
             $table->foreign('id_cliente_vip')->references('id_cliente_vip')->on('clientes_vip');
             $table->timestamps();
-});
+        });
     }
 
     /**
