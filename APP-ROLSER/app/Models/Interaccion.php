@@ -24,6 +24,12 @@ class Interaccion extends Model
         'id_cliente_no_vip'
     ];
 
+    protected $casts = [
+        'fecha_interaccion' => 'date',
+    ];
+
+
+
     public function comercial()
     {
         return $this->belongsTo(Comercial::class, 'id_comercial', 'id_comercial');

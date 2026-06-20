@@ -47,6 +47,7 @@ Route::group(['middleware' => 'comercial'], function() {
         Route::view('/catalogos', 'comercial.comercial-catalogos')->name('comercial.catalogos');
         Route::view('/facturas', 'comercial.comercial-facturas')->name('comercial.facturas');
         Route::view('/pedidos', 'comercial.comercial-pedidos')->name('comercial.pedidos');
+        Route::view('/objetivos', 'comercial.comercial-objetivos')->name('comercial.objetivos');
     });
 });
 

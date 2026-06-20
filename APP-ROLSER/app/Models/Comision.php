@@ -17,6 +17,12 @@ class Comision extends Model
         'id_objetivo_venta'
     ];
 
+    protected $casts = [
+        'pagada' => 'boolean',
+    ];
+
+
+
     public function objetivoVenta()
     {
         return $this->belongsTo(ObjetivoVenta::class, 'id_objetivo_venta', 'id_objetivo_venta');

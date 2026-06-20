@@ -20,9 +20,9 @@ class CategoriaVip extends Model
         'requisito_minimo'
     ];
 
-    // Una categoría guarda el historial de los clientes que han pasado por ella
     public function historicos()
     {
         return $this->hasMany(HistoricoCategoriaVip::class, 'id_categoria_vip', 'id_categoria_vip');
     }
+
 }

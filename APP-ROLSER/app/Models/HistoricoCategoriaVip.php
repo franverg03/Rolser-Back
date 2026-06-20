@@ -18,6 +18,10 @@ class HistoricoCategoriaVip extends Model
         'id_cliente_vip'
     ];
 
+    protected $casts = [
+        'fecha_cambio' => 'date:d/m/Y',
+    ];
+
     public function categoriaVip()
     {
         return $this->belongsTo(CategoriaVip::class, 'id_categoria_vip', 'id_categoria_vip');

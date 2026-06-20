@@ -20,6 +20,10 @@ class OportunidadVenta extends Model
         'id_interaccion'
     ];
 
+    protected $casts = [
+        'fecha_cierre_prevista' => 'date:d/m/Y',
+    ];
+
     public function interaccion()
     {
         return $this->belongsTo(Interaccion::class, 'id_interaccion', 'id_interaccion');

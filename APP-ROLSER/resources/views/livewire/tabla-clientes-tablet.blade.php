@@ -117,7 +117,7 @@
                 <div
                     class="relative transform overflow-hidden cajaModalModificarTablet text-center  rounded-lg bg-white shadow-xl transition-all">
                     <div class="cabeceraModalModificar flex flex-row justify-between">
-                        <h3 class="estilosTituloModalModificar">Mostrar cliente</h3>
+                        <h3 class="estilosTituloModalModificar">Ficha cliente</h3>
                         <svg wire:click.prevent="cerrarModalMostrar" class="hoverX" width="55"
                             height="55" viewBox="0 0 35 35" fill="none"
                             xmlns="http://www.w3.org/2000/svg">

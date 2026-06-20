@@ -11,15 +11,15 @@ use App\Mail\FacturaMail;
 
 class TablaFacturasTablet extends Component
 {
-
-
     public $search;
     public $id_factura;
     public $factura_importe_total;
     public $id_pedido;
+    public $codigo_Pedido; // Usaremos esta variable para los modales
     public $id_cliente_no_vip;
     public $id_cliente_vip;
     public $id_comercial;
+
     public $modalMostrar = false;
     public $modalAnyadir = false;
     public $modalModificar = false;
@@ -31,53 +31,52 @@ class TablaFacturasTablet extends Component
     public $email_destino;
 
     public function mostrarFactura($id)
-{
-    // Buscamos la factura con todas sus relaciones para evitar errores en el PDF
-    $factura = Factura::with(['lineasDeFactura', 'clienteVip', 'clienteNoVip'])->findOrFail($id);
+    {
+        $factura = Factura::with(['lineasDeFactura', 'clienteVip', 'clienteNoVip'])->findOrFail($id);
+        $pdf = Pdf::loadView('pdf.factura_template', compact('factura'));
 
-    // Cargamos la vista de la plantilla que creamos antes
-    $pdf = Pdf::loadView('pdf.factura_template', compact('factura'));
-
-    // Devolvemos el stream.
-    // Al ser llamado desde un iframe, el navegador lo renderizará automáticamente.
-    return response()->stream(
-        function () use ($pdf) {
-            echo $pdf->stream();
-        },
-        200,
-        [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="factura.pdf"',
-        ]
-    );
-}
+        return response()->stream(
+            function () use ($pdf) {
+                echo $pdf->stream();
+            },
+            200,
+            [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="factura.pdf"',
+            ]
+        );
+    }
 
     public function descargarPDF($id)
-{
-    $factura = Factura::findOrFail($id);
-    $pdf = Pdf::loadView('pdf.factura_template', compact('factura'));
-    return response()->streamDownload(function () use ($pdf) {
-        echo $pdf->stream();
-    }, "factura_{$id}.pdf");
-}
+    {
+        $factura = Factura::findOrFail($id);
+        $pdf = Pdf::loadView('pdf.factura_template', compact('factura'));
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf->stream();
+        }, "factura_{$id}.pdf");
+    }
 
     private function borrarValoresCampos()
     {
         $this->id_comercial = '';
         $this->factura_importe_total = '';
         $this->id_pedido = '';
+        $this->codigo_Pedido = ''; // Añadido
         $this->id_cliente_no_vip = '';
         $this->id_cliente_vip = '';
-        $this->id_comercial = '';
     }
 
     public function abrirModalMostrar($factura_id)
     {
-        $factura = Factura::findOrFail($factura_id);
+        // Cargamos la factura junto con la relación del pedido
+        $factura = Factura::with('pedido')->findOrFail($factura_id);
 
-        $this->id_factura_seleccionada = $factura_id; // Guardamos el ID
+        $this->id_factura_seleccionada = $factura_id;
         $this->id_pedido = $factura->id_pedido;
+        // Obtenemos el código del pedido a través de la relación (si existe)
+        $this->codigo_Pedido = $factura->pedido ? $factura->pedido->codigo_Pedido : 'Sin pedido';
         $this->factura_importe_total = $factura->factura_importe_total;
+
         $this->modalMostrar = true;
     }
 
@@ -94,12 +93,15 @@ class TablaFacturasTablet extends Component
 
     public function abrirModalModificar($factura_id)
     {
-        $factura = Factura::find($factura_id);
+        $factura = Factura::with('pedido')->find($factura_id);
 
         if ($factura) {
+            $this->id_factura = $factura_id; // Añadido: no estabas guardando el ID de la factura a modificar
             $this->id_comercial = $factura->id_comercial;
             $this->factura_importe_total = $factura->factura_importe_total;
             $this->id_pedido = $factura->id_pedido;
+            // Obtenemos el código del pedido para mostrarlo en el input
+            $this->codigo_Pedido = $factura->pedido ? $factura->pedido->codigo_Pedido : '';
             $this->id_cliente_no_vip = $factura->id_cliente_no_vip;
             $this->id_cliente_vip = $factura->id_cliente_vip;
         }
@@ -109,14 +111,14 @@ class TablaFacturasTablet extends Component
 
     public function abrirModalEliminar($factura_id)
     {
-        $this->id_comercial = $factura_id;
+        $this->id_factura = $factura_id; // CORREGIDO: antes lo estabas guardando en $this->id_comercial
         $this->modalEliminar = true;
     }
 
     public function abrirModalEnviarCorreo($id_factura)
     {
         $this->id_factura_seleccionada = $id_factura;
-        $this->email_destino = ''; // Reset email
+        $this->email_destino = '';
         $this->modalEnviarCorreo = true;
     }
 
@@ -137,11 +139,8 @@ class TablaFacturasTablet extends Component
         try {
             Mail::to($this->email_destino)->send(new FacturaMail($factura, $pdf->output()));
             $this->cerrarModalEnviarCorreo();
-            // Optionally flash a success message
-            // session()->flash('message', 'Correo enviado correctamente.');
         } catch (\Exception $e) {
             // Handle error
-            // session()->flash('error', 'Error al enviar el correo: ' . $e->getMessage());
         }
     }
 
@@ -182,9 +181,7 @@ class TablaFacturasTablet extends Component
 
     public function anyadirFactura()
     {
-
         $factura = new Factura();
-
         $factura->id_comercial = $this->id_comercial;
         $factura->factura_importe_total = $this->factura_importe_total;
         $factura->id_pedido = $this->id_pedido;
@@ -197,24 +194,25 @@ class TablaFacturasTablet extends Component
 
     public function modificarFactura()
     {
-        $factura = Factura::find(id: $this->id_factura);
+        $factura = Factura::find($this->id_factura);
 
         if ($factura) {
             $factura->id_comercial = $this->id_comercial;
-            $factura->factura_importr_total = $this->factura_importe_total;
+            $factura->factura_importe_total = $this->factura_importe_total; // CORREGIDO: antes decía "factura_importr_total"
             $factura->id_pedido = $this->id_pedido;
             $factura->id_cliente_no_vip = $this->id_cliente_no_vip;
             $factura->id_cliente_vip = $this->id_cliente_vip;
 
             $factura->save();
         }
+        $this->cerrarModalConfirmacionModificar(); // Añadido para que se cierre la confirmación
         $this->cerrarModalModificar();
     }
 
     public function eliminarFactura()
     {
-        $comercial = Factura::findOrFail($this->id_factura);
-        $comercial->delete();
+        $factura = Factura::findOrFail($this->id_factura);
+        $factura->delete();
         $this->cerrarModalEliminar();
     }
 
@@ -225,14 +223,19 @@ class TablaFacturasTablet extends Component
 
     public function render()
     {
-        $facturasT = Factura::where('id_comercial', Auth::user()->comercial->id_comercial)
-        ->where(function ($query) {
-            $query->where('factura_importe_total', 'like', '%' . $this->search . '%')
-            ->orWhere('id_pedido', 'like', '%' . $this->search . '%')
-            ->orWhere('id_cliente_no_vip', 'like', '%' . $this->search . '%')
-            ->orWhere('id_cliente_vip', 'like', '%' . $this->search . '%')
-            ->orWhere('id_comercial');
-        })
+        // Añadimos 'with("pedido")' para evitar el problema de N+1 consultas en la vista
+        $facturasT = Factura::with('pedido')
+            ->where('id_comercial', Auth::user()->comercial->id_comercial)
+            ->where(function ($query) {
+                // Buscamos en el campo importe
+                $query->where('factura_importe_total', 'like', '%' . $this->search . '%')
+                // Buscamos en el modelo relacionado "pedido" por el "codigo_Pedido"
+                ->orWhereHas('pedido', function ($q) {
+                    $q->where('codigo_Pedido', 'like', '%' . $this->search . '%');
+                })
+                ->orWhere('id_cliente_no_vip', 'like', '%' . $this->search . '%')
+                ->orWhere('id_cliente_vip', 'like', '%' . $this->search . '%');
+            })
             ->get();
 
         return view('livewire.tabla-facturas-tablet', compact('facturasT'));

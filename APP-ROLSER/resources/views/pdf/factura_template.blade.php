@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Factura #{{ $factura->id_pedido }}</title>
+    <title>Factura #{{ $factura->pedido?->codigo_Pedido ?? 'Sin pedido' }}</title>
     <style>
         body {color: #333; line-height: 1.5; }
         .invoice-header { border-bottom: 2px solid #AF272F; padding-bottom: 20px; margin-bottom: 20px; }
@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col">
                 <div class="invoice-title">ROLSER</div>
-                <p><strong>Pedido:</strong> {{ $factura->id_pedido }}</p>
+                <p><strong>Pedido:</strong> {{ $factura->pedido?->codigo_Pedido ?? 'Sin pedido' }}</p>
                 <p><strong>Fecha:</strong> {{ now()->format('d/m/Y') }}</p>
                 <p><strong>NIF:</strong>A03066909</p>
             </div>

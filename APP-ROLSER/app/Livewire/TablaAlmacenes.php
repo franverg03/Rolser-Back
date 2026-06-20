@@ -149,12 +149,11 @@ class TablaAlmacenes extends Component
 
     public function render()
 {
-    // Obtener todos los almacenes filtrados y paginados
     $almacenes = Almacen::where('almacen_nombre', 'like', '%' . $this->search . '%')
         ->orWhere('almacen_ubicacion', 'like', '%' . $this->search . '%')
         ->orWhere('almacen_localidad', 'like', '%' . $this->search . '%')
         ->orWhere('almacen_codigo_postal', 'like', '%' . $this->search . '%')
-        ->paginate($this->perPage); // Recupera los registros paginados
+        ->paginate($this->perPage);
 
     return view('livewire.tabla-almacenes', compact('almacenes'));
 }

@@ -38,9 +38,6 @@
 
             </div>
         </div>
-
-
-
         <!-- Contenedor Scrolleable -->
 
         <div>
@@ -59,7 +56,7 @@
                         <tr class="border-b bordeRolser tamanyoCelda">
                             <td wire:click.prevent="abrirModalMostrar({{ $factura->id_factura }})"
                                 class="px-4 py-3 tipografia-contenido-tabla-administrativo">
-                                {{ $factura->id_pedido}}</td>
+                                {{ $factura->pedido?->codigo_Pedido ?? 'Sin pedido' }}</td>
                             <td wire:click.prevent="abrirModalMostrar({{ $factura->id_factura }})"
                                 class="px-4 py-3 tipografia-contenido-tabla-administrativo">
                                 {{ $factura->factura_importe_total }}</td>

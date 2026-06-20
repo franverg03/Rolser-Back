@@ -24,6 +24,14 @@ class ObjetivoVenta extends Model
         'id_comercial'
     ];
 
+    protected $casts = [
+        'completado' => 'boolean',
+        'fecha_inicio' => 'date:d/m/Y',
+        'fecha_fin' => 'date:d/m/Y',
+    ];
+
+
+
     public function comercial()
     {
         return $this->belongsTo(Comercial::class, 'id_comercial', 'id_comercial');

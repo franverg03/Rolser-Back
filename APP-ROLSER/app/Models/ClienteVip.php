@@ -60,4 +60,19 @@ class ClienteVip extends Model
     {
         return $this->hasMany(Descuento::class, 'id_cliente_vip');
     }
+
+    public function historicoCategorias()
+    {
+        return $this->hasMany(HistoricoCategoriaVip::class, 'id_cliente_vip', 'id_cliente_vip')
+                    ->orderBy('fecha_cambio', 'desc');
+    }
+
+    /**
+     * Obtiene SOLO el registro activo/actual del histórico.
+     */
+    public function categoriaActual()
+    {
+        return $this->hasOne(HistoricoCategoriaVip::class, 'id_cliente_vip', 'id_cliente_vip')
+                    ->latestOfMany('fecha_cambio');
+    }
 }

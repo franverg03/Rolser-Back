@@ -42,9 +42,6 @@
                         stroke-linejoin="round" />
                 </svg></button>
         </div>
-
-
-
         <!-- Contenedor Scrolleable -->
         <div>
             <div class="max-h-[400px] overflow-y-auto pr-2  w-[900px]">
@@ -118,88 +115,130 @@
     </div>
 
     @if ($modalMostrar)
-        <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-            <!-- Fondo oscuro -->
+    <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div class="relative transform overflow-hidden cajaModalModificarTablet text-center rounded-lg bg-white shadow-xl transition-all">
+                    <div class="cabeceraModalModificar flex flex-row justify-between">
+                        <h3 class="estilosTituloModalModificar">Ficha cliente Vip</h3>
+                        <svg wire:click.prevent="cerrarModalMostrar" class="hoverX cursor-pointer" width="55" height="55" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+
+                    <div class="flex flex-col cajaSeccionesModalMod">
+                        <div class="flex">
+                            <h5 class="seccionesModalModificar">Datos representante:</h5>
+                        </div>
+                        <div class="flex flex-row">
+                            <input wire:model="nombre_cte" type="text" class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg bg-gray-100" placeholder="Nombre" readonly />
+                            <input wire:model="apellidos_cte" type="text" class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg bg-gray-100" placeholder="Apellidos" readonly />
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col cajaSeccionesModalMod">
+                        <div class="flex">
+                            <h5 class="seccionesModalModificar">Contacto:</h5>
+                        </div>
+                        <div class="flex flex-row">
+                            <input wire:model="telefono_cte" type="text" class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg bg-gray-100" placeholder="Ej: Tlf XXX-XXX-XXX" readonly />
+                            <input wire:model="email_cte" type="text" class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg bg-gray-100" placeholder="correo@ejemplo.com" readonly />
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col cajaSeccionesModalMod">
+                        <div class="flex">
+                            <h5 class="seccionesModalModificar">Datos facturación:</h5>
+                        </div>
+                        <div class="flex flex-row">
+                            <div class="flex flex-col">
+                                <label class="labelsModal text-left">Empresa:</label>
+                                <input wire:model="empresa_cte" type="text" class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg bg-gray-100" placeholder="Nombre de la empresa" readonly />
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="labelsModal text-left">Dirección:</label>
+                                <input wire:model="direccion_cte" type="text" class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg bg-gray-100" placeholder="Dirección de la empresa" readonly />
+                            </div>
+                        </div>
+
+                        <div class="flex flex-row mt-4">
+                            <div class="flex flex-col">
+                                <label class="labelsModal text-left">CIF:</label>
+                                <input wire:model="nif_cte" type="text" class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg bg-gray-100" placeholder="CIF" readonly />
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="labelsModal text-left">IBAN:</label>
+                                <input wire:model="cuenta_bancaria" type="text" class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg bg-gray-100" placeholder="Nº de Cuenta" readonly />
+                            </div>
+                        </div>
+
+                        <div class="flex flex-row mt-4">
+                            <div class="flex flex-col">
+                                <label class="labelsModal text-left">Categoría Actual:</label>
+                                <input wire:model="categoria" type="text" class="tamanyoInputMedioGrandeModales w-full p-2 pr-10 border rounded-lg bg-gray-100" placeholder="Categoría" readonly />
+                            </div>
+                            <div class="flex flex-col ml-2">
+                                <button wire:click.prevent="abrirModalHistorico" class="botonEliminar margen-boton-anyadir">
+                                    Ver Histórico Categorías
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
+    @if ($modalHistorico)
+        <div class="fixed inset-0 z-20" aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
-            <!-- Contenedor del modal -->
-            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+
+            <div class="fixed inset-0 z-30 w-screen overflow-y-auto">
                 <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                    <div
-                        class="relative transform overflow-hidden cajaModalModificarTablet text-center rounded-lg bg-white shadow-xl transition-all">
+                    <div class="relative transform overflow-hidden cajaModalModificarTablet text-center rounded-lg bg-white shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
                         <div class="cabeceraModalModificar flex flex-row justify-between">
-                            <h3 class="estilosTituloModalModificar">Mostrar cliente Vip</h3>
-                            <svg wire:click.prevent="cerrarModalMostrar" class="hoverX" width="55"
-                                height="55" viewBox="0 0 35 35" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <h3 class="estilosTituloModalModificar">Histórico de Categorías</h3>
+                            <svg wire:click.prevent="cerrarModalHistorico" class="hoverX cursor-pointer" width="55" height="55" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>
-                        <div class="flex flex-col cajaSeccionesModalMod">
-                            <div class="flex">
-                                <h5 class="seccionesModalModificar">Datos representante:</h5>
-                            </div>
-                            <div class="flex flex-row">
-                                <input wire:model="nombre_cte" type="text" id="searchInput"
-                                    class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Nombre" readonly />
-                                <input wire:model="apellidos_cte" type="text" id="searchInput"
-                                    class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Apellidos" readonly />
-                            </div>
-                        </div>
-                        <div class="flex flex-col cajaSeccionesModalMod">
-                            <div class="flex">
-                                <h5 class="seccionesModalModificar">Contacto:</h5>
-                            </div>
-                            <div class="flex flex-row">
-                                <input wire:model="telefono_cte" type="text" id="searchInput"
-                                    class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Ej: Tlf XXX-XXX-XXX" readonly />
-                                <input wire:model="email_cte" type="text" id="searchInput"
-                                    class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="correo@ejemplo.com" readonly />
-                            </div>
-                        </div>
-                        <div class="flex flex-col cajaSeccionesModalMod">
-                            <div class="flex">
-                                <h5 class="seccionesModalModificar">Datos facturación:</h5>
-                            </div>
-                            <div class="flex flex-row">
-                                <div class="flex flex-col">
-                                    <div class="flex">
-                                        <label class="labelsModal" for="">Empresa:</label>
-                                    </div>
-                                    <input wire:model="empresa_cte" type="text" id="searchInput"
-                                        class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                        placeholder="Nombre de la empresa" readonly />
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="flex">
-                                        <label class="labelsModal" for="">Dirección:</label>
-                                    </div>
-                                    <input wire:model="direccion_cte" type="text" id="searchInput"
-                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                        placeholder="Dirección de la empresa" readonly />
-                                </div>
-                            </div>
-                            <div class="flex flex-row mt-4">
-                                <div class="flex flex-col">
-                                    <div class="flex">
-                                        <label class="labelsModal" for="">CIF:</label>
-                                    </div>
-                                    <input wire:model="nif_cte" type="text" id="searchInput"
-                                        class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                        placeholder="CIF" readonly />
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="flex">
-                                        <label class="labelsModal" for="">IBAN:</label>
-                                    </div>
-                                    <input wire:model="cuenta_bancaria" type="text" id="searchInput"
-                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                        placeholder="Nº de Cuenta" readonly />
-                                </div>
+
+                        <div class="p-6">
+                            <div class="overflow-x-auto rounded-lg shadow border bordeRolser overflow-hidden">
+
+                                <table class="w-full text-sm text-left bg-white border-collapse">
+                                    <thead class="text-xs uppercase text-white font-bold sticky top-0 colorFondoTablas">
+                                        <tr>
+                                            <th scope="col" class="px-4 py-3 text-center">Fecha de Cambio</th>
+                                            <th scope="col" class="px-4 py-3 text-center">Categoría</th>
+                                            <th scope="col" class="px-4 py-3 text-center">Motivo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($historico_categorias as $historico)
+                                            <tr class="border-b bordeRolser tamanyoCelda last:border-b-0">
+                                                <td class="px-4 py-3 text-center tipografia-contenido-tabla-administrativo">
+                                                    {{ $historico->fecha_cambio->format('d/m/Y') }}
+                                                </td>
+                                                <td class="px-4 py-3 text-center tipografia-contenido-tabla-administrativo font-semibold">
+                                                    {{ $historico->categoriaVip->nombre_categoria ?? 'Desconocida' }}
+                                                </td>
+                                                <td class="px-4 py-3 text-center tipografia-contenido-tabla-administrativo text-gray-600">
+                                                    {{ $historico->motivo_cambio ?? '-' }}
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="3" class="px-4 py-6 text-center text-gray-500 font-semibold text-lg">
+                                                    No hay registros en el histórico para este cliente.
+                                                </td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

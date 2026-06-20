@@ -98,8 +98,6 @@
     <div class="menu-grande-comercial d-flex flex-col" id="menu-grande-administrativo">
         <img class="mt-4 ml-3 logo-grande-comercial" width="130vh" src="/images/logoGrandeRolser.png"
             alt="">
-        {{-- <div class="boton-comercial-cliente">
-        </div> --}}
         <div class="div-menu-grande-comercial pt-14" >
             <a href="{{ route('comercial.home') }}" class="{{ request()->routeIs('comercial.home') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Home</a>
             <a href="{{ route('comercial.ventas') }}"class="{{ request()->routeIs('comercial.ventas') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Ventas</a>

@@ -50,7 +50,6 @@
             <div class="contenedorTablas overflow-hidden">
                 <table class="w-full text-center text-sm bg-white border-collapse bordeRolser">
                     <thead class="text-xs uppercase color-cabecera-tabla-admin text-white font-bold">
-                        {{-- Aquí deberíamos aplicar el border radius top left y right --}}
                         <tr>
                             <th scope="col" class="px-4 py-3 border-b bordeRolser ">Nombre</th>
                             <th scope="col" class="px-4 py-3 border-b bordeRolser ">Apellidos</th>
