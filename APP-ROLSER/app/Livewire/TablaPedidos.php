@@ -185,6 +185,6 @@ class TablaPedidos extends Component
             ->orWhere('pedido_estado', 'like', '%' . $this->search . '%')
             ->get();
 
-            return view('livewire.tabla-pedidos', compact('pedidosP'));
+        return view('livewire.tabla-pedidos', compact('pedidosP'));
     }
 }

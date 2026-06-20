@@ -27,19 +27,19 @@ class GraficaClientes extends Component
             DB::raw('MONTH(created_at) as mes'),
             DB::raw('count(*) as total')
         )
-        ->whereYear('created_at', $this->añoActual)
-        ->groupBy('mes')
-        ->pluck('total', 'mes')
-        ->toArray();
+            ->whereYear('created_at', $this->añoActual)
+            ->groupBy('mes')
+            ->pluck('total', 'mes')
+            ->toArray();
 
         $noVipsPorMes = ClienteNoVip::select(
             DB::raw('MONTH(created_at) as mes'),
             DB::raw('count(*) as total')
         )
-        ->whereYear('created_at', $this->añoActual)
-        ->groupBy('mes')
-        ->pluck('total', 'mes')
-        ->toArray();
+            ->whereYear('created_at', $this->añoActual)
+            ->groupBy('mes')
+            ->pluck('total', 'mes')
+            ->toArray();
 
         $meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
 

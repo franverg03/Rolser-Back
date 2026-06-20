@@ -183,11 +183,11 @@ class TablaClientesVipTablet extends Component
 
 
         HistoricoCategoriaVip::create([
-                'id_cliente_vip' => $cliente->id_cliente_vip,
-                'id_categoria_vip' => 1,
-                'fecha_cambio' => now(),
-                'motivo_cambio' => 'Alta inicial de cliente VIP'
-            ]);
+            'id_cliente_vip' => $cliente->id_cliente_vip,
+            'id_categoria_vip' => 1,
+            'fecha_cambio' => now(),
+            'motivo_cambio' => 'Alta inicial de cliente VIP'
+        ]);
         $this->cerrarModalAnyadir();
     }
 
@@ -207,9 +207,9 @@ class TablaClientesVipTablet extends Component
         $categoriaAntigua = $cliente->categoriaActual?->id_categoria_vip;
 
         if ($this->categoria && $this->categoria != $categoriaAntigua) {
-            $categoriaNueva= CategoriaVip::find($this->categoria);
+            $categoriaNueva = CategoriaVip::find($this->categoria);
 
-            switch ($categoriaNueva->id_categoria_vip){
+            switch ($categoriaNueva->id_categoria_vip) {
                 case 1:
                     $motivoCambio = 'Nuevo cliente VIP';
                     break;
@@ -276,10 +276,10 @@ class TablaClientesVipTablet extends Component
         $categorias = CategoriaVip::all();
 
 
-            $historico_categorias = HistoricoCategoriaVip::with('categoriaVip')
-                                ->where('id_cliente_vip', $this->id_cte_vip)
-                                ->orderBy('fecha_cambio', 'desc')
-                                ->get();
+        $historico_categorias = HistoricoCategoriaVip::with('categoriaVip')
+            ->where('id_cliente_vip', $this->id_cte_vip)
+            ->orderBy('fecha_cambio', 'desc')
+            ->get();
 
         return view('livewire.tabla-clientes-vip-tablet', compact('clientesVipT', 'categorias', 'historico_categorias'));
     }

@@ -58,10 +58,18 @@
                     <tbody>
                         @forelse ($comerciales as $comercial)
                             <tr class="border-b bordeRolser">
-                                <td wire:click.prevent="abrirModalMostrar({{$comercial->id_comercial}})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $comercial->comercial_nombre }}</td>
-                                <td wire:click.prevent="abrirModalMostrar({{$comercial->id_comercial}})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $comercial->comercial_apellidos }}</td>
-                                <td wire:click.prevent="abrirModalMostrar({{$comercial->id_comercial}})" class="px4 py-3 tipografia-contenido-tabla-administrativo">{{ $comercial->comercial_zona}}</td>
-                                <td wire:click.prevent="abrirModalMostrar({{$comercial->id_comercial}})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $comercial->comercial_email }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $comercial->id_comercial }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $comercial->comercial_nombre }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $comercial->id_comercial }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $comercial->comercial_apellidos }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $comercial->id_comercial }})"
+                                    class="px4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $comercial->comercial_zona }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $comercial->id_comercial }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $comercial->comercial_email }}</td>
                                 <td>
                                     <div class="flex flex-row">
                                         <button type="button" id="mostrarModalModificar" class="botonCrud mr-3 mb-2"
@@ -94,7 +102,8 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="px-4 py-3 text-center text-gray-500">No se encontraron resultados</td>
+                                <td colspan="4" class="px-4 py-3 text-center text-gray-500">No se encontraron
+                                    resultados</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -110,94 +119,94 @@
     </div>
 
     @if ($modalMostrar)
-    <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <!-- Fondo oscuro -->
-        <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
-        <!-- Contenedor del modal -->
-        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                <div
-                    class="relative transform overflow-hidden cajaModalModificar text-center rounded-lg bg-white shadow-xl transition-all">
-                    <div class="cabeceraModalModificar flex flex-row justify-between">
-                        <h3 class="estilosTituloModalModificar">Mostrar Comercial</h3>
-                        <svg wire:click.prevent="cerrarModalMostrar" class="hoverX" width="55"
-                            height="55" viewBox="0 0 35 35" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Datos del Comercial:</h5>
+        <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <!-- Fondo oscuro -->
+            <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+            <!-- Contenedor del modal -->
+            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                    <div
+                        class="relative transform overflow-hidden cajaModalModificar text-center rounded-lg bg-white shadow-xl transition-all">
+                        <div class="cabeceraModalModificar flex flex-row justify-between">
+                            <h3 class="estilosTituloModalModificar">Mostrar Comercial</h3>
+                            <svg wire:click.prevent="cerrarModalMostrar" class="hoverX" width="55"
+                                height="55" viewBox="0 0 35 35" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
                         </div>
-                        <div class="flex flex-row">
-                            <input wire:model="comercial_nombre" type="text" id="searchInput"
-                                class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Nombre" readonly/>
-                            <input wire:model="comercial_apellidos" type="text" id="searchInput"
-                                class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Apellidos" readonly />
-                        </div>
-                    </div>
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Contacto:</h5>
-                        </div>
-                        <div class="flex flex-row">
-                            <input wire:model="comercial_telefono" type="text" id="searchInput"
-                                class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Ej: Tlf XXX-XXX-XXX" readonly/>
-                            <input wire:model="comercial_email" type="text" id="searchInput"
-                                class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="correo@ejemplo.com" readonly />
-                        </div>
-                    </div>
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Datos adicionales:</h5>
-                        </div>
-                        <div class="flex flex-row">
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">DNI:</label>
-                                </div>
-                                <input wire:model="comercial_dni" type="text" id="searchInput"
-                                    class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="DNI" readonly/>
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Datos del Comercial:</h5>
                             </div>
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">Dirección:</label>
-                                </div>
-                                <input wire:model="comercial_direccion" type="text" id="searchInput"
+                            <div class="flex flex-row">
+                                <input wire:model="comercial_nombre" type="text" id="searchInput"
+                                    class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Nombre" readonly />
+                                <input wire:model="comercial_apellidos" type="text" id="searchInput"
                                     class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Dirección" readonly/>
+                                    placeholder="Apellidos" readonly />
                             </div>
                         </div>
-                        <div class="flex flex-row mt-4">
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">Código Postal:</label>
-                                </div>
-                                <input wire:model="comercial_cp" type="text" id="searchInput"
-                                    class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="CP" readonly/>
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Contacto:</h5>
                             </div>
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">Zona:</label>
-                                </div>
-                                <input wire:model="comercial_zona" type="text" id="searchInput"
+                            <div class="flex flex-row">
+                                <input wire:model="comercial_telefono" type="text" id="searchInput"
+                                    class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Ej: Tlf XXX-XXX-XXX" readonly />
+                                <input wire:model="comercial_email" type="text" id="searchInput"
                                     class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Zona" readonly />
+                                    placeholder="correo@ejemplo.com" readonly />
+                            </div>
+                        </div>
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Datos adicionales:</h5>
+                            </div>
+                            <div class="flex flex-row">
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">DNI:</label>
+                                    </div>
+                                    <input wire:model="comercial_dni" type="text" id="searchInput"
+                                        class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="DNI" readonly />
+                                </div>
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">Dirección:</label>
+                                    </div>
+                                    <input wire:model="comercial_direccion" type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Dirección" readonly />
+                                </div>
+                            </div>
+                            <div class="flex flex-row mt-4">
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">Código Postal:</label>
+                                    </div>
+                                    <input wire:model="comercial_cp" type="text" id="searchInput"
+                                        class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="CP" readonly />
+                                </div>
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">Zona:</label>
+                                    </div>
+                                    <input wire:model="comercial_zona" type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Zona" readonly />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     @endif
 
     @if ($modalAnyadir)

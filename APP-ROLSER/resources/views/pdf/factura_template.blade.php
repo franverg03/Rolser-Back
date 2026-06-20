@@ -1,22 +1,74 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Factura #{{ $factura->pedido?->codigo_Pedido ?? 'Sin pedido' }}</title>
     <style>
-        body {color: #333; line-height: 1.5; }
-        .invoice-header { border-bottom: 2px solid #AF272F; padding-bottom: 20px; margin-bottom: 20px; }
-        .row { display: table; width: 100%; }
-        .col { display: table-cell; vertical-align: top; }
-        .text-right { text-align: right; }
-        .invoice-title { color: #AF272F; font-size: 28px; font-weight: bold; }
-        .table { width: 100%; border-collapse: collapse; margin-top: 30px; }
-        .table th { background-color: #cf333f; color: white; padding: 10px; text-align: left; }
-        .table td { padding: 10px; border-bottom: 1px solid #eee; }
-        .total-section { margin-top: 30px; text-align: right; font-size: 18px; }
-        .total-box { background-color: #f9f9f9; padding: 15px; border: 1px solid #ddd; display: inline-block; }
+        body {
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .invoice-header {
+            border-bottom: 2px solid #AF272F;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .row {
+            display: table;
+            width: 100%;
+        }
+
+        .col {
+            display: table-cell;
+            vertical-align: top;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .invoice-title {
+            color: #AF272F;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        .table th {
+            background-color: #cf333f;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .total-section {
+            margin-top: 30px;
+            text-align: right;
+            font-size: 18px;
+        }
+
+        .total-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            display: inline-block;
+        }
     </style>
 </head>
+
 <body>
     <div class="invoice-header">
         <div class="row">
@@ -63,27 +115,27 @@
         </div>
     </div>
     <table class="table">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Numero</th>
-            <th>Cant.</th>
-            <th>Precio Ud.</th>
-            <th>Subtotal</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($factura->lineasDeFactura as $linea)
-        <tr>
-            <td>{{ $linea->producto->producto_nombre }}</td>
-            <td>{{ $linea->producto->id_producto }}</td>
-            <td>{{ $linea->unidades }}</td>
-            <td>{{ number_format($linea->importe, 2, ',', '.') }}€</td>
-            <td>{{ number_format($linea->total, 2, ',', '.') }}€</td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Numero</th>
+                <th>Cant.</th>
+                <th>Precio Ud.</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($factura->lineasDeFactura as $linea)
+                <tr>
+                    <td>{{ $linea->producto->producto_nombre }}</td>
+                    <td>{{ $linea->producto->id_producto }}</td>
+                    <td>{{ $linea->unidades }}</td>
+                    <td>{{ number_format($linea->importe, 2, ',', '.') }}€</td>
+                    <td>{{ number_format($linea->total, 2, ',', '.') }}€</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
     <div class="total-section">
         <div class="total-box">
             <strong>Total Factura:</strong>
@@ -93,4 +145,5 @@
         </div>
     </div>
 </body>
+
 </html>

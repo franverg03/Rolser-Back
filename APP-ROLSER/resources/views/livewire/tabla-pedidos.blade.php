@@ -47,7 +47,8 @@
                 @forelse ($pedidosP as $pedido)
                     <tr class="border-b bordeRolser">
                         <td wire:click.prevent="abrirModalMostrar({{ $pedido->id_pedido }})"
-                            class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $pedido->codigo_Pedido }}</td>
+                            class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $pedido->codigo_Pedido }}
+                        </td>
                         <td wire:click.prevent="abrirModalMostrar({{ $pedido->id_pedido }})"
                             class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $pedido->fecha_creacion }}
                         </td>
@@ -78,9 +79,8 @@
                         class="relative transform overflow-hidden cajaModalModificar text-center  rounded-lg bg-white shadow-xl transition-all">
                         <div class="cabeceraModalModificar flex flex-row justify-between">
                             <h3 class="estilosTituloModalModificar">Mostrar Pedido</h3>
-                            <svg wire:click.prevent="cerrarModalMostrar" class="hoverX" width="55"
-                                height="55" viewBox="0 0 35 35" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                            <svg wire:click.prevent="cerrarModalMostrar" class="hoverX" width="55" height="55"
+                                viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>

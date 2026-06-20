@@ -20,8 +20,7 @@
                 type: 'bar',
                 data: {
                     labels: etiquetas,
-                    datasets: [
-                        {
+                    datasets: [{
                             label: 'Clientes VIP',
                             data: datosVip,
                             backgroundColor: 'rgba(144, 36, 42, 0.8)',

@@ -80,38 +80,38 @@ class TablaOportunidadesTablet extends Component
     }
 
     public function abrirModalModificar($oportunidad_id)
-{
-    $oportunidad = OportunidadVenta::find($oportunidad_id);
+    {
+        $oportunidad = OportunidadVenta::find($oportunidad_id);
 
-    if ($oportunidad) {
-        $this->id_oportunidad = $oportunidad->id_oportunidad_venta;
-        $this->importe_estimado = $oportunidad->importe_estimado;
-        $this->posibilidad = $oportunidad->posibilidad;
+        if ($oportunidad) {
+            $this->id_oportunidad = $oportunidad->id_oportunidad_venta;
+            $this->importe_estimado = $oportunidad->importe_estimado;
+            $this->posibilidad = $oportunidad->posibilidad;
 
-        $this->fecha_cierre_prevista = \Carbon\Carbon::parse($oportunidad->fecha_cierre_prevista)->format('Y-m-d');
-        $this->id_interaccion = $oportunidad->id_interaccion;
+            $this->fecha_cierre_prevista = \Carbon\Carbon::parse($oportunidad->fecha_cierre_prevista)->format('Y-m-d');
+            $this->id_interaccion = $oportunidad->id_interaccion;
 
-        $interaccion = Interaccion::find($oportunidad->id_interaccion);
+            $interaccion = Interaccion::find($oportunidad->id_interaccion);
 
-        if ($interaccion) {
-            if ($interaccion->id_cliente_vip) {
-                $this->cliente = $interaccion->clienteVip;
-                $this->nombre_empresa = $interaccion->clienteVip?->cliente_empresa ?? 'Cliente VIP sin Empresa';
-            } elseif ($interaccion->id_cliente_no_vip) {
-                $this->cliente = $interaccion->clienteNoVip;
-                $this->nombre_empresa = $interaccion->clienteNoVip?->cliente_empresa ?? 'Cliente No VIP sin Empresa';
+            if ($interaccion) {
+                if ($interaccion->id_cliente_vip) {
+                    $this->cliente = $interaccion->clienteVip;
+                    $this->nombre_empresa = $interaccion->clienteVip?->cliente_empresa ?? 'Cliente VIP sin Empresa';
+                } elseif ($interaccion->id_cliente_no_vip) {
+                    $this->cliente = $interaccion->clienteNoVip;
+                    $this->nombre_empresa = $interaccion->clienteNoVip?->cliente_empresa ?? 'Cliente No VIP sin Empresa';
+                } else {
+                    $this->cliente = null;
+                    $this->nombre_empresa = 'Sin cliente asignado';
+                }
             } else {
                 $this->cliente = null;
-                $this->nombre_empresa = 'Sin cliente asignado';
+                $this->nombre_empresa = 'Sin interacción asociada';
             }
-        } else {
-            $this->cliente = null;
-            $this->nombre_empresa = 'Sin interacción asociada';
-        }
 
-        $this->modalModificar = true;
+            $this->modalModificar = true;
+        }
     }
-}
 
     public function abrirModalEliminar($oportunidad_id)
     {
@@ -160,28 +160,28 @@ class TablaOportunidadesTablet extends Component
     }
 
     public function render()
-{
-    $idComercialActual = Auth::user()->comercial->id_comercial;
+    {
+        $idComercialActual = Auth::user()->comercial->id_comercial;
 
-    $oportunidades = OportunidadVenta::whereHas('interaccion', function ($query) use ($idComercialActual) {
+        $oportunidades = OportunidadVenta::whereHas('interaccion', function ($query) use ($idComercialActual) {
             // Seguridad: Solo oportunidades del comercial autenticado
             $query->where('id_comercial', $idComercialActual);
         })
-        ->where(function ($query) {
-            // Buscador por campos nativos de la oportunidad
-            $query->where('importe_estimado', 'like', '%' . $this->search . '%')
-                ->orWhere('posibilidad', 'like', '%' . $this->search . '%')
-                ->orWhere('fecha_cierre_prevista', 'like', '%' . $this->search . '%')
-                ->orWhere('id_interaccion', 'like', '%' . $this->search . '%')
-                ->orWhereHas('interaccion.clienteVip', function ($q) {
-                    $q->where('cliente_empresa', 'like', '%' . $this->search . '%');
-                })
-                ->orWhereHas('interaccion.clienteNoVip', function ($q) {
-                    $q->where('cliente_empresa', 'like', '%' . $this->search . '%');
-                });
-        })
-        ->get();
+            ->where(function ($query) {
+                // Buscador por campos nativos de la oportunidad
+                $query->where('importe_estimado', 'like', '%' . $this->search . '%')
+                    ->orWhere('posibilidad', 'like', '%' . $this->search . '%')
+                    ->orWhere('fecha_cierre_prevista', 'like', '%' . $this->search . '%')
+                    ->orWhere('id_interaccion', 'like', '%' . $this->search . '%')
+                    ->orWhereHas('interaccion.clienteVip', function ($q) {
+                        $q->where('cliente_empresa', 'like', '%' . $this->search . '%');
+                    })
+                    ->orWhereHas('interaccion.clienteNoVip', function ($q) {
+                        $q->where('cliente_empresa', 'like', '%' . $this->search . '%');
+                    });
+            })
+            ->get();
 
-    return view('livewire.tabla-oportunidades-tablet', compact('oportunidades'));
-}
+        return view('livewire.tabla-oportunidades-tablet', compact('oportunidades'));
+    }
 }

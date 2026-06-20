@@ -19,26 +19,32 @@ class Pedido extends Model
         'codigo_Pedido',
         'total_Pedido',
         'id_cliente_vip',
-        'id_cliente_no_vip'
+        'id_cliente_no_vip',
+        'id_comercial'
     ];
 
-    public function clienteVip() {
+    public function clienteVip()
+    {
         return $this->belongsTo(ClienteVip::class, 'id_cliente_vip');
     }
 
-    public function clienteNoVip() {
+    public function clienteNoVip()
+    {
         return $this->belongsTo(ClienteNoVip::class, 'id_cliente_no_vip');
     }
 
-    public function comercial() {
-        return $this->belongsTo(Comercial::class,'id_comercial');
+    public function comercial()
+    {
+        return $this->belongsTo(Comercial::class, 'id_comercial');
     }
 
-    public function factura() {
+    public function factura()
+    {
         return $this->hasOne(Factura::class, 'id_pedido');
     }
 
-    public function lineasDePedidos() {
+    public function lineasDePedidos()
+    {
         return $this->hasMany(LineaPedido::class, 'id_pedido');
     }
 }

@@ -26,7 +26,7 @@ class TablaComerciales extends Component
     public $comercial_zona;
     public $id_usuario;
 
-    public $modalMostrar=false;
+    public $modalMostrar = false;
     public $modalAnyadir = false;
     public $modalModificar = false;
     public $modalEliminar = false;
@@ -45,10 +45,10 @@ class TablaComerciales extends Component
         $this->comercial_email = '';
         $this->comercial_zona = '';
         $this->id_usuario = '';
-
     }
 
-    public function abrirModalMostrar($comercial_id){
+    public function abrirModalMostrar($comercial_id)
+    {
         $comercial = Comercial::find($comercial_id);
 
         if ($comercial) {
@@ -63,11 +63,12 @@ class TablaComerciales extends Component
             $this->comercial_zona = $comercial->comercial_zona;
             $this->id_usuario = $comercial->id_usuario;
         }
-        $this->modalMostrar=true;
+        $this->modalMostrar = true;
     }
 
-    public function cerrarModalMostrar(){
-        $this->modalMostrar=false;
+    public function cerrarModalMostrar()
+    {
+        $this->modalMostrar = false;
     }
 
     public function abrirModalAnyadir()
@@ -142,9 +143,9 @@ class TablaComerciales extends Component
         $user = new User();
         $user->usuario_nombre = $this->comercial_nombre;
         $user->password = bcrypt('123456789');
-        $user->usuario_activo= 1;
-        $user->usuario_rol='comercial';
-        $user->id_administrativo=Auth::user()->id_administrativo;
+        $user->usuario_activo = 1;
+        $user->usuario_rol = 'comercial';
+        $user->id_administrativo = Auth::user()->id_administrativo;
         $user->save();
 
 
@@ -202,10 +203,4 @@ class TablaComerciales extends Component
 
         return view('livewire.tabla-comerciales', compact('comerciales'));
     }
-
-
 }
-
-
-
-

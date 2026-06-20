@@ -60,13 +60,17 @@
                     <tbody>
                         @forelse ($almacenes as $almacen)
                             <tr class="border-b bordeRolser">
-                                <td wire:click.prevent="abrirModalMostrar({{ $almacen->id_almacen }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                <td wire:click.prevent="abrirModalMostrar({{ $almacen->id_almacen }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
                                     {{ $almacen->almacen_nombre }}</td>
-                                <td wire:click.prevent="abrirModalMostrar({{ $almacen->id_almacen }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                <td wire:click.prevent="abrirModalMostrar({{ $almacen->id_almacen }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
                                     {{ $almacen->almacen_capacidad }}</td>
-                                <td wire:click.prevent="abrirModalMostrar({{ $almacen->id_almacen }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                <td wire:click.prevent="abrirModalMostrar({{ $almacen->id_almacen }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
                                     {{ $almacen->almacen_ubicacion }}</td>
-                                <td wire:click.prevent="abrirModalMostrar({{ $almacen->id_almacen }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                <td wire:click.prevent="abrirModalMostrar({{ $almacen->id_almacen }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
                                     {{ $almacen->almacen_localidad }}
                                     {{ $almacen->almacen_codigo_postal }}</td>
                                 <td>

@@ -21,8 +21,7 @@
                 type: 'bar',
                 data: {
                     labels: etiquetas,
-                    datasets: [
-                        {
+                    datasets: [{
                             label: 'Pedidos VIP',
                             data: datosVip,
                             backgroundColor: 'rgba(144, 36, 42, 0.8)',

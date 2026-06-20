@@ -21,7 +21,7 @@
         {{-- Breadcrumb contenedor --}}
         <div class="contenedor-breadcrump-comercial">
             <div class="maquetacion-breadcrump-comercial flex flex-row">
-                <a class="estilo-breadcrump-comercial" href="{{route('comercial.home')}}">Home</a>
+                <a class="estilo-breadcrump-comercial" href="{{ route('comercial.home') }}">Home</a>
                 <svg class="mt-0.5 ml-1 mr-1" width="20" height="20" viewBox="0 0 15 15" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -29,7 +29,7 @@
                         stroke="#90242A" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
                         stroke-linejoin="round" />
                 </svg>
-                <a class="estilo-breadcrump-comercial" href="{{route('comercial.clientes')}}">Clientes</a>
+                <a class="estilo-breadcrump-comercial" href="{{ route('comercial.clientes') }}">Clientes</a>
             </div>
         </div>
         {{-- Contenedor crud datatable paginacion --}}

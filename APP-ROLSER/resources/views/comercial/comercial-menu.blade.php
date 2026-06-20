@@ -1,7 +1,6 @@
 <div class="menu-comercial flex">
     <div class="menu-pequenyo-comercial flex flex-col cursor-pointer" id="menu-pequenyo-administrativo">
-        <img class="mt-3 ml-1 logo-pequenyo-comercial" width="40vh" src="/images/logoPequenyoRolser.png"
-            alt="">
+        <img class="mt-3 ml-1 logo-pequenyo-comercial" width="40vh" src="/images/logoPequenyoRolser.png" alt="">
         <div class="icono-cliente-comercial"></div>
         <div class="iconos-menu-comercial flex flex-col ml-3">
             <!--Home icono-->
@@ -16,10 +15,10 @@
             <!-- Ventas icono -->
             <svg class="iconosM" width="26" height="26" viewBox="0 0 24 24" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 19H20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M7 16V10" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M12 16V5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M17 16V8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M4 19H20" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M7 16V10" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M12 16V5" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M17 16V8" stroke="white" stroke-width="1.5" stroke-linecap="round" />
             </svg>
             <!--Clientes icono-->
             <svg class="iconosM" width="26" height="26" viewBox="0 0 26 26" fill="none"
@@ -83,8 +82,8 @@
             <img width="35px" class="imagen-usuario-comercial" src="/images/administrativoFran.png"
                 alt="">
             <!--LogOut icono-->
-            <svg class="icono-logout-comercial" width="27" height="27" viewBox="0 0 27 27"
-                fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="icono-logout-comercial" width="27" height="27" viewBox="0 0 27 27" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M10.0127 8.50844C10.3614 4.45844 12.4427 2.80469 16.9989 2.80469H17.1452C22.1739 2.80469 24.1877 4.81844 24.1877 9.84719V17.1822C24.1877 22.2109 22.1739 24.2247 17.1452 24.2247H16.9989C12.4764 24.2247 10.3952 22.5934 10.0239 18.6109"
                     stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -98,13 +97,19 @@
     <div class="menu-grande-comercial d-flex flex-col" id="menu-grande-administrativo">
         <img class="mt-4 ml-3 logo-grande-comercial" width="130vh" src="/images/logoGrandeRolser.png"
             alt="">
-        <div class="div-menu-grande-comercial pt-14" >
-            <a href="{{ route('comercial.home') }}" class="{{ request()->routeIs('comercial.home') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Home</a>
-            <a href="{{ route('comercial.ventas') }}"class="{{ request()->routeIs('comercial.ventas') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Ventas</a>
-            <a href="{{ route('comercial.clientes') }}" class="{{ request()->routeIs('comercial.clientes') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Clientes</a>
-            <a href="{{ route('errors.404') }}" class="{{ request()->routeIs('errors.404') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Catálogos</a>
-            <a href="{{ route('comercial.facturas') }}" class="{{ request()->routeIs('comercial.facturas') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Facturas</a>
-            <a href="{{ route('comercial.pedidos') }}" class="{{ request()->routeIs('comercial.pedidos') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Pedidos</a>
+        <div class="div-menu-grande-comercial pt-14">
+            <a href="{{ route('comercial.home') }}"
+                class="{{ request()->routeIs('comercial.home') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Home</a>
+            <a
+                href="{{ route('comercial.ventas') }}"class="{{ request()->routeIs('comercial.ventas') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Ventas</a>
+            <a href="{{ route('comercial.clientes') }}"
+                class="{{ request()->routeIs('comercial.clientes') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Clientes</a>
+            <a href="{{ route('errors.404') }}"
+                class="{{ request()->routeIs('errors.404') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Catálogos</a>
+            <a href="{{ route('comercial.facturas') }}"
+                class="{{ request()->routeIs('comercial.facturas') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Facturas</a>
+            <a href="{{ route('comercial.pedidos') }}"
+                class="{{ request()->routeIs('comercial.pedidos') ? 'boton-menu-sel-comercial' : 'boton-menu-noSel-comercial' }}">Pedidos</a>
         </div>
 
         <div class="caja-info-usuario-comercial-logout">

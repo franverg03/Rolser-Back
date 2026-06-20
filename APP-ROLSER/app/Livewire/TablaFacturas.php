@@ -10,7 +10,7 @@ class TablaFacturas extends Component
 {
     use WithPagination;
 
-    public $perPage=10;
+    public $perPage = 10;
     public $search;
     public $id_factura;
     public $factura_importe_total;

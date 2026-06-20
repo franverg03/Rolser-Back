@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     <link rel="stylesheet" href="/styles/administrativo.css">
@@ -21,7 +22,7 @@
         {{-- Breadcrumb contenedor --}}
         <div class="contenedor-breadcrump-comercial">
             <div class="maquetacion-breadcrump-comercial flex flex-row">
-                <a class="estilo-breadcrump-comercial" href="{{route('comercial.objetivos')}}">Home > Objetivos</a>
+                <a class="estilo-breadcrump-comercial" href="{{ route('comercial.objetivos') }}">Home > Objetivos</a>
             </div>
         </div>
 

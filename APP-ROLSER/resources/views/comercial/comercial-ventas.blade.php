@@ -21,7 +21,7 @@
         {{-- Breadcrumb contenedor --}}
         <div class="contenedor-breadcrump-comercial">
             <div class="maquetacion-breadcrump-comercial flex flex-row">
-                <a class="estilo-breadcrump-comercial" href="{{route('comercial.home')}}">Home</a>
+                <a class="estilo-breadcrump-comercial" href="{{ route('comercial.home') }}">Home</a>
                 <svg class="mt-0.5 ml-1 mr-1" width="20" height="20" viewBox="0 0 15 15" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -29,7 +29,7 @@
                         stroke="#90242A" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
                         stroke-linejoin="round" />
                 </svg>
-                <a class="estilo-breadcrump-comercial" href="{{route('comercial.clientes')}}">Ventas</a>
+                <a class="estilo-breadcrump-comercial" href="{{ route('comercial.clientes') }}">Ventas</a>
             </div>
         </div>
         {{-- Contenedor crud datatable paginacion --}}
@@ -37,7 +37,7 @@
             <div class="flex"></div>
             <div class="flex flex-col">
                 <div class="flex flex-col justify-center">
-                    {{-- Navegación entre datatables Interacciones y Oportunidades venta--}}
+                    {{-- Navegación entre datatables Interacciones y Oportunidades venta --}}
                     <div class="navegacion-diferentes-usuarios">
                         <div class="contenedor-navegacion-usuarios flex flex-row">
                             <button id="boton-efecto-active-cNoVip"
@@ -45,7 +45,8 @@
                                 <span class="linea-blanca"></span><span id="linea-roja-cNoVip"
                                     class="linea-roja-cVIP"></span></button>
                             <button id="boton-efecto-active-cVIP"
-                                class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Oportunidades<span class="linea-blanca"></span><span id="linea-roja-cVip"
+                                class="botones-navegacion-usuarios boton-navegacion-usuario-active flex flex-col">Oportunidades<span
+                                    class="linea-blanca"></span><span id="linea-roja-cVip"
                                     class="linea-roja-cli"></span></button>
                         </div>
                     </div>

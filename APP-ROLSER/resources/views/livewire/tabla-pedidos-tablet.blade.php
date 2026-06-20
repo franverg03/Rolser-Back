@@ -40,7 +40,8 @@
         <div>
             <div class="max-h-[400px] overflow-y-auto pr-2  w-[900px]">
                 <table class="w-full text-sm text-center bg-white bordeRolser">
-                    <thead class="text-xs uppercase color-cabecera-tabla-admin text-white font-bold sticky top-0 colorFondoTablas">
+                    <thead
+                        class="text-xs uppercase color-cabecera-tabla-admin text-white font-bold sticky top-0 colorFondoTablas">
                         <tr>
                             <th scope="col" class="px-4 py-3">Pedido</th>
                             <th scope="col" class="px-4 py-3">Importe</th>
@@ -50,47 +51,53 @@
                         </tr>
                     </thead>
                     <tbody>
-                @forelse ($pedidosT as $pedido)
-                    <tr class="border-b bordeRolser">
-                        <td wire:click.prevent="abrirModalMostrar({{ $pedido->id_pedido }})"
-                            class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $pedido->codigo_Pedido}}
-                        </td>
-                        <td wire:click.prevent="abrirModalMostrar({{ $pedido->id_pedido }})"
-                            class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $pedido-> total_Pedido}}
-                        </td>
-                        @if ($pedido->id_cliente_no_vip)
-                            <td wire:click.prevent="abrirModalMostrar({{ $pedido->id_pedido }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">
-                                {{ $pedido->clienteNoVip?->cliente_empresa ?? 'Cliente no encontrado' }}
-                            </td>
-                            @else
-                                <td wire:click.prevent="abrirModalMostrar({{ $pedido->id_pedido }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">
-                                    {{ $pedido->clienteVip?->cliente_empresa ?? 'Empresa no encontrada' }}
+                        @forelse ($pedidosT as $pedido)
+                            <tr class="border-b bordeRolser">
+                                <td wire:click.prevent="abrirModalMostrar({{ $pedido->id_pedido }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $pedido->codigo_Pedido }}
                                 </td>
-                            @endif
-                        <td wire:click.prevent="abrirModalMostrar({{ $pedido->id_pedido }})"
-                            class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $pedido->pedido_estado }}
-                        </td>
-                        <td class="px-4">
-                            @if(in_array(strtolower($pedido->pedido_estado), ['pendiente', 'proceso']))
-                                <div class="flex flex-row justify-center">
-                                    <button class="botonCrud mb-2"
-                                        wire:click.prevent="abrirModalEliminar({{ $pedido->id_pedido }})">Cancelar<svg
-                                            width="20" height="14" viewBox="0 0 24 19" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6 9.49219H18" stroke="white" stroke-width="3.5"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg></button>
-                                </div>
-                            @endif
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="5" class="px-4 py-1 text-center text-gray-500">No se encontraron resultados
-                        </td>
-                    </tr>
-                @endforelse
-            </tbody>
+                                <td wire:click.prevent="abrirModalMostrar({{ $pedido->id_pedido }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $pedido->total_Pedido }}
+                                </td>
+                                @if ($pedido->id_cliente_no_vip)
+                                    <td wire:click.prevent="abrirModalMostrar({{ $pedido->id_pedido }})"
+                                        class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                        {{ $pedido->clienteNoVip?->cliente_empresa ?? 'Cliente no encontrado' }}
+                                    </td>
+                                @else
+                                    <td wire:click.prevent="abrirModalMostrar({{ $pedido->id_pedido }})"
+                                        class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                        {{ $pedido->clienteVip?->cliente_empresa ?? 'Empresa no encontrada' }}
+                                    </td>
+                                @endif
+                                <td wire:click.prevent="abrirModalMostrar({{ $pedido->id_pedido }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $pedido->pedido_estado }}
+                                </td>
+                                <td class="px-4">
+                                    @if (in_array(strtolower($pedido->pedido_estado), ['pendiente', 'proceso']))
+                                        <div class="flex flex-row justify-center">
+                                            <button class="botonCrud mb-2"
+                                                wire:click.prevent="abrirModalEliminar({{ $pedido->id_pedido }})">Cancelar<svg
+                                                    width="20" height="14" viewBox="0 0 24 19" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6 9.49219H18" stroke="white" stroke-width="3.5"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg></button>
+                                        </div>
+                                    @endif
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="px-4 py-1 text-center text-gray-500">No se encontraron
+                                    resultados
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -98,71 +105,72 @@
 
     @if ($modalMostrar)
         <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-            <!-- Fondo oscuro -->
             <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
-            <!-- Contenedor del modal -->
+
             <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
                 <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                     <div
-                        class="relative transform overflow-hidden cajaModalModificar text-center  rounded-lg bg-white shadow-xl transition-all">
+                        class="relative transform overflow-hidden cajaModalModificar text-center rounded-lg bg-white shadow-xl transition-all">
+
                         <div class="cabeceraModalModificar flex flex-row justify-between">
                             <h3 class="estilosTituloModalModificar">Ficha Pedido</h3>
-                            <svg wire:click.prevent="cerrarModalMostrar" class="hoverX" width="55"
-                                height="55" viewBox="0 0 35 35" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                            <svg wire:click.prevent="cerrarModalMostrar" class="hoverX cursor-pointer" width="55"
+                                height="55" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>
+
                         <div class="flex flex-col cajaSeccionesModalMod">
                             <div class="flex">
                                 <h5 class="seccionesModalModificar">Detalles del Pedido:</h5>
                             </div>
                             <div class="flex flex-row">
-                                <input wire:model="codigoPedido" type="text" id="searchInput"
+                                <input wire:model="codigoPedido" type="text"
                                     class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
                                     placeholder="Código de Pedido" readonly />
-                                <input wire:model="total_pedido" type="text" id="searchInput"
+                                <input wire:model="total_pedido" type="text"
                                     class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
                                     placeholder="Total Pedido" readonly />
                             </div>
                         </div>
+
                         <div class="flex flex-col cajaSeccionesModalMod">
                             <div class="flex">
                                 <h5 class="seccionesModalModificar">Estado del Pedido:</h5>
                             </div>
                             <div class="flex flex-row">
-                                <input wire:model="pedido_estado" type="text" id="searchInput"
+                                <input wire:model="pedido_estado" type="text"
                                     class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
                                     placeholder="Estado del Pedido" readonly />
-                                <input wire:model="fecha_creacion" type="text" id="searchInput"
+                                <input wire:model="fecha_creacion" type="text"
                                     class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
                                     placeholder="Fecha de Creación" readonly />
                             </div>
                         </div>
+
                         <div class="flex flex-col cajaSeccionesModalMod">
                             <div class="flex">
                                 <h5 class="seccionesModalModificar">Información del Cliente:</h5>
                             </div>
                             <div class="flex flex-row">
-                                <input wire:model="nombre_cte" type="text" id="searchInput"
-                                    class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Nombre Cliente" readonly />
-                                <input wire:model="apellidos_cte" type="text" id="searchInput"
-                                    class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Apellidos Cliente" readonly />
+                                <input wire:model="nombre_cte" type="text"
+                                    class="tamanyoInputExtraGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Nombre de la Empresa / Cliente" readonly />
                             </div>
                         </div>
+
                         <div class="flex flex-col cajaSeccionesModalMod">
                             <div class="flex">
-                                <h5 class="seccionesModalModificar">Comercial:</h5>
+                                <h5 class="seccionesModalModificar">Comercial Asignado:</h5>
                             </div>
                             <div class="flex flex-row">
-                                <input wire:model="id_comercial" type="text" id="searchInput"
+                                <input wire:model="nombre_comercial" type="text"
                                     class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Dni Comercial" readonly />
+                                    placeholder="Comercial" readonly />
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

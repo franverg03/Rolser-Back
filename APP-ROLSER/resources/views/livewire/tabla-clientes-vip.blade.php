@@ -110,9 +110,9 @@
 
     <!-- Paginación -->
 
-        <div class="py-4 px-3 flex justify-end">
-            {{ $clientesVip->links('vendor.pagination.tailwind') }}
-        </div>
+    <div class="py-4 px-3 flex justify-end">
+        {{ $clientesVip->links('vendor.pagination.tailwind') }}
+    </div>
 
     @if ($modalMostrar)
         <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">

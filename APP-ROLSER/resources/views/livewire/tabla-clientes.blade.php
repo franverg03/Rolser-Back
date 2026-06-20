@@ -45,72 +45,81 @@
         <div class="overflow-auto max-h-[65vh]">
             <table class="w-full text-center text-sm bg-white border-collapse">
                 <thead class="sticky top-0 z-10 text-xs uppercase bg-[#AF272F] text-white font-bold">
-                <tr>
-                    <th scope="col" class="px-4 py-3 border border-[#AF272F]">
-                        <input type="checkbox" class="form-checkbox h-4 w-4 text-red-600 bg-white border-gray-300 rounded focus:ring-red-500">
-                    </th>
-                    <th scope="col" class="px-4 py-3 border border-[#AF272F]">Cliente</th>
-                    <th scope="col" class="px-4 py-3 border border-[#AF272F]">Empresa</th>
-                    <th scope="col" class="px-4 py-3 border border-[#AF272F]">CIF</th>
-                    <th scope="col" class="px-4 py-3 border border-[#AF272F]">VIP</th>
-                    <th scope="col" class="px-4 py-3 border border-[#AF272F]">Accion</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($clientesPaginados as $cliente)
-                    <tr class="border-b border-[#AF272F]">
-                        <td class="px-4 py-3 border border-[#AF272F]">
-                            <input type="checkbox" class="form-checkbox h-4 w-4 text-red-600 bg-white border-gray-300 rounded focus:ring-red-500">
-                        </td>
-                        <td wire:click.prevent="abrirModalMostrar({{ $cliente->id_cliente_no_vip }})" class="px-4 py-3 border border-[#AF272F] tipografia-contenido-tabla-administrativo cursor-pointer">
-                            {{ $cliente->cliente_nombre_representante }} {{ $cliente->cliente_apellidos_representante }}
-                        </td>
-                        <td wire:click.prevent="abrirModalMostrar({{ $cliente->id_cliente_no_vip }})" class="px-4 py-3 border border-[#AF272F] tipografia-contenido-tabla-administrativo cursor-pointer">
-                            {{ $cliente->cliente_empresa }}
-                        </td>
-                        <td wire:click.prevent="abrirModalMostrar({{ $cliente->id_cliente_no_vip }})" class="px-4 py-3 border border-[#AF272F] tipografia-contenido-tabla-administrativo cursor-pointer">
-                            {{ $cliente->cliente_nif }}
-                        </td>
-                        <td wire:click.prevent="abrirModalMostrar({{ $cliente->id_cliente_no_vip }})" class="px-4 py-3 border border-[#AF272F] tipografia-contenido-tabla-administrativo cursor-pointer">
-                            <span class="bg-gray-200 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">No</span>
-                        </td>
-                        <td class="px-4 border border-[#AF272F]">
-                            <div class="flex flex-row justify-center">
-                                <button type="button" id="mostrarModalModificar" class="botonCrud mr-3 mb-2"
-                                    wire:click.prevent="abrirModalModificar({{ $cliente->id_cliente_no_vip }})">Modificar
-                                    <svg width="15" height="15" viewBox="0 0 13 13" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M5.95801 1.08594H4.87467C2.16634 1.08594 1.08301 2.16927 1.08301 4.8776V8.1276C1.08301 10.8359 2.16634 11.9193 4.87467 11.9193H8.12467C10.833 11.9193 11.9163 10.8359 11.9163 8.1276V7.04427"
-                                            stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                        <path
-                                            d="M8.68851 1.6339L4.42018 5.90223C4.25768 6.06473 4.09518 6.38431 4.06268 6.61723L3.82976 8.24765C3.7431 8.83806 4.16018 9.24973 4.7506 9.16848L6.38101 8.93556C6.60851 8.90306 6.9281 8.74056 7.09601 8.57806L11.3643 4.30973C12.101 3.57306 12.4477 2.71723 11.3643 1.6339C10.281 0.550562 9.42518 0.897228 8.68851 1.6339Z"
-                                            stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                        <path d="M8.07617 2.25C8.43909 3.54458 9.45201 4.5575 10.752 4.92583" stroke="white"
-                                            stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                    </svg>
-                                </button>
-
-                                <button class="botonCrud mb-2"
-                                    wire:click.prevent="abrirModalEliminar({{ $cliente->id_cliente_no_vip }})">Eliminar<svg
-                                        width="20" height="14" viewBox="0 0 24 19" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M6 9.49219H18" stroke="white" stroke-width="3.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                    </svg></button>
-                            </div>
-                        </td>
-                    </tr>
-                @empty
                     <tr>
-                        <td colspan="6" class="px-4 py-1 text-center text-gray-500">No se encontraron resultados</td>
+                        <th scope="col" class="px-4 py-3 border border-[#AF272F]">
+                            <input type="checkbox"
+                                class="form-checkbox h-4 w-4 text-red-600 bg-white border-gray-300 rounded focus:ring-red-500">
+                        </th>
+                        <th scope="col" class="px-4 py-3 border border-[#AF272F]">Cliente</th>
+                        <th scope="col" class="px-4 py-3 border border-[#AF272F]">Empresa</th>
+                        <th scope="col" class="px-4 py-3 border border-[#AF272F]">CIF</th>
+                        <th scope="col" class="px-4 py-3 border border-[#AF272F]">VIP</th>
+                        <th scope="col" class="px-4 py-3 border border-[#AF272F]">Accion</th>
                     </tr>
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @forelse ($clientesPaginados as $cliente)
+                        <tr class="border-b border-[#AF272F]">
+                            <td class="px-4 py-3 border border-[#AF272F]">
+                                <input type="checkbox"
+                                    class="form-checkbox h-4 w-4 text-red-600 bg-white border-gray-300 rounded focus:ring-red-500">
+                            </td>
+                            <td wire:click.prevent="abrirModalMostrar({{ $cliente->id_cliente_no_vip }})"
+                                class="px-4 py-3 border border-[#AF272F] tipografia-contenido-tabla-administrativo cursor-pointer">
+                                {{ $cliente->cliente_nombre_representante }}
+                                {{ $cliente->cliente_apellidos_representante }}
+                            </td>
+                            <td wire:click.prevent="abrirModalMostrar({{ $cliente->id_cliente_no_vip }})"
+                                class="px-4 py-3 border border-[#AF272F] tipografia-contenido-tabla-administrativo cursor-pointer">
+                                {{ $cliente->cliente_empresa }}
+                            </td>
+                            <td wire:click.prevent="abrirModalMostrar({{ $cliente->id_cliente_no_vip }})"
+                                class="px-4 py-3 border border-[#AF272F] tipografia-contenido-tabla-administrativo cursor-pointer">
+                                {{ $cliente->cliente_nif }}
+                            </td>
+                            <td wire:click.prevent="abrirModalMostrar({{ $cliente->id_cliente_no_vip }})"
+                                class="px-4 py-3 border border-[#AF272F] tipografia-contenido-tabla-administrativo cursor-pointer">
+                                <span
+                                    class="bg-gray-200 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">No</span>
+                            </td>
+                            <td class="px-4 border border-[#AF272F]">
+                                <div class="flex flex-row justify-center">
+                                    <button type="button" id="mostrarModalModificar" class="botonCrud mr-3 mb-2"
+                                        wire:click.prevent="abrirModalModificar({{ $cliente->id_cliente_no_vip }})">Modificar
+                                        <svg width="15" height="15" viewBox="0 0 13 13" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M5.95801 1.08594H4.87467C2.16634 1.08594 1.08301 2.16927 1.08301 4.8776V8.1276C1.08301 10.8359 2.16634 11.9193 4.87467 11.9193H8.12467C10.833 11.9193 11.9163 10.8359 11.9163 8.1276V7.04427"
+                                                stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path
+                                                d="M8.68851 1.6339L4.42018 5.90223C4.25768 6.06473 4.09518 6.38431 4.06268 6.61723L3.82976 8.24765C3.7431 8.83806 4.16018 9.24973 4.7506 9.16848L6.38101 8.93556C6.60851 8.90306 6.9281 8.74056 7.09601 8.57806L11.3643 4.30973C12.101 3.57306 12.4477 2.71723 11.3643 1.6339C10.281 0.550562 9.42518 0.897228 8.68851 1.6339Z"
+                                                stroke="white" stroke-width="1.5" stroke-miterlimit="10"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M8.07617 2.25C8.43909 3.54458 9.45201 4.5575 10.752 4.92583"
+                                                stroke="white" stroke-width="1.5" stroke-miterlimit="10"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </button>
+
+                                    <button class="botonCrud mb-2"
+                                        wire:click.prevent="abrirModalEliminar({{ $cliente->id_cliente_no_vip }})">Eliminar<svg
+                                            width="20" height="14" viewBox="0 0 24 19" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 9.49219H18" stroke="white" stroke-width="3.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></button>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="px-4 py-1 text-center text-gray-500">No se encontraron
+                                resultados</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -120,104 +129,104 @@
     </div>
 
     @if ($modalMostrar)
-    <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <!-- Fondo oscuro -->
-        <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
-        <!-- Contenedor del modal -->
-        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                <div
-                    class="relative transform overflow-hidden cajaModalModificar text-center  rounded-lg bg-white shadow-xl transition-all">
-                    <div class="cabeceraModalModificar flex flex-row justify-between">
-                        <h3 class="estilosTituloModalModificar">Mostrar cliente</h3>
-                        <svg wire:click.prevent="cerrarModalMostrar" class="hoverX" width="55"
-                            height="55" viewBox="0 0 35 35" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Datos representante:</h5>
+        <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <!-- Fondo oscuro -->
+            <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+            <!-- Contenedor del modal -->
+            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                    <div
+                        class="relative transform overflow-hidden cajaModalModificar text-center  rounded-lg bg-white shadow-xl transition-all">
+                        <div class="cabeceraModalModificar flex flex-row justify-between">
+                            <h3 class="estilosTituloModalModificar">Mostrar cliente</h3>
+                            <svg wire:click.prevent="cerrarModalMostrar" class="hoverX" width="55"
+                                height="55" viewBox="0 0 35 35" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
                         </div>
-                        <div class="flex flex-row">
-                            <input wire:model="nombre_cte" type="text" id="searchInput"
-                                class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Nombre" readonly/>
-                            <input wire:model="apellidos_cte" type="text" id="searchInput"
-                                class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Apellidos" readonly />
-                        </div>
-                    </div>
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Contacto:</h5>
-                        </div>
-                        <div class="flex flex-row">
-                            <input wire:model="telefono_cte" type="text" id="searchInput"
-                                class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Ej: Tlf XXX-XXX-XXX" readonly />
-                            <input wire:model="email_cte" type="text" id="searchInput"
-                                class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="correo@ejemplo.com" readonly />
-                        </div>
-                    </div>
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Datos facturación:</h5>
-                        </div>
-                        <div class="flex flex-row">
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">Empresa:</label>
-                                </div>
-                                <input wire:model="empresa_cte" type="text" id="searchInput"
-                                    class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Nombre de la empresa" readonly />
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Datos representante:</h5>
                             </div>
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">Dirección:</label>
-                                </div>
-                                <input wire:model="direccion_cte" type="text" id="searchInput"
+                            <div class="flex flex-row">
+                                <input wire:model="nombre_cte" type="text" id="searchInput"
+                                    class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Nombre" readonly />
+                                <input wire:model="apellidos_cte" type="text" id="searchInput"
                                     class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Dirección de la empresa" readonly/>
+                                    placeholder="Apellidos" readonly />
                             </div>
                         </div>
-                        <div class="flex flex-row mt-4">
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">CIF:</label>
-                                </div>
-                                <input wire:model="nif_cte" type="text" id="searchInput"
-                                    class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="CIF" readonly />
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Contacto:</h5>
                             </div>
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">IBAN:</label>
-                                </div>
-                                <input wire:model="cuenta_bancaria" type="text" id="searchInput"
+                            <div class="flex flex-row">
+                                <input wire:model="telefono_cte" type="text" id="searchInput"
+                                    class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Ej: Tlf XXX-XXX-XXX" readonly />
+                                <input wire:model="email_cte" type="text" id="searchInput"
                                     class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Nº de Cuenta" readonly/>
+                                    placeholder="correo@ejemplo.com" readonly />
                             </div>
                         </div>
-                        <div class="flex flex-row mt-4">
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">Comercial:</label>
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Datos facturación:</h5>
+                            </div>
+                            <div class="flex flex-row">
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">Empresa:</label>
+                                    </div>
+                                    <input wire:model="empresa_cte" type="text" id="searchInput"
+                                        class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Nombre de la empresa" readonly />
                                 </div>
-                                <input wire:model="id_comercial" type="text" id="searchInput"
-                                    class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Dni Comercial" readonly />
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">Dirección:</label>
+                                    </div>
+                                    <input wire:model="direccion_cte" type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Dirección de la empresa" readonly />
+                                </div>
+                            </div>
+                            <div class="flex flex-row mt-4">
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">CIF:</label>
+                                    </div>
+                                    <input wire:model="nif_cte" type="text" id="searchInput"
+                                        class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="CIF" readonly />
+                                </div>
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">IBAN:</label>
+                                    </div>
+                                    <input wire:model="cuenta_bancaria" type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Nº de Cuenta" readonly />
+                                </div>
+                            </div>
+                            <div class="flex flex-row mt-4">
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">Comercial:</label>
+                                    </div>
+                                    <input wire:model="id_comercial" type="text" id="searchInput"
+                                        class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Dni Comercial" readonly />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     @endif
 
     @if ($modalAnyadir)
@@ -231,8 +240,9 @@
                         class="relative transform overflow-hidden cajaModalModificar text-center  rounded-lg bg-white shadow-xl transition-all">
                         <div class="cabeceraModalModificar flex flex-row justify-between">
                             <h3 class="estilosTituloModalModificar">Nuevo cliente</h3>
-                            <svg wire:click.prevent="cerrarModalAnyadir" class="hoverX" width="55" height="55"
-                                viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg wire:click.prevent="cerrarModalAnyadir" class="hoverX" width="55"
+                                height="55" viewBox="0 0 35 35" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>

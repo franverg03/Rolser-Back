@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-        @vite('resources/css/app.css')
-        @vite('resources/js/app.js')
-        <link rel="stylesheet" href="/styles/administrativo.css">
-        <link rel="stylesheet" href="/styles/clientesComercial.css">
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
+    <link rel="stylesheet" href="/styles/administrativo.css">
+    <link rel="stylesheet" href="/styles/clientesComercial.css">
     <title>FacturasComercialRolser</title>
 </head>
 
@@ -19,7 +19,7 @@
         {{-- Breadcrumb contenedor --}}
         <div class="contenedor-breadcrump-comercial">
             <div class="maquetacion-breadcrump-comercial flex flex-row">
-                <a class="estilo-breadcrump-comercial" href="{{route('comercial.home')}}">Home</a>
+                <a class="estilo-breadcrump-comercial" href="{{ route('comercial.home') }}">Home</a>
                 <svg class="mt-0.5 ml-1 mr-1" width="20" height="20" viewBox="0 0 15 15" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -27,7 +27,7 @@
                         stroke="#90242A" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
                         stroke-linejoin="round" />
                 </svg>
-                <a class="estilo-breadcrump-comercial" href="{{route('comercial.facturas')}}">Facturas</a>
+                <a class="estilo-breadcrump-comercial" href="{{ route('comercial.facturas') }}">Facturas</a>
             </div>
         </div>
 

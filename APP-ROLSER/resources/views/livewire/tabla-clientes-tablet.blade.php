@@ -49,7 +49,8 @@
         <div>
             <div class="max-h-[400px] overflow-y-auto pr-2">
                 <table class="w-full text-sm text-left bg-white border-collapse bordeRolser tablaComercial">
-                    <thead class="text-xs uppercase color-cabecera-tabla-admin text-white font-bold sticky top-0 colorFondoTablas">
+                    <thead
+                        class="text-xs uppercase color-cabecera-tabla-admin text-white font-bold sticky top-0 colorFondoTablas">
                         <tr>
                             <th scope="col" class="px-4 py-3 text-center">Representante</th>
                             <th scope="col" class="px-4 py-3 text-center">Empresa</th>
@@ -61,11 +62,19 @@
                     <tbody>
                         @forelse ($clientesT as $clienteT)
                             <tr class="border-b bordeRolser">
-                                <td wire:click.prevent="abrirModalMostrar({{ $clienteT->id_cliente_no_vip }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $clienteT->cliente_nombre_representante }}
+                                <td wire:click.prevent="abrirModalMostrar({{ $clienteT->id_cliente_no_vip }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $clienteT->cliente_nombre_representante }}
                                     {{ $clienteT->cliente_apellidos_representante }}</td>
-                                    <td wire:click.prevent="abrirModalMostrar({{ $clienteT->id_cliente_no_vip }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $clienteT->cliente_empresa }}</td>
-                                <td wire:click.prevent="abrirModalMostrar({{ $clienteT->id_cliente_no_vip }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $clienteT->cliente_nif }}</td>
-                                <td wire:click.prevent="abrirModalMostrar({{ $clienteT->id_cliente_no_vip }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $clienteT->cliente_telefono_representante }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $clienteT->id_cliente_no_vip }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $clienteT->cliente_empresa }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $clienteT->id_cliente_no_vip }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $clienteT->cliente_nif }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $clienteT->id_cliente_no_vip }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $clienteT->cliente_telefono_representante }}</td>
                                 <td>
                                     <div class="flex flex-row">
                                         <button type="button" id="mostrarModalModificar" class="botonCrud mr-3 mb-2"
@@ -86,7 +95,8 @@
                                             </svg>
                                         </button>
 
-                                        <button class="botonCrud" wire:click.prevent="abrirModalEliminar({{$clienteT->id_cliente_no_vip}})">Eliminar<svg
+                                        <button class="botonCrud"
+                                            wire:click.prevent="abrirModalEliminar({{ $clienteT->id_cliente_no_vip }})">Eliminar<svg
                                                 width="20" height="14" viewBox="0 0 24 19" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M6 9.49219H18" stroke="white" stroke-width="3.5"
@@ -108,94 +118,94 @@
     </div>
 
     @if ($modalMostrar)
-    <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <!-- Fondo oscuro -->
-        <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
-        <!-- Contenedor del modal -->
-        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                <div
-                    class="relative transform overflow-hidden cajaModalModificarTablet text-center  rounded-lg bg-white shadow-xl transition-all">
-                    <div class="cabeceraModalModificar flex flex-row justify-between">
-                        <h3 class="estilosTituloModalModificar">Ficha cliente</h3>
-                        <svg wire:click.prevent="cerrarModalMostrar" class="hoverX" width="55"
-                            height="55" viewBox="0 0 35 35" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Datos representante:</h5>
+        <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <!-- Fondo oscuro -->
+            <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+            <!-- Contenedor del modal -->
+            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                    <div
+                        class="relative transform overflow-hidden cajaModalModificarTablet text-center  rounded-lg bg-white shadow-xl transition-all">
+                        <div class="cabeceraModalModificar flex flex-row justify-between">
+                            <h3 class="estilosTituloModalModificar">Ficha cliente</h3>
+                            <svg wire:click.prevent="cerrarModalMostrar" class="hoverX" width="55"
+                                height="55" viewBox="0 0 35 35" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
                         </div>
-                        <div class="flex flex-row">
-                            <input wire:model="nombre_cte" type="text" id="searchInput"
-                                class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Nombre" readonly/>
-                            <input wire:model="apellidos_cte" type="text" id="searchInput"
-                                class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Apellidos" readonly />
-                        </div>
-                    </div>
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Contacto:</h5>
-                        </div>
-                        <div class="flex flex-row">
-                            <input wire:model="telefono_cte" type="text" id="searchInput"
-                                class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Ej: Tlf XXX-XXX-XXX" readonly />
-                            <input wire:model="email_cte" type="text" id="searchInput"
-                                class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="correo@ejemplo.com" readonly />
-                        </div>
-                    </div>
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Datos facturación:</h5>
-                        </div>
-                        <div class="flex flex-row">
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">Empresa:</label>
-                                </div>
-                                <input wire:model="empresa_cte" type="text" id="searchInput"
-                                    class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Nombre de la empresa" readonly />
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Datos representante:</h5>
                             </div>
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">Dirección:</label>
-                                </div>
-                                <input wire:model="direccion_cte" type="text" id="searchInput"
+                            <div class="flex flex-row">
+                                <input wire:model="nombre_cte" type="text" id="searchInput"
+                                    class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Nombre" readonly />
+                                <input wire:model="apellidos_cte" type="text" id="searchInput"
                                     class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Dirección de la empresa" readonly/>
+                                    placeholder="Apellidos" readonly />
                             </div>
                         </div>
-                        <div class="flex flex-row mt-4">
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">CIF:</label>
-                                </div>
-                                <input wire:model="nif_cte" type="text" id="searchInput"
-                                    class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="CIF" readonly />
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Contacto:</h5>
                             </div>
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">IBAN:</label>
-                                </div>
-                                <input wire:model="cuenta_bancaria" type="text" id="searchInput"
+                            <div class="flex flex-row">
+                                <input wire:model="telefono_cte" type="text" id="searchInput"
+                                    class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Ej: Tlf XXX-XXX-XXX" readonly />
+                                <input wire:model="email_cte" type="text" id="searchInput"
                                     class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Nº de Cuenta" readonly/>
+                                    placeholder="correo@ejemplo.com" readonly />
+                            </div>
+                        </div>
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Datos facturación:</h5>
+                            </div>
+                            <div class="flex flex-row">
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">Empresa:</label>
+                                    </div>
+                                    <input wire:model="empresa_cte" type="text" id="searchInput"
+                                        class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Nombre de la empresa" readonly />
+                                </div>
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">Dirección:</label>
+                                    </div>
+                                    <input wire:model="direccion_cte" type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Dirección de la empresa" readonly />
+                                </div>
+                            </div>
+                            <div class="flex flex-row mt-4">
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">CIF:</label>
+                                    </div>
+                                    <input wire:model="nif_cte" type="text" id="searchInput"
+                                        class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="CIF" readonly />
+                                </div>
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">IBAN:</label>
+                                    </div>
+                                    <input wire:model="cuenta_bancaria" type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Nº de Cuenta" readonly />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     @endif
 
     @if ($modalAnyadir)
@@ -314,9 +324,11 @@
                                 <h4 class="infoConfi">La siguiente acción creará un nuevo cliente.</h4>
                             </div>
                             <div class=" btnCaja flex flex-row">
-                                <button wire:click.prevent="cerrarModalConfirmacionAnyadir" id="cancelarModalConfirmacionAnyadirCNoVip"
+                                <button wire:click.prevent="cerrarModalConfirmacionAnyadir"
+                                    id="cancelarModalConfirmacionAnyadirCNoVip"
                                     class="cancelConfi w-[50%]">Cancelar</button>
-                                <button wire:click.prevent="anyadirCliente" id="confirmarModalConfirmacionAnyadirCNoVip"
+                                <button wire:click.prevent="anyadirCliente"
+                                    id="confirmarModalConfirmacionAnyadirCNoVip"
                                     class="confirmConfi w-[50%]">Confirmar</button>
                             </div>
                         </div>
@@ -502,7 +514,8 @@
                         <div class=" btnCaja flex flex-row">
                             <button wire:click.prevent="cerrarModalEliminar"
                                 class="cancelConfi w-[50%]">Cancelar</button>
-                            <button wire:click.prevent="eliminarCliente" class="confirmConfi w-[50%]">Confirmar</button>
+                            <button wire:click.prevent="eliminarCliente"
+                                class="confirmConfi w-[50%]">Confirmar</button>
                         </div>
                     </div>
                 </div>

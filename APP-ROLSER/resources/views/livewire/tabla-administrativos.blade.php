@@ -34,8 +34,9 @@
                 @endif
             </div>
             {{-- Añadir --}}
-            <button type="button" class="botonSecundario" wire:click.prevent="abrirModalAnyadir">Añadir Administrativo<svg
-                    width="26" height="28" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <button type="button" class="botonSecundario" wire:click.prevent="abrirModalAnyadir">Añadir
+                Administrativo<svg width="26" height="28" viewBox="0 0 18 20" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
                     <path d="M4.5 9.69531H13.5" stroke="#af272f" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" />
                     <path d="M9 14.4697V4.92969" stroke="#af272f" stroke-width="2" stroke-linecap="round"
@@ -61,10 +62,18 @@
                     <tbody>
                         @forelse ($administrativos as $administrativo)
                             <tr class="border-b bordeRolser">
-                                <td wire:click.prevent="abrirModalMostrar({{ $administrativo->id_administrativo }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $administrativo->administrativo_nombre }}</td>
-                                <td wire:click.prevent="abrirModalMostrar({{ $administrativo->id_administrativo }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $administrativo->administrativo_apellidos }}</td>
-                                <td wire:click.prevent="abrirModalMostrar({{ $administrativo->id_administrativo }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $administrativo->administrativo_email }}</td>
-                                <td wire:click.prevent="abrirModalMostrar({{ $administrativo->id_administrativo }})" class="px-4 py-3 tipografia-contenido-tabla-administrativo">{{ $administrativo->administrativo_departamento }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $administrativo->id_administrativo }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $administrativo->administrativo_nombre }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $administrativo->id_administrativo }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $administrativo->administrativo_apellidos }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $administrativo->id_administrativo }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $administrativo->administrativo_email }}</td>
+                                <td wire:click.prevent="abrirModalMostrar({{ $administrativo->id_administrativo }})"
+                                    class="px-4 py-3 tipografia-contenido-tabla-administrativo">
+                                    {{ $administrativo->administrativo_departamento }}</td>
                                 <td>
                                     <div class="flex flex-row">
                                         <button type="button" id="mostrarModalModificar" class="botonCrud mr-3 mb-2"
@@ -98,7 +107,8 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="px-4 py-3 text-center text-gray-500">No se encontraron resultados</td>
+                                <td colspan="4" class="px-4 py-3 text-center text-gray-500">No se encontraron
+                                    resultados</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -114,353 +124,370 @@
     </div>
 
     @if ($modalMostrar)
-    <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <!-- Fondo oscuro -->
-        <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
-        <!-- Contenedor del modal -->
-        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                <div class="relative transform overflow-hidden cajaModalModificar text-center rounded-lg bg-white shadow-xl transition-all">
-                    <div class="cabeceraModalModificar flex flex-row justify-between">
-                        <h3 class="estilosTituloModalModificar">Mostrar Administrativo</h3>
-                        <svg wire:click.prevent="cerrarModalMostrar" class="hoverX" width="55" height="55" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Datos del Administrativo:</h5>
-                        </div>
-                        <div class="flex flex-row">
-                            <input wire:model="administrativo_nombre" type="text" id="searchInput"
-                                class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Nombre" readonly />
-                            <input wire:model="administrativo_apellidos" type="text" id="searchInput"
-                                class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Apellidos" readonly />
-                        </div>
-                    </div>
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Contacto:</h5>
-                        </div>
-                        <div class="flex flex-row">
-                            <input wire:model="administrativo_telefono" type="text" id="searchInput"
-                                class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Ej: Tlf XXX-XXX-XXX" readonly />
-                            <input wire:model="administrativo_email" type="text" id="searchInput"
-                                class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="correo@ejemplo.com" readonly />
-                        </div>
-                    </div>
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Datos adicionales:</h5>
-                        </div>
-                        <div class="flex flex-row">
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">DNI:</label>
-                                </div>
-                                <input wire:model="administrativo_dni" type="text" id="searchInput"
-                                    class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="DNI" readonly />
-                            </div>
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">Dirección:</label>
-                                </div>
-                                <input wire:model="administrativo_direccion" type="text" id="searchInput"
-                                    class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Dirección" readonly/>
-                            </div>
-                        </div>
-                        <div class="flex flex-row mt-4">
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">Código Postal:</label>
-                                </div>
-                                <input wire:model="administrativo_cp" type="text" id="searchInput"
-                                    class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="CP" readonly />
-                            </div>
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">Departamento:</label>
-                                </div>
-                                <input wire:model="administrativo_departamento" type="text" id="searchInput"
-                                    class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Departamento" readonly />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endif
-
-    @if ($modalAnyadir)
-    <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <!-- Fondo oscuro -->
-        <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
-        <!-- Contenedor del modal -->
-        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                <div class="relative transform overflow-hidden cajaModalModificar text-center rounded-lg bg-white shadow-xl transition-all">
-                    <div class="cabeceraModalModificar flex flex-row justify-between">
-                        <h3 class="estilosTituloModalModificar">Nuevo Administrativo</h3>
-                        <svg wire:click.prevent="cerrarModalAnyadir" class="hoverX" width="55" height="55" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Datos del Administrativo:</h5>
-                        </div>
-                        <div class="flex flex-row">
-                            <input wire:model="administrativo_nombre" type="text" id="searchInput"
-                                class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Nombre" />
-                            <input wire:model="administrativo_apellidos" type="text" id="searchInput"
-                                class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Apellidos" />
-                        </div>
-                    </div>
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Contacto:</h5>
-                        </div>
-                        <div class="flex flex-row">
-                            <input wire:model="administrativo_telefono" type="text" id="searchInput"
-                                class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Ej: Tlf XXX-XXX-XXX" />
-                            <input wire:model="administrativo_email" type="text" id="searchInput"
-                                class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="correo@ejemplo.com" />
-                        </div>
-                    </div>
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Datos adicionales:</h5>
-                        </div>
-                        <div class="flex flex-row">
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">DNI:</label>
-                                </div>
-                                <input wire:model="administrativo_dni" type="text" id="searchInput"
-                                    class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="DNI" />
-                            </div>
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">Dirección:</label>
-                                </div>
-                                <input wire:model="administrativo_direccion" type="text" id="searchInput"
-                                    class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Dirección" />
-                            </div>
-                        </div>
-                        <div class="flex flex-row mt-4">
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">Código Postal:</label>
-                                </div>
-                                <input wire:model="administrativo_cp" type="text" id="searchInput"
-                                    class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="CP" />
-                            </div>
-                            <div class="flex flex-col">
-                                <div class="flex">
-                                    <label class="labelsModal" for="">Departamento:</label>
-                                </div>
-                                <input wire:model="administrativo_departamento" type="text" id="searchInput"
-                                    class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Departamento" />
-                            </div>
-                        </div>
-                        <div class="flex flex-row mt-4">
-                            <button wire:click.prevent="abrirModalConfirmacionAnyadir" type="button"
-                                class="botonEliminar margen-boton-anyadir">Añadir Administrativo<svg width="18"
-                                    height="18" viewBox="0 0 18 20" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.5 9.69531H13.5" stroke="white" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M9 14.4697V4.92969" stroke="white" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    @if ($modalConfirmacionAnyadir)
-        <div id="modalConfirmacionAnyadir" class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <!-- Fondo oscuro -->
             <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
             <!-- Contenedor del modal -->
             <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
                 <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                    <div class="relative transform overflow-hidden cajaConfi text-center w-[25%] rounded-lg bg-white shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                        <div class="cajaTxt mt-4">
-                            <h3 class="cabeceraConfi m-4">¿Estás seguro que quieres añadirlo?</h3>
-                            <h4 class="infoConfi">La siguiente acción creará un nuevo administrativo.</h4>
+                    <div
+                        class="relative transform overflow-hidden cajaModalModificar text-center rounded-lg bg-white shadow-xl transition-all">
+                        <div class="cabeceraModalModificar flex flex-row justify-between">
+                            <h3 class="estilosTituloModalModificar">Mostrar Administrativo</h3>
+                            <svg wire:click.prevent="cerrarModalMostrar" class="hoverX" width="55"
+                                height="55" viewBox="0 0 35 35" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
                         </div>
-                        <div class="btnCaja flex flex-row">
-                            <button wire:click.prevent="cerrarModalConfirmacionAnyadir" id="cancelarModalConfirmacionAnyadirAdministrativo"
-                                class="cancelConfi w-[50%]">Cancelar</button>
-                            <button wire:click.prevent="anyadirAdministrativo" id="confirmarModalConfirmacionAnyadirAdministrativo"
-                                class="confirmConfi w-[50%]">Confirmar</button>
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Datos del Administrativo:</h5>
+                            </div>
+                            <div class="flex flex-row">
+                                <input wire:model="administrativo_nombre" type="text" id="searchInput"
+                                    class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Nombre" readonly />
+                                <input wire:model="administrativo_apellidos" type="text" id="searchInput"
+                                    class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Apellidos" readonly />
+                            </div>
+                        </div>
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Contacto:</h5>
+                            </div>
+                            <div class="flex flex-row">
+                                <input wire:model="administrativo_telefono" type="text" id="searchInput"
+                                    class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Ej: Tlf XXX-XXX-XXX" readonly />
+                                <input wire:model="administrativo_email" type="text" id="searchInput"
+                                    class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="correo@ejemplo.com" readonly />
+                            </div>
+                        </div>
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Datos adicionales:</h5>
+                            </div>
+                            <div class="flex flex-row">
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">DNI:</label>
+                                    </div>
+                                    <input wire:model="administrativo_dni" type="text" id="searchInput"
+                                        class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="DNI" readonly />
+                                </div>
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">Dirección:</label>
+                                    </div>
+                                    <input wire:model="administrativo_direccion" type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Dirección" readonly />
+                                </div>
+                            </div>
+                            <div class="flex flex-row mt-4">
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">Código Postal:</label>
+                                    </div>
+                                    <input wire:model="administrativo_cp" type="text" id="searchInput"
+                                        class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="CP" readonly />
+                                </div>
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">Departamento:</label>
+                                    </div>
+                                    <input wire:model="administrativo_departamento" type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Departamento" readonly />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     @endif
-@endif
 
-@if ($modalModificar)
-<div>
-    <div id="modalModificar" class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <!-- Fondo oscuro -->
-        <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
-        <!-- Contenedor del modal -->
-        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                <div class="relative transform overflow-hidden cajaModalModificar text-center rounded-lg bg-white shadow-xl transition-all">
-                    <div class="cabeceraModalModificar flex flex-row justify-between">
-                        <h3 class="estilosTituloModalModificar">Modificar Administrativo</h3>
-                        <svg wire:click.prevent="cerrarModalModificar" class="hoverX"
-                            id="ocultarModificarCancelarAdministrativo" width="55" height="55"
-                            viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-
-                    <!-- Sección Datos del Administrativo -->
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Datos del Administrativo:</h5>
+    @if ($modalAnyadir)
+        <div class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <!-- Fondo oscuro -->
+            <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+            <!-- Contenedor del modal -->
+            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                    <div
+                        class="relative transform overflow-hidden cajaModalModificar text-center rounded-lg bg-white shadow-xl transition-all">
+                        <div class="cabeceraModalModificar flex flex-row justify-between">
+                            <h3 class="estilosTituloModalModificar">Nuevo Administrativo</h3>
+                            <svg wire:click.prevent="cerrarModalAnyadir" class="hoverX" width="55"
+                                height="55" viewBox="0 0 35 35" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
                         </div>
-                        <div class="flex flex-row">
-                            <input wire:model="administrativo_nombre" type="text" name="nombre" id="nombre"
-                                class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Nombre" />
-                            <input wire:model="administrativo_apellidos" type="text" id="searchInput"
-                                class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Apellidos" />
-                        </div>
-                    </div>
-
-                    <!-- Sección Contacto -->
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Contacto:</h5>
-                        </div>
-                        <div class="flex flex-row">
-                            <input wire:model="administrativo_telefono" type="text" id="searchInput"
-                                class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Ej: Tlf XXX-XXX-XXX" />
-                            <input wire:model="administrativo_email" type="text" id="searchInput"
-                                class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="correo@ejemplo.com" />
-                        </div>
-                    </div>
-
-                    <!-- Sección Datos adicionales -->
-                    <div class="flex flex-col cajaSeccionesModalMod">
-                        <div class="flex">
-                            <h5 class="seccionesModalModificar">Datos adicionales:</h5>
-                        </div>
-                        <div class="flex flex-row">
-                            <div class="flex flex-col">
-                                <label for="dni" class="labelsModal text-start">DNI:</label>
-                                <input wire:model="administrativo_dni" type="text" id="searchInput"
-                                    class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="DNI" />
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Datos del Administrativo:</h5>
                             </div>
-                            <div class="flex flex-col">
-                                <label for="direccion" class="labelsModal text-start">Dirección:</label>
-                                <input wire:model="administrativo_direccion" type="text" id="searchInput"
+                            <div class="flex flex-row">
+                                <input wire:model="administrativo_nombre" type="text" id="searchInput"
+                                    class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Nombre" />
+                                <input wire:model="administrativo_apellidos" type="text" id="searchInput"
                                     class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Dirección" />
+                                    placeholder="Apellidos" />
                             </div>
                         </div>
-                        <div class="flex flex-row mt-4">
-                            <div class="flex flex-col">
-                                <label for="cp" class="labelsModal text-start">Código Postal:</label>
-                                <input wire:model="administrativo_cp" type="text" id="searchInput"
-                                    class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="CP" />
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Contacto:</h5>
                             </div>
-                            <div class="flex flex-col">
-                                <label for="departamento" class="labelsModal text-start">Departamento:</label>
-                                <input wire:model="administrativo_departamento" type="text" id="searchInput"
+                            <div class="flex flex-row">
+                                <input wire:model="administrativo_telefono" type="text" id="searchInput"
+                                    class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Ej: Tlf XXX-XXX-XXX" />
+                                <input wire:model="administrativo_email" type="text" id="searchInput"
                                     class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Departamento" />
+                                    placeholder="correo@ejemplo.com" />
                             </div>
                         </div>
-                        <div class="flex flex-row mt-4">
-                            <button wire:click.prevent="abrirModalConfirmacionModificar"
-                                id="mostrarModalConfirmacionGuardarAdministrativo" type="button"
-                                class="botonEliminar margen-boton-modificar">
-                                Guardar
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9.30957 14.3947L10.8096 15.8174L14.8096 12.0234" stroke="white"
-                                        stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path
-                                        d="M10 6.14557H14C16 6.14557 16 5.19707 16 4.24857C16 2.35156 15 2.35156 14 2.35156H10C9 2.35156 8 2.35156 8 4.24857C8 6.14557 9 6.14557 10 6.14557Z"
-                                        stroke="white" stroke-width="2.1" stroke-miterlimit="10"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path
-                                        d="M16 4.26562C19.33 4.43635 21 5.60301 21 9.93765V15.6286C21 19.4226 20 21.3196 15 21.3196H9C4 21.3196 3 19.4226 3 15.6286V9.93765C3 5.61249 4.67 4.43635 8 4.26562"
-                                        stroke="white" stroke-width="2.1" stroke-miterlimit="10"
-                                        stroke-linecap="round" stroke-linejoin="round" />
+                        <div class="flex flex-col cajaSeccionesModalMod">
+                            <div class="flex">
+                                <h5 class="seccionesModalModificar">Datos adicionales:</h5>
+                            </div>
+                            <div class="flex flex-row">
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">DNI:</label>
+                                    </div>
+                                    <input wire:model="administrativo_dni" type="text" id="searchInput"
+                                        class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="DNI" />
+                                </div>
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">Dirección:</label>
+                                    </div>
+                                    <input wire:model="administrativo_direccion" type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Dirección" />
+                                </div>
+                            </div>
+                            <div class="flex flex-row mt-4">
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">Código Postal:</label>
+                                    </div>
+                                    <input wire:model="administrativo_cp" type="text" id="searchInput"
+                                        class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="CP" />
+                                </div>
+                                <div class="flex flex-col">
+                                    <div class="flex">
+                                        <label class="labelsModal" for="">Departamento:</label>
+                                    </div>
+                                    <input wire:model="administrativo_departamento" type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Departamento" />
+                                </div>
+                            </div>
+                            <div class="flex flex-row mt-4">
+                                <button wire:click.prevent="abrirModalConfirmacionAnyadir" type="button"
+                                    class="botonEliminar margen-boton-anyadir">Añadir Administrativo<svg
+                                        width="18" height="18" viewBox="0 0 18 20" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.5 9.69531H13.5" stroke="white" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M9 14.4697V4.92969" stroke="white" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if ($modalConfirmacionAnyadir)
+            <div id="modalConfirmacionAnyadir" class="fixed inset-0 z-10" aria-labelledby="modal-title"
+                role="dialog" aria-modal="true">
+                <!-- Fondo oscuro -->
+                <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+                <!-- Contenedor del modal -->
+                <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                        <div
+                            class="relative transform overflow-hidden cajaConfi text-center w-[25%] rounded-lg bg-white shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                            <div class="cajaTxt mt-4">
+                                <h3 class="cabeceraConfi m-4">¿Estás seguro que quieres añadirlo?</h3>
+                                <h4 class="infoConfi">La siguiente acción creará un nuevo administrativo.</h4>
+                            </div>
+                            <div class="btnCaja flex flex-row">
+                                <button wire:click.prevent="cerrarModalConfirmacionAnyadir"
+                                    id="cancelarModalConfirmacionAnyadirAdministrativo"
+                                    class="cancelConfi w-[50%]">Cancelar</button>
+                                <button wire:click.prevent="anyadirAdministrativo"
+                                    id="confirmarModalConfirmacionAnyadirAdministrativo"
+                                    class="confirmConfi w-[50%]">Confirmar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+    @endif
+
+    @if ($modalModificar)
+        <div>
+            <div id="modalModificar" class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog"
+                aria-modal="true">
+                <!-- Fondo oscuro -->
+                <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+                <!-- Contenedor del modal -->
+                <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                        <div
+                            class="relative transform overflow-hidden cajaModalModificar text-center rounded-lg bg-white shadow-xl transition-all">
+                            <div class="cabeceraModalModificar flex flex-row justify-between">
+                                <h3 class="estilosTituloModalModificar">Modificar Administrativo</h3>
+                                <svg wire:click.prevent="cerrarModalModificar" class="hoverX"
+                                    id="ocultarModificarCancelarAdministrativo" width="55" height="55"
+                                    viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001" stroke="#90242A"
+                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
-                            </button>
+                            </div>
+
+                            <!-- Sección Datos del Administrativo -->
+                            <div class="flex flex-col cajaSeccionesModalMod">
+                                <div class="flex">
+                                    <h5 class="seccionesModalModificar">Datos del Administrativo:</h5>
+                                </div>
+                                <div class="flex flex-row">
+                                    <input wire:model="administrativo_nombre" type="text" name="nombre"
+                                        id="nombre"
+                                        class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Nombre" />
+                                    <input wire:model="administrativo_apellidos" type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Apellidos" />
+                                </div>
+                            </div>
+
+                            <!-- Sección Contacto -->
+                            <div class="flex flex-col cajaSeccionesModalMod">
+                                <div class="flex">
+                                    <h5 class="seccionesModalModificar">Contacto:</h5>
+                                </div>
+                                <div class="flex flex-row">
+                                    <input wire:model="administrativo_telefono" type="text" id="searchInput"
+                                        class="tamanyoInputMedioModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="Ej: Tlf XXX-XXX-XXX" />
+                                    <input wire:model="administrativo_email" type="text" id="searchInput"
+                                        class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                        placeholder="correo@ejemplo.com" />
+                                </div>
+                            </div>
+
+                            <!-- Sección Datos adicionales -->
+                            <div class="flex flex-col cajaSeccionesModalMod">
+                                <div class="flex">
+                                    <h5 class="seccionesModalModificar">Datos adicionales:</h5>
+                                </div>
+                                <div class="flex flex-row">
+                                    <div class="flex flex-col">
+                                        <label for="dni" class="labelsModal text-start">DNI:</label>
+                                        <input wire:model="administrativo_dni" type="text" id="searchInput"
+                                            class="tamanyoInputMedioGrandeModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="DNI" />
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <label for="direccion" class="labelsModal text-start">Dirección:</label>
+                                        <input wire:model="administrativo_direccion" type="text" id="searchInput"
+                                            class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Dirección" />
+                                    </div>
+                                </div>
+                                <div class="flex flex-row mt-4">
+                                    <div class="flex flex-col">
+                                        <label for="cp" class="labelsModal text-start">Código Postal:</label>
+                                        <input wire:model="administrativo_cp" type="text" id="searchInput"
+                                            class="tamanyoInputPequenyoModales mr-5 w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="CP" />
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <label for="departamento" class="labelsModal text-start">Departamento:</label>
+                                        <input wire:model="administrativo_departamento" type="text"
+                                            id="searchInput"
+                                            class="tamanyoInputGrandeModales w-full p-2 pr-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                            placeholder="Departamento" />
+                                    </div>
+                                </div>
+                                <div class="flex flex-row mt-4">
+                                    <button wire:click.prevent="abrirModalConfirmacionModificar"
+                                        id="mostrarModalConfirmacionGuardarAdministrativo" type="button"
+                                        class="botonEliminar margen-boton-modificar">
+                                        Guardar
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.30957 14.3947L10.8096 15.8174L14.8096 12.0234" stroke="white"
+                                                stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path
+                                                d="M10 6.14557H14C16 6.14557 16 5.19707 16 4.24857C16 2.35156 15 2.35156 14 2.35156H10C9 2.35156 8 2.35156 8 4.24857C8 6.14557 9 6.14557 10 6.14557Z"
+                                                stroke="white" stroke-width="2.1" stroke-miterlimit="10"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path
+                                                d="M16 4.26562C19.33 4.43635 21 5.60301 21 9.93765V15.6286C21 19.4226 20 21.3196 15 21.3196H9C4 21.3196 3 19.4226 3 15.6286V9.93765C3 5.61249 4.67 4.43635 8 4.26562"
+                                                stroke="white" stroke-width="2.1" stroke-miterlimit="10"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-@if ($modalConfirmacionModificar)
-    <!-- Modal de Confirmación -->
-    <div id="modalConfirmacionGuardarCambiosAdministrativo" class="fixed inset-0 z-10" aria-labelledby="modal-title"
-        role="dialog" aria-modal="true">
-        <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
-        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                <div class="relative transform overflow-hidden cajaConfi text-center w-[25%] rounded-lg bg-white shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                    <div class="cajaTxt mt-4">
-                        <h3 class="cabeceraConfi m-4">¿Estás seguro de guardar estos cambios?</h3>
-                        <h4 class="infoConfi">La siguiente acción guardará las modificaciones realizadas.</h4>
-                    </div>
-                    <div class="btnCaja flex flex-row">
-                        <button wire:click.prevent="cerrarModalConfirmacionModificar"
-                            id="cancelarModalConfirmacionGuardarAdministrativo" type="button"
-                            class="cancelConfi w-[50%]">
-                            Cancelar
-                        </button>
-                        <button wire:click.prevent="modificarAdministrativo"
-                            id="confirmarModalConfirmacionGuardarAdministrativo" type="submit"
-                            class="confirmConfi w-[50%]">
-                            Confirmar
-                        </button>
+        @if ($modalConfirmacionModificar)
+            <!-- Modal de Confirmación -->
+            <div id="modalConfirmacionGuardarCambiosAdministrativo" class="fixed inset-0 z-10"
+                aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                <div class="fixed inset-0 bg-black/50 transition-opacity blur-effect"></div>
+                <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                        <div
+                            class="relative transform overflow-hidden cajaConfi text-center w-[25%] rounded-lg bg-white shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                            <div class="cajaTxt mt-4">
+                                <h3 class="cabeceraConfi m-4">¿Estás seguro de guardar estos cambios?</h3>
+                                <h4 class="infoConfi">La siguiente acción guardará las modificaciones realizadas.</h4>
+                            </div>
+                            <div class="btnCaja flex flex-row">
+                                <button wire:click.prevent="cerrarModalConfirmacionModificar"
+                                    id="cancelarModalConfirmacionGuardarAdministrativo" type="button"
+                                    class="cancelConfi w-[50%]">
+                                    Cancelar
+                                </button>
+                                <button wire:click.prevent="modificarAdministrativo"
+                                    id="confirmarModalConfirmacionGuardarAdministrativo" type="submit"
+                                    class="confirmConfi w-[50%]">
+                                    Confirmar
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-@endif
-@endif
+        @endif
+    @endif
 
     @if ($modalEliminar)
         <div id="modalConfirmacionEliminar" class="fixed inset-0 z-10" aria-labelledby="modal-title" role="dialog"
@@ -482,7 +509,8 @@
                         <div class=" btnCaja flex flex-row">
                             <button wire:click.prevent="cerrarModalEliminar"
                                 class="cancelConfi w-[50%]">Cancelar</button>
-                            <button wire:click.prevent="eliminarAdministrativo" class="confirmConfi w-[50%]">Confirmar</button>
+                            <button wire:click.prevent="eliminarAdministrativo"
+                                class="confirmConfi w-[50%]">Confirmar</button>
                         </div>
                     </div>
                 </div>

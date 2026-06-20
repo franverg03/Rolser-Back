@@ -24,7 +24,7 @@ class TablaClientesTablet extends Component
     public $id_usuario;
     public $id_comercial;
 
-    public $modalMostrar=false;
+    public $modalMostrar = false;
     public $modalAnyadir = false;
     public $modalModificar = false;
     public $modalEliminar = false;
@@ -56,7 +56,8 @@ class TablaClientesTablet extends Component
         $this->id_comercial = '';
     }
 
-    public function abrirModalMostrar($cliente_id){
+    public function abrirModalMostrar($cliente_id)
+    {
 
         $cliente = ClienteNoVip::find($cliente_id);
 
@@ -75,11 +76,12 @@ class TablaClientesTablet extends Component
         }
 
 
-        $this->modalMostrar=true;
-}
+        $this->modalMostrar = true;
+    }
 
-    public function cerrarModalMostrar(){
-        $this->modalMostrar=false;
+    public function cerrarModalMostrar()
+    {
+        $this->modalMostrar = false;
     }
 
 
@@ -113,7 +115,7 @@ class TablaClientesTablet extends Component
 
     public function abrirModalEliminar($cliente_id)
     {
-        $this->id_cte_no_vip=$cliente_id;
+        $this->id_cte_no_vip = $cliente_id;
         $this->modalEliminar = true;
     }
 
@@ -158,9 +160,9 @@ class TablaClientesTablet extends Component
         $user = new User();
         $user->usuario_nombre = $this->nombre_cte;
         $user->password = bcrypt('123456789');
-        $user->usuario_activo= 1;
-        $user->usuario_rol='clienteNoVip';
-        $user->id_administrativo=Auth::user()->id_administrativo;
+        $user->usuario_activo = 1;
+        $user->usuario_rol = 'clienteNoVip';
+        $user->id_administrativo = Auth::user()->id_administrativo;
         $user->save();
 
 
@@ -174,7 +176,7 @@ class TablaClientesTablet extends Component
         $cliente->cliente_direccion_empresa = $this->direccion_cte;
         $cliente->cliente_cuenta_bancaria = $this->cuenta_bancaria;
         $cliente->id_usuario = $user->id_usuario;
-        $cliente->id_comercial =Auth::user()->comercial->id_comercial;
+        $cliente->id_comercial = Auth::user()->comercial->id_comercial;
         $cliente->save();
         $this->cerrarModalAnyadir();
     }
@@ -214,5 +216,4 @@ class TablaClientesTablet extends Component
 
         return view('livewire.tabla-clientes-tablet', compact('clientesT'));
     }
-
 }

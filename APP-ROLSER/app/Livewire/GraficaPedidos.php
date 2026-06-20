@@ -27,23 +27,23 @@ class GraficaPedidos extends Component
             DB::raw('MONTH(created_at) as mes'),
             DB::raw('count(*) as total')
         )
-        ->whereYear('created_at', $this->añoActual)
-        ->whereNotNull('id_cliente_vip')
-        ->where('id_comercial', Auth::user()->comercial->id_comercial)
-        ->groupBy('mes')
-        ->pluck('total', 'mes')
-        ->toArray();
+            ->whereYear('created_at', $this->añoActual)
+            ->whereNotNull('id_cliente_vip')
+            ->where('id_comercial', Auth::user()->comercial->id_comercial)
+            ->groupBy('mes')
+            ->pluck('total', 'mes')
+            ->toArray();
 
         $pedidosNoVipPorMes = Pedido::select(
             DB::raw('MONTH(created_at) as mes'),
             DB::raw('count(*) as total')
         )
-        ->whereYear('created_at', $this->añoActual)
-        ->whereNotNull('id_cliente_no_vip')
-        ->where('id_comercial', Auth::user()->comercial->id_comercial)
-        ->groupBy('mes')
-        ->pluck('total', 'mes')
-        ->toArray();
+            ->whereYear('created_at', $this->añoActual)
+            ->whereNotNull('id_cliente_no_vip')
+            ->where('id_comercial', Auth::user()->comercial->id_comercial)
+            ->groupBy('mes')
+            ->pluck('total', 'mes')
+            ->toArray();
 
         // Array estático de meses
         $meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];

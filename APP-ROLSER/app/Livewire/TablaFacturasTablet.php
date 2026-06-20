@@ -229,12 +229,12 @@ class TablaFacturasTablet extends Component
             ->where(function ($query) {
                 // Buscamos en el campo importe
                 $query->where('factura_importe_total', 'like', '%' . $this->search . '%')
-                // Buscamos en el modelo relacionado "pedido" por el "codigo_Pedido"
-                ->orWhereHas('pedido', function ($q) {
-                    $q->where('codigo_Pedido', 'like', '%' . $this->search . '%');
-                })
-                ->orWhere('id_cliente_no_vip', 'like', '%' . $this->search . '%')
-                ->orWhere('id_cliente_vip', 'like', '%' . $this->search . '%');
+                    // Buscamos en el modelo relacionado "pedido" por el "codigo_Pedido"
+                    ->orWhereHas('pedido', function ($q) {
+                        $q->where('codigo_Pedido', 'like', '%' . $this->search . '%');
+                    })
+                    ->orWhere('id_cliente_no_vip', 'like', '%' . $this->search . '%')
+                    ->orWhere('id_cliente_vip', 'like', '%' . $this->search . '%');
             })
             ->get();
 

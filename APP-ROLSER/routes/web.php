@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\clienteVipController;
@@ -18,8 +19,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::group(['middleware' => 'admin'], function() {
-    Route::prefix('administrativo')->group(function() {
+Route::group(['middleware' => 'admin'], function () {
+    Route::prefix('administrativo')->group(function () {
         Route::view('/home', 'administrativo.administrativo-home')->name('administrativo.home');
         Route::view('/clientes', 'administrativo.administrativo-clientes')->name('administrativo.clientes');
         Route::view('/usuarios', 'administrativo.administrativo-usuarios')->name('administrativo.usuarios');
@@ -30,7 +31,7 @@ Route::group(['middleware' => 'admin'], function() {
     });
 });
 
-Route::get('/actualizarClienteNovip', [clienteVipController::class,'actualizar'])->name('actualizarClienteNovip');
+Route::get('/actualizarClienteNovip', [clienteVipController::class, 'actualizar'])->name('actualizarClienteNovip');
 
 Route::view('/404', 'errors.404')->name('errors.404');
 
@@ -38,9 +39,9 @@ Route::get('/pasarDatosModalModificar', [TablaClientesTablet::class, 'modificarC
 
 
 
-Route::group(['middleware' => 'comercial'], function() {
+Route::group(['middleware' => 'comercial'], function () {
     // Rutas que comparten el prefijo "comercial"
-    Route::prefix('comercial')->group(function() {
+    Route::prefix('comercial')->group(function () {
         Route::view('/home', 'comercial.comercial-home')->name('comercial.home');
         Route::view('/ventas', 'comercial.comercial-ventas')->name('comercial.ventas');
         Route::view('/clientes', 'comercial.comercial-clientes')->name('comercial.clientes');
@@ -58,5 +59,4 @@ Livewire::setUpdateRoute(function ($handle) {
 Route::get('/factura/preview/{id}', [TablaFacturasTablet::class, 'mostrarFactura'])->name('factura.preview');
 
 
-require __DIR__.'/auth.php';
-
+require __DIR__ . '/auth.php';

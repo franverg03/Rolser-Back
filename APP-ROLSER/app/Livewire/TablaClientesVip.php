@@ -13,7 +13,7 @@ class TablaClientesVip extends Component
 {
     use WithPagination;
 
-    protected $paginationTheme='tailwind';
+    protected $paginationTheme = 'tailwind';
 
     public $search = '';
     public $perPage = 10; // Siempre mostrar 10 registros por página
@@ -28,7 +28,7 @@ class TablaClientesVip extends Component
     public $cuenta_bancaria;
     public $id_usuario;
     public $id_comercial;
-    public $modalMostrar=false;
+    public $modalMostrar = false;
     public $modalAnyadir = false;
     public $modalModificar = false;
     public $modalEliminar = false;
@@ -49,7 +49,8 @@ class TablaClientesVip extends Component
         $this->search = '';
     }
 
-    public function abrirModalMostrar($id_cliente_vip){
+    public function abrirModalMostrar($id_cliente_vip)
+    {
 
         $cliente = ClienteVip::find($id_cliente_vip);
 
@@ -68,11 +69,12 @@ class TablaClientesVip extends Component
         }
 
 
-        $this->modalMostrar=true;
-}
+        $this->modalMostrar = true;
+    }
 
-    public function cerrarModalMostrar(){
-        $this->modalMostrar=false;
+    public function cerrarModalMostrar()
+    {
+        $this->modalMostrar = false;
     }
 
     private function borrarValoresCampos()
@@ -120,7 +122,7 @@ class TablaClientesVip extends Component
 
     public function abrirModalEliminar($cliente_id)
     {
-        $this->id_cte_vip=$cliente_id;
+        $this->id_cte_vip = $cliente_id;
         $this->modalEliminar = true;
     }
 
@@ -165,9 +167,9 @@ class TablaClientesVip extends Component
         $user = new User();
         $user->usuario_nombre = $this->nombre_cte;
         $user->password = bcrypt('123456789');
-        $user->usuario_activo= 1;
-        $user->usuario_rol='clienteVip';
-        $user->id_administrativo=Auth::user()->id_administrativo;
+        $user->usuario_activo = 1;
+        $user->usuario_rol = 'clienteVip';
+        $user->id_administrativo = Auth::user()->id_administrativo;
         $user->save();
 
 
@@ -181,7 +183,7 @@ class TablaClientesVip extends Component
         $cliente->cliente_direccion_empresa = $this->direccion_cte;
         $cliente->cliente_cuenta_bancaria = $this->cuenta_bancaria;
         $cliente->id_usuario = $user->id_usuario;
-        $cliente->id_comercial =$this->id_comercial;
+        $cliente->id_comercial = $this->id_comercial;
         $cliente->save();
         $this->cerrarModalAnyadir();
     }

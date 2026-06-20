@@ -8,14 +8,14 @@ use App\Models\Almacen;
 class TablaAlmacenes extends Component
 {
     public $search;
-    public $perPage=10;
+    public $perPage = 10;
     public $id_almacen;
     public $almacen_nombre;
     public $almacen_ubicacion;
     public $almacen_capacidad;
     public $almacen_localidad;
     public $almacen_codigo_postal;
-    public $modalMostrar=false;
+    public $modalMostrar = false;
     public $modalAnyadir = false;
     public $modalModificar = false;
     public $modalEliminar = false;
@@ -32,7 +32,8 @@ class TablaAlmacenes extends Component
         $this->almacen_codigo_postal = '';
     }
 
-    public function abrirModalMostrar($almacen_id){
+    public function abrirModalMostrar($almacen_id)
+    {
 
         $almacen = Almacen::find($almacen_id);
 
@@ -45,11 +46,12 @@ class TablaAlmacenes extends Component
             $this->almacen_codigo_postal = $almacen->almacen_codigo_postal;
         }
 
-        $this->modalMostrar=true;
-}
+        $this->modalMostrar = true;
+    }
 
-    public function cerrarModalMostrar(){
-        $this->modalMostrar=false;
+    public function cerrarModalMostrar()
+    {
+        $this->modalMostrar = false;
     }
 
 
@@ -148,17 +150,13 @@ class TablaAlmacenes extends Component
     }
 
     public function render()
-{
-    $almacenes = Almacen::where('almacen_nombre', 'like', '%' . $this->search . '%')
-        ->orWhere('almacen_ubicacion', 'like', '%' . $this->search . '%')
-        ->orWhere('almacen_localidad', 'like', '%' . $this->search . '%')
-        ->orWhere('almacen_codigo_postal', 'like', '%' . $this->search . '%')
-        ->paginate($this->perPage);
+    {
+        $almacenes = Almacen::where('almacen_nombre', 'like', '%' . $this->search . '%')
+            ->orWhere('almacen_ubicacion', 'like', '%' . $this->search . '%')
+            ->orWhere('almacen_localidad', 'like', '%' . $this->search . '%')
+            ->orWhere('almacen_codigo_postal', 'like', '%' . $this->search . '%')
+            ->paginate($this->perPage);
 
-    return view('livewire.tabla-almacenes', compact('almacenes'));
-}
-
-
-
-
+        return view('livewire.tabla-almacenes', compact('almacenes'));
+    }
 }

@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->post('/logout', function (Request $request) {
 
     // Eliminar la cookie con el token
     return response()->json(['message' => 'Logged out successfully'])
-                     ->cookie('token', '', -1);  // Vaciar la cookie 'token'
+        ->cookie('token', '', -1);  // Vaciar la cookie 'token'
 });
 
 Route::middleware('auth:sanctum')->get('/details', function (Request $request) {
@@ -58,9 +58,9 @@ Route::resource('productos', ProductoController::class);
 Route::resource('tarifas', TarifaController::class);
 Route::resource('users', UserController::class);
 
-Route::post('login', [UserController::class,'login']);
-Route::post('register', [UserController::class,'register']);
+Route::post('login', [UserController::class, 'login']);
+Route::post('register', [UserController::class, 'register']);
 Route::group(['middleware' => 'auth:api'], function () {
-        Route::get('details', [UserController::class,'details']);
-        Route::get('logout', [UserController::class,'logout']);
+    Route::get('details', [UserController::class, 'details']);
+    Route::get('logout', [UserController::class, 'logout']);
 });
