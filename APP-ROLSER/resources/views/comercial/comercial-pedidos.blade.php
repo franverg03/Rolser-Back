@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
-    <link rel="stylesheet" href="/styles/administrativo.css">
-    <link rel="stylesheet" href="/styles/clientesComercial.css">
-
-    <title>PedidosComercialRolser</title>
-</head>
-
-<body class="contenedor">
-    @include('comercial.comercial-menu')
-
+<x-layouts.comercial :title="'Pedidos - Comercial'">
     {{-- Contenedor principal --}}
     <div class="contenedor-principal-comercial">
         {{-- Breadcrumb contenedor --}}
@@ -30,21 +12,14 @@
                         stroke="#90242A" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
                         stroke-linejoin="round" />
                 </svg>
-                <a class="estilo-breadcrump-comercial" href="/clientesComercial">Clientes</a>
+                <a class="estilo-breadcrump-comercial" href="/pedidosComercial">Pedidos</a>
             </div>
         </div>
-        {{-- Contenedor crud datatable paginacion --}}
-        <div>
-            <div class="flex"></div>
-            <div id="datatable" class="flex  justify-start ml-32">
-                <div id="tabla-clientes-noVip" class="w-[900px]">
-                    @livewire('tabla-pedidos-tablet')
-                </div>
+        <div id="datatable" class="flex justify-start ml-32">
+            <div class="w[1200px]">
+                @livewire('tabla-pedidos-comercial')
             </div>
         </div>
     </div>
+</x-layouts.comercial>
 
-    <script src="/js/script.js"></script>
-</body>
-
-</html>
