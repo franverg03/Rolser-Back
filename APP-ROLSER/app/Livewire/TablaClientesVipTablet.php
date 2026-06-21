@@ -257,7 +257,18 @@ class TablaClientesVipTablet extends Component
     public function eliminarCliente()
     {
         $cliente = ClienteVip::findOrFail($this->id_cte_vip);
+        
+        // Eliminar primero el historial de categorías para evitar violación de foreign key
+        HistoricoCategoriaVip::where('id_cliente_vip', $cliente->id_cliente_vip)->delete();
+        
+        // Eliminar el usuario asociado
+        if ($cliente->id_usuario) {
+            User::find($cliente->id_usuario)?->delete();
+        }
+        
+        // Finalmente eliminar el cliente
         $cliente->delete();
+        
         $this->cerrarModalEliminar();
     }
 
@@ -284,3 +295,4 @@ class TablaClientesVipTablet extends Component
         return view('livewire.tabla-clientes-vip-tablet', compact('clientesVipT', 'categorias', 'historico_categorias'));
     }
 }
+
