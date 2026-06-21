@@ -16,7 +16,7 @@ return new class extends Migration
             $table->decimal('importe_estimado');
             $table->enum('posibilidad', ['Alta', 'Baja', 'Media']);
             $table->dateTime('fecha_cierre_prevista');
-            $table->foreignId('id_interaccion')->nullable()->references('id_interaccion')->on('interacciones');
+            $table->foreignId('id_interaccion')->nullable()->references('id_interaccion')->on('interacciones')->onDelete('set null');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('oportunidad_ventas');
+        Schema::dropIfExists('oportunidades_venta');
     }
 };

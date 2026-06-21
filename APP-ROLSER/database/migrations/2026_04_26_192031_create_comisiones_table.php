@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_comision');
             $table->decimal('importe');
             $table->boolean('pagada')->default(false);
-            $table->foreignId('id_objetivo_venta')->references('id_objetivo_venta')->on('objetivos_venta');
+            $table->foreignId('id_objetivo_venta')->references('id_objetivo_venta')->on('objetivos_venta')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comisions');
+        Schema::dropIfExists('comisiones');
     }
 };

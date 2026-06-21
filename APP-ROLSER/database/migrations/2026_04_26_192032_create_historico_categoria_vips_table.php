@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('motivo_cambio');
             $table->unsignedBigInteger('id_categoria_vip');
             $table->unsignedBigInteger('id_cliente_vip');
-            $table->foreign('id_categoria_vip')->references('id_categoria_vip')->on('categoria_vips');
-            $table->foreign('id_cliente_vip')->references('id_cliente_vip')->on('clientes_vip');
+            $table->foreign('id_categoria_vip')->references('id_categoria_vip')->on('categoria_vips')->onDelete('restrict');
+            $table->foreign('id_cliente_vip')->references('id_cliente_vip')->on('clientes_vip')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('productos_sugeridos', function (Blueprint $table) {
             $table->id('id_producto_sugerido');
             $table->integer('puntuacion_similitud');
-            $table->foreignId('id_cliente_no_vip')->nullable()->references('id_cliente_no_vip')->on('clientes_no_vip');
-            $table->foreignId('id_cliente_vip')->nullable()->references('id_cliente_vip')->on('clientes_vip');
+            $table->foreignId('id_cliente_no_vip')->nullable()->references('id_cliente_no_vip')->on('clientes_no_vip')->onDelete('cascade');
+            $table->foreignId('id_cliente_vip')->nullable()->references('id_cliente_vip')->on('clientes_vip')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('producto_sugeridos');
+        Schema::dropIfExists('productos_sugeridos');
     }
 };

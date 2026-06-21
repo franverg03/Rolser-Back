@@ -17,9 +17,9 @@ return new class extends Migration
             $table->date('fecha_creacion');
             $table->string('codigo_Pedido');
             $table->decimal('total_Pedido');
-            $table->foreignId('id_cliente_vip')->nullable()->references('id_cliente_vip')->on('clientes_vip')->onDelete('cascade');
-            $table->foreignId('id_cliente_no_vip')->nullable()->references('id_cliente_no_vip')->on('clientes_no_vip')->onDelete('cascade');
-            $table->foreignId('id_comercial')->nullable()->references('id_comercial')->on('comerciales')->onDelete('cascade');
+            $table->foreignId('id_cliente_vip')->nullable()->references('id_cliente_vip')->on('clientes_vip')->onDelete('set null');
+            $table->foreignId('id_cliente_no_vip')->nullable()->references('id_cliente_no_vip')->on('clientes_no_vip')->onDelete('set null');
+            $table->foreignId('id_comercial')->nullable()->references('id_comercial')->on('comerciales')->onDelete('set null');
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->string('mensaje');
             $table->boolean('leida')->default(false);
-            $table->foreignId('id_comercial')->references('id_comercial')->on('comerciales');
+            $table->foreignId('id_comercial')->references('id_comercial')->on('comerciales')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('notificacions');
+        Schema::dropIfExists('notificaciones');
     }
 };

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->dateTime('fecha_inicio');
             $table->dateTime('fecha_fin')->nullable();
             $table->boolean('completado')->default(false);
-            $table->foreignId('id_comercial')->references('id_comercial')->on('comerciales');
+            $table->foreignId('id_comercial')->references('id_comercial')->on('comerciales')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('objetivo_ventas');
+        Schema::dropIfExists('objetivos_venta');
     }
 };
